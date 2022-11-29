@@ -4,7 +4,7 @@
 
 {description}
 
-## Team Name
+## Team GG
 
   Team Leader - Jacob Roming
   
