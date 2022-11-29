@@ -1,4 +1,4 @@
-# {game-title}
+# Slappy Knut
 
 {video}
 
