@@ -24,10 +24,6 @@ Feel free to link any existing Linked.in Profiles or Portfolio Websites.
 
 ## Design Documents
 
-{gdd}
-
 tdd: https://docs.google.com/document/d/1x63S-GwcWJXuxJilvZWuFJVRAm2rQYLvlHm3vQcXeVw/
-
-{art-bible}
 
 ## Media
