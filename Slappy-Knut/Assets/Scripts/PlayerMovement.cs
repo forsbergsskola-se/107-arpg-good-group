@@ -7,8 +7,6 @@ public class PlayerMovement : MonoBehaviour
     public int maxRayCastDistance = 100;
     private NavMeshAgent _meshAgent;
     private Animator _animator;
-
-
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -23,10 +21,9 @@ public class PlayerMovement : MonoBehaviour
             RaycastHit hitInfo;
             if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, walkableLayer))
             {
-                _animator.SetBool("isRunning", true);
                 _meshAgent.SetDestination(hitInfo.point);
             }
         }
-        if(_meshAgent.velocity.magnitude <= .5) _animator.SetBool("isRunning", false);
+        _animator.SetBool("isRunning", _meshAgent.velocity.magnitude >= .5);
     }
 }
