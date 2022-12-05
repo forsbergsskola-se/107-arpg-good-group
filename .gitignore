@@ -95,9 +95,6 @@ fabric.properties
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
 
-# Asset meta data should only be ignored when the corresponding asset is also ignored
-!/[Aa]ssets/**/*.meta
-
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*
 
@@ -1089,5 +1086,8 @@ sysinfo.txt
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Asset meta data should only be ignored when the corresponding asset is also ignored
+!/[Aa]ssets/**/*.meta
 
 # End of https://www.toptal.com/developers/gitignore/api/csharp,rider,unity
