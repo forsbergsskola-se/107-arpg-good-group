@@ -130,10 +130,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314057504}
     m_Modifications:
-    - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (1)
@@ -226,10 +222,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314057504}
     m_Modifications:
-    - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01
@@ -420,10 +412,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314057504}
     m_Modifications:
-    - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (9)
@@ -599,7 +587,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456807695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.592537, y: 0.8, z: 6.1}
+  m_LocalPosition: {x: 11.592537, y: 0.51, z: 13.143978}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -631,10 +619,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314057504}
     m_Modifications:
-    - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (3)
@@ -727,10 +711,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314057504}
     m_Modifications:
-    - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (6)
@@ -1104,10 +1084,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314057504}
     m_Modifications:
-    - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (4)
@@ -1636,10 +1612,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314057504}
     m_Modifications:
-    - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (5)
@@ -1732,10 +1704,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314057504}
     m_Modifications:
-    - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (11)
@@ -1885,10 +1853,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314057504}
     m_Modifications:
-    - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (10)
@@ -1981,10 +1945,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314057504}
     m_Modifications:
-    - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (2)
@@ -2146,10 +2106,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314057504}
     m_Modifications:
-    - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (8)
@@ -2242,10 +2198,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1314057504}
     m_Modifications:
-    - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (7)
