@@ -6,9 +6,12 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask walkableLayer;
     public int maxRayCastDistance = 100;
     private NavMeshAgent _meshAgent;
+    private Animator _animator;
+
 
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         _meshAgent = GetComponent<NavMeshAgent>();
     }
 
@@ -18,11 +21,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-
             if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, walkableLayer))
             {
+                _animator.SetBool("isRunning", true);
                 _meshAgent.SetDestination(hitInfo.point);
             }
         }
+        if(_meshAgent.velocity.magnitude <= .5) _animator.SetBool("isRunning", false);
     }
 }
