@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // right click
+        if (Input.GetMouseButton(0)) // left click
         {
             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
