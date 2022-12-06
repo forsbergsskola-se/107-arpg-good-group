@@ -7,8 +7,10 @@ public class PlayerMovement : MonoBehaviour
     public int maxRayCastDistance = 100;
     private NavMeshAgent _meshAgent;
     private Animator _animator;
+    private AudioSource _audioSource;
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
         _meshAgent = GetComponent<NavMeshAgent>();
     }
@@ -25,5 +27,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         _animator.SetBool("isRunning", _meshAgent.velocity.magnitude >= .5);
+    }
+
+    public void PlayStepSound()
+    {
+        _audioSource.Play();
     }
 }
