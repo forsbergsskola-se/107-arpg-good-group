@@ -1,24 +1,27 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerCore : MonoBehaviour
 {
-    public RageBar rageBar;
+    public Slider rageBar;
     public float rageDamage;
     public float maxRage;
+    public SkinnedMeshRenderer bodyMesh;
+    public SkinnedMeshRenderer hairMesh;
     
     private float _minRage;
     private float _currentRage;
     private Animator _animator;
-    private AudioSource _audioSource;
+    private PlayerAudioManager _audioManager;
     private PlayerMovement _playerMovement;
     void Start()
     {
         _currentRage = _minRage;
-        rageBar.SetRageBar(_currentRage);
+        rageBar.value = _currentRage;
         _animator = GetComponent<Animator>();
-        _audioSource = GetComponent<AudioSource>();
+        _audioManager = GetComponent<PlayerAudioManager>();
         _playerMovement = GetComponent<PlayerMovement>();
     }
     void Update()
@@ -29,14 +32,14 @@ public class PlayerCore : MonoBehaviour
     void TakeDamage(float rage)
     {
         _currentRage += rage * Time.deltaTime;
-        rageBar.SetRageBar(_currentRage);
+        rageBar.value = _currentRage;
     }
     void OnMaxRage()
     {
-        // _playerMovement.enabled = false;
+        _playerMovement.enabled = false;
         _animator.SetBool("isRaging", true);
-        Invoke("SetDeactive", 1f);
-        Invoke("LoadScene", 2f);
+        Invoke("SetDeactive",2f);
+        Invoke("LoadScene", 3f);
     }
     void LoadScene()
     {
@@ -44,6 +47,8 @@ public class PlayerCore : MonoBehaviour
     }
     void SetDeactive()
     {
-        gameObject.SetActive(false);
+        _audioManager.AS_RageFart.Play();
+        bodyMesh.enabled = false;
+        hairMesh.enabled = false;
     }
 }
