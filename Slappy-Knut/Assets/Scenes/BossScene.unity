@@ -123,6 +123,64 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &105990051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 105990053}
+  - component: {fileID: 105990052}
+  - component: {fileID: 105990054}
+  m_Layer: 0
+  m_Name: BossTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &105990052
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105990051}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &105990053
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105990051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.816, y: 0.5, z: 8.6}
+  m_LocalScale: {x: 88.18, y: 4.16, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &105990054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105990051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc974c5cc63bf341a817e12fc715b05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &203542084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,7 +191,7 @@ PrefabInstance:
     - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
+      objectReference: {fileID: 4300000, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (1)
@@ -229,7 +287,7 @@ PrefabInstance:
     - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
+      objectReference: {fileID: 4300000, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01
@@ -411,7 +469,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &437177213
 PrefabInstance:
@@ -423,7 +481,7 @@ PrefabInstance:
     - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
+      objectReference: {fileID: 4300000, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (9)
@@ -521,9 +579,10 @@ GameObject:
   - component: {fileID: 456807698}
   - component: {fileID: 456807697}
   - component: {fileID: 456807696}
+  - component: {fileID: 456807700}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -599,13 +658,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 456807695}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.592537, y: 0.8, z: 6.1}
+  m_LocalPosition: {x: 7.49, y: 0.8, z: 11.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &456807700
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456807695}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &496730589 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1163964642181296, guid: a1ead2876e131734db42f3a55567fe0a, type: 3}
@@ -634,7 +709,7 @@ PrefabInstance:
     - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
+      objectReference: {fileID: 4300000, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (3)
@@ -730,7 +805,7 @@ PrefabInstance:
     - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
+      objectReference: {fileID: 4300000, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (6)
@@ -889,7 +964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4429102427960218, guid: ca9fda2f4d77c4d4f88d4ed8b939f69b, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4429102427960218, guid: ca9fda2f4d77c4d4f88d4ed8b939f69b, type: 3}
       propertyPath: m_LocalScale.x
@@ -909,7 +984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4429102427960218, guid: ca9fda2f4d77c4d4f88d4ed8b939f69b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0010009408
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 4429102427960218, guid: ca9fda2f4d77c4d4f88d4ed8b939f69b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1107,7 +1182,7 @@ PrefabInstance:
     - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
+      objectReference: {fileID: 4300000, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (4)
@@ -1210,12 +1285,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b51eeff56080f654b86d1286edf941f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 916534262}
---- !u!95 &916534262 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 95777776565643564, guid: ca9fda2f4d77c4d4f88d4ed8b939f69b, type: 3}
-  m_PrefabInstance: {fileID: 913320417}
+  player: {fileID: 456807695}
+  _state: 0
+--- !u!54 &916534264
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916534260}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!135 &916534265
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916534260}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!1 &1079511838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,7 +1408,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1198183142
 GameObject:
@@ -1392,7 +1492,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1304571364
 PrefabInstance:
@@ -1407,7 +1507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4684927947678896, guid: a1ead2876e131734db42f3a55567fe0a, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4684927947678896, guid: a1ead2876e131734db42f3a55567fe0a, type: 3}
       propertyPath: m_LocalScale.x
@@ -1520,7 +1620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3243958488727944508, guid: 87d2b1ecfb26a3349af12d1ba83f0883, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3243958488727944508, guid: 87d2b1ecfb26a3349af12d1ba83f0883, type: 3}
       propertyPath: m_LocalScale.x
@@ -1585,7 +1685,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4562497920047096, guid: d9c686f862ff7406ea2fa3a0285ba6ec, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562497920047096, guid: d9c686f862ff7406ea2fa3a0285ba6ec, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562497920047096, guid: d9c686f862ff7406ea2fa3a0285ba6ec, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4562497920047096, guid: d9c686f862ff7406ea2fa3a0285ba6ec, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4562497920047096, guid: d9c686f862ff7406ea2fa3a0285ba6ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1639,7 +1751,7 @@ PrefabInstance:
     - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
+      objectReference: {fileID: 4300000, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (5)
@@ -1735,7 +1847,7 @@ PrefabInstance:
     - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
+      objectReference: {fileID: 4300000, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (11)
@@ -1830,7 +1942,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2445855250282308836, guid: 2ba0663bd48974844bc9183bda97b3d6, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2445855250282308836, guid: 2ba0663bd48974844bc9183bda97b3d6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1888,7 +2000,7 @@ PrefabInstance:
     - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
+      objectReference: {fileID: 4300000, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (10)
@@ -1984,7 +2096,7 @@ PrefabInstance:
     - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
+      objectReference: {fileID: 4300000, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (2)
@@ -2083,7 +2195,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1948329710155936262, guid: 38283d0f2f9588c4a90e9a27a86fdbdc, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1948329710155936262, guid: 38283d0f2f9588c4a90e9a27a86fdbdc, type: 3}
       propertyPath: m_LocalScale.x
@@ -2149,7 +2261,7 @@ PrefabInstance:
     - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
+      objectReference: {fileID: 4300000, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (8)
@@ -2245,7 +2357,7 @@ PrefabInstance:
     - target: {fileID: 2061649551437216556, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: -7391768600150159799, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
+      objectReference: {fileID: 4300000, guid: 01eb3f7d71524aa49803b242129c8089, type: 3}
     - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce, type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Village_Fence_Small_01 (7)
