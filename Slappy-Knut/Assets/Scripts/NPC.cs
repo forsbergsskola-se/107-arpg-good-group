@@ -11,12 +11,13 @@ public class NPC : MonoBehaviour
 
     public float movementSpeed;
     public float attackSpeed;
-
+    public float attackRange;
+    
     public float startHealth = 100; 
     //public Item[] loot; TODO: uncomment this when items are finished
     public Transform[] goals;
     public Transform goal;
-    public Transform playerReference;
+    public GameObject playerReference;
 
    // private Vector3 targetPosition;
     private Rigidbody rigidbody;
@@ -25,6 +26,8 @@ public class NPC : MonoBehaviour
     private NavMeshAgent agent;
     private float health;
     private Vector3 startPosition;
+    private bool iFramesActive;
+    private bool attackIsOnCooldown;
     
     
     
@@ -42,6 +45,8 @@ public class NPC : MonoBehaviour
         agent.destination = goal.position;
         health = startHealth;
         startPosition = transform.position;
+        iFramesActive = false;
+        attackIsOnCooldown = false;
 
     }
 
@@ -50,6 +55,8 @@ public class NPC : MonoBehaviour
     {
         //moveTowardsPositon();
         ChangeGoalIfFinished();
+        CheckForDeath();
+        Attack();
     }
 
     void Flee()
@@ -68,9 +75,25 @@ public class NPC : MonoBehaviour
     {
         if (canAttack)
         {
+            //TODO: Come up with a better 
             agent = GetComponent<NavMeshAgent>();
-            agent.destination = playerReference.position;
+            agent.destination = playerReference.transform.position;
+            Vector3 currentPosition = transform.position;
+            currentPosition = currentPosition - playerReference.transform.position;
+            if (currentPosition.magnitude > attackRange && !attackIsOnCooldown)
+            {
+                //TODO: damage the player here
+                attackIsOnCooldown = true;
+                waitForAttackCooldown();
+            }
+            
         }
+    }
+
+    IEnumerable waitForAttackCooldown()
+    {
+        yield return new WaitForSeconds(attackSpeed);
+        attackIsOnCooldown = false;
     }
 
     void ChangeGoalIfFinished()
@@ -129,6 +152,17 @@ public class NPC : MonoBehaviour
 
     void Damageable(float damage)
     {
-        health -= damage;
+        if (!iFramesActive)
+        {
+            health -= damage;
+            iFramesActive = true;
+            waitForiFrames();
+        }
+        
+    }
+    IEnumerator waitForiFrames()
+    {
+        yield return new WaitForSeconds(0.5f);
+        iFramesActive = false;
     }
 }
