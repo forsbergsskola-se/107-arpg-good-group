@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class ChickBoss : MonoBehaviour
 {
-    Animator _anim;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float knockBackForce;
+    private bool _once;
+
+    private Animator _anim;
+    private Rigidbody _rb;
     public GameObject player;
-    Rigidbody _rb;
     
-    //private static readonly int Eat = Animator.StringToHash("Eat");
-    //private static readonly int Run = Animator.StringToHash("Run");
-   
     [Header("State")]
     [SerializeField]
     private State _state;
@@ -21,16 +24,15 @@ public class ChickBoss : MonoBehaviour
     }
 
     
-    void Start()
+    private void Start()
     {
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
         //player = FindObjectOfType<Player>();
         _state = State.Idle;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    private void Update()
     {
         switch (_state)
         {
@@ -46,34 +48,48 @@ public class ChickBoss : MonoBehaviour
             case State.Angry:
                 break;
         }
-
-        //anim.SetBool("Run", true);
     }
 
-    void Attack()
+    private void Attack()
     {
-        if (Vector3.Distance(_rb.position, player.transform.position) < 1.5f)
+        if (Vector3.Distance(_rb.position, player.transform.position) < 1f)
         {
-            _anim.SetBool("Jump", true);
-            _anim.SetBool("Eat",true);
+            //here the chick is close enough to attack the player
+            //Todo: player loses health
+            if(!_once)
+            {
+                //timer to make damage once every few msecs ? or iframes
+                Debug.Log("Player took damage!");
+                _once = true;
+            }
             
-            _anim.SetBool("Walk", false);
+            //knock backs the player when hit
+            Vector3 difference = (player.transform.position-transform.position).normalized;
+            Vector3 force = difference * knockBackForce;
+            player.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse); 
+            
+            _anim.SetBool("Run", false);
         }
         else
         {
-            _anim.SetBool("Walk", true);
-            float speed = 0.008f;
+            _anim.SetBool("Run", true);
             transform.LookAt(player.transform);
             Vector3 newPos = Vector3.MoveTowards(_rb.position, player.transform.position, speed);
             _rb.MovePosition(newPos);
-
-            _anim.SetBool("Jump", false);
+            
             _anim.SetBool("Eat", false);
+            _once = false;
         }
     }
 
     public void StartBossFight()
     {
         _state = State.Attack;
+    }
+
+    public void Rage()
+    {
+        _state = State.Angry;
+        
     }
 }
