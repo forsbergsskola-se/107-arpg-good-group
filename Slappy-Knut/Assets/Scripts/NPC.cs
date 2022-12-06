@@ -12,12 +12,14 @@ public class NPC : MonoBehaviour
     public float movementSpeed;
     public float attackSpeed;
     //public Item[] loot; TODO: uncomment this when items are finished
+    public Transform[] goals;
     public Transform goal;
 
    // private Vector3 targetPosition;
     private Rigidbody rigidbody;
     private Vector3 rigidbodyVelocity;
     Random rand = new Random();
+    private NavMeshAgent agent;
     
     
     
@@ -29,7 +31,7 @@ public class NPC : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         rigidbodyVelocity = rigidbody.velocity;
         Roam();
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
         agent.speed = movementSpeed;
         agent.destination = goal.position;
 
@@ -39,6 +41,7 @@ public class NPC : MonoBehaviour
     void Update()
     {
         //moveTowardsPositon();
+        ChangeGoalIfFinished();
     }
 
     void Flee()
@@ -48,10 +51,9 @@ public class NPC : MonoBehaviour
 
     void Roam()
     {
-        //Somehow we need to find a position to go to here....
-        float x = rand.Next(-10, 10);
-        float z = rand.Next(-10, 10);
-        goal.position = new Vector3(x, 0.5f, z);
+        goal = goals[rand.Next(0, goals.Length-1)];
+        agent = GetComponent<NavMeshAgent>();
+        agent.destination = goal.position;
     }
 
     void Attack()
