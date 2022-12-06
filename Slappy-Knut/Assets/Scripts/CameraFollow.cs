@@ -1,20 +1,35 @@
+using System;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
-    private GameObject _player;
-    public float offsetX = 6.5f;
-    public float offsetY = 9f;
-    public float offsetZ = 7.5f;
-    private Vector3 _cameraOffset;
+    private Transform _playerTransform;
+    private Transform _cameraTransform;
+    public float horizontalAngle = 45f;
+    public float verticalAngle = 45f;
+    public float zoomLevel = -10f;
     void Start()
     {
-        _cameraOffset = new Vector3(offsetX, offsetY, offsetZ);
-        _player = GameObject.FindGameObjectWithTag("Player");
+        _cameraTransform = FindObjectOfType<Camera>().transform;
+        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
     {
-        Vector3 playerPosition = _player.transform.position;
-        transform.position = new Vector3(playerPosition.x + offsetX, playerPosition.y + offsetY, playerPosition.z + offsetZ);
+        // value clamps
+        horizontalAngle %= 180;
+        zoomLevel = Math.Clamp(zoomLevel, -20, -3);
+        verticalAngle = Math.Clamp(verticalAngle, 10, 90);
+        
+        // prevent repeated calls
+        var thisTransform = transform;
+        
+        // put rig inside of player
+        thisTransform.position = _playerTransform.position;
+        
+        // camera rotation
+        thisTransform.eulerAngles = new Vector3(verticalAngle, horizontalAngle, 0f);
+        
+        // camera zoom
+        _cameraTransform.localPosition = new Vector3(0, 0, zoomLevel);
     }
 }
