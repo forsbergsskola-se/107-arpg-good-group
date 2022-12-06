@@ -11,15 +11,21 @@ public class NPC : MonoBehaviour
 
     public float movementSpeed;
     public float attackSpeed;
+
+    public float startHealth = 100; 
     //public Item[] loot; TODO: uncomment this when items are finished
     public Transform[] goals;
     public Transform goal;
+    public Transform playerReference;
 
    // private Vector3 targetPosition;
     private Rigidbody rigidbody;
     private Vector3 rigidbodyVelocity;
     Random rand = new Random();
     private NavMeshAgent agent;
+    private float health;
+    private Vector3 startPosition;
+    
     
     
     
@@ -34,6 +40,8 @@ public class NPC : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.speed = movementSpeed;
         agent.destination = goal.position;
+        health = startHealth;
+        startPosition = transform.position;
 
     }
 
@@ -58,7 +66,11 @@ public class NPC : MonoBehaviour
 
     void Attack()
     {
-        
+        if (canAttack)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            agent.destination = playerReference.position;
+        }
     }
 
     void ChangeGoalIfFinished()
@@ -93,5 +105,30 @@ public class NPC : MonoBehaviour
     void DropLoot()
     {
         
+    }
+
+    void CheckForDeath()
+    {
+        if (health > 0)
+        {
+            agent = GetComponent<NavMeshAgent>();
+            agent.speed = 0;
+            agent.velocity = Vector3.zero;
+            respawnWait();
+            RandomizeValues();
+        }
+    }
+
+    IEnumerator respawnWait()
+    {
+        yield return new WaitForSeconds(10);
+        health = startHealth;
+        transform.position = startPosition;
+        agent.speed = movementSpeed;
+    }
+
+    void Damageable(float damage)
+    {
+        health -= damage;
     }
 }
