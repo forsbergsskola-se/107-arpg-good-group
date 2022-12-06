@@ -581,25 +581,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &986628228 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 42992005314592980, guid: 123610bf9d3e31a4e8689d22725d7a15, type: 3}
-  m_PrefabInstance: {fileID: 3501563877587988535}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &986628234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 986628228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60ae77f431ee3a14a94d6b9516bc6727, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rageDamage: 0.1
-  rageBar: {fileID: 2018150956}
 --- !u!1 &1405465279
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,6 +970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f812d7428f37da246940d96003428405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 2018150955}
 --- !u!1001 &3501563877587988535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -996,6 +978,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 986628234, guid: 123610bf9d3e31a4e8689d22725d7a15, type: 3}
+      propertyPath: maxRage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 986628234, guid: 123610bf9d3e31a4e8689d22725d7a15, type: 3}
+      propertyPath: rageBar
+      value: 
+      objectReference: {fileID: 2018150956}
     - target: {fileID: 41528618573300086, guid: 123610bf9d3e31a4e8689d22725d7a15, type: 3}
       propertyPath: m_RootOrder
       value: 4
