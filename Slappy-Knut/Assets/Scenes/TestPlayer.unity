@@ -713,6 +713,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knut
       objectReference: {fileID: 0}
+    - target: {fileID: 9092145326446747948, guid: 123610bf9d3e31a4e8689d22725d7a15, type: 3}
+      propertyPath: rageScream
+      value: 
+      objectReference: {fileID: 8300000, guid: 40a0c16ce78c0554a810acfa7d1760c0, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 123610bf9d3e31a4e8689d22725d7a15, type: 3}
 --- !u!1001 &6357308853044168687

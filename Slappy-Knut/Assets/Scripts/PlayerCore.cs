@@ -38,9 +38,10 @@ public class PlayerCore : MonoBehaviour
     void OnMaxRage()
     {
         _playerMovement.enabled = false;
+        _audioManager.AS_RageSound.Play();
         _animator.SetBool("isRaging", true);
-        Invoke("SetDeactive",2f);
-        Invoke("LoadScene", 4f);
+        Invoke("SetDeactive",3f);
+        Invoke("LoadScene", 5f);
     }
     void LoadScene()
     {
@@ -48,7 +49,6 @@ public class PlayerCore : MonoBehaviour
     }
     void SetDeactive()
     {
-        _animator.SetBool("isRaging", false);
         _audioManager.AS_RageFart.Play();
         fartDust.Play();
         bodyMesh.enabled = false;
