@@ -114,12 +114,36 @@ public class NPC : MonoBehaviour
 
     protected void ChangeGoalIfFinished()
     {
-        Vector3 currentPosition = transform.position;
-        currentPosition = currentPosition - goal.position;
-
-        if (currentPosition.magnitude < 2)
+        if (canFlee)
         {
-            Roam();
+            List<Transform> goalsNotAtPlayer = new List<Transform>();
+            for (int i = 0; i < goals.Length; i++)
+            {
+                Vector3 delta = playerReference.transform.position - goals[i].position;
+                if (delta.magnitude > detectionRange)
+                {
+                    goalsNotAtPlayer.Add(goals[i]);
+                }
+            }
+
+            if (goalsNotAtPlayer.Count > 0)
+            {
+                agent.destination = goalsNotAtPlayer[rand.Next(0, goalsNotAtPlayer.Count)].position;
+            }
+            else
+            {
+                agent.destination = transform.position;
+            }
+        }
+        else
+        {
+            Vector3 currentPosition = transform.position;
+            currentPosition = currentPosition - goal.position;
+
+            if (currentPosition.magnitude < 2)
+            {
+                Roam();
+            }
         }
     }
 
