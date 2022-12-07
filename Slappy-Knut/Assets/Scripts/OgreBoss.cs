@@ -1,11 +1,12 @@
-using System;
-using UnityEditor;
+
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OgreBoss : MonoBehaviour
 {
     public GameObject runawayCheckPoint;
-   
+    public Image healthBar;
+
     private ChickBoss _chick;
     private Rigidbody _rb;
     private Animator _anim;
@@ -60,7 +61,8 @@ public class OgreBoss : MonoBehaviour
         set
         {
             _health = value;
-            //healthBar.fillAmount = value / _health;
+            healthBar.fillAmount = 0.5f;
+            healthBar.fillAmount = value / (float)_maxHealth;
             HealthLogic();
         }
     }
