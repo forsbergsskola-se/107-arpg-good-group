@@ -10,6 +10,7 @@ public class PlayerCore : MonoBehaviour
     public float maxRage;
     public SkinnedMeshRenderer bodyMesh;
     public SkinnedMeshRenderer hairMesh;
+    public ParticleSystem fartDust;
     
     private float _minRage;
     private float _currentRage;
@@ -39,7 +40,7 @@ public class PlayerCore : MonoBehaviour
         _playerMovement.enabled = false;
         _animator.SetBool("isRaging", true);
         Invoke("SetDeactive",2f);
-        Invoke("LoadScene", 3f);
+        Invoke("LoadScene", 4f);
     }
     void LoadScene()
     {
@@ -47,7 +48,9 @@ public class PlayerCore : MonoBehaviour
     }
     void SetDeactive()
     {
+        _animator.SetBool("isRaging", false);
         _audioManager.AS_RageFart.Play();
+        fartDust.Play();
         bodyMesh.enabled = false;
         hairMesh.enabled = false;
     }
