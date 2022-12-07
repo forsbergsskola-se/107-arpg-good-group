@@ -11,8 +11,9 @@ public class NPC : MonoBehaviour
 
     public float movementSpeed;
     public float attackSpeed;
-    public float attackRange;
-    
+    public float attackRange = 10;
+    public float detectionRange = 20;
+
     public float startHealth = 100; 
     //public Item[] loot; TODO: uncomment this when items are finished
     public Transform[] goals;
@@ -53,15 +54,33 @@ public class NPC : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //moveTowardsPositon();
-        ChangeGoalIfFinished();
         CheckForDeath();
-        Attack();
+        canFlee = true;
+        
+        
+        // The order of the calls below is important, it essentially gives the NPC priorities, the later a function is
+        // called the higher the priority is
+        ChangeGoalIfFinished();
+        if (canFlee)
+        {
+            Flee();
+        }
+        if (canAttack)
+        {
+            Attack();
+        }
     }
 
     void Flee()
     {
-        
+        Vector3 delta = transform.position - playerReference.transform.position;
+        if (delta.magnitude < detectionRange)
+        {
+            Debug.Log("We can see the player, run away!");
+            Vector3 direction = delta.normalized;
+            //direction = direction * -1;
+            agent.destination = transform.position + direction * 5;
+        }
     }
 
     protected void Roam()
@@ -73,20 +92,17 @@ public class NPC : MonoBehaviour
 
     protected void Attack()
     {
-        if (canAttack)
+        Vector3 delta = transform.position - playerReference.transform.position;
+        if (delta.magnitude < detectionRange)
         {
-            //TODO: Come up with a better 
             agent = GetComponent<NavMeshAgent>();
             agent.destination = playerReference.transform.position;
-            Vector3 currentPosition = transform.position;
-            currentPosition = currentPosition - playerReference.transform.position;
-            if (currentPosition.magnitude > attackRange && !attackIsOnCooldown)
+            if (delta.magnitude > attackRange && !attackIsOnCooldown)
             {
                 //TODO: damage the player here
                 attackIsOnCooldown = true;
                 waitForAttackCooldown();
             }
-            
         }
     }
 
