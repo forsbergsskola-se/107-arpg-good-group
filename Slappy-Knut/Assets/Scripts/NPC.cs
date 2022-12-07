@@ -132,7 +132,7 @@ public class NPC : MonoBehaviour
 
     protected void CheckForDeath()
     {
-        if (health > 0)
+        if (health < 0)
         {
             agent = GetComponent<NavMeshAgent>();
             agent.speed = 0;
