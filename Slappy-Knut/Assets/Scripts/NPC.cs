@@ -20,14 +20,14 @@ public class NPC : MonoBehaviour
     public GameObject playerReference;
 
    // private Vector3 targetPosition;
-    private Rigidbody rigidbody;
-    private Vector3 rigidbodyVelocity;
-    Random rand = new Random();
-    private NavMeshAgent agent;
-    private float health;
-    private Vector3 startPosition;
-    private bool iFramesActive;
-    private bool attackIsOnCooldown;
+    protected Rigidbody rigidbody;
+    protected Vector3 rigidbodyVelocity;
+    protected Random rand = new Random();
+    protected NavMeshAgent agent;
+    protected float health;
+    protected Vector3 startPosition;
+    protected bool iFramesActive;
+    protected bool attackIsOnCooldown;
     
     
     
@@ -64,14 +64,14 @@ public class NPC : MonoBehaviour
         
     }
 
-    void Roam()
+    protected void Roam()
     {
         goal = goals[rand.Next(0, goals.Length-1)];
         agent = GetComponent<NavMeshAgent>();
         agent.destination = goal.position;
     }
 
-    void Attack()
+    protected void Attack()
     {
         if (canAttack)
         {
@@ -90,13 +90,13 @@ public class NPC : MonoBehaviour
         }
     }
 
-    IEnumerable waitForAttackCooldown()
+    protected IEnumerable waitForAttackCooldown()
     {
         yield return new WaitForSeconds(attackSpeed);
         attackIsOnCooldown = false;
     }
 
-    void ChangeGoalIfFinished()
+    protected void ChangeGoalIfFinished()
     {
         Vector3 currentPosition = transform.position;
         currentPosition = currentPosition - goal.position;
@@ -107,7 +107,7 @@ public class NPC : MonoBehaviour
         }
     }
 
-    void RandomizeValues()
+    protected void RandomizeValues()
     {
         //set default values
         canAttack = false;
@@ -125,12 +125,12 @@ public class NPC : MonoBehaviour
         }
     }
 
-    void DropLoot()
+    protected void DropLoot()
     {
         
     }
 
-    void CheckForDeath()
+    protected void CheckForDeath()
     {
         if (health > 0)
         {
@@ -142,7 +142,7 @@ public class NPC : MonoBehaviour
         }
     }
 
-    IEnumerator respawnWait()
+    protected IEnumerator respawnWait()
     {
         yield return new WaitForSeconds(10);
         health = startHealth;
@@ -150,7 +150,7 @@ public class NPC : MonoBehaviour
         agent.speed = movementSpeed;
     }
 
-    void Damageable(float damage)
+    protected void Damageable(float damage)
     {
         if (!iFramesActive)
         {
@@ -160,7 +160,7 @@ public class NPC : MonoBehaviour
         }
         
     }
-    IEnumerator waitForiFrames()
+    protected IEnumerator waitForiFrames()
     {
         yield return new WaitForSeconds(0.5f);
         iFramesActive = false;
