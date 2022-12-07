@@ -10,6 +10,7 @@ public class ChickBoss : MonoBehaviour
 
     private Animator _anim;
     private Rigidbody _rb;
+    private Rigidbody _playerRb;
     public GameObject player;
     
     [Header("State")]
@@ -18,9 +19,9 @@ public class ChickBoss : MonoBehaviour
     private enum State
     {
         Idle,
-        Defend,
         Attack,
         Angry,
+        OgreDeath
     }
 
     
@@ -28,6 +29,7 @@ public class ChickBoss : MonoBehaviour
     {
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
+        _playerRb = player.GetComponent<Rigidbody>();
         //player = FindObjectOfType<Player>();
         _state = State.Idle;
     }
@@ -43,9 +45,10 @@ public class ChickBoss : MonoBehaviour
             case State.Attack:
                 Attack();
                 break;
-            case State.Defend:
-                break;
             case State.Angry:
+                EnRaged();
+                break;
+            case State.OgreDeath: // should here change into idle state until player picks him up as a weapon or item.
                 break;
         }
     }
@@ -66,7 +69,7 @@ public class ChickBoss : MonoBehaviour
             //knock backs the player when hit
             Vector3 difference = (player.transform.position-transform.position).normalized;
             Vector3 force = difference * knockBackForce;
-            player.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse); 
+            _playerRb.AddForce(force, ForceMode.Impulse); 
             
             _anim.SetBool("Run", false);
         }
@@ -87,9 +90,16 @@ public class ChickBoss : MonoBehaviour
         _state = State.Attack;
     }
 
-    public void Rage()
+    public void StartRage()
     {
         _state = State.Angry;
-        
+    }
+
+    void EnRaged()
+    {
+        _rb.transform.localScale *= 3; // <--- once so he only grows once
+       
+        //Todo: Charge move, he stops looksAt(player.transform.position) and charges in a straight line to that positions
+        //Todo: direction until he hits something and repeats(so the player can dodge out the way).
     }
 }

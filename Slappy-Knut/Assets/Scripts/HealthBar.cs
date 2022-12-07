@@ -12,6 +12,7 @@ public class HealthBar : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        //Todo: Needs to look at the camera but not turn around when the camera runs past the boss
         gameObject.transform.LookAt(_camera.transform.position);
     }
 }

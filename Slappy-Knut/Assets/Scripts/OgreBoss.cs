@@ -22,7 +22,6 @@ public class OgreBoss : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
         _chick = FindObjectOfType<ChickBoss>();
-        //_runAway = true;
     }
     
     void Update()
@@ -33,7 +32,6 @@ public class OgreBoss : MonoBehaviour
         {
             if(Health > 0)
                 transform.LookAt(_chick.player.transform.position);
-            //_anim.SetBool("Idle", true); //Mayb dont need if he autos at idle
         }
     }
 
@@ -70,18 +68,17 @@ public class OgreBoss : MonoBehaviour
     {
         //_anim.SetBool("TookDamage", true); //<--- run everytime he gets hit
        // _anim["AnimationName"].wrapMode = WrapMode.Once;
-        _anim.Play("damage");
+        if(_health >= 0)
+            _anim.Play("damage");
 
         if (_health <= _maxHealth / 2)
         {
-            _chick.Rage(); //<--- call this only once
+            _chick.StartRage(); //<--- call this only once
             _runAway = true; //<--- call this only once
         }
         if(_health <= 0)
         {
-            _anim.SetBool("Death", true); //<--- call this only once
-            _runAway = false;
-            //gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            AfterDeathLogic();
         }
     }
 
@@ -89,5 +86,18 @@ public class OgreBoss : MonoBehaviour
     {
         if(collision.collider.CompareTag("Player"))
             TakeDamage(1);
+    }
+
+    void AfterDeathLogic()
+    {
+        _runAway = false;
+        _anim.SetBool("Death", true); //<--- call this only once
+        
+        //To stop the body from interacting with the player and still stay on the field as a corpse
+        Destroy(_rb.GetComponent<CapsuleCollider>());
+        Destroy(_rb);
+
+        healthBar.GetComponentInParent<Canvas>().enabled = false;
+        //Todo: Call OgreDeath state in the chicken
     }
 }
