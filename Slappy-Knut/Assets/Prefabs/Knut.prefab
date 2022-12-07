@@ -617,7 +617,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ae77f431ee3a14a94d6b9516bc6727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rageBar: {fileID: 6368153800515592103, guid: 72a51772abb37544498b4fa0c1ca3257, type: 3}
+  rageBar: {fileID: 0}
   rageDamage: 0.5
   maxRage: 1
   bodyMesh: {fileID: 104799712527133170}
