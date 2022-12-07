@@ -27,7 +27,7 @@ public class CameraFollow : MonoBehaviour {
         thisTransform.position = _playerTransform.position;
         
         // camera rotation
-        thisTransform.eulerAngles = new Vector3(verticalAngle, horizontalAngle, 0f);
+        thisTransform.localEulerAngles = new Vector3(verticalAngle, horizontalAngle, 0f);
         
         // camera zoom
         _cameraTransform.localPosition = new Vector3(0, 0, zoomLevel);
