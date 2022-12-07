@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    private new GameObject camera;
+    private GameObject _camera;
     // Start is called before the first frame update
     void Start()
     {
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
+        _camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        gameObject.transform.LookAt(camera.transform.position);
+        gameObject.transform.LookAt(_camera.transform.position);
     }
 }

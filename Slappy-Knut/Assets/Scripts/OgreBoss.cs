@@ -61,7 +61,6 @@ public class OgreBoss : MonoBehaviour
         set
         {
             _health = value;
-            healthBar.fillAmount = 0.5f;
             healthBar.fillAmount = value / (float)_maxHealth;
             HealthLogic();
         }
@@ -69,22 +68,26 @@ public class OgreBoss : MonoBehaviour
 
     void HealthLogic()
     {
-        _anim.SetBool("TookDamage", true); //<--- run everytime he gets hit
+        //_anim.SetBool("TookDamage", true); //<--- run everytime he gets hit
+       // _anim["AnimationName"].wrapMode = WrapMode.Once;
+        _anim.Play("damage");
 
         if (_health <= _maxHealth / 2)
         {
             _chick.Rage(); //<--- call this only once
-            _runAway = true;
+            _runAway = true; //<--- call this only once
         }
         if(_health <= 0)
         {
-            _anim.SetBool("Death", true);
+            _anim.SetBool("Death", true); //<--- call this only once
+            _runAway = false;
             //gameObject.GetComponent<CapsuleCollider>().enabled = false;
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        TakeDamage(1);
+        if(collision.collider.CompareTag("Player"))
+            TakeDamage(1);
     }
 }
