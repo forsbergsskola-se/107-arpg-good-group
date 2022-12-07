@@ -72,12 +72,12 @@ public class ChickBoss : MonoBehaviour
         }
         else
         {
+            _anim.SetBool("Eat", false);
             _anim.SetBool("Run", true);
             transform.LookAt(player.transform);
             Vector3 newPos = Vector3.MoveTowards(_rb.position, player.transform.position, speed);
             _rb.MovePosition(newPos);
-            
-            _anim.SetBool("Eat", false);
+
             _once = false;
         }
     }
