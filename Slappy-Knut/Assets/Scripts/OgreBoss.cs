@@ -15,6 +15,7 @@ public class OgreBoss : MonoBehaviour
     [SerializeField]
     private int _health;
     private int _maxHealth = 10;
+    private bool hasRaged;
 
     void Start()
     {
@@ -66,15 +67,14 @@ public class OgreBoss : MonoBehaviour
 
     void HealthLogic()
     {
-        //_anim.SetBool("TookDamage", true); //<--- run everytime he gets hit
-       // _anim["AnimationName"].wrapMode = WrapMode.Once;
         if(_health >= 0)
             _anim.Play("damage");
 
-        if (_health <= _maxHealth / 2)
+        if (_health <= _maxHealth / 2 && !hasRaged)
         {
             _chick.StartRage(); //<--- call this only once
             _runAway = true; //<--- call this only once
+            hasRaged = true;
         }
         if(_health <= 0)
         {
@@ -98,6 +98,7 @@ public class OgreBoss : MonoBehaviour
         Destroy(_rb);
 
         healthBar.GetComponentInParent<Canvas>().enabled = false;
-        //Todo: Call OgreDeath state in the chicken
+        //Call OgreDeath state in the chicken
+        _chick.OgreDead();
     }
 }

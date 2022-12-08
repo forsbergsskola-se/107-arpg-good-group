@@ -7,6 +7,7 @@ public class ChickBoss : MonoBehaviour
     [SerializeField]
     private float knockBackForce;
     private bool _once;
+    private bool enRaged;
 
     private Animator _anim;
     private Rigidbody _rb;
@@ -95,10 +96,24 @@ public class ChickBoss : MonoBehaviour
         _state = State.Angry;
     }
 
+    public void OgreDead()
+    {
+        _state = State.OgreDeath;
+    }
+
     void EnRaged()
     {
-        _rb.transform.localScale *= 3; // <--- once so he only grows once
-       
+        
+        _anim.SetBool("Run", false);
+        if(!enRaged)
+        {
+            _anim.Play("Jump W Root");
+            _rb.transform.localScale += new Vector3(2,2,2) * Time.deltaTime; // <--- once so he only grows once
+            if (_rb.transform.localScale.x > 15f) 
+                enRaged = true;
+        }
+        
+        
         //Todo: Charge move, he stops looksAt(player.transform.position) and charges in a straight line to that positions
         //Todo: direction until he hits something and repeats(so the player can dodge out the way).
     }
