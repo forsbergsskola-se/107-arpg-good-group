@@ -21,13 +21,14 @@ public class AntiAnxietyPotion : Consumable
         Range = 0;
     }
     
-    public override void Use()
+    public override void Use(GameObject player)
     {
-        FindObjectOfType<PlayerCore>().GetComponent<PlayerCore>()._currentRage -= Power;
+        player.GetComponent<PlayerCore>()._currentRage -= Power;
+        Count--;
     }
 
     public override void Charge()
     {
-        
+        throw new System.NotImplementedException();
     }
 }
