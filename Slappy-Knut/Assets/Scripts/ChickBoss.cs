@@ -17,9 +17,9 @@ public class ChickBoss : MonoBehaviour
     private bool _canCharge;
     [SerializeField]
     private bool _hasChargeDirection;
-
     private bool _gotHit;
 
+    private ChickAudioManager _audioManager;
     private Animator _anim;
     private Rigidbody _rb;
     private Rigidbody _playerRb;
@@ -40,6 +40,7 @@ public class ChickBoss : MonoBehaviour
     
     private void Start()
     {
+        _audioManager = GetComponent<ChickAudioManager>();
         timer = _maxTimer;
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
@@ -79,6 +80,7 @@ public class ChickBoss : MonoBehaviour
             {
                 //timer to make damage once every few msecs ? or iframes
                 Debug.Log("Player took damage!");
+                _audioManager.AS_AttackChirp.Play();
                 _once = true;
             }
             
@@ -109,12 +111,14 @@ public class ChickBoss : MonoBehaviour
         Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
         Physics.IgnoreCollision(FindObjectOfType<OgreBoss>().GetComponent<Collider>(), GetComponent<Collider>());
         _state = State.Angry;
+        _audioManager.AS_RageChirp.Play();
     }  
 
     public void OgreDead() => _state = State.OgreDeath;
 
     private void Enraged()
     {
+        
         if(!_enRaged)
         {
             _anim.SetBool("Run", false);
@@ -153,6 +157,7 @@ public class ChickBoss : MonoBehaviour
         {
             if(!_gotHit)
             {
+                _audioManager.AS_AttackChirp.Play();
                 Debug.Log("Player got hit!");
                 Vector3 force = Vector3.up * (knockBackForce * 6f);
                 _playerRb.AddForce(force, ForceMode.Impulse);
