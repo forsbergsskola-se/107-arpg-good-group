@@ -14,13 +14,16 @@ public class PlayerCore : MonoBehaviour
     
     private float _minRage;
     private float _currentRage;
+    private Scene _scene;
     private Animator _animator;
     private PlayerAudioManager _audioManager;
     private PlayerMovement _playerMovement;
     void Start()
     {
+        _scene = SceneManager.GetActiveScene();
         _currentRage = _minRage;
         rageBar.value = _currentRage;
+        
         _animator = GetComponent<Animator>();
         _audioManager = GetComponent<PlayerAudioManager>();
         _playerMovement = GetComponent<PlayerMovement>();
@@ -50,7 +53,7 @@ public class PlayerCore : MonoBehaviour
     }
     void LoadScene()
     {
-        SceneManager.LoadScene("TestPlayer");
+        SceneManager.LoadScene(_scene.name);
     }
     void SetDeactive()
     {
