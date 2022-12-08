@@ -1,19 +1,29 @@
+using System;
 using UnityEngine;
 
 public class ChickBoss : MonoBehaviour
 {
+    [SerializeField] 
+    private float timer;
+    private readonly float _maxTimer = 3f;
     [SerializeField]
     private float speed;
     [SerializeField]
+    private float chargeSpeed;
+    [SerializeField]
     private float knockBackForce;
     private bool _once;
-    private bool enRaged;
+    private bool _enRaged;
+    private bool _canCharge;
+    [SerializeField]
+    private bool _hasChargeDirection;
 
     private Animator _anim;
     private Rigidbody _rb;
     private Rigidbody _playerRb;
+    private LineRenderer lineRenderer;
     public GameObject player;
-    
+
     [Header("State")]
     [SerializeField]
     private State _state;
@@ -28,10 +38,11 @@ public class ChickBoss : MonoBehaviour
     
     private void Start()
     {
+        timer = _maxTimer;
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
+        lineRenderer = GetComponent<LineRenderer>();
         _playerRb = player.GetComponent<Rigidbody>();
-        //player = FindObjectOfType<Player>();
         _state = State.Idle;
     }
     
@@ -56,7 +67,7 @@ public class ChickBoss : MonoBehaviour
 
     private void Attack()
     {
-        if (Vector3.Distance(_rb.position, player.transform.position) < 1f)
+        if (Vector3.Distance(_rb.position, player.transform.position) < 1.5f)
         {
             //here the chick is close enough to attack the player
             //Todo: player loses health
@@ -105,16 +116,73 @@ public class ChickBoss : MonoBehaviour
     {
         
         _anim.SetBool("Run", false);
-        if(!enRaged)
+        if(!_enRaged)
         {
             _anim.Play("Jump W Root");
             _rb.transform.localScale += new Vector3(2,2,2) * Time.deltaTime; // <--- once so he only grows once
             if (_rb.transform.localScale.x > 15f) 
-                enRaged = true;
+                _enRaged = true;
         }
         
+        //Todo: Make A lineRenderer that shows the direction the chicken is going to charge attack to for a sec then he zooms
+        //Todo: mayb make the lines somehow big and getting shorter while he is charging until he does it.
+        //lineRenderer.SetPositions(transform.position);
         
-        //Todo: Charge move, he stops looksAt(player.transform.position) and charges in a straight line to that positions
-        //Todo: direction until he hits something and repeats(so the player can dodge out the way).
+        //Lookat once and start charging resets when hitting the fence, need mayb also the charge timer
+        if (!_hasChargeDirection && _enRaged)
+        {
+            //Trying to make him not go up or down just at players position, so chick doesn't rotate upwards
+            Vector3 test = new Vector3(player.transform.position.x, 0, player.transform.position.z);
+            transform.LookAt(test);
+            _hasChargeDirection = true;
+        }
+        //Todo: charge timer 
+        if (timer > 0)
+            timer -= Time.deltaTime;
+        if (timer < 0)
+            _canCharge = true;
+
+        if(_enRaged && _canCharge)
+        {
+            _rb.velocity = transform.forward * chargeSpeed;
+/*
+           // if (Vector3.Distance(_rb.position, player.transform.position) < 1.5f)
+           // {
+                Vector3 force = Vector3.up * knockBackForce;
+                _playerRb.AddForce(force, ForceMode.Impulse);
+          //  }*/
+        }
+        //Todo: direction until he hits something and repeats(so the player can dodge out the way). 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Player") )
+        {
+            Debug.Log("Player got hit!");
+
+            Vector3 force = Vector3.up * knockBackForce * 5f;
+            _playerRb.AddForce(force, ForceMode.Impulse);
+        }
+
+        if(collision.collider.CompareTag("Ogre"))
+            Physics.IgnoreCollision(collision.collider.GetComponent<Collider>(), GetComponent<Collider>());
+        
+        if (collision.collider.CompareTag("Fence")) 
+        {
+            _hasChargeDirection = false;
+            timer = _maxTimer;
+            _canCharge = false;
+        }
+    }
+
+    private void OnCollisionStay(Collision collisionInfo)
+    {
+        if (collisionInfo.collider.CompareTag("Fence")) 
+        {
+            _hasChargeDirection = false;
+            timer = _maxTimer;
+            _canCharge = false;
+        }
     }
 }
