@@ -197,7 +197,7 @@ public class NPC : MonoBehaviour, IDamagable
             agent.velocity = Vector3.zero;
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;
-            respawnWait();
+            StartCoroutine(respawnWait());
             RandomizeValues();
         }
     }
@@ -229,7 +229,7 @@ public class NPC : MonoBehaviour, IDamagable
     }
 
     public float DefenseRating { get; set; }
-    public void TakeDamage(GameObject attacker)
+    public void TakeDamage(GameObject attacker)//Eh? why does this not take damage as an argument?
     {
         throw new System.NotImplementedException();
     }
