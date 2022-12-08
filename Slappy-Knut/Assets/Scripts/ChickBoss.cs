@@ -112,32 +112,39 @@ public class ChickBoss : MonoBehaviour
         _state = State.OgreDeath;
     }
 
-    void EnRaged()
+    private void EnRaged()
     {
-        
-        _anim.SetBool("Run", false);
+       
         if(!_enRaged)
         {
+            _anim.SetBool("Run", false);
             _anim.Play("Jump W Root");
-            _rb.transform.localScale += new Vector3(2,2,2) * Time.deltaTime; // <--- once so he only grows once
+            _rb.transform.localScale += new Vector3(2,2,2) * Time.deltaTime;
             if (_rb.transform.localScale.x > 15f) 
+            {
                 _enRaged = true;
+                _anim.SetBool("Run", true);
+            }
         }
         
         //Todo: Make A lineRenderer that shows the direction the chicken is going to charge attack to for a sec then he zooms
-        //Todo: mayb make the lines somehow big and getting shorter while he is charging until he does it.
-        //lineRenderer.SetPositions(transform.position);
+        //Todo: maybe make the lines somehow big and getting shorter while he is charging until he does it.
         
-        //Lookat once and start charging resets when hitting the fence, need mayb also the charge timer
+        //Lookat once and start charging resets when hitting the fence.
         if (!_hasChargeDirection && _enRaged)
         {
             //Trying to make him not go up or down just at players position, so chick doesn't rotate upwards
             Vector3 test = new Vector3(player.transform.position.x, 0, player.transform.position.z);
             transform.LookAt(test);
             _hasChargeDirection = true;
+            
+            //line
+            //lineRenderer.enabled = true;
+            lineRenderer.SetPosition(0, transform.position);
+            lineRenderer.SetPosition(1, player.transform.position); // * chargeSpeed);
         }
-        //Todo: charge timer 
-        if (timer > 0)
+        // charge timer until he can charge
+        if (timer > 0 && _enRaged)
             timer -= Time.deltaTime;
         if (timer < 0)
             _canCharge = true;
@@ -169,16 +176,6 @@ public class ChickBoss : MonoBehaviour
             Physics.IgnoreCollision(collision.collider.GetComponent<Collider>(), GetComponent<Collider>());
         
         if (collision.collider.CompareTag("Fence")) 
-        {
-            _hasChargeDirection = false;
-            timer = _maxTimer;
-            _canCharge = false;
-        }
-    }
-
-    private void OnCollisionStay(Collision collisionInfo)
-    {
-        if (collisionInfo.collider.CompareTag("Fence")) 
         {
             _hasChargeDirection = false;
             timer = _maxTimer;
