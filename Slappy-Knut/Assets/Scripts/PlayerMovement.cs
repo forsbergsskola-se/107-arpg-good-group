@@ -6,10 +6,15 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask walkableLayer;
     public int maxRayCastDistance = 100;
     private NavMeshAgent _meshAgent;
+    private Animator _animator;
+    private PlayerAudioManager _audioManager;
     private void Start()
     {
+        _audioManager = GetComponent<PlayerAudioManager>();
+        _animator = GetComponent<Animator>();
         _meshAgent = GetComponent<NavMeshAgent>();
     }
+
     private void Update()
     {
         if (Input.GetMouseButton(0)) // left click
@@ -21,5 +26,11 @@ public class PlayerMovement : MonoBehaviour
                 _meshAgent.SetDestination(hitInfo.point);
             }
         }
+        _animator.SetBool("isRunning", _meshAgent.velocity.magnitude >= .5);
+    }
+
+    public void PlayStepSound()
+    {
+        _audioManager.AS_FootSteps.Play();
     }
 }
