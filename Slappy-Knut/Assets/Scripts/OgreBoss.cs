@@ -14,8 +14,9 @@ public class OgreBoss : MonoBehaviour
     private bool _runAway;
     [SerializeField]
     private int _health;
+    [SerializeField]
     private int _maxHealth = 10;
-    private bool hasRaged;
+    private bool _hasRaged;
 
     void Start()
     {
@@ -70,11 +71,11 @@ public class OgreBoss : MonoBehaviour
         if(_health >= 0)
             _anim.Play("damage");
 
-        if (_health <= _maxHealth / 2 && !hasRaged)
+        if (_health <= _maxHealth / 2 && !_hasRaged)
         {
-            _chick.StartRage(); //<--- call this only once
-            _runAway = true; //<--- call this only once
-            hasRaged = true;
+            _chick.StartRage(); 
+            _runAway = true; 
+            _hasRaged = true;
         }
         if(_health <= 0)
         {
@@ -88,10 +89,10 @@ public class OgreBoss : MonoBehaviour
             TakeDamage(1);
     }
 
-    void AfterDeathLogic()
+    private void AfterDeathLogic()
     {
         _runAway = false;
-        _anim.SetBool("Death", true); //<--- call this only once
+        _anim.SetBool("Death", true);
         
         //To stop the body from interacting with the player and still stay on the field as a corpse
         Destroy(_rb.GetComponent<CapsuleCollider>());
