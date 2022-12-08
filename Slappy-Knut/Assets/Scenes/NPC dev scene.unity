@@ -713,7 +713,7 @@ MonoBehaviour:
   movementSpeed: 50
   attackSpeed: 0
   attackRange: 0
-  detectionRange: 20
+  detectionRange: 5
   startHealth: 100
   goals:
   - {fileID: 1750842131}
@@ -721,8 +721,6 @@ MonoBehaviour:
   - {fileID: 404224947}
   - {fileID: 1316992961}
   - {fileID: 991098263}
-  goal: {fileID: 1750842131}
-  playerReference: {fileID: 1537883110}
 --- !u!195 &1411330258
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -873,7 +871,7 @@ GameObject:
   - component: {fileID: 1537883111}
   m_Layer: 0
   m_Name: PlayerDummy
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

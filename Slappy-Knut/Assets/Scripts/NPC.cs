@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = System.Random;
 
-public class NPC : MonoBehaviour
+public class NPC : MonoBehaviour, IDamagable
 {
     public bool canFlee;
     public bool canAttack;
@@ -28,6 +28,7 @@ public class NPC : MonoBehaviour
     protected Vector3 startPosition;
     protected bool iFramesActive;
     protected bool attackIsOnCooldown;
+    protected bool fledLastFrame, fleeingCooldownInProgress;
     protected GameObject playerReference;
     
     
@@ -74,15 +75,37 @@ public class NPC : MonoBehaviour
 
     void Flee()
     {
+        
         //Gets a vector of the distance between the player and NPC, pointing away from the player towards the NPC
         Vector3 delta = transform.position - playerReference.transform.position;
-        if (delta.magnitude < detectionRange)
+       // Debug.Log("Fleeing cooldown in progress = " + fleeingCooldownInProgress.ToString());
+        //Debug.Log("Fled last fram = " + fledLastFrame.ToString());
+        
+        if (fledLastFrame && delta.magnitude > detectionRange)
+        {
+            fledLastFrame = false;
+            fleeingCooldownInProgress = true;
+            StartCoroutine(waitForFleeCooldown());
+        }
+        
+        if (delta.magnitude < detectionRange || fleeingCooldownInProgress)
         {
             Vector3 direction = delta.normalized; //Not sure if this is needed TBH, probably isnt
             agent.destination = transform.position + direction * 5;
+            if (delta.magnitude < detectionRange)
+            {
+                fledLastFrame = true;
+            }
         }
+
+        
     }
 
+    IEnumerator waitForFleeCooldown()
+    {
+        yield return new WaitForSeconds(5);
+        fleeingCooldownInProgress = false;
+    }
     
 
     protected void Attack()
@@ -97,12 +120,12 @@ public class NPC : MonoBehaviour
             {
                 //TODO: damage the player here
                 attackIsOnCooldown = true;
-                waitForAttackCooldown();
+                StartCoroutine(waitForAttackCooldown());
             }
         }
     }
 
-    protected IEnumerable waitForAttackCooldown()
+    protected IEnumerator waitForAttackCooldown()
     {
         yield return new WaitForSeconds(attackSpeed);
         attackIsOnCooldown = false;
@@ -203,5 +226,16 @@ public class NPC : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         iFramesActive = false;
+    }
+
+    public float DefenseRating { get; set; }
+    public void TakeDamage(GameObject attacker)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnHealthZero()
+    {
+        throw new System.NotImplementedException();
     }
 }
