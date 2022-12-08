@@ -56,7 +56,6 @@ public class NPC : MonoBehaviour, IDamagable
     // Update is called once per frame
     void Update()
     {
-        CheckForDeath();
         canFlee = true;
         
         
@@ -234,7 +233,13 @@ public class NPC : MonoBehaviour, IDamagable
         throw new System.NotImplementedException();
     }
 
-    public void OnHealthZero()
+    public void TakeDamage(float damage, GameObject attacker)
+    {
+        health -= damage;
+        CheckForDeath();
+    }
+    
+    public void OnHealthZero()//
     {
         throw new System.NotImplementedException();
     }
