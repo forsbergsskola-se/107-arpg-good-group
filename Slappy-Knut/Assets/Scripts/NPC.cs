@@ -17,7 +17,7 @@ public class NPC : MonoBehaviour
     public float startHealth = 100; 
     //public Item[] loot; TODO: uncomment this when items are finished
     public Transform[] goals; //This is where the target points for roaming are stored
-    public GameObject playerReference;
+    
 
    // private Vector3 targetPosition;
     protected Rigidbody rigidbody;
@@ -28,6 +28,7 @@ public class NPC : MonoBehaviour
     protected Vector3 startPosition;
     protected bool iFramesActive;
     protected bool attackIsOnCooldown;
+    protected GameObject playerReference;
     
     
     
@@ -35,6 +36,7 @@ public class NPC : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerReference = GameObject.FindWithTag("Player");
         rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         RandomizeValues();
         rigidbody = GetComponent<Rigidbody>();
@@ -112,7 +114,9 @@ public class NPC : MonoBehaviour
         //If we dont run this line we get a crash, but I dont understand why its needed
         //Its also expensive, so we should find a way to not use it
         agent = GetComponent<NavMeshAgent>();
-        if (canFlee)
+        Vector3 currentPosition = transform.position;
+        currentPosition = currentPosition - agent.destination;//agegoal.position;
+        if (canFlee && currentPosition.magnitude < 2)
         {
             //The idea here is to find a goal which is not near enough to the player to cause us to flee
             //This code is kinda ugly, we should perhaps refactor it
@@ -137,8 +141,6 @@ public class NPC : MonoBehaviour
         }
         else
         { //If we cant flee there is no reason to do such a check
-            Vector3 currentPosition = transform.position;
-            currentPosition = currentPosition - agent.destination;//agegoal.position;
 
             if (currentPosition.magnitude < 2)
             {
@@ -164,7 +166,7 @@ public class NPC : MonoBehaviour
         }
     }
 
-    protected void DropLoot() //We need actual loot to drop before implenting this
+    protected void DropLoot() //We need actual loot to drop before implementing this
     {
         
     }
