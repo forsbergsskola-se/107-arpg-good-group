@@ -91,7 +91,6 @@ public class NPC : MonoBehaviour
         Vector3 delta = transform.position - playerReference.transform.position;
         if (delta.magnitude < detectionRange)
         {
-            agent = GetComponent<NavMeshAgent>();
             agent.destination = playerReference.transform.position;
             //If the player is inside our attack range and our attack isnt on cooldown we should attack them
             if (delta.magnitude > attackRange && !attackIsOnCooldown)
@@ -111,12 +110,8 @@ public class NPC : MonoBehaviour
 
     protected void Roam()
     {
-        //If we dont run this line we get a crash, but I dont understand why its needed
-        //Its also expensive, so we should find a way to not use it
-        agent = GetComponent<NavMeshAgent>();
-        Vector3 currentPosition = transform.position;
-        currentPosition = currentPosition - agent.destination;//agegoal.position;
-        if (canFlee && currentPosition.magnitude < 2)
+        Vector3 GoalDelta = transform.position - agent.destination;
+        if (canFlee && GoalDelta.magnitude < 2)
         {
             //The idea here is to find a goal which is not near enough to the player to cause us to flee
             //This code is kinda ugly, we should perhaps refactor it
@@ -142,7 +137,7 @@ public class NPC : MonoBehaviour
         else
         { //If we cant flee there is no reason to do such a check
 
-            if (currentPosition.magnitude < 2)
+            if (GoalDelta.magnitude < 2)
             {
                 agent.destination = goals[rand.Next(0, goals.Length-1)].position;
             }
@@ -175,9 +170,10 @@ public class NPC : MonoBehaviour
     {
         if (health < 0)
         {
-            agent = GetComponent<NavMeshAgent>(); //This shouldnt be necessary, check tomorrow if needed
             agent.speed = 0;
             agent.velocity = Vector3.zero;
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<BoxCollider>().enabled = false;
             respawnWait();
             RandomizeValues();
         }
@@ -189,6 +185,8 @@ public class NPC : MonoBehaviour
         health = startHealth;
         transform.position = startPosition;
         agent.speed = movementSpeed;
+        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<BoxCollider>().enabled = true;
     }
 
     protected void Damageable(float damage)
