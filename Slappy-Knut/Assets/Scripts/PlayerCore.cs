@@ -39,9 +39,14 @@ public class PlayerCore : MonoBehaviour
     {
         _playerMovement.enabled = false;
         _audioManager.AS_RageSound.Play();
-        _animator.SetBool("isRaging", true);
-        Invoke("SetDeactive",3f);
+        Invoke("PlayRageAnimation",.5f);
+        Invoke("SetDeactive",2f);
         Invoke("LoadScene", 5f);
+    }
+
+    void PlayRageAnimation()
+    {
+        _animator.SetBool("isRaging", true);
     }
     void LoadScene()
     {
