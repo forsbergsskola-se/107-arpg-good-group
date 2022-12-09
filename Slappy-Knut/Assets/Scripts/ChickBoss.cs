@@ -63,6 +63,7 @@ public class ChickBoss : MonoBehaviour
                 Enraged();
                 break;
             case State.OgreDeath: // should here change into idle state until player picks him up as a weapon or item.
+                BackToNormal();
                 break;
             default:
                 Application.Quit();
@@ -124,7 +125,7 @@ public class ChickBoss : MonoBehaviour
             _anim.SetBool("Run", false);
             _anim.Play("Jump W Root");
             //making sjicken bigger when angry
-            _rb.transform.localScale += new Vector3(2,2,2) * Time.deltaTime;
+            _rb.transform.localScale += new Vector3(2.5f,2.5f,2.5f) * Time.deltaTime;
             if (_rb.transform.localScale.x > 15f) 
             {
                 _enRaged = true;
@@ -181,5 +182,24 @@ public class ChickBoss : MonoBehaviour
             Vector3 force = difference * knockBackForce * 0.5f;
             _rb.AddForce(force, ForceMode.Impulse); 
         }
+    }
+
+    void BackToNormal()
+    {
+        _anim.SetBool("Run", false);
+        
+        if(_enRaged)
+            _rb.transform.localScale -= new Vector3(2.5f,2.5f,2.5f) * Time.deltaTime;
+        if (_rb.transform.localScale.x < 5f)
+        {
+            _enRaged = false;
+        }
+
+        _lineRenderer.enabled = false;
+    }
+    
+    public void PlayStepSound()
+    {
+        _audioManager.AS_FootSteps.Play();
     }
 }

@@ -49,7 +49,7 @@ public class OgreBoss : MonoBehaviour
             _anim.SetBool("Run", true);
             var position = runawayCheckPoint.transform.position;
             transform.LookAt(position);
-            _rb.MovePosition(Vector3.MoveTowards(_rb.position, position, 0.02f));
+            _rb.MovePosition(Vector3.MoveTowards(_rb.position, position, 0.03f));
         }
     }
     
