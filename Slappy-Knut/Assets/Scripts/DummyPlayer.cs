@@ -19,4 +19,9 @@ public class DummyPlayer : MonoBehaviour
             pauseRagePotion.Use();
         }
     }
+
+    private void FixedUpdate()
+    {
+        currentRage += 0.001f;
+    }
 }
