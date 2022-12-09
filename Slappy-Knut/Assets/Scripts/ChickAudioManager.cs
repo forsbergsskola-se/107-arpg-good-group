@@ -12,6 +12,7 @@ public class ChickAudioManager : MonoBehaviour
     private void Start()
     {
         AS_FootSteps   = gameObject.AddComponent<AudioSource>();
+        AS_FootSteps.volume = 0.01f;
         AS_RageChirp   = gameObject.AddComponent<AudioSource>();
         AS_AttackChirp = gameObject.AddComponent<AudioSource>();
         AS_FootSteps.clip   = footSteps;

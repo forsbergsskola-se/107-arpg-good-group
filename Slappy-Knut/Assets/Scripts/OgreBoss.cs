@@ -6,10 +6,12 @@ public class OgreBoss : MonoBehaviour
 {
     public GameObject runawayCheckPoint;
     public Image healthBar;
-
+    private GameObject _player;
+    private OgreAudioManager _audioManager;
     private ChickBoss _chick;
     private Rigidbody _rb;
     private Animator _anim;
+    
     [SerializeField]
     private bool _runAway;
     [SerializeField]
@@ -20,6 +22,8 @@ public class OgreBoss : MonoBehaviour
 
     void Start()
     {
+        _audioManager = GetComponent<OgreAudioManager>();
+        _player = GameObject.FindWithTag("Player");
         _health = _maxHealth;
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
@@ -33,12 +37,13 @@ public class OgreBoss : MonoBehaviour
         else
         {
             if(Health > 0)
-                transform.LookAt(_chick.player.transform.position);
+                transform.LookAt(_player.transform.position);
         }
     }
 
     void Runaway()
     {
+        //Half health ogre runs to the other side of arena while chicken gets larger
         if (Vector3.Distance(_rb.position, runawayCheckPoint.transform.position) < 1f)
         {
             _runAway = false;
@@ -53,9 +58,9 @@ public class OgreBoss : MonoBehaviour
         }
     }
     
-    public void TakeDamage(int damage) => Health -= damage;
+    public void TakeDamage(int damage) => Health -= damage; //temp placeholder
 
-    int Health
+    int Health //temp placeholder
     {
         get => _health;
         set
@@ -69,8 +74,10 @@ public class OgreBoss : MonoBehaviour
     void HealthLogic()
     {
         if(_health >= 0)
+        {
+            _audioManager.AS_GetHit.Play();
             _anim.Play("damage");
-
+        }
         if (_health <= _maxHealth / 2 && !_hasRaged)
         {
             _chick.StartRage(); 
@@ -78,28 +85,33 @@ public class OgreBoss : MonoBehaviour
             _hasRaged = true;
         }
         if(_health <= 0)
-        {
             AfterDeathLogic();
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        //temp placeholder
         if(collision.collider.CompareTag("Player"))
             TakeDamage(1);
     }
 
     private void AfterDeathLogic()
     {
+        _audioManager.AS_Death.Play();
         _runAway = false;
         _anim.SetBool("Death", true);
         
         //To stop the body from interacting with the player and still stay on the field as a corpse
         Destroy(_rb.GetComponent<CapsuleCollider>());
         Destroy(_rb);
-
         healthBar.GetComponentInParent<Canvas>().enabled = false;
         //Call OgreDeath state in the chicken
         _chick.OgreDead();
+    }
+    
+    public void PlayStepSound()
+    {
+        //using this in the event listener on the animation to play on every footstep
+        _audioManager.AS_FootSteps.Play();
     }
 }

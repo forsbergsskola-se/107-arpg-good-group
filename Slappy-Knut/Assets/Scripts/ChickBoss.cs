@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChickBoss : MonoBehaviour
@@ -15,7 +16,6 @@ public class ChickBoss : MonoBehaviour
     private bool _once;
     private bool _enRaged;
     private bool _canCharge;
-    [SerializeField]
     private bool _hasChargeDirection;
     private bool _gotHit;
 
@@ -24,7 +24,7 @@ public class ChickBoss : MonoBehaviour
     private Rigidbody _rb;
     private Rigidbody _playerRb;
     private LineRenderer _lineRenderer;
-    public GameObject player;
+    private GameObject _player;
 
     [Header("State")]
     [SerializeField]
@@ -36,16 +36,16 @@ public class ChickBoss : MonoBehaviour
         Angry,
         OgreDeath
     }
-
     
     private void Start()
     {
+        _player = GameObject.FindWithTag("Player");
         _audioManager = GetComponent<ChickAudioManager>();
         timer = _maxTimer;
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
         _lineRenderer = GetComponent<LineRenderer>();
-        _playerRb = player.GetComponent<Rigidbody>();
+        _playerRb = _player.GetComponent<Rigidbody>();
         _state = State.Idle;
     }
     
@@ -66,6 +66,8 @@ public class ChickBoss : MonoBehaviour
                 BackToNormal();
                 break;
             default:
+                //unexpected things happened
+                Debug.Log("Unhandled things");
                 Application.Quit();
                 break;
         }
@@ -73,9 +75,9 @@ public class ChickBoss : MonoBehaviour
 
     private void Attack()
     {
-        if (Vector3.Distance(_rb.position, player.transform.position) < 1.5f)
+        if (Vector3.Distance(_rb.position, _player.transform.position) < 1.5f)
         {
-            //here the chick is close enough to attack the player
+            //the chick is close enough to attack the player
             //Todo: player loses health
             if(!_once)
             {
@@ -83,21 +85,22 @@ public class ChickBoss : MonoBehaviour
                 Debug.Log("Player took damage!");
                 _audioManager.AS_AttackChirp.Play();
                 _once = true;
+                
+                //knock backs the player when hit
+                Vector3 difference = (_player.transform.position-transform.position).normalized;
+                Vector3 force = difference * (knockBackForce * 5);
+                _playerRb.AddForce(force, ForceMode.Impulse); 
+            
+                _anim.SetBool("Run", false);
             }
-            
-            //knock backs the player when hit
-            Vector3 difference = (player.transform.position-transform.position).normalized;
-            Vector3 force = difference * knockBackForce;
-            _playerRb.AddForce(force, ForceMode.Impulse); 
-            
-            _anim.SetBool("Run", false);
         }
         else
         {
+            //Chicken Running at player
             _anim.SetBool("Eat", false);
             _anim.SetBool("Run", true);
-            transform.LookAt(player.transform);
-            Vector3 newPos = Vector3.MoveTowards(_rb.position, player.transform.position, speed);
+            transform.LookAt(_player.transform);
+            Vector3 newPos = Vector3.MoveTowards(_rb.position, _player.transform.position, speed);
             _rb.MovePosition(newPos);
 
             _once = false;
@@ -109,7 +112,7 @@ public class ChickBoss : MonoBehaviour
     public void StartRage()
     {
         //ignoring player and ogre colliders so chicken can charge through them
-        Physics.IgnoreCollision(player.GetComponent<Collider>(), GetComponent<Collider>());
+        Physics.IgnoreCollision(_player.GetComponent<Collider>(), GetComponent<Collider>());
         Physics.IgnoreCollision(FindObjectOfType<OgreBoss>().GetComponent<Collider>(), GetComponent<Collider>());
         _state = State.Angry;
         _audioManager.AS_RageChirp.Play();
@@ -119,7 +122,6 @@ public class ChickBoss : MonoBehaviour
 
     private void Enraged()
     {
-        
         if(!_enRaged)
         {
             _anim.SetBool("Run", false);
@@ -133,33 +135,33 @@ public class ChickBoss : MonoBehaviour
             }
         }
 
-        //LookAt once and start charging resets when hitting the fence.
+        // calling this once: LookAt, lineRenderer and startCharging resets when hitting the fence.
         if (!_hasChargeDirection && _enRaged)
         {
-            //Trying to make him not go up or down just at players position, so chick doesn't rotate upwards
-            Vector3 position = new Vector3(player.transform.position.x, 0, player.transform.position.z);
+            //Trying to make him not go up or down just at players position, so chick doesn't rotate upwards/downwards when targeting
+            Vector3 position = new Vector3(_player.transform.position.x, 0, _player.transform.position.z);
             transform.LookAt(position);
             _hasChargeDirection = true;
 
             _lineRenderer.SetPosition(0, transform.position);
             _lineRenderer.SetPosition(1, position);
         }       
-        // charge timer until he can charge
+        // charge timer until he can start charging
         if (timer > 0 && _enRaged)
             timer -= Time.deltaTime;
         if (timer < 0)
             _canCharge = true;
-
+        //Charging player
         if(_enRaged && _canCharge)
             _rb.velocity = transform.forward * chargeSpeed;
 
-
-        if (Vector3.Distance(_rb.position, player.transform.position) < 1.5f)
+        //Hits player and knocks him upwards
+        if (Vector3.Distance(_rb.position, _player.transform.position) < 1.5f)
         {
             if(!_gotHit)
             {
-                _audioManager.AS_AttackChirp.Play();
                 Debug.Log("Player got hit!");
+                _audioManager.AS_AttackChirp.Play();
                 Vector3 force = Vector3.up * (knockBackForce * 6f);
                 _playerRb.AddForce(force, ForceMode.Impulse);
                 _gotHit = true;
@@ -171,6 +173,7 @@ public class ChickBoss : MonoBehaviour
     {
         if (collision.collider.CompareTag("Fence"))
         {
+            //resets all
             _hasChargeDirection = false;
             timer = _maxTimer;
             _canCharge = false;
@@ -187,19 +190,18 @@ public class ChickBoss : MonoBehaviour
     void BackToNormal()
     {
         _anim.SetBool("Run", false);
-        
+        //Making sjicken small again
         if(_enRaged)
             _rb.transform.localScale -= new Vector3(2.5f,2.5f,2.5f) * Time.deltaTime;
         if (_rb.transform.localScale.x < 5f)
-        {
             _enRaged = false;
-        }
 
         _lineRenderer.enabled = false;
     }
     
     public void PlayStepSound()
     {
+        //using this in the event listener on the animation to play on every footstep
         _audioManager.AS_FootSteps.Play();
     }
 }
