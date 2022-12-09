@@ -20,9 +20,9 @@ public class FishLandmine : Consumable
         Range = 10;
     }
 
-    public override void Use(GameObject player)
+    public override void Use()
     {
-        gameObject.transform.position = player.transform.position;
+        gameObject.transform.position = FindObjectOfType<DummyPlayer>().transform.position;
         Count--;
     }
 

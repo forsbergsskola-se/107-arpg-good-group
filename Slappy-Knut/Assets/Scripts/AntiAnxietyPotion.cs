@@ -28,7 +28,7 @@ public class AntiAnxietyPotion : Consumable
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public override void Use(GameObject player)
+    public override void Use()
     {
         if (count < 1)
             return;

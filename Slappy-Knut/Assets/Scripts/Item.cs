@@ -8,6 +8,6 @@ public abstract class Item : MonoBehaviour
     public abstract float Cooldown { get; }
     public abstract float Range { get; }
 
-    public abstract void Use(GameObject player);
+    public abstract void Use();
     public abstract void Charge();
 }
