@@ -187,7 +187,7 @@ public class ChickBoss : MonoBehaviour
         }
     }
 
-    void BackToNormal()
+    private void BackToNormal()
     {
         _anim.SetBool("Run", false);
         //Making sjicken small again

@@ -20,7 +20,7 @@ public class OgreBoss : MonoBehaviour
     private int _maxHealth = 10;
     private bool _hasRaged;
 
-    void Start()
+    private void Start()
     {
         _audioManager = GetComponent<OgreAudioManager>();
         _player = GameObject.FindWithTag("Player");
@@ -30,7 +30,7 @@ public class OgreBoss : MonoBehaviour
         _chick = FindObjectOfType<ChickBoss>();
     }
     
-    void Update()
+    private void Update()
     {
         if (_runAway)
             Runaway();
@@ -41,7 +41,7 @@ public class OgreBoss : MonoBehaviour
         }
     }
 
-    void Runaway()
+    private void Runaway()
     {
         //Half health ogre runs to the other side of arena while chicken gets larger
         if (Vector3.Distance(_rb.position, runawayCheckPoint.transform.position) < 1f)
@@ -60,7 +60,7 @@ public class OgreBoss : MonoBehaviour
     
     public void TakeDamage(int damage) => Health -= damage; //temp placeholder
 
-    int Health //temp placeholder
+    private int Health //temp placeholder
     {
         get => _health;
         set
@@ -71,7 +71,7 @@ public class OgreBoss : MonoBehaviour
         }
     }
 
-    void HealthLogic()
+    private void HealthLogic()
     {
         if(_health >= 0)
         {
