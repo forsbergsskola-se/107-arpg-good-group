@@ -31,22 +31,26 @@ public class PlayerRage : MonoBehaviour
     void Update()
     {
         TakeDamage(rageDamage);
-        if(Math.Abs(_currentRage - maxRage) < .01) OnMaxRage();
+        if(Math.Abs(_currentRage - maxRage) < .01) OnMaxRage(); //checks if maxRage reached 
+                                                                //it's actually not expensive (not called every frame)
     }
     void TakeDamage(float rage)
     {
+        //rage builds up over time
         _currentRage += rage * Time.deltaTime;
         rageBar.value = _currentRage;
     }
     void OnMaxRage()
     {
+        //"death"
         _playerMovement.enabled = false;
         _audioManager.AS_RageSound.Play();
         Invoke("PlayRageAnimation",.5f);
-        Invoke("SetDeactive",2f);
+        Invoke("SetInactive",2f);
         Invoke("LoadScene", 5f);
     }
 
+    //methods to use with invoke (methods to be used with invoke can not have any parameters)
     void PlayRageAnimation()
     {
         _animator.SetBool("isRaging", true);
@@ -55,7 +59,7 @@ public class PlayerRage : MonoBehaviour
     {
         SceneManager.LoadScene(_scene.name);
     }
-    void SetDeactive()
+    void SetInactive()
     {
         _audioManager.AS_RageFart.Play();
         fartDust.Play();
