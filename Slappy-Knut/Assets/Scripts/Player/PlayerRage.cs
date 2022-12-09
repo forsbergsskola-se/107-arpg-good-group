@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerCore : MonoBehaviour
+public class PlayerRage : MonoBehaviour
 {
     public Slider rageBar;
     public float rageDamage;
