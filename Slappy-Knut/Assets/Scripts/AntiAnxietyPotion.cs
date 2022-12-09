@@ -30,6 +30,8 @@ public class AntiAnxietyPotion : Consumable
 
     public override void Use(GameObject player)
     {
+        if (count < 1)
+            return;
         _audioSource.Play();
         FindObjectOfType<DummyPlayer>().currentRage -= power;
         count--;
