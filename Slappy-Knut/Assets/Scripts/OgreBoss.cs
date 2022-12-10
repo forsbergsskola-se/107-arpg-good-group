@@ -30,14 +30,14 @@ public class OgreBoss : MonoBehaviour
         _chick = FindObjectOfType<ChickBoss>();
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
         if (_runAway)
             Runaway();
         else
         {
             if(Health > 0)
-                transform.LookAt(_player.transform.position);
+                transform.LookAt(new Vector3(_player.transform.position.x,0,_player.transform.position.z));
         }
     }
 
@@ -54,7 +54,7 @@ public class OgreBoss : MonoBehaviour
             _anim.SetBool("Run", true);
             var position = runawayCheckPoint.transform.position;
             transform.LookAt(position);
-            _rb.MovePosition(Vector3.MoveTowards(_rb.position, position, 0.03f));
+            _rb.MovePosition(Vector3.MoveTowards(_rb.position, position, 0.1f));
         }
     }
     

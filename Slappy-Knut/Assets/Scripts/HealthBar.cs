@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    private GameObject _camera;
+    private Camera _camera;
     private OgreBoss _ogre;
     private void Start()
     {
         _ogre = FindObjectOfType<OgreBoss>();
-        _camera = GameObject.FindGameObjectWithTag("MainCamera");
+        _camera = FindObjectOfType<Camera>();
     }
     private void LateUpdate()
     {

@@ -49,7 +49,7 @@ public class ChickBoss : MonoBehaviour
         _state = State.Idle;
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
         switch (_state)
         {
