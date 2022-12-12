@@ -33,12 +33,14 @@ public class AntiAnxietyPotion : Consumable
         if (count < 1)
             return;
         _audioSource.Play();
+        // lowers player's current rage by power
         FindObjectOfType<DummyPlayer>().currentRage -= power;
         count--;
     }
 
     public override void Charge()
     {
+        // the item can not be charged
         throw new System.NotImplementedException();
     }
 }

@@ -40,19 +40,22 @@ public class PauseRagePotion : Consumable
             return;
         _timeSinceUse = Time.deltaTime;
         _player = FindObjectOfType<DummyPlayer>();
+        // saves player's current rage at the moment they use the potion
         _rage = _player.currentRage;
+        // the logic only works when it's in update, so _used makes sure the logic is
+        // only run when the potion has been used
         _used = true;
         _audioSource.Play();
     }
     
     private void Update()
     {
-        if (!_used) return;
-        if (_timeSinceUse < power)
+        if (!_used) return; // returns when potion has not been used
+        if (_timeSinceUse < power) // power is the amount of seconds rage increase pauses for
         {
+            // this could probably be made better by moving more logic into the coroutine, but this works
             StartCoroutine(Wait());
             _player.currentRage = _rage;
-            Debug.Log(_timeSinceUse);
             _timeSinceUse += Time.deltaTime;
         }
         else
@@ -69,6 +72,7 @@ public class PauseRagePotion : Consumable
 
     public override void Charge()
     {
+        // the item can not be charged
         throw new System.NotImplementedException();
     }
 }

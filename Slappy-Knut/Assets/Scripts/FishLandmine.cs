@@ -32,18 +32,19 @@ public class FishLandmine : Consumable
 
     public override void Use()
     {
+        // is placed at player's position when placed
         gameObject.transform.position = FindObjectOfType<DummyPlayer>().transform.position;
         Count--;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        _audioSource.time = 1f;
+        // only IDamageable can set it off
+        if (other is not IDamagable damageable) return; // only 
+        _audioSource.time = 1f; // removes audio delay
         _audioSource.Play();
-        if (other is IDamagable damageable)
-        {
-            damageable.TakeDamage(Power, gameObject);
-        }
+        damageable.TakeDamage(Power, gameObject);
+        // coroutine is used to let the particle explosion finish before destroying the game object
         StartCoroutine(Explosion());
     }
     
@@ -57,6 +58,7 @@ public class FishLandmine : Consumable
 
     public override void Charge()
     {
+        // the item can not be charged
         throw new System.NotImplementedException();
     }
 }
