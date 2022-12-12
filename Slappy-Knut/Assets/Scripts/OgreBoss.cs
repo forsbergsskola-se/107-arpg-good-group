@@ -12,12 +12,9 @@ public class OgreBoss : MonoBehaviour
     private Rigidbody _rb;
     private Animator _anim;
     
-    [SerializeField]
-    private bool _runAway;
-    [SerializeField]
-    private int _health;
-    [SerializeField]
-    private int _maxHealth = 10;
+    [SerializeField] private bool _runAway;
+    [SerializeField] private int _health;
+    [SerializeField] private int _maxHealth = 10;
     private bool _hasRaged;
 
     private void Start()
@@ -58,7 +55,7 @@ public class OgreBoss : MonoBehaviour
         }
     }
     
-    public void TakeDamage(int damage) => Health -= damage; //temp placeholder
+    public void TakeDamage(int damage) => Health -= damage; //temp placeholder TODO: implement IDamagable here
 
     private int Health //temp placeholder
     {
