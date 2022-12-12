@@ -16,12 +16,10 @@ public class NPC : MonoBehaviour, IDamagable
 
     public float startHealth = 100; 
     //public Item[] loot; TODO: uncomment this when items are finished
-    public Transform[] goals; //This is where the target points for roaming are stored
+    public Transform[] waypoints; //This is where the target points for roaming are stored
     
 
-   // private Vector3 targetPosition;
     protected Rigidbody rigidbody;
-    protected Vector3 rigidbodyVelocity;
     protected Random rand = new Random();
     protected NavMeshAgent agent;
     protected float health;
@@ -41,11 +39,10 @@ public class NPC : MonoBehaviour, IDamagable
         rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         RandomizeValues();
         rigidbody = GetComponent<Rigidbody>();
-        rigidbodyVelocity = rigidbody.velocity;
         agent = GetComponent<NavMeshAgent>();
         Roam();
         agent.speed = movementSpeed;
-        agent.destination = goals[0].position;
+        agent.destination = waypoints[0].position;
         health = startHealth;
         startPosition = transform.position;
         iFramesActive = false;
@@ -77,8 +74,6 @@ public class NPC : MonoBehaviour, IDamagable
         
         //Gets a vector of the distance between the player and NPC, pointing away from the player towards the NPC
         Vector3 delta = transform.position - playerReference.transform.position;
-       // Debug.Log("Fleeing cooldown in progress = " + fleeingCooldownInProgress.ToString());
-        //Debug.Log("Fled last fram = " + fledLastFrame.ToString());
         
         if (fledLastFrame && delta.magnitude > detectionRange)
         {
@@ -90,6 +85,8 @@ public class NPC : MonoBehaviour, IDamagable
         if (delta.magnitude < detectionRange || fleeingCooldownInProgress)
         {
             Vector3 direction = delta.normalized; //Not sure if this is needed TBH, probably isnt
+            //Making this point be further away from the NPCs current location will likely make it
+            //better at navigating around obstacles
             agent.destination = transform.position + direction * 5;
             if (delta.magnitude < detectionRange)
             {
@@ -138,12 +135,12 @@ public class NPC : MonoBehaviour, IDamagable
             //The idea here is to find a goal which is not near enough to the player to cause us to flee
             //This code is kinda ugly, we should perhaps refactor it
             List<Transform> goalsNotAtPlayer = new List<Transform>();
-            for (int i = 0; i < goals.Length; i++)
+            for (int i = 0; i < waypoints.Length; i++)
             {
-                Vector3 delta = playerReference.transform.position - goals[i].position;
+                Vector3 delta = playerReference.transform.position - waypoints[i].position;
                 if (delta.magnitude > detectionRange)
                 {
-                    goalsNotAtPlayer.Add(goals[i]);
+                    goalsNotAtPlayer.Add(waypoints[i]);
                 }
             }
 
@@ -161,7 +158,7 @@ public class NPC : MonoBehaviour, IDamagable
 
             if (GoalDelta.magnitude < 2)
             {
-                agent.destination = goals[rand.Next(0, goals.Length-1)].position;
+                agent.destination = waypoints[rand.Next(0, waypoints.Length-1)].position;
             }
         }
     }
@@ -196,7 +193,8 @@ public class NPC : MonoBehaviour, IDamagable
             agent.velocity = Vector3.zero;
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;
-            StartCoroutine(respawnWait());
+            //The NPC is reset in the respawnWait coroutine
+            var tst = StartCoroutine(respawnWait());
             RandomizeValues();
         }
     }
@@ -210,17 +208,7 @@ public class NPC : MonoBehaviour, IDamagable
         GetComponent<MeshRenderer>().enabled = true;
         GetComponent<BoxCollider>().enabled = true;
     }
-
-    protected void Damageable(float damage)
-    {
-        if (!iFramesActive)
-        {
-            health -= damage;
-            iFramesActive = true;
-            waitForiFrames();
-        }
-        
-    }
+    
     protected IEnumerator waitForiFrames()
     {
         yield return new WaitForSeconds(0.5f);
@@ -228,10 +216,7 @@ public class NPC : MonoBehaviour, IDamagable
     }
 
     public float DefenseRating { get; set; }
-    public void TakeDamage(GameObject attacker)//Eh? why does this not take damage as an argument?
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
     public void TakeDamage(float damage, GameObject attacker)
     {
