@@ -1,18 +1,12 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChickBoss : MonoBehaviour
 {
-    [SerializeField] 
-    private float timer;
-    private readonly float _maxTimer = 2f;
-    [SerializeField]
-    private float speed;
-    [SerializeField]
-    private float chargeSpeed;
-    [SerializeField]
-    private float knockBackForce;
+    [SerializeField] private float timer;
+    [SerializeField] private float _maxTimer = 2f;
+    [SerializeField] private float speed = 0.02f;
+    [SerializeField] private float chargeSpeed = 10;
+    [SerializeField] private float knockBackForce = 1.4f;
     private bool _once;
     private bool _enRaged;
     private bool _canCharge;
@@ -26,10 +20,22 @@ public class ChickBoss : MonoBehaviour
     private LineRenderer _lineRenderer;
     private GameObject _player;
 
-    [Header("State")]
-    [SerializeField]
-    private State _state;
-    private enum State
+    [Header("State")] 
+    [SerializeField] private StateEnum stateEnum;
+
+    private StateEnum State
+    {
+        get
+        {
+            return stateEnum;
+        }
+        set
+        {
+            stateEnum = value;
+            ChangeState();
+        }
+    }
+    private enum StateEnum
     {
         Idle,
         Attack,
@@ -46,23 +52,26 @@ public class ChickBoss : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _lineRenderer = GetComponent<LineRenderer>();
         _playerRb = _player.GetComponent<Rigidbody>();
-        _state = State.Idle;
+        stateEnum = StateEnum.Idle;
     }
     
     private void FixedUpdate()
     {
-        switch (_state)
+        ChangeState();
+
+        
+    }
+    void ChangeState()
+    {
+        switch (stateEnum)
         {
-            case State.Idle:
-                _anim.SetBool("Eat", true);
-                break;
-            case State.Attack:
+            case StateEnum.Attack:
                 Attack();
                 break;
-            case State.Angry:
+            case StateEnum.Angry:
                 Enraged();
                 break;
-            case State.OgreDeath: // should here change into idle state until player picks him up as a weapon or item.
+            case StateEnum.OgreDeath: // should here change into idle state until player picks him up as a weapon or item.
                 BackToNormal();
                 break;
             default:
@@ -72,7 +81,6 @@ public class ChickBoss : MonoBehaviour
                 break;
         }
     }
-
     private void Attack()
     {
         if (Vector3.Distance(_rb.position, _player.transform.position) < 1.5f)
@@ -107,18 +115,18 @@ public class ChickBoss : MonoBehaviour
         }
     }
 
-    public void StartBossFight() => _state = State.Attack;
+    public void StartBossFight() => stateEnum = StateEnum.Attack;
 
     public void StartRage()
     {
         //ignoring player and ogre colliders so chicken can charge through them
         Physics.IgnoreCollision(_player.GetComponent<Collider>(), GetComponent<Collider>());
         Physics.IgnoreCollision(FindObjectOfType<OgreBoss>().GetComponent<Collider>(), GetComponent<Collider>());
-        _state = State.Angry;
+        stateEnum = StateEnum.Angry;
         _audioManager.AS_RageChirp.Play();
     }  
 
-    public void OgreDead() => _state = State.OgreDeath;
+    public void OgreDead() => stateEnum = StateEnum.OgreDeath;
 
     private void Enraged()
     {
