@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerRage : MonoBehaviour
 {
     public Slider rageBar;
-    public float rageDamage;
+    public float rageDOT;
     public float maxRage;
     public SkinnedMeshRenderer bodyMesh;
     public SkinnedMeshRenderer hairMesh;
@@ -30,11 +30,11 @@ public class PlayerRage : MonoBehaviour
     }
     void Update()
     {
-        TakeDamage(rageDamage);
+        OnDeath(rageDOT);
         if(Math.Abs(_currentRage - maxRage) < .01) OnMaxRage(); //checks if maxRage reached 
                                                                 //it's actually not expensive (not called every frame)
     }
-    void TakeDamage(float rage)
+    void OnDeath(float rage)
     {
         //rage builds up over time
         _currentRage += rage * Time.deltaTime;
