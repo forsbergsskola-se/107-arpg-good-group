@@ -42,12 +42,12 @@ public class PauseRagePotion : Consumable
         _player = FindObjectOfType<DummyPlayer>();
         _rage = _player.currentRage;
         _used = true;
+        _audioSource.Play();
     }
     
     private void Update()
     {
         if (!_used) return;
-        _audioSource.Play();
         if (_timeSinceUse < power)
         {
             StartCoroutine(Wait());
