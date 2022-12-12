@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class InventoryManagement : MonoBehaviour
 {
+    
     public static InventoryManagement Instance;
     public List<Item> Items = new List<Item>();
 
@@ -20,11 +21,13 @@ public class InventoryManagement : MonoBehaviour
         Instance = this;
     }
 
+   //adding items to our list
     public void Add(Item item)
     {
         Items.Add(item);
     }
 
+   //deletes our items
     public void Remove(Item item)
     {
         Items.Remove(item);
@@ -32,11 +35,12 @@ public class InventoryManagement : MonoBehaviour
 
     public void ListItems()
     {
+        //usage of this foreach is that it prevents items to duplicate itself
         foreach (Transform item in ItemContent)
         {
-            //usage of this foreach is that it prevents items to duplicate itself
             Destroy(item.gameObject);
         }
+        //creates the the items for the inventory view
         foreach (var item in Items)
         {
             GameObject obj = Instantiate(InventoryItem, ItemContent);
@@ -55,6 +59,7 @@ public class InventoryManagement : MonoBehaviour
         SetInventoryItems();
     }
 
+    //function for the remove button for inventory
     public void EnableItemsRemove()
     {
         if (EnableRemove.isOn)

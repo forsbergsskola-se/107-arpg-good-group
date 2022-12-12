@@ -6,13 +6,15 @@ public class ItemPickUp : MonoBehaviour
     public Item Item;
     public GameObject player;
 
-    public void PickUp()
+   //Pickup gets access to the inventory
+   private void PickUp()
     {
         InventoryManagement.Instance.Add(Item);
         Destroy(gameObject);
     }
 
-    private void OnMouseDown()
+   //click with mouse to store the item to the inventory 
+   private void OnMouseDown()
     {
         PickUp();
     }

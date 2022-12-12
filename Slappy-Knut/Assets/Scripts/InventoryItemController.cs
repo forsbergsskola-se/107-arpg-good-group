@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//script to manage the removebutton
 public class InventoryItemController : MonoBehaviour
 {
   private Item item;
