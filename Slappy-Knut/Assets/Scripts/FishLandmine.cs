@@ -1,9 +1,14 @@
+using System.Collections;
 using UnityEngine;
 
 public class FishLandmine : Consumable
 {
     public float power;
-    
+    public GameObject explosion;
+    public GameObject fishBody;
+
+    private AudioSource _audioSource;
+
     public override bool Chargeable { get; }
     public override float Power { get; }
     public override string Description { get; }
@@ -20,6 +25,11 @@ public class FishLandmine : Consumable
         Range = 10;
     }
 
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     public override void Use()
     {
         gameObject.transform.position = FindObjectOfType<DummyPlayer>().transform.position;
@@ -28,8 +38,20 @@ public class FishLandmine : Consumable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other is not IDamagable damageable) return;
-        damageable.TakeDamage(Power, gameObject);
+        _audioSource.time = 1f;
+        _audioSource.Play();
+        if (other is IDamagable damageable)
+        {
+            damageable.TakeDamage(Power, gameObject);
+        }
+        StartCoroutine(Explosion());
+    }
+    
+    private IEnumerator Explosion()
+    {
+        explosion.SetActive(true);
+        Destroy(fishBody);
+        yield return new WaitForSecondsRealtime(1.5f);
         Destroy(gameObject);
     }
 
