@@ -76,7 +76,6 @@ public class ChickBoss : MonoBehaviour
                 break;
             default:
                 //unexpected things happened
-                Debug.Log("Unhandled things");
                 Application.Quit();
                 break;
         }
