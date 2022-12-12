@@ -1,11 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class ItemPickUp : MonoBehaviour
 {
     public Item Item;
+    public GameObject player;
 
     public void PickUp()
     {
@@ -17,5 +16,14 @@ public class ItemPickUp : MonoBehaviour
     {
         PickUp();
     }
+
+    /*private void Update()
+    {
+        if (Vector3.Distance(player.transform.position, item.transform.position)<1.5f)
+        {
+           PickUp(); 
+        }
+        
+    }*/
 }
 

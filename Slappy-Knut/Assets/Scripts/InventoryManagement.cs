@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Net.Mime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,6 +34,7 @@ public class InventoryManagement : MonoBehaviour
     {
         foreach (Transform item in ItemContent)
         {
+            //usage of this foreach is that it prevents items to duplicate itself
             Destroy(item.gameObject);
         }
         foreach (var item in Items)
