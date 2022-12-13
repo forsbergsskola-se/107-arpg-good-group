@@ -5,14 +5,17 @@ public class PlayerMovement : MonoBehaviour
 {
     public LayerMask walkableLayer;
     public int maxRayCastDistance = 100;
+    
     private NavMeshAgent _meshAgent;
     private Animator _animator;
     private PlayerAudioManager _audioManager;
+    private PlayerAttack _playerAttack;
     private void Start()
     {
         _audioManager = GetComponent<PlayerAudioManager>();
         _animator = GetComponent<Animator>();
         _meshAgent = GetComponent<NavMeshAgent>();
+        _playerAttack = GetComponent<PlayerAttack>();
     }
 
     private void Update()
@@ -21,9 +24,10 @@ public class PlayerMovement : MonoBehaviour
         {
             //the ray going from main camera
             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitInfo;
             
             //moves the player to the clicked point if it's a walkablelayer
-            if (Physics.Raycast(rayOrigin, out RaycastHit hitInfo, maxRayCastDistance, walkableLayer))
+            if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, walkableLayer))
             {
                 _meshAgent.SetDestination(hitInfo.point);
             }
