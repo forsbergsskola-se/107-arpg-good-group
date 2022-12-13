@@ -928,6 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: a19fc15822219c245b584248744693eb, type: 2}
+  player: {fileID: 0}
 --- !u!1001 &291569206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2305,7 +2306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &675225255
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2326,7 +2327,7 @@ RectTransform:
   - {fileID: 1004138807}
   - {fileID: 1149139196}
   m_Father: {fileID: 1195001197}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -2635,6 +2636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: b9b146f4208d5b64c8ff1d41ae806d1c, type: 2}
+  player: {fileID: 0}
 --- !u!1 &743740414
 GameObject:
   m_ObjectHideFlags: 0
@@ -3428,7 +3430,7 @@ GameObject:
   - component: {fileID: 1149139196}
   - component: {fileID: 1149139195}
   m_Layer: 5
-  m_Name: EnableRemove
+  m_Name: RemoveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3618,8 +3620,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 675225255}
   - {fileID: 1886096034}
+  - {fileID: 675225255}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4168,7 +4170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec9edebd3d694e4cbbe0772212e756d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 11400000, guid: 83dc477b8b2c05e42bc53861913f9864, type: 2}
+  Item: {fileID: 11400000, guid: 541a0a321850a0e409020b2519732b1c, type: 2}
 --- !u!114 &1391417690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4181,7 +4183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13c4ced99870b0a44a7f416d17315e0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 11400000, guid: 83dc477b8b2c05e42bc53861913f9864, type: 2}
+  Item: {fileID: 11400000, guid: 541a0a321850a0e409020b2519732b1c, type: 2}
+  player: {fileID: 0}
 --- !u!224 &1397539082 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1969214318158568320, guid: b77ac2ec575c3304a91bbbc863a516b4, type: 3}
@@ -5151,7 +5154,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 868}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1676183703
 MonoBehaviour:
@@ -5697,7 +5700,7 @@ RectTransform:
   m_Children:
   - {fileID: 2067041501}
   m_Father: {fileID: 1195001197}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}

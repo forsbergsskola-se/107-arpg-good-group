@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f4b86f0c77682d4ca185f4fff8e3ae2, type: 3}
   m_Name: Weapon
   m_EditorClassIdentifier: 
-  id: 2
+  id: 1
   itemName: Axe
   value: 1
   icon: {fileID: 21300000, guid: 763bdf500c5c24f698f8e1839ab00640, type: 3}

@@ -40,7 +40,7 @@ public class InventoryManagement : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
-        //creates the the items for the inventory view
+        //creates the items for the inventory view
         foreach (var item in Items)
         {
             GameObject obj = Instantiate(InventoryItem, ItemContent);
