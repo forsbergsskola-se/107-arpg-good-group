@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Slappy-Knut/Assets/Prefabs/Player/SatisfactionBar.prefab.meta
+guid: 12bcca9c38c381142a3ce07f28e901e6
+PrefabImporter:
+========
 guid: b33a20eaba647f94dbf761426c19b353
 folderAsset: yes
 DefaultImporter:
+>>>>>>>> main:Slappy-Knut/Assets/Prefabs/Bosse/Bosse.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
