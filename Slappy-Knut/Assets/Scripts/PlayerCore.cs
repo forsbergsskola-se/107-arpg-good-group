@@ -8,11 +8,11 @@ public class PlayerCore : MonoBehaviour
     public Slider rageBar;
     public float rageDamage;
     public float maxRage;
-    public float _currentRage;
     public SkinnedMeshRenderer bodyMesh;
     public SkinnedMeshRenderer hairMesh;
     public ParticleSystem fartDust;
     
+    private float _currentRage;
     private float _minRage;
     private Animator _animator;
     private PlayerAudioManager _audioManager;
