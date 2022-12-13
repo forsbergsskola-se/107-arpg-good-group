@@ -8,13 +8,13 @@
 
   Team Leader - Jacob Roming
   
-  Product Owner - Sofie Persson
+  Product Owner - Nihan Bir
   
   Scrum Master - Ale Flärd
   
   Team Member - Stefan Halldorsson
   
-  Team Member - Nihan Bir
+  Team Member - Sofie Persson
   
   Team Member - Hildur-Hanna Lönn-Holmqvist
   
