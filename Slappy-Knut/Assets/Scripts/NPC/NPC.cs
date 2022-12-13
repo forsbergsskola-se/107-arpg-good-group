@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = System.Random;
@@ -224,7 +225,7 @@ public class NPC : MonoBehaviour, IDamagable
         CheckForDeath();
     }
     
-    public void OnHealthZero()//
+    public void OnDeath()//
     {
         throw new System.NotImplementedException();
     }
