@@ -5333,6 +5333,7 @@ GameObject:
   - component: {fileID: -5614897639191759310}
   - component: {fileID: 7399009677435403279}
   - component: {fileID: 986628234}
+  - component: {fileID: 487873099431120417}
   - component: {fileID: 9092145326446747948}
   - component: {fileID: 950586770}
   - component: {fileID: 950586769}
@@ -5432,12 +5433,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ae77f431ee3a14a94d6b9516bc6727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rageBar: {fileID: 6357308853720075716, guid: f76c5750427d8b54a976baede1ee3ad7, type: 3}
-  rageDOT: 0
+  rageBar: {fileID: 3178540824441088804, guid: f76c5750427d8b54a976baede1ee3ad7, type: 3}
+  rageDOT: 1
   maxRage: 1
   bodyMesh: {fileID: 104799712527133170}
   hairMesh: {fileID: 105005995052736062}
   fartDust: {fileID: 746356940}
+--- !u!114 &487873099431120417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42992005314592980}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d3b0b5ddf82e745a2aec84c93f15e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &9092145326446747948
 MonoBehaviour:
   m_ObjectHideFlags: 0

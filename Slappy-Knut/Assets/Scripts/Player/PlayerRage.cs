@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerRage : MonoBehaviour
+public class PlayerRage : MonoBehaviour, IDamagable
 {
     public Slider rageBar;
     public float rageDOT;
@@ -11,6 +11,7 @@ public class PlayerRage : MonoBehaviour
     public SkinnedMeshRenderer bodyMesh;
     public SkinnedMeshRenderer hairMesh;
     public ParticleSystem fartDust;
+    public float DefenseRating { get; set; }
     
     private float _minRage;
     private float _currentRage;
@@ -18,6 +19,7 @@ public class PlayerRage : MonoBehaviour
     private Animator _animator;
     private PlayerAudioManager _audioManager;
     private PlayerMovement _playerMovement;
+    
     void Start()
     {
         _scene = SceneManager.GetActiveScene();
@@ -30,19 +32,12 @@ public class PlayerRage : MonoBehaviour
     }
     void Update()
     {
-        OnDeath(rageDOT);
-        if(Math.Abs(_currentRage - maxRage) < .01) OnMaxRage(); //checks if maxRage reached 
+        TakeDamage(rageDOT, null);
+        if(Math.Abs(_currentRage - maxRage) < .01) OnDeath(); //checks if maxRage reached 
                                                                 //it's actually not expensive (not called every frame)
     }
-    void OnDeath(float rage)
+    void OnDeath()
     {
-        //rage builds up over time
-        _currentRage += rage * Time.deltaTime;
-        rageBar.value = _currentRage;
-    }
-    void OnMaxRage()
-    {
-        //"death"
         _playerMovement.enabled = false;
         _audioManager.AS_RageSound.Play();
         Invoke("PlayRageAnimation",.5f);
@@ -65,5 +60,14 @@ public class PlayerRage : MonoBehaviour
         fartDust.Play();
         bodyMesh.enabled = false;
         hairMesh.enabled = false;
+    }
+    public void TakeDamage(float damage, GameObject attacker)
+    {
+        _currentRage += damage * Time.deltaTime;
+        rageBar.value = _currentRage;
+    }
+
+    public void OnHealthZero()
+    {
     }
 }
