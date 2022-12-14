@@ -6,13 +6,17 @@ public class PlayerAttack : MonoBehaviour
     public float attackRange;
     public LayerMask enemyLayer;
     public Transform attackPoint;
-    
+
     private Animator _animator;
+    private PlayerMovement _playerMovement;
+    //TODO: attack with weapon
+    // private Weapon _equippedWeapon;
         
     void Start()
     {
         _animator = GetComponent<Animator>();
-        
+        _playerMovement = GetComponent<PlayerMovement>();
+        // _equippedWeapon = GetComponent<>()
     }
 
     void Update()
@@ -23,9 +27,10 @@ public class PlayerAttack : MonoBehaviour
               Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
               RaycastHit hitInfo;
               
-              if (Physics.Raycast(rayOrigin, out hitInfo, 100, enemyLayer))
+              if (Physics.Raycast(rayOrigin, out hitInfo, _playerMovement.maxRayCastDistance, enemyLayer))
               {
                   Attack();
+                  // Attack(_equippedWeapon);
               }
         }
     }
@@ -41,4 +46,17 @@ public class PlayerAttack : MonoBehaviour
             Debug.Log($"{enemy.name} was hit");
         }
     }
+    
+    // public void Attack(Weapon weapon)
+    // { 
+    //     //Detect enemies in range of attack
+    //     Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
+    //     //Damage
+    //     foreach (Collider enemy in hitEnemies)
+    //     {
+    //         _animator.SetTrigger("Attack");
+    //         enemy.GetComponent<IDamagable>().TakeDamage(weapon.Power, gameObject);
+    //         Debug.Log($"{enemy.name} was hit");
+    //     }
+    // }
 }
