@@ -1,21 +1,23 @@
+using Interfaces;
 using UnityEngine;
 
-public class AntiAnxietyPotion : Consumable
+public class AntiAnxietyPotion : MonoBehaviour, IItem
 {
     public int count;
     [SerializeField] private float power;
     private AudioSource _audioSource;
     
-    public override bool Chargeable { get; }
-    public override float Power { get; }
-    public override string Description { get; }
-    public override float Cooldown { get; }
-    public override float Range { get; }
-    public override int Count { get; set; }
-
+    
+    public float Power { get; set; }
+    public string Description { get; set; }
+    public float Cooldown { get; set; }
+    public float Range { get; set; }
+    public bool Equipable { get; set; }
+    public bool Chargable { get; set; }
+    public int Count { get; set; }
     public AntiAnxietyPotion()
     {
-        Chargeable = false;
+        Chargable = false;
         Power = power;
         Description = $"Potion that lowers rage by {power}";
         Cooldown = 10;
@@ -28,7 +30,8 @@ public class AntiAnxietyPotion : Consumable
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public override void Use()
+
+    public void Use()
     {
         if (count < 1)
             return;
@@ -38,7 +41,7 @@ public class AntiAnxietyPotion : Consumable
         count--;
     }
 
-    public override void Charge()
+    public void Charge()
     {
         // the item can not be charged
         throw new System.NotImplementedException();

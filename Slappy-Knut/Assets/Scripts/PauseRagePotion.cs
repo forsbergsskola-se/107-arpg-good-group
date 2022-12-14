@@ -1,7 +1,8 @@
 using System.Collections;
+using Interfaces;
 using UnityEngine;
 
-public class PauseRagePotion : Consumable
+public class PauseRagePotion : MonoBehaviour, IItem
 {
     public int count;
     public float power;
@@ -12,16 +13,18 @@ public class PauseRagePotion : Consumable
     private DummyPlayer _player;
     private float _rage;
     
-    public override bool Chargeable { get; }
-    public override float Power { get; }
-    public override string Description { get; }
-    public override float Cooldown { get; }
-    public override float Range { get; }
-    public override int Count { get; set; }
+    public float Power { get; set; }
+    public string Description { get; set; }
+    public float Cooldown { get; set; }
+    public float Range { get; set; }
+    public bool Equipable { get; set; }
+    public bool Chargable { get; set; }
+    
+    public int Count { get; set; }
 
     public PauseRagePotion()
     {
-        Chargeable = false;
+        Chargable = false;
         Power = power;
         Description = $"Potion that stops rage increase for {power} seconds";
         Cooldown = 30;
@@ -34,7 +37,7 @@ public class PauseRagePotion : Consumable
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public override void Use()
+    public void Use()
     {
         if (count < 1)
             return;
@@ -70,7 +73,7 @@ public class PauseRagePotion : Consumable
         yield return new WaitForSecondsRealtime(power);
     }
 
-    public override void Charge()
+    public void Charge()
     {
         // the item can not be charged
         throw new System.NotImplementedException();
