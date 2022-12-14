@@ -5466,9 +5466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ae77f431ee3a14a94d6b9516bc6727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rageBar: {fileID: 3178540824441088804, guid: f76c5750427d8b54a976baede1ee3ad7, type: 3}
+  rageBar: {fileID: 0}
   rageDOT: 0.1
-  maxRage: 1
   bodyMesh: {fileID: 104799712527133170}
   hairMesh: {fileID: 105005995052736062}
   fartDust: {fileID: 746356940}
@@ -5484,9 +5483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73d3b0b5ddf82e745a2aec84c93f15e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  satisfactionBar: {fileID: 1744458597704626193, guid: b264c9ad94c212649b187d89e9d17b4d,
-    type: 3}
-  maxSatis: 10
+  satisfactionBar: {fileID: 0}
 --- !u!114 &1503689634293038243
 MonoBehaviour:
   m_ObjectHideFlags: 0
