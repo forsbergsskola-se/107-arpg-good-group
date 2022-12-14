@@ -2,14 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PT_Medieval_Modular_NPC_Material
-  m_Shader: {fileID: 4800000, guid: 5fdb92501eac48d4a87329098a14e790, type: 3}
-  m_ShaderKeywords: _METALICON_ON _METALLICON_ON _SMOOTHNESSON_ON
+  m_Shader: {fileID: -6465566751694194690, guid: 65ab067e659b9d64cb1b6f50a7ee7735,
+    type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -19,8 +21,36 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _COATOFARMSMASK:
         m_Texture: {fileID: 2800000, guid: d294e9544b9eca64188ea9d2482ea8a1, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 0, y: 0}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TextureSample0:
@@ -47,6 +77,19 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _CEL1POWER: 0.15
     - _CEL1SIZE: 0.1
@@ -54,7 +97,9 @@ Material:
     - _CEL2SIZE: 0.4
     - _CEL3POWER: 0.15
     - _CEL3SIZE: 0.8
+    - _DetailNormalMapScale: 0
     - _EYESSMOOTHNESS: 0.7
+    - _Glossiness: 0
     - _HAIRSMOOTHNESS: 0.185
     - _LEATHER1SMOOTHNESS: 0.3
     - _LEATHER2SMOOTHNESS: 0.3
@@ -75,8 +120,12 @@ Material:
     - _MetallicON: 1
     - _OCCLUSION: 0.5
     - _OTHERSMOOTHNESS: 0.504
+    - _OcclusionStrength: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
     - _SCLERASMOOTHNESS: 0.5
     - _SKINSMOOTHNESS: 0
+    - _SPECGLOSSMAP: 0
     - _SmoothnessOn: 1
     - __dirty: 0
     m_Colors:
@@ -92,6 +141,7 @@ Material:
     - _CLOTH4COLOR: {r: 0.6037736, g: 0.09973892, b: 0.03702387, a: 0}
     - _CLOTH4COLOR1: {r: 0.2011392, g: 0.3773585, b: 0.3739074, a: 0}
     - _COATOFARMSCOLOR: {r: 1, g: 0, b: 0, a: 0}
+    - _Color: {r: 0, g: 0, b: 0, a: 0}
     - _EYESCOLOR: {r: 0.0734529, g: 0.1320755, b: 0.05046281, a: 1}
     - _EYESCOLOR1: {r: 0.0734529, g: 0.1320755, b: 0.05046281, a: 1}
     - _FEATHERS1COLOR: {r: 0.7735849, g: 0.492613, b: 0.492613, a: 0}
@@ -124,3 +174,5 @@ Material:
     - _SCLERACOLOR1: {r: 0.9056604, g: 0.8159487, b: 0.8159487, a: 0}
     - _SKINCOLOR: {r: 0.745283, g: 0.66442686, b: 0.66442686, a: 0}
     - _SKINCOLOR1: {r: 2.02193, g: 1.0081, b: 0.6199315, a: 0}
+    - _SpecColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
