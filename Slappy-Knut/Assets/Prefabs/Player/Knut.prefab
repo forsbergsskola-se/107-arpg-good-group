@@ -5467,7 +5467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rageBar: {fileID: 0}
-  rageDOT: 0
+  rageDOT: 0.1
   maxRage: 1
   bodyMesh: {fileID: 104799712527133170}
   hairMesh: {fileID: 105005995052736062}
@@ -5516,9 +5516,11 @@ MonoBehaviour:
   AS_FootSteps: {fileID: 0}
   AS_RageFart: {fileID: 0}
   AS_RageSound: {fileID: 0}
+  AS_BasicSlap: {fileID: 0}
   footSteps: {fileID: 8300000, guid: 3b95034c0b2914643b2b649db01cb503, type: 3}
   rageFart: {fileID: 8300000, guid: c1d6968de9d4b444996e1d1151336b6e, type: 3}
   rageScream: {fileID: 8300000, guid: 095b7e8034614ba47bf150bd7d847c1d, type: 3}
+  basicSlap: {fileID: 8300000, guid: 09b5464cf5ae48a4983c4a5cee361d15, type: 3}
 --- !u!54 &950586770
 Rigidbody:
   m_ObjectHideFlags: 0
