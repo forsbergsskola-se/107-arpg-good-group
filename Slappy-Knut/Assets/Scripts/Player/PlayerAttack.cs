@@ -44,7 +44,7 @@ public class PlayerAttack : MonoBehaviour
     }
     //tied to the animator as an event, only triggered when the slap lands
     public void Attack() 
-    { 
+    {
         //Detect enemies in range of attack
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
         //Damage
