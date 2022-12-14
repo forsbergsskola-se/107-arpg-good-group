@@ -1,4 +1,5 @@
 using System;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -36,7 +37,8 @@ public class PlayerRage : MonoBehaviour, IDamagable
         if(Math.Abs(_currentRage - maxRage) < .01) OnDeath(); //checks if maxRage reached 
                                                                 //it's actually not expensive (not called every frame)
     }
-    void OnDeath()
+
+    public void OnDeath()
     {
         _playerMovement.enabled = false;
         _audioManager.AS_RageSound.Play();
@@ -65,9 +67,5 @@ public class PlayerRage : MonoBehaviour, IDamagable
     {
         _currentRage += damage * Time.deltaTime;
         rageBar.value = _currentRage;
-    }
-
-    public void OnHealthZero()
-    {
     }
 }
