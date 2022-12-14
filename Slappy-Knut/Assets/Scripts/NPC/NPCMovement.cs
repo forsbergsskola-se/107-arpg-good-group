@@ -182,4 +182,9 @@ public class NPCMovement : MonoBehaviour
             transform.position = startPosition;
         }
     }
+
+    public void PlayStepSound()
+    {
+        
+    }
 }

@@ -23,7 +23,7 @@ public class NPC : MonoBehaviour, IDamagable
     
     protected float health;
     protected bool iFramesActive;
-    
+    private NPCAudioManager _audioManager;
    
     
     
@@ -37,7 +37,7 @@ public class NPC : MonoBehaviour, IDamagable
         RandomizeValues();
         
         health = startHealth;
-        
+        _audioManager = GetComponent<NPCAudioManager>();
         iFramesActive = false;
         
 
@@ -100,6 +100,7 @@ public class NPC : MonoBehaviour, IDamagable
     {
         health -= damage;
         Debug.Log("Took Damage!\n New health is: " + health.ToString());
+        _audioManager.AS_Damage.Play();
         CheckForDeath();
     }
     
