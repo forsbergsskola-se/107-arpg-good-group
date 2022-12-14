@@ -17,6 +17,7 @@ public class NPCMovement : MonoBehaviour
     public float attackSpeed; //This is how long the time in seconds is between attacks, not attacks per minute or some such measurement
     public float attackRange = 2; // this should be much lower than detection range, use your brain
     protected bool attackIsOnCooldown;
+    private Animator _animator;
     
     protected Vector3 startPosition;
     
@@ -26,6 +27,7 @@ public class NPCMovement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        _animator = GetComponent<Animator>();
         playerReference = GameObject.FindWithTag("Player");
         RandomizeValues();
         Roam();
@@ -34,6 +36,7 @@ public class NPCMovement : MonoBehaviour
         rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         attackIsOnCooldown = false;
         startPosition = transform.position;
+        _animator.SetTrigger("Run");
     }
 
     // Update is called once per frame
@@ -73,6 +76,8 @@ public class NPCMovement : MonoBehaviour
     protected void Roam()
     {
         Vector3 GoalDelta = transform.position - agent.destination;
+        
+        _animator.speed = 0.75f;
         agent = GetComponent<NavMeshAgent>();
         if (canFlee && GoalDelta.magnitude < 2)
         {
