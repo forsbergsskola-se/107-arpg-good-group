@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public float attackRange;
     public LayerMask enemyLayer;
     public Transform attackPoint;
 
@@ -14,12 +13,9 @@ public class PlayerAttack : MonoBehaviour
     private Animator _animator;
     
     //TODO: attack with weapon
-    // private Weapon _equippedWeapon;
-        
     void Start()
     {
         _playerMovement = GetComponent<PlayerMovement>();
-        // _equippedWeapon = GetComponent<>()
         _playerRage = GetComponent<PlayerRage>();
         _playerSatis = GetComponent<PlayerSatisfaction>();
         _audioManager = GetComponent<PlayerAudioManager>();
@@ -27,6 +23,7 @@ public class PlayerAttack : MonoBehaviour
     }
     void Update()
     { 
+        
         if (Input.GetMouseButtonDown(0))
         {
             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -46,15 +43,15 @@ public class PlayerAttack : MonoBehaviour
     public void Attack() 
     {
         //Detect enemies in range of attack
-        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
+        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, Weapon.CurrEquippedWeapon.Range, enemyLayer);
         //Damage
         foreach (Collider enemy in hitEnemies)
         {
             _audioManager.AS_BasicSlap.Play();
             //values are temporary until we have a weapon
-            enemy.GetComponent<IDamagable>().TakeDamage(.1f, gameObject);
+            enemy.GetComponent<IDamagable>().TakeDamage(Weapon.CurrEquippedWeapon.Power, gameObject);
             _playerRage.TakeDamage(-1f, gameObject);
-            _playerSatis.AddSatisfaction(.5f);
+            _playerSatis.AddSatisfaction(Weapon.CurrEquippedWeapon.Power);
             Debug.Log($"{enemy.name} was hit");
         }
     }
