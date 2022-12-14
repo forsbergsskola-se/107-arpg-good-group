@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Sword : Weapon
+public class Hand : Weapon
 {
     [SerializeField] private float _power;
     
@@ -8,9 +8,9 @@ public class Sword : Weapon
     {
         Chargable = false; // Do we want to charge the sword for heavier slap attack?
         Power = _power;
-        Description = $"Slapping Sword has {_power} damage";
+        Description = $"Knut only needs his hands of fury. -Hand has {_power} damage";
         Cooldown = 0;
-        Range = 5;
+        Range = 2;
         Equipable = true;
     }
 

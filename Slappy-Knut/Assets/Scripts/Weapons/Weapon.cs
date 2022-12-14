@@ -10,17 +10,5 @@ public class Weapon : MonoBehaviour, IItem
     public bool Equipable { get; set; }
     public bool Chargable { get; set; }
 
-    protected static Weapon CurrEquippedWeapon;
-
-    public Weapon CurrWeaponEquipped()
-    {
-        return CurrEquippedWeapon;
-    }
-
-    public void Use()
-    {
-        //equip the weapon
-        //remove from inventory?
-
-    }
+    public static Weapon CurrEquippedWeapon;
 }
