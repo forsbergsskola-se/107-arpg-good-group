@@ -3,7 +3,9 @@ guid: c9c6d1cf5015dab40ac8ddab143c2d12
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - glovePrefab: {fileID: 4834642345348076956, guid: 4a53aea83ea6b404bbe3190985df587d,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

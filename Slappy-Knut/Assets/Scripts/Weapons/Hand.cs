@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Hand : Weapon
 {
-    [SerializeField] private float _power;
+    [SerializeField] private float _power = 2f; 
+    public GameObject handPrefab;
+   // private GameObject _attackPoint;
     
     private void Start()
     {
@@ -30,6 +32,11 @@ public class Hand : Weapon
 
     private void EquippingWeapon()
     {
-        // spawn prefab of weapon and put it on player 
+        //find attackPoint(the hand of Knut)
+        GameObject target = GameObject.FindWithTag("AttackPoint");
+        // spawn prefab of weapon and put it as child of attackPoint(hand)
+        Instantiate(handPrefab,target.transform);
+        // deletes old currWeapon from hand
+        Destroy(target.transform.GetChild(0).gameObject);
     }
 }

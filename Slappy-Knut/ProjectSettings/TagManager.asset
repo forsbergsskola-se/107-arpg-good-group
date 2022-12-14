@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Fence
   - Ogre
+  - AttackPoint
   layers:
   - Default
   - TransparentFX

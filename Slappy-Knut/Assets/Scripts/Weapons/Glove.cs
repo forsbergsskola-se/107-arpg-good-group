@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Glove : Weapon
 {
-    [SerializeField] private float _power;
-    
+    [SerializeField] private float _power = 4f;
+    public GameObject glovePrefab;
     private void Start()
     {
         Chargable = true;
@@ -16,7 +16,7 @@ public class Glove : Weapon
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)) 
+        if (Input.GetKeyDown(KeyCode.G)) 
             EquipWeapon();
     }
 
@@ -30,6 +30,11 @@ public class Glove : Weapon
 
     private void EquippingWeapon()
     {
-        // spawn prefab of weapon and put it on player 
+        //find attackPoint(the hand of Knut)
+        GameObject target = GameObject.FindWithTag("AttackPoint");
+        // spawn prefab of weapon and put it as child of attackPoint(hand)
+        Instantiate(glovePrefab,target.transform);
+        // deletes old currWeapon from hand
+        Destroy(target.transform.GetChild(0).gameObject);
     }
 }
