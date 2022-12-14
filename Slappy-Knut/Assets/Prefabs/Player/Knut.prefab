@@ -4836,12 +4836,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872166179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.47, z: 0.55}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 41528618573300086}
-  m_RootOrder: 4
+  m_Father: {fileID: 39638039670445294}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &42791459336714528
 GameObject:
@@ -5127,6 +5127,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 39830651454235232}
+  - {fileID: 872166180}
   m_Father: {fileID: 41167910136822346}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 54.62011, y: 99.46998, z: -105.46861}
@@ -5392,7 +5393,6 @@ Transform:
   - {fileID: 39552869747576850}
   - {fileID: 39420220569194398}
   - {fileID: 746356941}
-  - {fileID: 872166180}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5498,7 +5498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188ba5c1b387b83428df83fbb20e80e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 1
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
