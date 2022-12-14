@@ -40,16 +40,18 @@ public class FishLandmine : MonoBehaviour, IItem
         Count--;
     }
 
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     // only IDamageable can set it off
-    //     // if (other is not IDamagable damageable) return; // only 
-    //     _audioSource.time = 1f; // removes audio delay
-    //     _audioSource.Play();
-    //     damageable.TakeDamage(Power, gameObject);
-    //     // coroutine is used to let the particle explosion finish before destroying the game object
-    //     StartCoroutine(Explosion());
-    // }
+    private void OnTriggerEnter(Collider other)
+    {;
+        IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
+        // only non-player IDamagables should set it off
+        if (damagable == null || other.gameObject.CompareTag("Player")) return;
+        
+        _audioSource.time = 1f; // removes audio delay
+        _audioSource.Play();
+        damagable.TakeDamage(Power, gameObject);
+        // coroutine is used to let the particle explosion finish before destroying the game object
+        StartCoroutine(Explosion());
+    }
     
     private IEnumerator Explosion()
     {
