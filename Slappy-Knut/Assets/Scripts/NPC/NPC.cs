@@ -22,7 +22,6 @@ public class NPC : MonoBehaviour, IDamagable
     protected Random rand = new Random();
     
     protected float health;
-    protected Vector3 startPosition;
     protected bool iFramesActive;
     
    
@@ -38,7 +37,7 @@ public class NPC : MonoBehaviour, IDamagable
         RandomizeValues();
         
         health = startHealth;
-        startPosition = transform.position;
+        
         iFramesActive = false;
         
 
@@ -70,8 +69,7 @@ public class NPC : MonoBehaviour, IDamagable
     {
         if (health < 0)
         {
-            // agent.speed = 0; TODO: remiplement this 
-            //agent.velocity = Vector3.zero;
+            GetComponent<NPCMovement>().setAgentSpeed(true);
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;
             //The NPC is reset in the respawnWait coroutine
@@ -84,8 +82,7 @@ public class NPC : MonoBehaviour, IDamagable
     {
         yield return new WaitForSeconds(10);
         health = startHealth;
-        transform.position = startPosition;
-        //agent.speed = movementSpeed;
+        GetComponent<NPCMovement>().setAgentSpeed(false);
         GetComponent<MeshRenderer>().enabled = true;
         GetComponent<BoxCollider>().enabled = true;
     }

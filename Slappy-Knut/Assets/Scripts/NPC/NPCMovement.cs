@@ -18,19 +18,22 @@ public class NPCMovement : MonoBehaviour
     public float attackRange = 2; // this should be much lower than detection range, use your brain
     protected bool attackIsOnCooldown;
     
+    protected Vector3 startPosition;
+    
     
     protected bool fledLastFrame, fleeingCooldownInProgress;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        playerReference = GameObject.FindWithTag("Player");
         RandomizeValues();
         Roam();
         agent.speed = movementSpeed;
         agent.destination = waypoints[0].position;
-        playerReference = GameObject.FindWithTag("Player");
         rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         attackIsOnCooldown = false;
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -70,6 +73,7 @@ public class NPCMovement : MonoBehaviour
     protected void Roam()
     {
         Vector3 GoalDelta = transform.position - agent.destination;
+        agent = GetComponent<NavMeshAgent>();
         if (canFlee && GoalDelta.magnitude < 2)
         {
             //The idea here is to find a goal which is not near enough to the player to cause us to flee
@@ -159,5 +163,18 @@ public class NPCMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(attackSpeed);
         attackIsOnCooldown = false;
+    }
+
+    public void setAgentSpeed(bool setZero)//this is used by NPCHealth
+    {
+        if (setZero)
+        {
+            agent.speed = 0;
+        }
+        else
+        {
+            agent.speed = movementSpeed;
+            transform.position = startPosition;
+        }
     }
 }
