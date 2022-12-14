@@ -6,20 +6,20 @@ public class InventorySlot : MonoBehaviour
     public Image icon; //Reference the icon in Unity
     public Button removeButton;
     
-    private Item item;
+    private InventoryItem _inventoryItem;
 
-    public void AddItem(Item newItem)
+    public void AddItem(InventoryItem newInventoryItem)
     {
-        item = newItem;
+        _inventoryItem = newInventoryItem;
         
-        icon.sprite = item.icon;
+        icon.sprite = _inventoryItem.icon;
         icon.enabled = true;
         removeButton.interactable = true;
     }
 
     public void ClearSlot()
     {
-        item = null;
+        _inventoryItem = null;
 
         icon.sprite = null;
         icon.enabled = false;
@@ -28,14 +28,14 @@ public class InventorySlot : MonoBehaviour
 
     public void OnRemoveButton()
     {
-        Inventory.instance.Remove(item);
+        Inventory.instance.Remove(_inventoryItem);
     }
 
     public void UseItem()
     {
-        if (item != null)
+        if (_inventoryItem != null)
         {
-            item.Use();
+            _inventoryItem.Use();
         }
     }
 }

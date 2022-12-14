@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,18 +24,18 @@ public class Inventory : MonoBehaviour
 
     public int space = 20;
     
-    public List<Item> items = new List<Item>();
+    public List<InventoryItem> items = new List<InventoryItem>();
 
-    public bool Add(Item item)
+    public bool Add(InventoryItem inventoryItem)
     {
-        if (!item.isDefaultItem)
+        if (!inventoryItem.isDefaultItem)
         {
             if (items.Count >= space)
             {
                 Debug.Log("Not enough room.");
                 return false;
             }
-            items.Add(item);
+            items.Add(inventoryItem);
 
             if (onItemChangedCallback != null)
             {
@@ -51,9 +49,9 @@ public class Inventory : MonoBehaviour
 
     }
 
-    public void Remove(Item item)
+    public void Remove(InventoryItem inventoryItem)
     {
-        items.Remove(item);
+        items.Remove(inventoryItem);
         
         if (onItemChangedCallback != null)
         {
