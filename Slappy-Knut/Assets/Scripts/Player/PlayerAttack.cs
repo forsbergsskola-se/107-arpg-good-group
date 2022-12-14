@@ -23,7 +23,6 @@ public class PlayerAttack : MonoBehaviour
         _playerRage = GetComponent<PlayerRage>();
         _audioManager = GetComponent<PlayerAudioManager>();
     }
-    
     void Update()
     { 
         if (Input.GetMouseButtonDown(0))
@@ -42,7 +41,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
     //tied to the animator as an event, only triggered when the slap lands
-    public void Attack()
+    public void Attack() 
     { 
         //Detect enemies in range of attack
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
@@ -55,16 +54,4 @@ public class PlayerAttack : MonoBehaviour
             Debug.Log($"{enemy.name} was hit");
         }
     }
-    // public void Attack(Weapon weapon)
-    // { 
-    //     //Detect enemies in range of attack
-    //     Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayer);
-    //     //Damage
-    //     foreach (Collider enemy in hitEnemies)
-    //     {
-    //         _animator.SetTrigger("Attack");
-    //         enemy.GetComponent<IDamagable>().TakeDamage(weapon.Power, gameObject);
-    //         Debug.Log($"{enemy.name} was hit");
-    //     }
-    // }
 }

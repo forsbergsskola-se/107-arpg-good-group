@@ -9,15 +9,12 @@ public class PlayerMovement : MonoBehaviour
     private NavMeshAgent _meshAgent;
     private Animator _animator;
     private PlayerAudioManager _audioManager;
-    private PlayerAttack _playerAttack;
     private void Start()
     {
         _audioManager = GetComponent<PlayerAudioManager>();
         _animator = GetComponent<Animator>();
         _meshAgent = GetComponent<NavMeshAgent>();
-        _playerAttack = GetComponent<PlayerAttack>();
     }
-
     private void Update()
     {
         if (Input.GetMouseButton(0)) // left click
@@ -35,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
         //plays the running animation if the player is moving fast enough
         _animator.SetBool("isRunning", _meshAgent.velocity.magnitude >= .5);
     }
-
     public void PlayStepSound() //called as an event in the animator
     {
         _audioManager.AS_FootSteps.Play();
