@@ -7,15 +7,14 @@ using UnityEngine.UI;
 public class PlayerRage : MonoBehaviour, IDamagable
 {
     public Slider rageBar;
+    public float maxRage = 1;
     public float rageDOT;
-    public float maxRage;
     public SkinnedMeshRenderer bodyMesh;
     public SkinnedMeshRenderer hairMesh;
-    public ParticleSystem fartDust;
+    public ParticleSystem fartCloud;
     public float DefenseRating { get; set; }
     
     private float _currentRage;
-    private float _minRage;
     private Scene _scene;
     private Animator _animator;
     private PlayerAudioManager _audioManager;
@@ -24,48 +23,38 @@ public class PlayerRage : MonoBehaviour, IDamagable
     void Start()
     {
         _scene = SceneManager.GetActiveScene();
-        _currentRage = _minRage;
-        rageBar.value = _currentRage;
-        
         _animator = GetComponent<Animator>();
         _audioManager = GetComponent<PlayerAudioManager>();
         _playerMovement = GetComponent<PlayerMovement>();
     }
     void Update()
-    {
-        TakeDamage(rageDOT * Time.deltaTime, null);
+    { 
+        _currentRage += rageDOT * Time.deltaTime;
+        rageBar.value = _currentRage;
         if(Math.Abs(_currentRage - maxRage) < .01) OnDeath(); //checks if maxRage reached 
                                                                 //it's actually not expensive (not called every frame)
     }
-
     public void OnDeath()
     {
         _playerMovement.enabled = false;
-        _audioManager.AS_RageSound.Play();
-        Invoke("PlayRageAnimation",.5f);
-        Invoke("SetInactive",2f);
-        Invoke("LoadScene", 5f);
+        _animator.Play("die");
+        Invoke("LoadScene", 3f);
     }
-
-    //methods to use with invoke (methods to be used with invoke can not have any parameters)
-    void PlayRageAnimation()
-    {
-        _animator.SetBool("isRaging", true);
-    }
-    void LoadScene()
+    void LoadScene() //invoke requires a parameterless function
     {
         SceneManager.LoadScene(_scene.name);
     }
-    void SetInactive()
+    void SetInactive() //called on the animator
     {
         _audioManager.AS_RageFart.Play();
-        fartDust.Play();
+        fartCloud.Play();
         bodyMesh.enabled = false;
         hairMesh.enabled = false;
     }
     public void TakeDamage(float damage, GameObject attacker)
     {
         _currentRage += damage;
+        if (_currentRage < 0) _currentRage = 0; //clamps the rage bar
         rageBar.value = _currentRage;
     }
 }

@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69223f67a4a2ccb4996d0ced6ea6fc09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalAngle: 45
+  horizontalAngle: 80
   verticalAngle: 45
-  zoomLevel: -10
+  zoomLevel: -20
 --- !u!1 &2492589434950263708
 GameObject:
   m_ObjectHideFlags: 0
