@@ -14,8 +14,8 @@ public class PlayerRage : MonoBehaviour, IDamagable
     public ParticleSystem fartDust;
     public float DefenseRating { get; set; }
     
-    private float _minRage;
     private float _currentRage;
+    private float _minRage;
     private Scene _scene;
     private Animator _animator;
     private PlayerAudioManager _audioManager;
@@ -33,7 +33,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     void Update()
     {
-        TakeDamage(rageDOT, null);
+        TakeDamage(rageDOT * Time.deltaTime, null);
         if(Math.Abs(_currentRage - maxRage) < .01) OnDeath(); //checks if maxRage reached 
                                                                 //it's actually not expensive (not called every frame)
     }
@@ -65,7 +65,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     public void TakeDamage(float damage, GameObject attacker)
     {
-        _currentRage += damage * Time.deltaTime;
+        _currentRage += damage;
         rageBar.value = _currentRage;
     }
 }

@@ -9,6 +9,8 @@ public class PlayerAttack : MonoBehaviour
 
     private Animator _animator;
     private PlayerMovement _playerMovement;
+    private PlayerRage _playerRage;
+    
     //TODO: attack with weapon
     // private Weapon _equippedWeapon;
         
@@ -17,6 +19,7 @@ public class PlayerAttack : MonoBehaviour
         _animator = GetComponent<Animator>();
         _playerMovement = GetComponent<PlayerMovement>();
         // _equippedWeapon = GetComponent<>()
+        _playerRage = GetComponent<PlayerRage>();
     }
 
     void Update()
@@ -43,6 +46,7 @@ public class PlayerAttack : MonoBehaviour
         {
             _animator.SetTrigger("Attack");
             enemy.GetComponent<IDamagable>().TakeDamage(.1f, gameObject);
+            _playerRage.TakeDamage(-1f, gameObject);
             Debug.Log($"{enemy.name} was hit");
         }
     }
