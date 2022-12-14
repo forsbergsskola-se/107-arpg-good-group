@@ -8,14 +8,13 @@ public class PlayerRage : MonoBehaviour, IDamagable
 {
     public Slider rageBar;
     public float rageDOT;
-    public float maxRage;
     public SkinnedMeshRenderer bodyMesh;
     public SkinnedMeshRenderer hairMesh;
     public ParticleSystem fartDust;
     public float DefenseRating { get; set; }
     
+    private float _maxRage;
     private float _currentRage;
-    private float _minRage;
     private Scene _scene;
     private Animator _animator;
     private PlayerAudioManager _audioManager;
@@ -24,17 +23,15 @@ public class PlayerRage : MonoBehaviour, IDamagable
     void Start()
     {
         _scene = SceneManager.GetActiveScene();
-        _currentRage = _minRage;
-        rageBar.value = _currentRage;
-        
         _animator = GetComponent<Animator>();
         _audioManager = GetComponent<PlayerAudioManager>();
         _playerMovement = GetComponent<PlayerMovement>();
     }
     void Update()
-    {
-        TakeDamage(rageDOT * Time.deltaTime, null);
-        if(Math.Abs(_currentRage - maxRage) < .01) OnDeath(); //checks if maxRage reached 
+    { 
+        _currentRage += rageDOT * Time.deltaTime;
+        rageBar.value = _currentRage;
+        if(Math.Abs(_currentRage - _maxRage) < .01) OnDeath(); //checks if maxRage reached 
                                                                 //it's actually not expensive (not called every frame)
     }
 

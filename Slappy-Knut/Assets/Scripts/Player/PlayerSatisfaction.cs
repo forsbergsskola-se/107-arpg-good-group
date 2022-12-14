@@ -3,16 +3,17 @@ using UnityEngine.UI;
 
 public class PlayerSatisfaction : MonoBehaviour
 {
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //satis = Satisfaction
+    public Slider satisfactionBar;
 
-    // Update is called once per frame
+    private float maxSatis;
+    private float _currentSatis;
     void Update()
     {
-        
+        satisfactionBar.value = _currentSatis;
+    }
+    public void AddSatisfaction(float damage)
+    {
+        _currentSatis += damage;
     }
 }

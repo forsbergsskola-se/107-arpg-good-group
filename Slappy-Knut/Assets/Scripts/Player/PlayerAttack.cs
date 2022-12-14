@@ -7,21 +7,23 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask enemyLayer;
     public Transform attackPoint;
 
-    private Animator _animator;
     private PlayerMovement _playerMovement;
     private PlayerRage _playerRage;
+    private PlayerSatisfaction _playerSatis;
     private PlayerAudioManager _audioManager;
+    private Animator _animator;
     
     //TODO: attack with weapon
     // private Weapon _equippedWeapon;
         
     void Start()
     {
-        _animator = GetComponent<Animator>();
         _playerMovement = GetComponent<PlayerMovement>();
         // _equippedWeapon = GetComponent<>()
         _playerRage = GetComponent<PlayerRage>();
+        _playerSatis = GetComponent<PlayerSatisfaction>();
         _audioManager = GetComponent<PlayerAudioManager>();
+        _animator = GetComponent<Animator>();
     }
     void Update()
     { 
@@ -49,8 +51,10 @@ public class PlayerAttack : MonoBehaviour
         foreach (Collider enemy in hitEnemies)
         {
             _audioManager.AS_BasicSlap.Play();
+            //values are temporary until we have a weapon
             enemy.GetComponent<IDamagable>().TakeDamage(.1f, gameObject);
             _playerRage.TakeDamage(-1f, gameObject);
+            _playerSatis.AddSatisfaction(.5f);
             Debug.Log($"{enemy.name} was hit");
         }
     }
