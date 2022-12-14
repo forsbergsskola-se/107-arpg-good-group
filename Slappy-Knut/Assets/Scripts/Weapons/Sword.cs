@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Sword : Weapon
 {
-    private float _power;
+    [SerializeField] private float _power;
     
     private void Start()
     {
@@ -11,23 +11,21 @@ public class Sword : Weapon
         Description = $"Slapping Sword has {_power} damage";
         Cooldown = 0;
         Range = 5;
-        Equipable = false;
+        Equipable = true;
     }
+
     private void Update()
     {
-        if (Equipable)
-            EquippingWeapon(); //<---once
+        if (Input.GetKeyDown(KeyCode.T)) 
+            EquipWeapon();
     }
 
-    public void EquipAWeapon(bool equip)
-    { 
-        //for testing purpose
-        if (Input.GetKeyDown(KeyCode.T)) 
-            Equipable = true;
-
-        //Should be changed in inventory to control the equipped weapon.
-        Equipable = equip;
-        CurrEquippedWeapon = Equipable ? this : null;
+    public void EquipWeapon()
+    {
+        //Should be called in inventory to equip a weapon
+        CurrEquippedWeapon = this;
+        
+        EquippingWeapon();
     }
 
     private void EquippingWeapon()

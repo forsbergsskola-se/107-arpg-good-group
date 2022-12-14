@@ -1,4 +1,3 @@
-using System;
 using Interfaces;
 using UnityEngine;
 
@@ -11,13 +10,13 @@ public class Weapon : MonoBehaviour, IItem
     public bool Equipable { get; set; }
     public bool Chargable { get; set; }
 
-    protected Weapon CurrEquippedWeapon;
+    protected static Weapon CurrEquippedWeapon;
 
     private void Update()
     {
         //Debug.Log(CurrEquippedWeapon);
         if(CurrEquippedWeapon!=null)
-            Debug.Log(CurrEquippedWeapon);
+            Debug.Log(CurrEquippedWeapon.Power);
     }
 
     public Weapon CurrWeaponEquipped()
