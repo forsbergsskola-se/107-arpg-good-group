@@ -7,8 +7,8 @@ namespace Interfaces
         float Cooldown { get; set; }
         float Range { get; set; }
         
-        bool Equipable { get; }
-        bool Chargable { get; }
+        bool Equipable { get; set; }
+        bool Chargable { get; set; }
 
         void Use() {}
         void Charge() {}
