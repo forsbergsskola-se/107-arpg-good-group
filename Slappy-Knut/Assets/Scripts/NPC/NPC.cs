@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,7 +21,6 @@ public class NPC : MonoBehaviour, IDamagable
     public Transform[] waypoints; //This is where the target points for roaming are stored
     
 
-    protected Rigidbody rigidbody;
     protected Random rand = new Random();
     protected NavMeshAgent agent;
     protected float health;
@@ -39,7 +39,6 @@ public class NPC : MonoBehaviour, IDamagable
         playerReference = GameObject.FindWithTag("Player");
         rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         RandomizeValues();
-        rigidbody = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
         Roam();
         agent.speed = movementSpeed;
@@ -222,6 +221,7 @@ public class NPC : MonoBehaviour, IDamagable
     public void TakeDamage(float damage, GameObject attacker)
     {
         health -= damage;
+        Debug.Log("Took Damage!\n New health is: " + health.ToString());
         CheckForDeath();
     }
     
