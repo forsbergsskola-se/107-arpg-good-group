@@ -12,13 +12,6 @@ public class Weapon : MonoBehaviour, IItem
 
     protected static Weapon CurrEquippedWeapon;
 
-    private void Update()
-    {
-        //Debug.Log(CurrEquippedWeapon);
-        if(CurrEquippedWeapon!=null)
-            Debug.Log(CurrEquippedWeapon.Power);
-    }
-
     public Weapon CurrWeaponEquipped()
     {
         return CurrEquippedWeapon;
