@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Sword : Weapon
 {
-
+    public float power;
     private void Start()
     {
-        Chargeable = false; // Do we want to charge the sword for heavier slap attack?
+        Chargable = false; // Do we want to charge the sword for heavier slap attack?
         Power = power;
         Description = $"Slapping Sword has {power} damage";
         Cooldown = 0;
