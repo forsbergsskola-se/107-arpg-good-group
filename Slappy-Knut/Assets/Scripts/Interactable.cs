@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    public float radius = 3f;
-    public Transform interactionTransform;
+    public float radius = 3f; //How close do we need to be to interact
+    public Transform interactionTransform; //The transform where we interact
 
-    private bool isFocus = false;
-    private Transform player;
+    private bool isFocus = false; //Is this interactable currently being focused?
+    private Transform player;//Reference to the player transform
 
-    private bool hasInteracted = false;
+    private bool hasInteracted = false; //Have we already interacted with the object?
 
     public virtual void Interact()
     {
@@ -19,8 +19,11 @@ public class Interactable : MonoBehaviour
 
     private void Update()
     {
+        //If we are currently being focused
+        //And we haven't already interacted with the object
         if (isFocus && !hasInteracted)
         {
+            //If we are close enough
             float distance = Vector3.Distance(player.position, interactionTransform.position);
             if (distance <= radius)
             {

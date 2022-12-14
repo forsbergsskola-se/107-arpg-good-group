@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
-    public Transform itemsParent;
+    public Transform itemsParent; //Reference the InventoryParent in Unity
     public GameObject inventoryUI;
     
     private Inventory inventory;
