@@ -14,10 +14,12 @@ public class PlayerAttack : MonoBehaviour
 
     private bool _mouseHeld;
     private float _timeHeld = 1;
-    
+
     void Start()
     {
-        Weapon.CurrEquippedWeapon = attackPoint.AddComponent<Glove>();
+        //To equip glove at start
+        FindObjectOfType<Hand>().EquipWeapon();
+        //Weapon.CurrEquippedWeapon = attackPoint.AddComponent<Glove>();
         _playerRage = GetComponent<PlayerRage>();
         _playerSatis = GetComponent<PlayerSatisfaction>();
         _audioManager = GetComponent<PlayerAudioManager>();
