@@ -7,7 +7,7 @@ public class FishLandmine : MonoBehaviour, IItem
     public float power;
     public GameObject explosion;
     public GameObject fishBody;
-    private GameObject _player;
+    public GameObject player;
     public GameObject fishLandminePrefab;
     public Vector3 spawnOffset;
 
@@ -39,7 +39,8 @@ public class FishLandmine : MonoBehaviour, IItem
     private void Start()
     {
         Debug.Log(fishLandminePrefab);
-        _player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player");
+        Debug.Log(player);
     }
 
 
@@ -47,13 +48,12 @@ public class FishLandmine : MonoBehaviour, IItem
     {
         Vector3 p = transform.position;
         spawnOffset = new Vector3(p.x, p.y + 0.5f, p.z - 1f);
-        Instantiate(fishLandminePrefab, _player.transform.position, _player.transform.rotation);
+        Instantiate(fishLandminePrefab, player.transform.position, player.transform.rotation);
         Count--;
     }
     
     private void OnTriggerEnter(Collider other) // this is supposed to be DoT maybe?
     {
-        
         IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
         // only non-player IDamagables should set it off
         if (damagable == null || other.gameObject.CompareTag("Player")) return;

@@ -28,7 +28,10 @@ public class DummyPlayer : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.H))
         {
-            fishLandmine.Use();
+            Transform t = transform;
+            Vector3 p = t.transform.position;
+            Vector3 spawnOffset = new Vector3(p.x, p.y + 0.2f, p.z);
+            Instantiate(fishLandmine, spawnOffset, t.rotation);
         }
     }
 
