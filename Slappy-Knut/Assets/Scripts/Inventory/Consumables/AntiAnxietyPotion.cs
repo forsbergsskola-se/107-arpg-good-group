@@ -4,8 +4,7 @@ using UnityEngine;
 public class AntiAnxietyPotion : MonoBehaviour, IItem
 {
     public int count = 5;
-    [SerializeField] private float power = 10;
-    private AudioSource _audioSource;
+    public float power = 10;
     
     
     public float Power { get; set; }
@@ -15,35 +14,27 @@ public class AntiAnxietyPotion : MonoBehaviour, IItem
     public bool Equipable { get; set; }
     public bool Chargable { get; set; }
     public int Count { get; set; }
-    public AntiAnxietyPotion()
+    
+    private PlayerAudioManager _audioManager;
+    private void Start()
     {
+        Count = count;
         Chargable = false;
         Power = power;
         Description = $"Potion that lowers rage by {power}";
         Cooldown = 10;
         Range = 0;
+        _audioManager = GetComponent<PlayerAudioManager>();
     }
-
-    private void Awake()
-    {
-        Count = count;
-        _audioSource = GetComponent<AudioSource>();
-    }
-
-
+    
     public void Use()
     {
-        if (count < 1)
-            return;
-        _audioSource.Play();
+        if (count < 1) return;
+        _audioManager.AS_DrinkPotion.Play();
         // lowers player's current rage by power
-        FindObjectOfType<DummyPlayer>().currentRage -= power;
+        GetComponent<PlayerRage>().TakeDamage(-power, null);
         count--;
     }
 
-    public void Charge()
-    {
-        // the item can not be charged
-        throw new System.NotImplementedException();
-    }
+    public void Charge() {}
 }

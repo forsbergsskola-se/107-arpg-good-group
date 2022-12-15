@@ -13,8 +13,10 @@ public class PlayerRage : MonoBehaviour, IDamagable
     public SkinnedMeshRenderer hairMesh;
     public ParticleSystem fartCloud;
     public float DefenseRating { get; set; }
+
+    public static float CurrentRage;
+   
     
-    private float _currentRage;
     private Scene _scene;
     private Animator _animator;
     private PlayerAudioManager _audioManager;
@@ -29,9 +31,9 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     void Update()
     { 
-        _currentRage += rageDOT * Time.deltaTime;
-        rageBar.value = _currentRage;
-        if(Math.Abs(_currentRage - maxRage) < .01) OnDeath(); //checks if maxRage reached 
+        CurrentRage += rageDOT * Time.deltaTime;
+        rageBar.value = CurrentRage;
+        if(Math.Abs(CurrentRage - maxRage) < .01) OnDeath(); //checks if maxRage reached 
                                                                 //it's actually not expensive (not called every frame)
     }
     public void OnDeath()
@@ -53,8 +55,8 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     public void TakeDamage(float damage, GameObject attacker)
     {
-        _currentRage += damage;
-        if (_currentRage < 0) _currentRage = 0; //clamps the rage bar
-        rageBar.value = _currentRage;
+        CurrentRage += damage;
+        if (CurrentRage < 0) CurrentRage = 0; //clamps the rage bar
+        rageBar.value = CurrentRage;
     }
 }

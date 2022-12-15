@@ -44,6 +44,5 @@ public class Glove : Weapon
         Destroy(target.transform.GetChild(0).gameObject);
         // spawn prefab of weapon and put it as child of attackPoint(hand)
         Instantiate(glovePrefab,target.transform);
-      
     }
 }

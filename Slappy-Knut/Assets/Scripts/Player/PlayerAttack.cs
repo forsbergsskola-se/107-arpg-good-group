@@ -18,8 +18,8 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         //To equip glove at start
-        FindObjectOfType<Hand>().EquipWeapon();
-        //Weapon.CurrEquippedWeapon = attackPoint.AddComponent<Glove>();
+        // FindObjectOfType<Hand>().EquipWeapon();
+        Weapon.CurrEquippedWeapon = attackPoint.AddComponent<Glove>();
         _playerRage = GetComponent<PlayerRage>();
         _playerSatis = GetComponent<PlayerSatisfaction>();
         _audioManager = GetComponent<PlayerAudioManager>();

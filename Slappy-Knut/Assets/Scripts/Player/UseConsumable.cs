@@ -1,17 +1,14 @@
-using System;
 using UnityEngine;
 
-public class DummyPlayer : MonoBehaviour
+public class UseConsumable : MonoBehaviour
 {
-    public float currentRage;
     private AntiAnxietyPotion antiAnxietyPotion;
-    private PauseRagePotion pauseRagePotion;
     public FishLandmine fishLandmine;
-
+    private PlayerAudioManager _audioManager;
     private void Start()
     {
         antiAnxietyPotion = gameObject.AddComponent<AntiAnxietyPotion>();
-        pauseRagePotion = gameObject.AddComponent<PauseRagePotion>();
+        _audioManager = GetComponent<PlayerAudioManager>();
     }
 
     void Update()
@@ -20,12 +17,6 @@ public class DummyPlayer : MonoBehaviour
         {
             antiAnxietyPotion.Use();
         }
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            pauseRagePotion.Use();
-        }
-        
         if (Input.GetKeyDown(KeyCode.H))
         {
             Transform t = transform;
@@ -33,10 +24,5 @@ public class DummyPlayer : MonoBehaviour
             Vector3 spawnOffset = new Vector3(p.x, p.y + 0.2f, p.z);
             Instantiate(fishLandmine, spawnOffset, t.rotation);
         }
-    }
-
-    private void FixedUpdate()
-    {
-        currentRage += 0.001f;
     }
 }
