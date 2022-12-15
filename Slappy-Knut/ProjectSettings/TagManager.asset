@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Fence
   - Ogre
+  - AttackPoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Walkable
@@ -22,7 +23,7 @@ TagManager:
   - Ground
   - AccessibleVolume
   - PostProcessing
-  - 
+  - Item
   - MainGround
   - 
   - 
