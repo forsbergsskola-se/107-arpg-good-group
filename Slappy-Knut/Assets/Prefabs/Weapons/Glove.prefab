@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4834642345348076961}
   - component: {fileID: 4834642345348076962}
   - component: {fileID: 4834642345348076967}
+  - component: {fileID: 7926028583682882103}
+  - component: {fileID: 965483020015583269}
   m_Layer: 0
   m_Name: Glove
   m_TagString: Untagged
@@ -98,3 +100,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _power: 5
   glovePrefab: {fileID: 4834642345348076956}
+--- !u!135 &7926028583682882103
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4834642345348076956}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.09161556
+  m_Center: {x: 0.11952946, y: 0.01602189, z: 0.003884105}
+--- !u!114 &965483020015583269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4834642345348076956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d306c13e0125404ba44d0bb05d7554e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  interactionTransform: {fileID: 4834642345348076960}
+  inventoryItem: {fileID: 11400000, guid: 0794df23783365e48a3821c756e81bf3, type: 2}

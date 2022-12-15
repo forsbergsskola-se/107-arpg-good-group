@@ -8,7 +8,7 @@ using UnityEngine.AI;
 public class PlayerMotor : MonoBehaviour
 {
     private Transform target; //Target to follow
-    private NavMeshAgent agent; //Reference to our agent
+    public NavMeshAgent agent; //Reference to our agent
     // Start is called before the first frame update
     void Start()
     {
