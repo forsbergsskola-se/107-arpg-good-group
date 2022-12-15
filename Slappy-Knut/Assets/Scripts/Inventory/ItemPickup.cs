@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemPickup : Interactable
 {
     public InventoryItem inventoryItem;
-    public override void Interact()
+
+    protected override void Interact()
     {
         base.Interact();
 
@@ -15,7 +14,7 @@ public class ItemPickup : Interactable
     void PickUp()
     {
         Debug.Log("Picking up item " + inventoryItem.name);
-        bool wasPickedUp = Inventory.instance.Add(inventoryItem);
+        bool wasPickedUp = Inventory.Instance.Add(inventoryItem);
         //Add to inventory
         if (wasPickedUp)
         {

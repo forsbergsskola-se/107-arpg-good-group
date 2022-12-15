@@ -5,25 +5,22 @@ public class Inventory : MonoBehaviour
 {
     #region Singleton
     
-    public static Inventory instance; //singleton
+    public static Inventory Instance; //singleton
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Debug.LogWarning("More than one instance of Inventory found!");
             return;
         }
 
-        instance = this;
+        Instance = this;
     }
     #endregion
 
     public delegate void OnItemChanged();
-
-    public OnItemChanged onItemChangedCallback;
-
+    public OnItemChanged OnItemChangedCallback;
     public int space = 6;
-    
     public List<InventoryItem> items = new List<InventoryItem>();
 
     public bool Add(InventoryItem inventoryItem)
@@ -37,9 +34,9 @@ public class Inventory : MonoBehaviour
             }
             items.Add(inventoryItem);
 
-            if (onItemChangedCallback != null)
+            if (OnItemChangedCallback != null)
             {
-                onItemChangedCallback.Invoke();
+                OnItemChangedCallback.Invoke();
             }
             
             
@@ -53,9 +50,9 @@ public class Inventory : MonoBehaviour
     {
         items.Remove(inventoryItem);
         
-        if (onItemChangedCallback != null)
+        if (OnItemChangedCallback != null)
         {
-            onItemChangedCallback.Invoke();
+            OnItemChangedCallback.Invoke();
         }
     }
 }

@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
@@ -6,17 +5,16 @@ public class InventoryUI : MonoBehaviour
     public Transform itemsParent; //Reference the InventoryParent in Unity
     public GameObject inventoryUI;
     
-    private Inventory inventory;
-
-    private InventorySlot[] slots;
+    private Inventory _inventory;
+    private InventorySlot[] _slots;
    
     // Start is called before the first frame update
     void Start()
     {
-        inventory = Inventory.instance;
-        inventory.onItemChangedCallback += UpdateUI;
+        _inventory = Inventory.Instance;
+        _inventory.OnItemChangedCallback += UpdateUI;
 
-        slots = itemsParent.GetComponentsInChildren<InventorySlot>();
+        _slots = itemsParent.GetComponentsInChildren<InventorySlot>();
     }
 
     // Update is called once per frame
@@ -32,15 +30,15 @@ public class InventoryUI : MonoBehaviour
     {
         Debug.Log("UPDATING UI");
 
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < _slots.Length; i++)
         {
-            if (i < inventory.items.Count)
+            if (i < _inventory.items.Count)
             {
-                slots[i].AddItem(inventory.items[i]);
+                _slots[i].AddItem(_inventory.items[i]);
             }
             else
             {
-                slots[i].ClearSlot();
+                _slots[i].ClearSlot();
             }
         }
     }

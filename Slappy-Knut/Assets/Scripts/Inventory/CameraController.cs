@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -11,27 +8,26 @@ public class CameraController : MonoBehaviour
     public float zoomSpeed = 4f;
     public float minZoom = 5f;
     public float maxZoom = 15f;
-
     public float pitch = 3f;
-
     public float yawSpeed = 100f;
 
-    private float currentZoom = 10f;
-    private float currentYaw = 0f;
+    private float _currentZoom = 10f;
+    private float _currentYaw;
 
     private void Update()
     {
-        currentZoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-        currentZoom = Mathf.Clamp(currentZoom, minZoom, maxZoom);
+        _currentZoom -= Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+        _currentZoom = Mathf.Clamp(_currentZoom, minZoom, maxZoom);
 
-        currentYaw -= Input.GetAxis("Horizontal") * yawSpeed * Time.deltaTime;
+        _currentYaw -= Input.GetAxis("Horizontal") * yawSpeed * Time.deltaTime;
     }
 
     private void LateUpdate()
     {
-        transform.position = target.position - offset * currentZoom;
-        transform.LookAt(target.position + Vector3.up * pitch);
+        Vector3 targetPosition = target.position;
+        transform.position = targetPosition - offset * _currentZoom;
+        transform.LookAt(targetPosition + Vector3.up * pitch);
         
-        transform.RotateAround(target.position, Vector3.up, currentYaw);
+        transform.RotateAround(targetPosition, Vector3.up, _currentYaw);
     }
 }

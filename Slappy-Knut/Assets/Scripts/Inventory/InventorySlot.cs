@@ -7,8 +7,8 @@ public class InventorySlot : MonoBehaviour
     public Button removeButton;
     
     private InventoryItem _inventoryItem;
-
-    public void AddItem(InventoryItem newInventoryItem)
+    
+    public void AddItem(InventoryItem newInventoryItem)//Makes the icon appear
     {
         _inventoryItem = newInventoryItem;
         
@@ -28,7 +28,7 @@ public class InventorySlot : MonoBehaviour
 
     public void OnRemoveButton()
     {
-        Inventory.instance.Remove(_inventoryItem);
+        Inventory.Instance.Remove(_inventoryItem);
     }
 
     public void UseItem()

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
@@ -6,14 +5,13 @@ public class Interactable : MonoBehaviour
     public float radius = 3f; //How close do we need to be to interact
     public Transform interactionTransform; //The transform where we interact
 
-    private bool isFocus = false; //Is this interactable currently being focused?
-    private Transform player;//Reference to the player transform
+    private bool _isFocus = false; //Is this interactable currently being focused?
+    private Transform _player;//Reference to the player transform
+    private bool _hasInteracted = false; //Have we already interacted with the object?
 
-    private bool hasInteracted = false; //Have we already interacted with the object?
-
-    public virtual void Interact()
+    protected virtual void Interact()
     {
-        //This mehtod is meant to be overwritten
+        //This method is meant to be overwritten
         Debug.Log("Interacting with " + transform.name);
     }
 
@@ -21,33 +19,33 @@ public class Interactable : MonoBehaviour
     {
         //If we are currently being focused
         //And we haven't already interacted with the object
-        if (isFocus && !hasInteracted)
+        if (_isFocus && !_hasInteracted)
         {
             //If we are close enough
-            float distance = Vector3.Distance(player.position, interactionTransform.position);
+            float distance = Vector3.Distance(_player.position, interactionTransform.position);
             if (distance <= radius)
             {
                 Interact();
-                hasInteracted = true;
+                _hasInteracted = true;
             }
         }
     }
 
     public void OnFocused(Transform playerTransform)
     {
-        isFocus = true;
-        player = playerTransform;
-        hasInteracted = false;
+        _isFocus = true;
+        _player = playerTransform;
+        _hasInteracted = false;
     }
 
     public void OnDefocused()
     {
-        isFocus = false;
-        player = null;
-        hasInteracted = false;
+        _isFocus = false;
+        _player = null;
+        _hasInteracted = false;
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()//Creates distance checking between player and object 
     {
         if (interactionTransform == null)
         {
