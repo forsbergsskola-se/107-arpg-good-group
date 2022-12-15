@@ -15,10 +15,15 @@ public class ItemPickup : Interactable
     {
         Debug.Log("Picking up item " + inventoryItem.name);
         bool wasPickedUp = Inventory.Instance.Add(inventoryItem);
+        
+        // Sets gameObject to the weapon in inventoryItem
+        inventoryItem.weapon = gameObject.GetComponent<Weapon>();
         //Add to inventory
         if (wasPickedUp)
-        {
-            Destroy(gameObject);
+        { 
+            //hide the gameObject instead of destroying so i dont lose reference to it in the inventoryItem class
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
         
     }

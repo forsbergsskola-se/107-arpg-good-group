@@ -15,3 +15,4 @@ MonoBehaviour:
   name: Glove
   icon: {fileID: 21300000, guid: 9385f137644d94b41a94f1d3e135b018, type: 3}
   isDefaultItem: 0
+  prefab: {fileID: 0}
