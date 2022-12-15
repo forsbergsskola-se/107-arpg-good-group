@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = System.Random;
@@ -8,8 +9,8 @@ public class NPCMovement : MonoBehaviour
     public bool canFlee;
     public bool canAttack;
     public float detectionRange = 20;
-    public float attackSpeed; //This is how long the time in seconds is between attacks, not attacks per minute or some such measurement
-    public float attackRange = 2; // this should be much lower than detection range, use your brain
+    public float attackSpeed = 2; //This is how long the time in seconds is between attacks, not attacks per minute or some such measurement
+    public float attackRange = 4; // this should be much lower than detection range, use your brain
     public float movementSpeed;
     public Transform[] waypoints; //This is where the target points for roaming are stored
     
@@ -37,6 +38,7 @@ public class NPCMovement : MonoBehaviour
         attackIsOnCooldown = false;
         startPosition = transform.position;
         _audioManager = GetComponent<NPCAudioManager>();
+        //GetComponent<MeshCollider>()
 
         // _animator.SetTrigger("Run");
     }
@@ -44,7 +46,9 @@ public class NPCMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        canFlee = true; //THIS NEEDS TO BE DELETED WHEN DEBUGGING ENDS
+        canFlee = false; //THIS NEEDS TO BE DELETED WHEN DEBUGGING ENDS
+        canAttack = true; //SAME FOR THIS, DONT FORGET!
+        //YOU WILL ANYWAY, BUT ATLEAST I TRIED
         // The order of the calls below is important, it essentially gives the NPC priorities, the later a function is
         // called the higher the priority is
         Roam();
@@ -166,15 +170,28 @@ public class NPCMovement : MonoBehaviour
         Vector3 delta = transform.position - playerReference.transform.position;
         if (delta.magnitude < detectionRange)
         {
-            agent.destination = playerReference.transform.position;
-            //If the player is inside our attack range and our attack isnt on cooldown we should attack them
-            if (delta.magnitude > attackRange && !attackIsOnCooldown)
+
+            
+            if (delta.magnitude < attackRange)
             {
-                //TODO: damage the player here
-                attackIsOnCooldown = true;
-                StartCoroutine(waitForAttackCooldown());
+                agent.isStopped = true; //We always want the NPC to be stopped when within range, even if its waiting on its cooldown
+                if(!attackIsOnCooldown){
+                    //If the player is inside our attack range and our attack isnt on cooldown we should attack them
+                    _animator.SetTrigger("Attack"); //Triggers the attack animation, this should have priority over all other animations
+                    attackIsOnCooldown = true;
+                    StartCoroutine(waitForAttackCooldown());
+                
+                }
             }
+            else
+            {
+                agent.isStopped = false;
+                agent.destination = playerReference.transform.position;
+            }
+            
         }
+        
+       
     }
     IEnumerator waitForFleeCooldown()
     {
@@ -204,6 +221,8 @@ public class NPCMovement : MonoBehaviour
 
     public void PlayStepSound()
     {
+        //Here we play footstep sounds from walking
+        //This is triggered by the animation itself
         if (_animator.GetBool("Running") == false)
         {
             _audioManager.AS_FootSteps.volume = 0.5f;
@@ -213,5 +232,22 @@ public class NPCMovement : MonoBehaviour
             _audioManager.AS_FootSteps.volume = 1f;
         }
         _audioManager.AS_FootSteps.Play();
+    }
+
+    public void DealDamage()
+    {
+        //This is triggered by the attack animation, which is triggered by Attack();
+        //This code has two problems
+        //1: it hits equally far in all directions, not just in front on the NPC
+        //2: it can hit all damagable objects, inluding other NPCs
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange);
+        foreach (var hitCollider in hitColliders)
+        {
+            if (hitCollider is IDamagable)
+            {
+                var test = hitCollider as IDamagable;
+                test.TakeDamage(50, this.gameObject);
+            }
+        }
     }
 }
