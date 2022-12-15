@@ -10,14 +10,12 @@ public class PlayerController : MonoBehaviour
     
     public LayerMask movementMask; //Filter out everything not walkable
     
-    private Camera cam; //Reference to our camera
     private PlayerMotor motor; //Reference to our motor
     
     // Start is called before the first frame update
     //Use this for initialization
     void Start()
     {
-        cam = Camera.main;
         motor = GetComponent<PlayerMotor>();
     }
 
@@ -33,7 +31,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //We create a ray
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             //If the ray hits
@@ -48,7 +46,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, 100))

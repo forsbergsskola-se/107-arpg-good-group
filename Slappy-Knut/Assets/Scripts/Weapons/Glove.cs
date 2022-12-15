@@ -7,6 +7,7 @@ public class Glove : Weapon
     private void Start()
     {
         Chargable = true;
+        ChargeTime = 5;
         Power = _power;
         Description = $"Knut can really hit as hard as he charges, the soft glove protects his hand -glove has {_power} damage";
         Cooldown = 0;
@@ -16,8 +17,11 @@ public class Glove : Weapon
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)) 
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.Log("equipped");
             EquipWeapon();
+        }
     }
 
     public void EquipWeapon()

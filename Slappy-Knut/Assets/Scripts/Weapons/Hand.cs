@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class Hand : Weapon
 {
-    [SerializeField] private float _power;
-    
     private void Start()
     {
         Chargable = false; // Do we want to charge the sword for heavier slap attack?
-        Power = _power;
-        Description = $"Knut only needs his hands of fury. -Hand has {_power} damage";
+        Power = 10;
+        Description = $"Knut only needs his hands of fury. -Hand has {Power} damage";
         Cooldown = 0;
         Range = 2;
         Equipable = true;
@@ -16,8 +14,7 @@ public class Hand : Weapon
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T)) 
-            EquipWeapon();
+        if (Input.GetKeyDown(KeyCode.H)) EquipWeapon();
     }
 
     public void EquipWeapon()
