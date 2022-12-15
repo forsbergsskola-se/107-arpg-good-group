@@ -27,20 +27,24 @@ public class InventoryItem : ScriptableObject
         //Something might happen
 
         //Todo: find icon parent red after equipped
-        
-        InventorySlot inventorySlot = FindObjectOfType<InventorySlot>();
-        //inventorySlot.icon.color = Color.red;
-        //inventorySlot.icon.GetComponentInParent<Image>().color = Color.red;
-
         InventoryUI iUi = FindObjectOfType<InventoryUI>();
+        InventorySlot inventorySlot = null;
         foreach (var t in iUi._slots)
         {
             //Debug.Log(iUi._slots[i]._inventoryItem);
             if (t._inventoryItem.name == name)
             {
                 t.icon.color = Color.red;
+                inventorySlot = t;
                 break;
             }
+            //t.icon.color = Color.white;
+        }
+
+        // shit mix to make everthing other than equipped white, because of above nullReference error when trying to compare to null, works atm!
+        foreach (var t in iUi._slots)
+        {
+            inventorySlot.icon.color = Color.red;
             t.icon.color = Color.white;
         }
     }
