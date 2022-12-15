@@ -86,4 +86,6 @@ public class NPC : MonoBehaviour, IDamagable
     {
         throw new System.NotImplementedException();
     }
+
+ 
 }

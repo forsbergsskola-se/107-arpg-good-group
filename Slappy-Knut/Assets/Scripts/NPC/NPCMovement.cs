@@ -19,6 +19,7 @@ public class NPCMovement : MonoBehaviour
     protected bool attackIsOnCooldown;
     protected Vector3 startPosition;
     protected bool fledLastFrame, fleeingCooldownInProgress;
+    protected NPCAudioManager _audioManager;
     
     private Animator _animator;
     
@@ -35,8 +36,9 @@ public class NPCMovement : MonoBehaviour
         rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         attackIsOnCooldown = false;
         startPosition = transform.position;
-        
-       // _animator.SetTrigger("Run");
+        _audioManager = GetComponent<NPCAudioManager>();
+
+        // _animator.SetTrigger("Run");
     }
 
     // Update is called once per frame
@@ -76,7 +78,18 @@ public class NPCMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();//This shouldnt be needed, it wasnt needed, now its needed again. wtf?
         Vector3 GoalDelta = transform.position - agent.destination;
 
-        if (agent.velocity.magnitude > 0.5)
+        if (agent.velocity.magnitude > 0.1)
+        {
+            _animator.SetBool("Walking", true);
+            _animator.speed = 1f;
+        }
+        else
+        {
+            _animator.SetBool("Walking", false);
+            _animator.speed = 1f;
+        }
+
+        if (agent.velocity.magnitude > 3)
         {
             _animator.SetBool("Running", true);
             _animator.speed = 0.75f;
@@ -191,6 +204,14 @@ public class NPCMovement : MonoBehaviour
 
     public void PlayStepSound()
     {
-        
+        if (_animator.GetBool("Running") == false)
+        {
+            _audioManager.AS_FootSteps.volume = 0.5f;
+        }
+        else
+        {
+            _audioManager.AS_FootSteps.volume = 1f;
+        }
+        _audioManager.AS_FootSteps.Play();
     }
 }
