@@ -13,6 +13,7 @@ public class NPCMovement : MonoBehaviour
     public float attackRange = 4; // this should be much lower than detection range, use your brain
     public float movementSpeed;
     public Transform[] waypoints; //This is where the target points for roaming are stored
+    public int idleTime = 5;
     
     protected NavMeshAgent agent;
     protected GameObject playerReference;
@@ -21,6 +22,7 @@ public class NPCMovement : MonoBehaviour
     protected Vector3 startPosition;
     protected bool fledLastFrame, fleeingCooldownInProgress;
     protected NPCAudioManager _audioManager;
+    protected bool ideling;
     
     private Animator _animator;
     
@@ -30,6 +32,7 @@ public class NPCMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         playerReference = GameObject.FindWithTag("Player");
+        ideling = false;
         RandomizeValues();
         Roam();
         agent.speed = movementSpeed;
@@ -47,7 +50,7 @@ public class NPCMovement : MonoBehaviour
     void Update()
     {
         canFlee = false; //THIS NEEDS TO BE DELETED WHEN DEBUGGING ENDS
-        canAttack = true; //SAME FOR THIS, DONT FORGET!
+        canAttack = false; //SAME FOR THIS, DONT FORGET!
         //YOU WILL ANYWAY, BUT ATLEAST I TRIED
         // The order of the calls below is important, it essentially gives the NPC priorities, the later a function is
         // called the higher the priority is
@@ -103,7 +106,7 @@ public class NPCMovement : MonoBehaviour
             _animator.speed = 1;
         }
 
-        if (canFlee && GoalDelta.magnitude < 2)
+        if (canFlee && GoalDelta.magnitude < 2 && !ideling)
         {
             //The idea here is to find a goal which is not near enough to the player to cause us to flee
             //This code is kinda ugly, but this is as good as its going to get
@@ -120,20 +123,32 @@ public class NPCMovement : MonoBehaviour
             if (goalsNotAtPlayer.Count > 0)
             {
                 agent.destination = goalsNotAtPlayer[rand.Next(0, goalsNotAtPlayer.Count)].position;
+                agent.isStopped = true;
+                StartCoroutine(IdleWait());
+                
             }
             else
             {
                 agent.destination = transform.position;
             }
         }
-        else
+        else if(!ideling)
         { //If we cant flee there is no reason to do such a check
 
             if (GoalDelta.magnitude < 2)
             {
                 agent.destination = waypoints[rand.Next(0, waypoints.Length-1)].position;
+                agent.isStopped = true;
+                StartCoroutine(IdleWait());
             }
         }
+    }
+
+    IEnumerator IdleWait()
+    {
+        yield return new WaitForSeconds(5);
+        agent.isStopped = false;
+        ideling = false;
     }
    
     void Flee()
