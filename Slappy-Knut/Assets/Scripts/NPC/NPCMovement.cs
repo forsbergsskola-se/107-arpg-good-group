@@ -34,7 +34,7 @@ public class NPCMovement : MonoBehaviour
         Roam();
         agent.speed = movementSpeed;
         agent.destination = waypoints[0].position;
-        rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
+        rand = new Random();
         attackIsOnCooldown = false;
         startPosition = transform.position;
         _audioManager = GetComponent<NPCAudioManager>();
@@ -79,7 +79,6 @@ public class NPCMovement : MonoBehaviour
     }
     protected void Roam()
     {
-        agent = GetComponent<NavMeshAgent>();//This shouldnt be needed, it wasnt needed, now its needed again. wtf?
         Vector3 GoalDelta = transform.position - agent.destination;
 
         if (agent.velocity.magnitude > 0.1)
@@ -179,6 +178,7 @@ public class NPCMovement : MonoBehaviour
                     //If the player is inside our attack range and our attack isnt on cooldown we should attack them
                     _animator.SetTrigger("Attack"); //Triggers the attack animation, this should have priority over all other animations
                     attackIsOnCooldown = true;
+                    _audioManager.AS_Swing.Play();
                     StartCoroutine(waitForAttackCooldown());
                 
                 }
@@ -240,6 +240,7 @@ public class NPCMovement : MonoBehaviour
         //This code has two problems
         //1: it hits equally far in all directions, not just in front on the NPC
         //2: it can hit all damagable objects, inluding other NPCs
+        bool playAttackSound = false;
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange);
         foreach (var hitCollider in hitColliders)
         {
@@ -247,7 +248,13 @@ public class NPCMovement : MonoBehaviour
             {
                 var test = hitCollider as IDamagable;
                 test.TakeDamage(50, this.gameObject);
+                playAttackSound = true;
             }
+        }
+
+        if (playAttackSound)
+        {
+            _audioManager.AS_Hit.Play();
         }
     }
 }
