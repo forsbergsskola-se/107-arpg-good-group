@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class Glove : Weapon
 {
-    [SerializeField] private float _power = 4f;
-    public GameObject glovePrefab;
+    [SerializeField] private float _power;
+    
     private void Start()
     {
         Chargable = true;
-        Power = _power;
-        Description = $"Knut can really hit as hard as he charges, the soft glove protects his hand -glove has {_power} damage";
+        ChargeTime = 2;
+        Power = 10;
+        Description = $"Knut can really hit as hard as he charges, the soft glove protects his hand -glove has {Power} damage";
         Cooldown = 0;
         Range = 2;
         Equipable = true;
@@ -16,29 +17,23 @@ public class Glove : Weapon
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G)) 
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.Log("equipped");
             EquipWeapon();
+        }
     }
 
     public void EquipWeapon()
     {
         //Should be called in inventory to equip a weapon
         CurrEquippedWeapon = this;
-        Debug.Log("am i here");
         
         EquippingWeapon();
     }
 
     private void EquippingWeapon()
     {
-        //could maybe call this in weapon from every inherited from it, but needs then to find its own prefab and find it
-        
-        //find attackPoint(the hand of Knut)
-        GameObject target = GameObject.FindWithTag("AttackPoint");
-        // spawn prefab of weapon and put it as child of attackPoint(hand)
-        Instantiate(glovePrefab,target.transform);
-        // deletes old currWeapon from hand
-        Destroy(target.transform.GetChild(0).gameObject);
+        // spawn prefab of weapon and put it on player 
     }
-
 }
