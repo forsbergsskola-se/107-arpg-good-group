@@ -8,39 +8,24 @@ using Random = System.Random;
 
 public class NPC : MonoBehaviour, IDamagable
 {
-   
-
-  
-  
-
-
     public float startHealth = 100; 
     //public Item[] loot; TODO: uncomment this when items are finished
-   
     
-
     protected Random rand = new Random();
-    
     protected float health;
     protected bool iFramesActive;
     private NPCAudioManager _audioManager;
    
     
-    
-    
-    
     // Start is called before the first frame update
     void Start()
     {
-       
         rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         RandomizeValues();
         
         health = startHealth;
         _audioManager = GetComponent<NPCAudioManager>();
         iFramesActive = false;
-        
-
     }
 
     // Update is called once per frame
@@ -48,12 +33,6 @@ public class NPC : MonoBehaviour, IDamagable
     {
         
     }
-
-    
-
- 
-
-    
 
     protected void RandomizeValues()//This is where we want to generate loot later, dont remove this function
     {
@@ -69,7 +48,7 @@ public class NPC : MonoBehaviour, IDamagable
     {
         if (health < 0)
         {
-            GetComponent<NPCMovement>().setAgentSpeed(true);
+            GetComponent<NPCMovement>().ToggleAgentSpeed(true);
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<BoxCollider>().enabled = false;
             //The NPC is reset in the respawnWait coroutine
@@ -82,7 +61,7 @@ public class NPC : MonoBehaviour, IDamagable
     {
         yield return new WaitForSeconds(10);
         health = startHealth;
-        GetComponent<NPCMovement>().setAgentSpeed(false);
+        GetComponent<NPCMovement>().ToggleAgentSpeed(false);
         GetComponent<MeshRenderer>().enabled = true;
         GetComponent<BoxCollider>().enabled = true;
     }
@@ -95,7 +74,6 @@ public class NPC : MonoBehaviour, IDamagable
 
     public float DefenseRating { get; set; }
     
-
     public void TakeDamage(float damage, GameObject attacker)
     {
         health -= damage;
@@ -104,7 +82,7 @@ public class NPC : MonoBehaviour, IDamagable
         CheckForDeath();
     }
     
-    public void OnDeath()//
+    public void OnDeath()//I dont know what to do with this function tbh
     {
         throw new System.NotImplementedException();
     }

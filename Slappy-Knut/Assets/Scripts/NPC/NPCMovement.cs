@@ -7,22 +7,21 @@ public class NPCMovement : MonoBehaviour
 {
     public bool canFlee;
     public bool canAttack;
-    
-    protected NavMeshAgent agent;
-    public float movementSpeed;
-    public Transform[] waypoints; //This is where the target points for roaming are stored
-    protected GameObject playerReference;
-    protected Random rand = new Random();
     public float detectionRange = 20;
     public float attackSpeed; //This is how long the time in seconds is between attacks, not attacks per minute or some such measurement
     public float attackRange = 2; // this should be much lower than detection range, use your brain
+    public float movementSpeed;
+    public Transform[] waypoints; //This is where the target points for roaming are stored
+    
+    protected NavMeshAgent agent;
+    protected GameObject playerReference;
+    protected Random rand = new Random();
     protected bool attackIsOnCooldown;
+    protected Vector3 startPosition;
+    protected bool fledLastFrame, fleeingCooldownInProgress;
+    
     private Animator _animator;
     
-    protected Vector3 startPosition;
-    
-    
-    protected bool fledLastFrame, fleeingCooldownInProgress;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,9 +41,7 @@ public class NPCMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        canFlee = true;
-        
-        
+        canFlee = true; //THIS NEEDS TO BE DELETED WHEN DEBUGGING ENDS
         // The order of the calls below is important, it essentially gives the NPC priorities, the later a function is
         // called the higher the priority is
         Roam();
@@ -78,11 +75,11 @@ public class NPCMovement : MonoBehaviour
         Vector3 GoalDelta = transform.position - agent.destination;
         
         _animator.speed = 0.75f;
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();//This shouldnt be needed, it wasnt needed, now its needed again. wtf?
         if (canFlee && GoalDelta.magnitude < 2)
         {
             //The idea here is to find a goal which is not near enough to the player to cause us to flee
-            //This code is kinda ugly, we should perhaps refactor it
+            //This code is kinda ugly, but this is as good as its going to get
             List<Transform> goalsNotAtPlayer = new List<Transform>();
             for (int i = 0; i < waypoints.Length; i++)
             {
@@ -162,15 +159,13 @@ public class NPCMovement : MonoBehaviour
     }
     
 
-    
-
     protected IEnumerator waitForAttackCooldown()
     {
         yield return new WaitForSeconds(attackSpeed);
         attackIsOnCooldown = false;
     }
 
-    public void setAgentSpeed(bool setZero)//this is used by NPCHealth
+    public void ToggleAgentSpeed(bool setZero)//this is used by NPCHealt
     {
         if (setZero)
         {
