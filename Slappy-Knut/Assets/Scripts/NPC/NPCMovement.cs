@@ -9,7 +9,7 @@ public class NPCMovement : MonoBehaviour
     public bool canFlee;
     public bool canAttack;
     public float detectionRange = 20;
-    public float attackSpeed = 2; //This is how long the time in seconds is between attacks, not attacks per minute or some such measurement
+    public float attackSpeed = 2; //This is how long the time in seconds is between attacks, not attacks per minute or other some such measurement
     public float attackRange = 4; // this should be much lower than detection range, use your brain
     public float movementSpeed;
     public Transform[] waypoints; //This is where the target points for roaming are stored
@@ -49,7 +49,7 @@ public class NPCMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        canFlee = false; //THIS NEEDS TO BE DELETED WHEN DEBUGGING ENDS
+        canFlee = true; //THIS NEEDS TO BE DELETED WHEN DEBUGGING ENDS
         canAttack = false; //SAME FOR THIS, DONT FORGET!
         //YOU WILL ANYWAY, BUT ATLEAST I TRIED
         // The order of the calls below is important, it essentially gives the NPC priorities, the later a function is
@@ -146,7 +146,7 @@ public class NPCMovement : MonoBehaviour
 
     IEnumerator IdleWait()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(rand.Next(System.Convert.ToInt32(idleTime-(idleTime*0.5)), idleTime));
         agent.isStopped = false;
         ideling = false;
     }
