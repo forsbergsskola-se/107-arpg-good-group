@@ -24,12 +24,15 @@ public class Glove : Weapon
     {
         //Should be called in inventory to equip a weapon
         CurrEquippedWeapon = this;
+        Debug.Log("am i here");
         
         EquippingWeapon();
     }
 
     private void EquippingWeapon()
     {
+        //could maybe call this in weapon from every inherited from it, but needs then to find its own prefab and find it
+        
         //find attackPoint(the hand of Knut)
         GameObject target = GameObject.FindWithTag("AttackPoint");
         // spawn prefab of weapon and put it as child of attackPoint(hand)
@@ -37,4 +40,5 @@ public class Glove : Weapon
         // deletes old currWeapon from hand
         Destroy(target.transform.GetChild(0).gameObject);
     }
+
 }

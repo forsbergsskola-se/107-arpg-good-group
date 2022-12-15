@@ -11,4 +11,5 @@ public class Weapon : MonoBehaviour, IItem
     public bool Chargable { get; set; }
 
     public static Weapon CurrEquippedWeapon;
+    
 }

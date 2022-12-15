@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _power: 5
-  glovePrefab: {fileID: 0}
+  glovePrefab: {fileID: 4834642345348076956}
