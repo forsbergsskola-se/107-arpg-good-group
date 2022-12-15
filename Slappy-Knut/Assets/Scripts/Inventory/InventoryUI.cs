@@ -6,7 +6,9 @@ public class InventoryUI : MonoBehaviour
     public GameObject inventoryUI;
     
     private Inventory _inventory;
-    private InventorySlot[] _slots;
+    //test
+    //private InventorySlot[] _slots;
+    public InventorySlot[] _slots;
    
     // Start is called before the first frame update
     void Start()

@@ -6,7 +6,9 @@ public class InventorySlot : MonoBehaviour
     public Image icon; //Reference the icon in Unity
     public Button removeButton;
     
-    private InventoryItem _inventoryItem;
+    //testing
+    public InventoryItem _inventoryItem;
+    //private InventoryItem _inventoryItem;
     
     public void AddItem(InventoryItem newInventoryItem)//Makes the icon appear
     {
