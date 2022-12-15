@@ -1,4 +1,3 @@
-using System;
 using Interfaces;
 using UnityEngine;
 
@@ -6,18 +5,18 @@ public class PlayerAttack : MonoBehaviour
 {
     public LayerMask enemyLayer;
     public GameObject attackPoint;
-    // public Weapon equippedWeapon;
     
     private PlayerRage _playerRage;
     private PlayerSatisfaction _playerSatis;
     private PlayerAudioManager _audioManager;
     private PlayerMovement _playerMovement;
     private Animator _animator;
+
+    private bool _mouseHeld;
     
     void Start()
     {
         Weapon.CurrEquippedWeapon = attackPoint.AddComponent<Hand>();
-        // equippedWeapon = Weapon.CurrEquippedWeapon;
         _playerRage = GetComponent<PlayerRage>();
         _playerSatis = GetComponent<PlayerSatisfaction>();
         _audioManager = GetComponent<PlayerAudioManager>();
@@ -27,7 +26,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+        _mouseHeld = Input.GetMouseButton(1);
+        if (_mouseHeld)
         {
             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
@@ -36,25 +36,15 @@ public class PlayerAttack : MonoBehaviour
                 //distance check between target and player
                 if (Vector3.Distance(hitInfo.transform.position, transform.position) < Weapon.CurrEquippedWeapon.Range)
                 {
-                    _animator.SetTrigger("Attack");
+                    _animator.Play("attack");
                 } 
             }
         }
+        else AttackRelease();
     }
-
+    
     //tied to the animator as an event, only triggered when the slap lands
     public void Attack() 
-    {
-        if (Weapon.CurrEquippedWeapon.Chargable)
-        {
-            float chargeTime = Weapon.CurrEquippedWeapon.ChargeTime;
-            if(chargeTime > 0) chargeTime -= Time.deltaTime;
-            if(chargeTime < 0) BaseAttack();
-        }
-        else BaseAttack();
-    }
-
-    public void BaseAttack()
     {
         //Detect enemies in range of attack
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.transform.position, Weapon.CurrEquippedWeapon.Range, enemyLayer);
@@ -69,4 +59,16 @@ public class PlayerAttack : MonoBehaviour
             Debug.Log($"{enemy.name} was hit");
         }
     }
+    public void AttackHold() //Holds the animation for charge attack
+    {
+        if (Weapon.CurrEquippedWeapon.Chargable && _mouseHeld)
+        {
+            _animator.speed = 0;
+        }
+    }
+    public void AttackRelease()
+    {
+        _animator.speed = 1;
+    }
+    
 }
