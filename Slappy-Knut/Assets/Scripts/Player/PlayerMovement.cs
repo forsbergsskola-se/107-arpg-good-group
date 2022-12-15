@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private NavMeshAgent _meshAgent;
     private Animator _animator;
     private PlayerAudioManager _audioManager;
+    private PlayerController _playerController;
     private void Start()
     {
         _audioManager = GetComponent<PlayerAudioManager>();
@@ -32,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
         //plays the running animation if the player is moving fast enough
         _animator.SetBool("isRunning", _meshAgent.velocity.magnitude >= .5);
     }
-    public void PlayStepSound() //called as an event in the animator
-    {
-        _audioManager.AS_FootSteps.Play();
-    }
+    // public void PlayStepSound() //called as an event in the animator
+    // {
+    //     _audioManager.AS_FootSteps.Play();
+    // }
 }

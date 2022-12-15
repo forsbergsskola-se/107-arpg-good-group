@@ -7,9 +7,9 @@ public class Glove : Weapon
     private void Start()
     {
         Chargable = true;
-        ChargeTime = 5;
-        Power = _power;
-        Description = $"Knut can really hit as hard as he charges, the soft glove protects his hand -glove has {_power} damage";
+        ChargeTime = 2;
+        Power = 10;
+        Description = $"Knut can really hit as hard as he charges, the soft glove protects his hand -glove has {Power} damage";
         Cooldown = 0;
         Range = 2;
         Equipable = true;

@@ -18,14 +18,14 @@ public class PlayerRage : MonoBehaviour, IDamagable
     private Scene _scene;
     private Animator _animator;
     private PlayerAudioManager _audioManager;
-    private PlayerMovement _playerMovement;
+    private PlayerController _playerMovement;
     
     void Start()
     {
         _scene = SceneManager.GetActiveScene();
         _animator = GetComponent<Animator>();
         _audioManager = GetComponent<PlayerAudioManager>();
-        _playerMovement = GetComponent<PlayerMovement>();
+        _playerMovement = GetComponent<PlayerController>();
     }
     void Update()
     { 

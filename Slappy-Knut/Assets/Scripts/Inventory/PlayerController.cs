@@ -7,16 +7,20 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Interactable focus; //our current focus: Item
+    public LayerMask walkableLayer; //Filter out everything not walkable
+    public int maxRayCastDistance = 100;
     
-    public LayerMask movementMask; //Filter out everything not walkable
-    
-    private PlayerMotor motor; //Reference to our motor
+    private PlayerMotor _motor; //Reference to our motor
+    private Animator _animator;
+    private PlayerAudioManager _audioManager;
     
     // Start is called before the first frame update
     //Use this for initialization
     void Start()
     {
-        motor = GetComponent<PlayerMotor>();
+        _motor = GetComponent<PlayerMotor>();
+        _audioManager = GetComponent<PlayerAudioManager>();
+        _animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -28,31 +32,31 @@ public class PlayerController : MonoBehaviour
         }
         
         //If we press the left mouse button
-        if (Input.GetMouseButtonDown(0))
-        {
-            //We create a ray
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            //If the ray hits
-            if (Physics.Raycast(ray, out hit, 100, movementMask))
-            {
-                //Move our player to what we hit
-                motor.MoveToPoint(hit.point);
-                
-                //Stop focusing any object
-                RemoveFocus();
-            }
-        }
+         if (Input.GetMouseButtonDown(0))
+         {
+             //We create a ray
+             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
+             RaycastHit hitInfo;
+        
+             //If the ray hits
+             if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, walkableLayer))
+             {
+                 //Move our player to what we hit
+                 _motor.MoveToPoint(hitInfo.point);
+                 
+                 //Stop focusing any object
+                 RemoveFocus();
+             }
+         }
         if (Input.GetMouseButtonDown(1))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+            Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitInfo;
 
-            if (Physics.Raycast(ray, out hit, 100))
+            if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance))
             {
                 //Check if we hit and interactable
-                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
                 //If we did, set it as our focus
                 if (interactable != null)
                 {
@@ -60,8 +64,8 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        _animator.SetBool("isRunning", _motor.agent.velocity.magnitude >= .5);
     }
-
     void SetFocus(Interactable newFocus)
     {
         if (newFocus != focus)
@@ -71,13 +75,12 @@ public class PlayerController : MonoBehaviour
                 focus.OnDefocused();
             }
             focus = newFocus;
-            motor.FollowTarget(newFocus);
+            _motor.FollowTarget(newFocus);
         }
         
         newFocus.OnFocused(transform);
         
     }
-
     void RemoveFocus()
     {
         if (focus != null)
@@ -86,6 +89,10 @@ public class PlayerController : MonoBehaviour
         }
         
         focus = null;
-        motor.StopFollowingTarget();
+        _motor.StopFollowingTarget();
+    }
+    public void PlayStepSound() //called as an event in the animator
+    {
+        _audioManager.AS_FootSteps.Play();
     }
 }
