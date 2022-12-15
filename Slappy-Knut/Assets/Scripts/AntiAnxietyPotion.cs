@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class AntiAnxietyPotion : MonoBehaviour, IItem
 {
-    public int count;
-    [SerializeField] private float power;
+    public int count = 5;
+    [SerializeField] private float power = 10;
     private AudioSource _audioSource;
     
     

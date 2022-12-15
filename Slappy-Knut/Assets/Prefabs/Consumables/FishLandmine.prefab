@@ -748,9 +748,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1916654942182664190}
-  - component: {fileID: 1916654942182664185}
   - component: {fileID: 1916654942182664191}
   - component: {fileID: 2122399718}
+  - component: {fileID: 5012624539372762668}
+  - component: {fileID: 5052753448860610466}
   m_Layer: 0
   m_Name: FishLandmine
   m_TagString: Untagged
@@ -766,7 +767,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916654942182664184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.02, y: 0, z: 5.71}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -775,21 +776,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1916654942182664185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916654942182664184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d5e84544f380be469897a146cf16514, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  power: 10
-  explosion: {fileID: 1916654942306520338}
-  fishBody: {fileID: 3056982533342112445}
 --- !u!136 &1916654942182664191
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -900,6 +886,39 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &5012624539372762668
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916654942182664184}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &5052753448860610466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916654942182664184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5e84544f380be469897a146cf16514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  power: 0
+  explosion: {fileID: 1916654942306520338}
+  fishBody: {fileID: 3056982533342112445}
+  fishLandminePrefab: {fileID: 1916654942182664184}
+  spawnOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &1916654942250823919
 GameObject:
   m_ObjectHideFlags: 0
@@ -6227,7 +6246,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916654942719000666}
-  m_LocalRotation: {x: 0.02929553, y: -0.000000014861698, z: -0.0000000022156912, w: 0.9995708}
+  m_LocalRotation: {x: 0.02929553, y: -0.000000014861698, z: -0.0000000022156912,
+    w: 0.9995708}
   m_LocalPosition: {x: 1.1827797e-10, y: 0.038609345, z: 0.000000012111664}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

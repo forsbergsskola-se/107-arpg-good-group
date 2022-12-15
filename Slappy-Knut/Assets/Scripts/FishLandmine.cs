@@ -7,6 +7,10 @@ public class FishLandmine : MonoBehaviour, IItem
     public float power;
     public GameObject explosion;
     public GameObject fishBody;
+    private GameObject _player;
+    public GameObject fishLandminePrefab;
+    public Vector3 spawnOffset;
+
 
     private AudioSource _audioSource;
     
@@ -32,16 +36,24 @@ public class FishLandmine : MonoBehaviour, IItem
         _audioSource = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        Debug.Log(fishLandminePrefab);
+        _player = GameObject.FindWithTag("Player");
+    }
+
 
     public void Use()
     {
-        // is placed at player's position when placed
-        gameObject.transform.position = FindObjectOfType<DummyPlayer>().transform.position;
+        Vector3 p = transform.position;
+        spawnOffset = new Vector3(p.x, p.y + 0.5f, p.z - 1f);
+        Instantiate(fishLandminePrefab, _player.transform.position, _player.transform.rotation);
         Count--;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {;
+    
+    private void OnTriggerEnter(Collider other) // this is supposed to be DoT maybe?
+    {
+        
         IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
         // only non-player IDamagables should set it off
         if (damagable == null || other.gameObject.CompareTag("Player")) return;
@@ -61,9 +73,5 @@ public class FishLandmine : MonoBehaviour, IItem
         Destroy(gameObject);
     }
 
-    public void Charge()
-    {
-        // the item can not be charged
-        throw new System.NotImplementedException();
-    }
+    public void Charge(){}
 }
