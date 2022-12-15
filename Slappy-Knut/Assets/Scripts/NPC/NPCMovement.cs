@@ -35,7 +35,8 @@ public class NPCMovement : MonoBehaviour
         rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         attackIsOnCooldown = false;
         startPosition = transform.position;
-        _animator.SetTrigger("Run");
+        
+       // _animator.SetTrigger("Run");
     }
 
     // Update is called once per frame
@@ -72,10 +73,20 @@ public class NPCMovement : MonoBehaviour
     }
     protected void Roam()
     {
-        Vector3 GoalDelta = transform.position - agent.destination;
-        
-        _animator.speed = 0.75f;
         agent = GetComponent<NavMeshAgent>();//This shouldnt be needed, it wasnt needed, now its needed again. wtf?
+        Vector3 GoalDelta = transform.position - agent.destination;
+
+        if (agent.velocity.magnitude > 0.5)
+        {
+            _animator.SetBool("Running", true);
+            _animator.speed = 0.75f;
+        }
+        else
+        {
+            _animator.SetBool("Running", false);
+            _animator.speed = 1;
+        }
+
         if (canFlee && GoalDelta.magnitude < 2)
         {
             //The idea here is to find a goal which is not near enough to the player to cause us to flee
