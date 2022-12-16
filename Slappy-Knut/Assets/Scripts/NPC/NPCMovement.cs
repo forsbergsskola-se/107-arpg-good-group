@@ -205,8 +205,6 @@ public class NPCMovement : MonoBehaviour
             }
             
         }
-        
-       
     }
     IEnumerator waitForFleeCooldown()
     {

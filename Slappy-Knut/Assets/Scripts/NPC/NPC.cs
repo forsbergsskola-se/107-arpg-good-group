@@ -49,7 +49,10 @@ public class NPC : MonoBehaviour, IDamagable
         if (health < 0)
         {
             GetComponent<NPCMovement>().ToggleAgentSpeed(true);
-            GetComponent<MeshRenderer>().enabled = false;
+            foreach (var mesh in GetComponentsInChildren<SkinnedMeshRenderer>())
+            {
+                mesh.enabled = false;
+            }
             GetComponent<BoxCollider>().enabled = false;
             //The NPC is reset in the respawnWait coroutine
             var tst = StartCoroutine(respawnWait());
@@ -86,6 +89,4 @@ public class NPC : MonoBehaviour, IDamagable
     {
         throw new System.NotImplementedException();
     }
-
- 
 }
