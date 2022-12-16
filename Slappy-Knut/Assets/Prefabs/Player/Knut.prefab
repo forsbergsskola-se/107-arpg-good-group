@@ -5374,6 +5374,7 @@ GameObject:
   - component: {fileID: 950586769}
   - component: {fileID: 480224872}
   - component: {fileID: 283766483}
+  - component: {fileID: 1454525155}
   m_Layer: 0
   m_Name: Knut
   m_TagString: Player
@@ -5462,7 +5463,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42992005314592980}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60ae77f431ee3a14a94d6b9516bc6727, type: 3}
   m_Name: 
@@ -5480,7 +5481,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 42992005314592980}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73d3b0b5ddf82e745a2aec84c93f15e6, type: 3}
   m_Name: 
@@ -5518,9 +5519,11 @@ MonoBehaviour:
   AS_FootSteps: {fileID: 0}
   AS_RageFart: {fileID: 0}
   AS_BasicSlap: {fileID: 0}
+  AS_DrinkPotion: {fileID: 0}
   footSteps: {fileID: 8300000, guid: 3b95034c0b2914643b2b649db01cb503, type: 3}
   rageFart: {fileID: 8300000, guid: c1d6968de9d4b444996e1d1151336b6e, type: 3}
   basicSlap: {fileID: 8300000, guid: 09b5464cf5ae48a4983c4a5cee361d15, type: 3}
+  drinkPotion: {fileID: 0}
 --- !u!54 &950586770
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5583,6 +5586,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6180482c80de314faceda47cd44f75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1454525155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42992005314592980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01a3f4e424686745ab4772d53569c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishLandmine: {fileID: 5052753448860610466, guid: 1e6ecff968d2a5b4dbc5c5baf303c26a,
+    type: 3}
 --- !u!1 &43009792565137032
 GameObject:
   m_ObjectHideFlags: 0
