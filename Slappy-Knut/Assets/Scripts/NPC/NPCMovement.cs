@@ -84,7 +84,7 @@ public class NPCMovement : MonoBehaviour
     {
         Vector3 GoalDelta = transform.position - agent.destination;
 
-        if (agent.velocity.magnitude > 0.1)
+        if (agent.velocity.magnitude > 0.5f)
         {
             _animator.SetBool("Walking", true);
             _animator.speed = 1f;
@@ -238,15 +238,15 @@ public class NPCMovement : MonoBehaviour
     {
         //Here we play footstep sounds from walking
         //This is triggered by the animation itself
-        if (_animator.GetBool("Running") == false)
-        {
-            _audioManager.AS_FootSteps.volume = 0.5f;
-        }
-        else
-        {
-            _audioManager.AS_FootSteps.volume = 1f;
-        }
-        _audioManager.AS_FootSteps.Play();
+        // if (_animator.GetBool("Running") == false)
+        // {
+        //     _audioManager.AS_FootSteps.volume = 0.5f;
+        // }
+        // else
+        // {
+        //     _audioManager.AS_FootSteps.volume = 1f;
+        // }
+        _audioManager?.AS_FootSteps.Play();
     }
 
     public void DealDamage()
