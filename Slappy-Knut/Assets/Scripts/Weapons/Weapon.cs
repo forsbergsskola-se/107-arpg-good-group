@@ -15,6 +15,7 @@ public class Weapon : MonoBehaviour, IItem
     
     public static Weapon CurrEquippedWeapon;
     public static List<Weapon> AllWeapons = new List<Weapon>();
+    public static Weapon DefaultWeapon;
 
     public static void Switch(Weapon newWeapon)
     {
@@ -25,4 +26,5 @@ public class Weapon : MonoBehaviour, IItem
         CurrEquippedWeapon = newWeapon;
         CurrEquippedWeapon.gameObject.SetActive(true);
     }
+
 }

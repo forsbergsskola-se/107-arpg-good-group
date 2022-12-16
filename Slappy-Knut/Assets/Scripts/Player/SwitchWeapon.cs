@@ -8,7 +8,11 @@ public class SwitchWeapon : MonoBehaviour
         foreach (var weapon in Weapon.AllWeapons)
         {
             if (weapon.name != "Hand") weapon.gameObject.SetActive(false);
-            else Weapon.CurrEquippedWeapon = weapon;
+            else
+            {
+                Weapon.DefaultWeapon = weapon;
+                Weapon.CurrEquippedWeapon = Weapon.DefaultWeapon;
+            }
         }
     }
 
