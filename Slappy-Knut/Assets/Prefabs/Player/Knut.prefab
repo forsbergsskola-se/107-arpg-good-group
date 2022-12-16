@@ -5470,7 +5470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rageBar: {fileID: 0}
   maxRage: 1
-  rageDOT: 0
+  rageDOT: 0.1
   bodyMesh: {fileID: 104799712527133170}
   hairMesh: {fileID: 105005995052736062}
   fartCloud: {fileID: 746356940}
@@ -5523,7 +5523,7 @@ MonoBehaviour:
   footSteps: {fileID: 8300000, guid: 3b95034c0b2914643b2b649db01cb503, type: 3}
   rageFart: {fileID: 8300000, guid: c1d6968de9d4b444996e1d1151336b6e, type: 3}
   basicSlap: {fileID: 8300000, guid: 09b5464cf5ae48a4983c4a5cee361d15, type: 3}
-  drinkPotion: {fileID: 0}
+  drinkPotion: {fileID: 8300000, guid: 922b387f90e833f438fa942727e0f16d, type: 3}
 --- !u!54 &950586770
 Rigidbody:
   m_ObjectHideFlags: 0

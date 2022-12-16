@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SwitchWeapon : MonoBehaviour
 {
-    private void Awake()
+    private void Start()
     {
         Weapon.AllWeapons.AddRange(GetComponentsInChildren<Weapon>());
         foreach (var weapon in Weapon.AllWeapons)
