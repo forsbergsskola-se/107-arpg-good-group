@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
 
@@ -10,7 +12,17 @@ public class Weapon : MonoBehaviour, IItem
     public float Range { get; set; }
     public bool Equipable { get; set; }
     public bool Chargable { get; set; }
-
-    public static Weapon CurrEquippedWeapon;
     
+    public static Weapon CurrEquippedWeapon;
+    public static List<Weapon> AllWeapons = new List<Weapon>();
+
+    public static void Switch(Weapon newWeapon)
+    {
+        foreach (var weapon in AllWeapons)
+            if (newWeapon.name == weapon.name)
+                newWeapon = weapon;
+        CurrEquippedWeapon.gameObject.SetActive(false);
+        CurrEquippedWeapon = newWeapon;
+        CurrEquippedWeapon.gameObject.SetActive(true);
+    }
 }
