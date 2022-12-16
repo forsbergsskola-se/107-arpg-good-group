@@ -34,6 +34,7 @@ public class PlayerAttack : MonoBehaviour
             RaycastHit hitInfo;
             if (Physics.Raycast(rayOrigin, out hitInfo, _playerMovement.maxRayCastDistance, enemyLayer))
             {
+                transform.LookAt(hitInfo.transform);
                 //distance check between target and player
                 if (Vector3.Distance(hitInfo.transform.position, transform.position) < Weapon.CurrEquippedWeapon.Range)
                 {
