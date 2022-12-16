@@ -27,25 +27,28 @@ public class InventoryItem : ScriptableObject
         //Something might happen
 
         //Todo: find icon parent red after equipped
+        //Works if we only have 1 of the same things, it finds the first name that matches the uiName and makes it red
         InventoryUI iUi = FindObjectOfType<InventoryUI>();
-        InventorySlot inventorySlot = null;
+        InventorySlot equipped = null;
         foreach (var t in iUi._slots)
         {
-            //Debug.Log(iUi._slots[i]._inventoryItem);
             if (t._inventoryItem.name == name)
             {
-                t.icon.color = Color.red;
-                inventorySlot = t;
+                //t.icon.color = Color.red;
+                equipped = t;
                 break;
             }
             //t.icon.color = Color.white;
         }
 
-        // shit mix to make everthing other than equipped white, because of above nullReference error when trying to compare to null, works atm!
+        //Rest is set to white to display which is the equipped one.
+        // shit mix to make everything other than equipped white, because of above nullReference error when trying to compare to null, works atm!
         foreach (var t in iUi._slots)
         {
-            inventorySlot.icon.color = Color.red;
+            //inventorySlot.icon.color = Color.red;
             t.icon.color = Color.white;
         }
+
+        if (equipped != null) equipped.icon.color = Color.red;
     }
 }
