@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4834642345348076967}
   - component: {fileID: 7926028583682882103}
   - component: {fileID: 965483020015583269}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Glove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ SphereCollider:
   m_GameObject: {fileID: 4834642345348076956}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.09161556
   m_Center: {x: 0.11952946, y: 0.01602189, z: 0.003884105}

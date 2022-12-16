@@ -32871,43 +32871,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 968943041}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &884986729
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: WaterDepthMap
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1001 &889654766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49348,18 +49311,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 480224872, guid: 123610bf9d3e31a4e8689d22725d7a15, type: 3}
-      propertyPath: itemLayer.m_Bits
-      value: 32768
-      objectReference: {fileID: 0}
     - target: {fileID: 986628234, guid: 123610bf9d3e31a4e8689d22725d7a15, type: 3}
       propertyPath: rageBar
       value: 
       objectReference: {fileID: 6357308854113500805}
-    - target: {fileID: 986628234, guid: 123610bf9d3e31a4e8689d22725d7a15, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 41528618573300086, guid: 123610bf9d3e31a4e8689d22725d7a15,
         type: 3}
       propertyPath: m_RootOrder
@@ -49419,11 +49374,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Knut
-      objectReference: {fileID: 0}
-    - target: {fileID: 487873099431120417, guid: 123610bf9d3e31a4e8689d22725d7a15,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 123610bf9d3e31a4e8689d22725d7a15, type: 3}
@@ -55096,14 +55046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf8f374ef6739e479d223fa38b948a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canFlee: 0
-  canAttack: 0
-  movementSpeed: 0
-  attackSpeed: 0
-  attackRange: 2
-  detectionRange: 20
   startHealth: 100
-  waypoints: []
 --- !u!195 &1527954808
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -56391,6 +56334,43 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1564547410}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &1566069875
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterDepthMap
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 1024
+  m_Height: 1024
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!4 &1566921706 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 67bdb793a7c824e488c31e62b27fefe1,
