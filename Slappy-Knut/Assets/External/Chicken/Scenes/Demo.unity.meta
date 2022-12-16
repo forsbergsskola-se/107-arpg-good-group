@@ -1,5 +1,10 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Slappy-Knut/Assets/Prefabs/Consumables.meta
+guid: feddae3229fa7144a8897a12f926aff0
+folderAsset: yes
+========
 guid: 05feee59e0eb48547b3ada9d42a215dd
+>>>>>>>> main:Slappy-Knut/Assets/External/Chicken/Scenes/Demo.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
