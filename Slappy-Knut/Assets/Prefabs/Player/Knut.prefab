@@ -5470,7 +5470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rageBar: {fileID: 0}
   maxRage: 1
-  rageDOT: 0.1
+  rageDOT: 0
   bodyMesh: {fileID: 104799712527133170}
   hairMesh: {fileID: 105005995052736062}
   fartCloud: {fileID: 746356940}
@@ -5500,10 +5500,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188ba5c1b387b83428df83fbb20e80e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyLayer:
+  interactableLayer:
     serializedVersion: 2
     m_Bits: 128
   attackPoint: {fileID: 872166179}
+  _animator: {fileID: 0}
 --- !u!114 &9092145326446747948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5570,9 +5571,9 @@ MonoBehaviour:
   walkableLayer:
     serializedVersion: 2
     m_Bits: 65536
-  itemLayer:
+  interactableLayer:
     serializedVersion: 2
-    m_Bits: 32768
+    m_Bits: 128
   maxRayCastDistance: 100
 --- !u!114 &283766483
 MonoBehaviour:
