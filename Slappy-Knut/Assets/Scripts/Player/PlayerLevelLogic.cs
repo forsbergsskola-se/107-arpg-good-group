@@ -8,9 +8,10 @@ public class PlayerLevelLogic : MonoBehaviour
     private float XPEarned;
 
     private PlayerRage rageLogic;
+    private PlayerAttack attackLogic;
 
-    public float nextLevelXP; //Stores what the next levels required XP is
-
+    private float nextLevelXP; //Stores what the next levels required XP is
+    public ParticleSystem levelUpVisualEffect;
     public int level;
 
     
@@ -21,6 +22,7 @@ public class PlayerLevelLogic : MonoBehaviour
         level = 0;
         nextLevelXP = 100;
         rageLogic = GetComponent<PlayerRage>();
+        attackLogic = GetComponent<PlayerAttack>();
     }
 
     // Update is called once per frame
@@ -42,7 +44,9 @@ public class PlayerLevelLogic : MonoBehaviour
             XPEarned -= nextLevelXP;
             level++;
             nextLevelXP = nextLevelXP * 1.5f;
-            rageLogic.increaseStats(2,1.2f);
+            rageLogic.IncreaseStats(2,1.2f);
+            attackLogic.IncreaseAttackPower(1.3f);
+            levelUpVisualEffect?.Play();
         }
     }
 }

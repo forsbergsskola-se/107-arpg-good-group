@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
     private PlayerAudioManager _audioManager;
     private PlayerController _playerMovement;
     private Animator _animator;
+    private float damageModifier;
 
     private bool _mouseHeld;
     private float _timeHeld = 1;
@@ -23,6 +24,7 @@ public class PlayerAttack : MonoBehaviour
         _audioManager = GetComponent<PlayerAudioManager>();
         _playerMovement = GetComponent<PlayerController>();
         _animator = GetComponent<Animator>();
+        damageModifier = 1;
     }
 
     private void Update()
@@ -56,7 +58,7 @@ public class PlayerAttack : MonoBehaviour
         foreach (Collider enemy in hitEnemies)
         {
             _audioManager.AS_BasicSlap.Play();
-            enemy.GetComponent<IDamagable>().TakeDamage(wpn.Power * _timeHeld, gameObject);
+            enemy.GetComponent<IDamagable>().TakeDamage((wpn.Power * damageModifier) * _timeHeld, gameObject);
             Debug.Log(wpn.Power * _timeHeld);
             _playerRage.TakeDamage(-1f, gameObject);
             _playerSatis.AddSatisfaction(wpn.Power);
@@ -74,5 +76,10 @@ public class PlayerAttack : MonoBehaviour
     {
         _animator.speed = 1;
         _timeHeld = 1;
+    }
+
+    public void IncreaseAttackPower(float powerIncreaseMultiplier)
+    {
+        damageModifier *= powerIncreaseMultiplier;
     }
 }
