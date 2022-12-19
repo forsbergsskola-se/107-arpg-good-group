@@ -1,7 +1,7 @@
 using Interfaces;
 using UnityEngine;
 
-public class AntiAnxietyPotion : MonoBehaviour, IItem
+public class AntiAnxietyPotion : MonoBehaviour, IConsumable
 {
     public int count = 5;
     public float power = 10;

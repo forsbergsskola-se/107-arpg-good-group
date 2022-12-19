@@ -2,7 +2,7 @@ using System.Collections;
 using Interfaces;
 using UnityEngine;
 
-public class FishLandmine : MonoBehaviour, IItem
+public class FishLandmine : MonoBehaviour, IConsumable
 {
     public float power;
     public GameObject explosion;
@@ -14,7 +14,8 @@ public class FishLandmine : MonoBehaviour, IItem
     public float Range { get; set; }
     public bool Equipable { get; set; }
     public bool Chargable { get; set; }
-    
+    public int Count { get; set; }
+
     private AudioSource _audioSource;
     private void Start()
     {

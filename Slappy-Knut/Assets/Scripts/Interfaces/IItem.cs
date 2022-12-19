@@ -10,7 +10,6 @@ namespace Interfaces
         bool Equipable { get; set; }
         bool Chargable { get; set; }
 
-        void Use() {}
         void Charge() {}
     }
 }
