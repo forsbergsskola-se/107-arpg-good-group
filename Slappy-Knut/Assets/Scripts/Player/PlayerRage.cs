@@ -24,6 +24,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     
     void Start()
     {
+        CurrentRage = 0;
         _scene = SceneManager.GetActiveScene();
         _animator = GetComponent<Animator>();
         _audioManager = GetComponent<PlayerAudioManager>();
@@ -44,6 +45,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     void LoadScene() //invoke requires a parameterless function
     {
+        Weapon.AllWeapons.Clear();
         SceneManager.LoadScene(_scene.name);
     }
     void SetInactive() //called on the animator
