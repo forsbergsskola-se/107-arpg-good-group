@@ -75,4 +75,9 @@ public class PlayerAttack : MonoBehaviour
         _animator.speed = 1;
         _timeHeld = 1;
     }
+
+    public void PlayAnimationOnAttack()
+    {
+        _animator.Play("attack");
+    }
 }

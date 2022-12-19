@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public Interactable focus; //our current focus: Item
     public LayerMask walkableLayer; //Filter out everything not walkable
     public LayerMask itemLayer;
+    //testing
+    public LayerMask enemyLayer;
+    
     public int maxRayCastDistance = 100;
     
     private PlayerMotor _motor; //Reference to our motor
@@ -53,8 +56,9 @@ public class PlayerController : MonoBehaviour
         {
             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-
-            if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, itemLayer))
+            
+            //Getting either item on focus or enemy to walk towards them
+            if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, itemLayer) || Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, enemyLayer))
             {
                 //Check if we hit and interactable
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
