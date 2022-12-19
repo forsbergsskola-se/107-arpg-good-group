@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.EventSystems;
 using UnityEngine;
 
@@ -17,6 +18,12 @@ public class PlayerController : MonoBehaviour
     
     // Start is called before the first frame update
     //Use this for initialization
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     void Start()
     {
         _motor = GetComponent<PlayerMotor>();
