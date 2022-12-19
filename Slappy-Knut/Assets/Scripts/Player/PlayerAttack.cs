@@ -3,14 +3,15 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public LayerMask enemyLayer;
+    // public LayerMask enemyLayer;
+    public LayerMask interactableLayer;
     public GameObject attackPoint;
     
     private PlayerRage _playerRage;
     private PlayerSatisfaction _playerSatis;
     private PlayerAudioManager _audioManager;
     private PlayerController _playerMovement;
-    private Animator _animator;
+    [HideInInspector] public Animator _animator;
 
     private bool _mouseHeld;
     private float _timeHeld = 1;
@@ -32,12 +33,14 @@ public class PlayerAttack : MonoBehaviour
         {
             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-            if (Physics.Raycast(rayOrigin, out hitInfo, _playerMovement.maxRayCastDistance, enemyLayer))
+            if (Physics.Raycast(rayOrigin, out hitInfo, _playerMovement.maxRayCastDistance, interactableLayer))
             {
-                transform.LookAt(hitInfo.transform);
+                // transform.LookAt(hitInfo.transform);
                 //distance check between target and player
                 if (Vector3.Distance(hitInfo.transform.position, transform.position) < Weapon.CurrEquippedWeapon.Range)
                 {
+                    IDamagable damagable = hitInfo.transform.GetComponent<IDamagable>();
+                    if(damagable == null) return;
                     _timeHeld += Time.deltaTime;
                     _animator.Play("attack");
                 } 
@@ -51,12 +54,13 @@ public class PlayerAttack : MonoBehaviour
     {
         Weapon wpn = Weapon.CurrEquippedWeapon;
         //Detect enemies in range of attack
-        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.transform.position, wpn.Range, enemyLayer);
+        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.transform.position, wpn.Range, interactableLayer);
         //Damage
+        
         foreach (Collider enemy in hitEnemies)
         {
-            _audioManager.AS_BasicSlap.Play();
             enemy.GetComponent<IDamagable>().TakeDamage(wpn.Power * _timeHeld, gameObject);
+            _audioManager.AS_BasicSlap.Play();
             Debug.Log(wpn.Power * _timeHeld);
             _playerRage.TakeDamage(-1f, gameObject);
             _playerSatis.AddSatisfaction(wpn.Power);
@@ -74,10 +78,5 @@ public class PlayerAttack : MonoBehaviour
     {
         _animator.speed = 1;
         _timeHeld = 1;
-    }
-
-    public void PlayAnimationOnAttack()
-    {
-        _animator.Play("attack");
     }
 }

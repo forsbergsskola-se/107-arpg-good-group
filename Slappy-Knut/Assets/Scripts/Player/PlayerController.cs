@@ -8,10 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public Interactable focus; //our current focus: Item
     public LayerMask walkableLayer; //Filter out everything not walkable
-    public LayerMask itemLayer;
-    //testing
-    public LayerMask enemyLayer;
-    
+    public LayerMask interactableLayer;
     public int maxRayCastDistance = 100;
     
     private PlayerMotor _motor; //Reference to our motor
@@ -58,7 +55,7 @@ public class PlayerController : MonoBehaviour
             RaycastHit hitInfo;
             
             //Getting either item on focus or enemy to walk towards them
-            if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, itemLayer) || Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, enemyLayer))
+            if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, interactableLayer))
             {
                 //Check if we hit and interactable
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
@@ -82,9 +79,7 @@ public class PlayerController : MonoBehaviour
             focus = newFocus;
             _motor.FollowTarget(newFocus);
         }
-        
         newFocus.OnFocused(transform);
-        
     }
     void RemoveFocus()
     {
@@ -92,7 +87,6 @@ public class PlayerController : MonoBehaviour
         {
             focus.OnDefocused();
         }
-        
         focus = null;
         _motor.StopFollowingTarget();
     }
