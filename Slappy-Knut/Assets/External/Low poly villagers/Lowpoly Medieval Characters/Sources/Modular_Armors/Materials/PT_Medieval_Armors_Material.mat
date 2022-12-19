@@ -153,7 +153,7 @@ Material:
     - _CLOTH2COLOR: {r: 1, g: 0, b: 0, a: 0}
     - _CLOTH3COLOR: {r: 0.254717, g: 0.254717, b: 0.254717, a: 0}
     - _COATOFARMSCOLOR: {r: 1, g: 0, b: 0, a: 0}
-    - _Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 0.7830189, g: 0.7202296, b: 0.7202296, a: 1}
     - _EYESCOLOR: {r: 0.0734529, g: 0.1320755, b: 0.05046281, a: 1}
     - _FEATHERS1COLOR: {r: 0.7735849, g: 0.492613, b: 0.492613, a: 0}
     - _FEATHERS2COLOR: {r: 0.6792453, g: 0, b: 0, a: 0}
