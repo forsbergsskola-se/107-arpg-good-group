@@ -1,8 +1,7 @@
+using Interfaces;
 using UnityEngine.EventSystems;
 using UnityEngine;
-
 //Control the player. Here we choose our "focus" and where to move
-
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
 {
@@ -14,42 +13,37 @@ public class PlayerController : MonoBehaviour
     private PlayerMotor _motor; //Reference to our motor
     private Animator _animator;
     private PlayerAudioManager _audioManager;
-    
-    // Start is called before the first frame update
-    //Use this for initialization
+    public static bool MouseHeld;
+    public static float TimeHeld = 1;
     void Start()
     {
         _motor = GetComponent<PlayerMotor>();
         _audioManager = GetComponent<PlayerAudioManager>();
         _animator = GetComponent<Animator>();
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return;
         }
-        
         //If we press the left mouse button
          if (Input.GetMouseButtonDown(0))
          {
              //We create a ray
              Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
              RaycastHit hitInfo;
-        
              //If the ray hits
              if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, walkableLayer))
              {
                  //Move our player to what we hit
                  _motor.MoveToPoint(hitInfo.point);
-                 
                  //Stop focusing any object
                  RemoveFocus();
              }
          }
-        if (Input.GetMouseButtonDown(1))
+        MouseHeld = Input.GetMouseButton(1);
+        if (MouseHeld)
         {
             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
@@ -60,12 +54,20 @@ public class PlayerController : MonoBehaviour
                 //Check if we hit and interactable
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
                 //If we did, set it as our focus
+                if (Vector3.Distance(hitInfo.transform.position, transform.position) < Weapon.CurrEquippedWeapon.Range)
+                {
+                    IDamagable damagable = hitInfo.transform.GetComponent<IDamagable>();
+                    if(damagable == null) return;
+                    TimeHeld += Time.deltaTime;
+                    _animator.Play("attack");
+                } 
                 if (interactable != null)
                 {
                     SetFocus(interactable);
                 }
             }
         }
+        if(TimeHeld -1 > Weapon.CurrEquippedWeapon.ChargeTime || !MouseHeld) AttackRelease();
         _animator.SetBool("isRunning", _motor.agent.velocity.magnitude >= .5);
     }
     void SetFocus(Interactable newFocus)
@@ -93,5 +95,10 @@ public class PlayerController : MonoBehaviour
     public void PlayStepSound() //called as an event in the animator
     {
         _audioManager.AS_FootSteps.Play();
+    }
+    public void AttackRelease()
+    {
+        _animator.speed = 1;
+        TimeHeld = 1;
     }
 }
