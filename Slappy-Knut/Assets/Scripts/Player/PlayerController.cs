@@ -67,10 +67,7 @@ public class PlayerController : MonoBehaviour
                 //If we did, set it as our focus
                 if (Vector3.Distance(hitInfo.transform.position, transform.position) < Weapon.CurrEquippedWeapon.Range)
                 {
-                    IDamagable damagable = hitInfo.transform.GetComponent<IDamagable>();
-                    if(damagable == null) return;
                     TimeHeld += Time.deltaTime;
-                    _animator.Play("attack");
                 } 
                 if (interactable != null)
                 {
