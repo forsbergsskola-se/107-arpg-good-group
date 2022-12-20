@@ -1,4 +1,3 @@
-using Interfaces;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
@@ -10,14 +9,7 @@ public class Interactable : MonoBehaviour
     private Transform _player;//Reference to the player transform
     private bool _hasInteracted = false; //Have we already interacted with the object?
 
-    protected virtual void Interact()
-    {
-        IDamagable damagable = transform.GetComponent<IDamagable>();
-        if (damagable != null)
-        {
-            FindObjectOfType<PlayerAttack>()._animator.Play("attack");
-        }
-    }
+    protected virtual void Interact() {}
 
     private void Update()
     {

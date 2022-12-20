@@ -13,7 +13,6 @@ public class PlayerAttack : MonoBehaviour
 
     void Start()
     {
-        //To equip glove at start
         _playerRage = GetComponent<PlayerRage>();
         _playerSatis = GetComponent<PlayerSatisfaction>();
         _audioManager = GetComponent<PlayerAudioManager>();
