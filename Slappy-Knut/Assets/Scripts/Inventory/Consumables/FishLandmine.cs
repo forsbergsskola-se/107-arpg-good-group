@@ -7,6 +7,7 @@ public class FishLandmine : MonoBehaviour, IItem
     public float power;
     public GameObject explosion;
     public GameObject fishBody;
+    private PlayerLevelLogic _playerLevelLogic;
 
     public float Power { get; set; }
     public string Description { get; set; }
@@ -24,6 +25,9 @@ public class FishLandmine : MonoBehaviour, IItem
         Description = "Fish that causes damage when you get too close.";
         Cooldown = 20;
         Range = 10;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); //THIS CODE IS FRAGILE
+        _playerLevelLogic = player.GetComponent<PlayerLevelLogic>();//We should probaby come up with something better for this
     }
     public void Use() {}
     private void OnTriggerEnter(Collider other) // this is supposed to be DoT maybe?
@@ -35,6 +39,7 @@ public class FishLandmine : MonoBehaviour, IItem
         _audioSource.time = 1f; // removes audio delay
         _audioSource.Play();
         damagable.TakeDamage(Power, gameObject);
+        _playerLevelLogic.IncreaseXP(power);
         // coroutine is used to let the particle explosion finish before destroying the game object
         StartCoroutine(Explosion());
     }

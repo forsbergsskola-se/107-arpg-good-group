@@ -7,7 +7,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject attackPoint;
     
     private PlayerRage _playerRage;
-    private PlayerSatisfaction _playerSatis;
+    private PlayerLevelLogic _playerSatis;
     private PlayerAudioManager _audioManager;
     private PlayerController _playerMovement;
     private Animator _animator;
@@ -21,7 +21,7 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {
         _playerRage = GetComponent<PlayerRage>();
-        _playerSatis = GetComponent<PlayerSatisfaction>();
+        _playerSatis = GetComponent<PlayerLevelLogic>();
         _audioManager = GetComponent<PlayerAudioManager>();
         _animator = GetComponent<Animator>();
         damageModifier = 1;
@@ -40,7 +40,7 @@ public class PlayerAttack : MonoBehaviour
             _audioManager.AS_BasicSlap.Play();
 
             _playerRage.TakeDamage(-1f, gameObject);
-            _playerSatis.AddSatisfaction(wpn.Power);
+            _playerSatis.IncreaseXP(wpn.Power);
         }
     }
     public void AttackHold() //Holds the animation for charge attack
