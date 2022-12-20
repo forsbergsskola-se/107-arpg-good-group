@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
@@ -21,5 +22,14 @@ public class StartMenu : MonoBehaviour
         SceneManager.LoadScene("The_Viking_Village");
         canvas.GetComponent<Canvas>().enabled = true;
         _player.transform.position = new Vector3(-85,5,12);
+    }
+
+    public void ExitGame()
+    {
+        //#if UNITY_EDITOR
+        //UnitEditor.EditorApplication.isPlaying = false;
+        //#endif
+        Application.Quit();
+        Debug.Log("Game is exiting");
     }
 }
