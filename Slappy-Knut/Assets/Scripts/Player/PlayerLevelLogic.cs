@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PlayerLevelLogic : MonoBehaviour
 {
-    private float XPEarned;
+    public float XPEarned;
 
     private PlayerRage rageLogic;
     private PlayerAttack attackLogic;
@@ -13,6 +14,8 @@ public class PlayerLevelLogic : MonoBehaviour
     private float nextLevelXP; //Stores what the next levels required XP is
     public ParticleSystem levelUpVisualEffect;
     public int level;
+    
+    public Slider satisfactionBar;
 
     
     // Start is called before the first frame update
@@ -23,6 +26,7 @@ public class PlayerLevelLogic : MonoBehaviour
         nextLevelXP = 100;
         rageLogic = GetComponent<PlayerRage>();
         attackLogic = GetComponent<PlayerAttack>();
+        IncreaseXP(50);
     }
 
     // Update is called once per frame
@@ -35,6 +39,7 @@ public class PlayerLevelLogic : MonoBehaviour
     {
         XPEarned += addition;
         checkForLevelUp();
+        satisfactionBar.value = XPEarned / nextLevelXP;
     }
 
     private void checkForLevelUp()
