@@ -1,13 +1,17 @@
 using System.Collections;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FishLandmine : MonoBehaviour, IConsumable
 {
     public float power;
     public GameObject explosion;
     public GameObject fishBody;
+    public Image icon;
 
+    public string Name { get; set; }
+    public Image Icon { get; set; }
     public float Power { get; set; }
     public string Description { get; set; }
     public float Cooldown { get; set; }
@@ -19,6 +23,7 @@ public class FishLandmine : MonoBehaviour, IConsumable
     private AudioSource _audioSource;
     private void Start()
     {
+        Icon = icon;
         _audioSource = GetComponent<AudioSource>();
         Chargable = false;
         Power = power;

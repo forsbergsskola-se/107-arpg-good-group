@@ -208,6 +208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9086747363790366169}
   - component: {fileID: 9086747363790366168}
+  - component: {fileID: 7311541417032393379}
   m_Layer: 0
   m_Name: Anti-Anxiety Potion
   m_TagString: Untagged
@@ -224,7 +225,7 @@ Transform:
   m_GameObject: {fileID: 9086747363790366170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.00227925, y: 0.07043302, z: -0.05834443}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9086747364065419274}
@@ -247,6 +248,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   count: 3
   power: 0.2
+  icon: {fileID: 21300000, guid: 9a99d085bb9cc4e72972e075606cf4b9, type: 3}
+--- !u!114 &7311541417032393379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9086747363790366170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b7116e6dbbb4b3196721884881cc3b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  interactionTransform: {fileID: 0}
 --- !u!1 &9086747364065419277
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour, IItem
 {
+    public string Name { get; set; }
+    public Sprite Icon { get; set; }
     public float Power { get; set; }
     public string Description { get; set; }
     public float Cooldown { get; set; }

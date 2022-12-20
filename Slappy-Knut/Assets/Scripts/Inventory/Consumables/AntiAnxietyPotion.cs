@@ -1,12 +1,16 @@
 using Interfaces;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AntiAnxietyPotion : MonoBehaviour, IConsumable
 {
     public int count = 5;
     public float power = 10;
-    
-    
+    public Image icon;
+
+
+    public string Name { get; set; }
+    public Image Icon { get; set; }
     public float Power { get; set; }
     public string Description { get; set; }
     public float Cooldown { get; set; }
@@ -18,6 +22,7 @@ public class AntiAnxietyPotion : MonoBehaviour, IConsumable
     private PlayerAudioManager _audioManager;
     private void Start()
     {
+        Icon = icon;
         Count = count;
         Chargable = false;
         Power = power;
