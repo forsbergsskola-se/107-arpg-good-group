@@ -1,14 +1,11 @@
-using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AntiAnxietyPotion : MonoBehaviour, IConsumable
 {
-    public int count = 5;
     public float power = 10;
     public Image icon;
-
-
+    
     public string Name { get; set; }
     public Image Icon { get; set; }
     public float Power { get; set; }
@@ -17,13 +14,12 @@ public class AntiAnxietyPotion : MonoBehaviour, IConsumable
     public float Range { get; set; }
     public bool Equipable { get; set; }
     public bool Chargable { get; set; }
-    public int Count { get; set; }
+    public static int Count { get; set; }
     
     private PlayerAudioManager _audioManager;
     private void Start()
     {
         Icon = icon;
-        Count = count;
         Chargable = false;
         Power = power;
         Description = $"Potion that lowers rage by {power}";
@@ -34,12 +30,16 @@ public class AntiAnxietyPotion : MonoBehaviour, IConsumable
     
     public void Use()
     {
-        if (count < 1) return;
+        if (Count < 1) return;
         _audioManager.AS_DrinkPotion.Play();
         // lowers player's current rage by power
         GetComponent<PlayerRage>().TakeDamage(-power, null);
-        count--;
+        Count--;
     }
 
-    public void Charge() {}
+    public void IncreaseCount()
+    {
+        Count++;
+        Debug.Log(Count);
+    }
 }

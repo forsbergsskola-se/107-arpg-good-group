@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9086747362041725108}
   - component: {fileID: 9086747362041725106}
   - component: {fileID: 9086747362041725109}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GPVFX_Cork_GPVFX_Corks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 9086747362058882443}
   - component: {fileID: 9086747362058882441}
   - component: {fileID: 9086747362058882440}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GPVFX_Bottle_C_Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9086747363442531925}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GPVFX_CORK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,8 @@ GameObject:
   - component: {fileID: 9086747363790366169}
   - component: {fileID: 9086747363790366168}
   - component: {fileID: 7311541417032393379}
-  m_Layer: 0
+  - component: {fileID: 1011018473}
+  m_Layer: 7
   m_Name: Anti-Anxiety Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +263,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  interactionTransform: {fileID: 0}
+  interactionTransform: {fileID: 9086747363790366169}
+--- !u!135 &1011018473
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9086747363790366170}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8397255
+  m_Center: {x: 0, y: 0.1045475, z: 0.235178}
 --- !u!1 &9086747364065419277
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +288,7 @@ GameObject:
   - component: {fileID: 9086747364065419274}
   - component: {fileID: 9086747364065419272}
   - component: {fileID: 9086747364065419275}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GPVFX_Bottle_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}

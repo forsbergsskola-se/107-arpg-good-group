@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
         {
             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-            
             //Getting either item on focus or enemy to walk towards them
             if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, interactableLayer))
             {

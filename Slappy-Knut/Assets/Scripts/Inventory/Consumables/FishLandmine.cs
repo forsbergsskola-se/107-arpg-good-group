@@ -16,22 +16,29 @@ public class FishLandmine : MonoBehaviour, IConsumable
     public string Description { get; set; }
     public float Cooldown { get; set; }
     public float Range { get; set; }
-    public bool Equipable { get; set; }
-    public bool Chargable { get; set; }
-    public int Count { get; set; }
+    public static int Count { get; set; }
 
     private AudioSource _audioSource;
     private void Start()
     {
         Icon = icon;
         _audioSource = GetComponent<AudioSource>();
-        Chargable = false;
         Power = power;
         Description = "Fish that causes damage when you get too close.";
         Cooldown = 20;
         Range = 10;
     }
-    public void Use() {}
+
+    public void Use()
+    {
+        if (Count < 1) return;
+        
+        Transform pTransform = FindObjectOfType<PlayerController>().transform;
+        Vector3 p = pTransform.transform.position;
+        Vector3 spawnOffset = new Vector3(p.x, p.y + 0.2f, p.z);
+        Instantiate(gameObject, spawnOffset, pTransform.rotation);
+        Count--;
+    }
     private void OnTriggerEnter(Collider other) // this is supposed to be DoT maybe?
     {
         IDamagable damagable = other.gameObject.GetComponent<IDamagable>();
@@ -51,5 +58,8 @@ public class FishLandmine : MonoBehaviour, IConsumable
         yield return new WaitForSecondsRealtime(1.5f);
         Destroy(gameObject);
     }
-    public void Charge(){}
+    public void IncreaseCount()
+    {
+        Count++;
+    }
 }

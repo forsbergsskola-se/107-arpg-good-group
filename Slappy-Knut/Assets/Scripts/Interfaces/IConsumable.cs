@@ -1,7 +1,11 @@
 using Interfaces;
+using UnityEngine;
 
 public interface IConsumable : IItem
 {
-    public int Count { get; set; }
+    public static int Count { get; set; }
+
+    public void IncreaseCount(){}
+
     public void Use(){}
 }

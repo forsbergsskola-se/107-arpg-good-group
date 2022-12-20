@@ -19,10 +19,7 @@ public class UseConsumable : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.H))
         {
-            Transform t = transform;
-            Vector3 p = t.transform.position;
-            Vector3 spawnOffset = new Vector3(p.x, p.y + 0.2f, p.z);
-            Instantiate(fishLandmine, spawnOffset, t.rotation);
+            fishLandmine.Use();
         }
     }
 }
