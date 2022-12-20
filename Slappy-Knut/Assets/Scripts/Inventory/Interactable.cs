@@ -1,3 +1,4 @@
+using Interfaces;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
@@ -11,8 +12,11 @@ public class Interactable : MonoBehaviour
 
     protected virtual void Interact()
     {
-        //This method is meant to be overwritten
-        Debug.Log("Interacting with " + transform.name);
+        IDamagable damagable = transform.GetComponent<IDamagable>();
+        if (damagable != null)
+        {
+            FindObjectOfType<PlayerAttack>()._animator.Play("attack");
+        }
     }
 
     private void Update()

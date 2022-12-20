@@ -33,7 +33,7 @@ public class NPC : MonoBehaviour, IDamagable
     {
         
     }
-
+    
     protected void RandomizeValues()//This is where we want to generate loot later, dont remove this function
     {
         
