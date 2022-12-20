@@ -21,18 +21,10 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Broadleaf_Shrub_01_Large_mat
-  m_Shader: {fileID: -6465566751694194690, guid: cdac903258e3f324b994c0331d222b5f,
+  m_Shader: {fileID: -6465566751694194690, guid: 65ab067e659b9d64cb1b6f50a7ee7735,
     type: 3}
   m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _ANIM_PROCEDURAL_BRANCH
-  - _DISABLE_DBUFFER
-  - _DOUBLESIDED_ON
-  - _MASKMAP
-  - _MATERIAL_FEATURE_TRANSMISSION
-  - _NORMALMAP
-  - _NORMALMAP_TANGENT_SPACE
-  - _THICKNESSMAP
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -448,6 +440,7 @@ Material:
     - _RefractionMode: 0
     - _RefractionModel: 0
     - _RefractionSSRayModel: 0
+    - _SPECGLOSSMAP: 0
     - _SSRefractionProjectionModel: 0
     - _SSSAndTransmissionType: 2
     - _ShiverDirectionality: 0.5

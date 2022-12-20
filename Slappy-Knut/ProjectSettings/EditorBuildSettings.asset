@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TestPlayer.unity
     guid: d926c346009f937449b94ee282c36552
+  - enabled: 1
+    path: Assets/Scenes/Midnight_Viking_Village_Level.unity
+    guid: 407e5e248e99eaa49843ffed2726ae4c
+  - enabled: 1
+    path: Assets/Scenes/The_Viking_Village.unity
+    guid: 087d6dae144bd1048a9b88f357848931
   m_configObjects: {}
