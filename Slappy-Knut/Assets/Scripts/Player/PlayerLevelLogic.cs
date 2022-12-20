@@ -50,6 +50,7 @@ public class PlayerLevelLogic : MonoBehaviour
             level++;
             nextLevelXP = nextLevelXP * 1.5f;
             rageLogic.IncreaseStats(2,1.2f);
+            PlayerRage.CurrentRage = 0;
             attackLogic.IncreaseAttackPower(1.3f);
             levelUpVisualEffect?.Play();
         }
