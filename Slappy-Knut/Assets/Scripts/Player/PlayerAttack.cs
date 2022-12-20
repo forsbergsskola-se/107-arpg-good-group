@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public LayerMask enemyLayer;
+    public LayerMask interactableLayer;
     public GameObject attackPoint;
     
     private PlayerRage _playerRage;
@@ -16,58 +16,37 @@ public class PlayerAttack : MonoBehaviour
     private bool _mouseHeld;
     private float _timeHeld = 1;
 
+
+
     void Start()
     {
         //To equip glove at start
         _playerRage = GetComponent<PlayerRage>();
         _playerSatis = GetComponent<PlayerSatisfaction>();
         _audioManager = GetComponent<PlayerAudioManager>();
-        _playerMovement = GetComponent<PlayerController>();
         _animator = GetComponent<Animator>();
         damageModifier = 1;
     }
-
-    private void Update()
-    {
-        _mouseHeld = Input.GetMouseButton(1);
-        if (_mouseHeld)
-        {
-            Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitInfo;
-            if (Physics.Raycast(rayOrigin, out hitInfo, _playerMovement.maxRayCastDistance, enemyLayer))
-            {
-                transform.LookAt(hitInfo.transform);
-                //distance check between target and player
-                if (Vector3.Distance(hitInfo.transform.position, transform.position) < Weapon.CurrEquippedWeapon.Range)
-                {
-                    _timeHeld += Time.deltaTime;
-                    _animator.Play("attack");
-                } 
-            }
-        }
-        if(_timeHeld -1 > Weapon.CurrEquippedWeapon.ChargeTime || !_mouseHeld) AttackRelease();
-    }
-    
     //tied to the animator as an event, only triggered when the slap lands
     public void Attack()
     {
         Weapon wpn = Weapon.CurrEquippedWeapon;
         //Detect enemies in range of attack
-        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.transform.position, wpn.Range, enemyLayer);
+        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.transform.position, wpn.Range, interactableLayer);
         //Damage
+        
         foreach (Collider enemy in hitEnemies)
         {
+            enemy.GetComponent<IDamagable>().TakeDamage(wpn.Power *  PlayerController.TimeHeld, gameObject);
             _audioManager.AS_BasicSlap.Play();
-            enemy.GetComponent<IDamagable>().TakeDamage((wpn.Power * damageModifier) * _timeHeld, gameObject);
-            Debug.Log(wpn.Power * _timeHeld);
+
             _playerRage.TakeDamage(-1f, gameObject);
             _playerSatis.AddSatisfaction(wpn.Power);
-            Debug.Log($"{enemy.name} was hit");
         }
     }
     public void AttackHold() //Holds the animation for charge attack
     {
-        if (Weapon.CurrEquippedWeapon.Chargable && _mouseHeld)
+        if (Weapon.CurrEquippedWeapon.Chargable && PlayerController.MouseHeld)
         {
             _animator.speed = 0;
         }

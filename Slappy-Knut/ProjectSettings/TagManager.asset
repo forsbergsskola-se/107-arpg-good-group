@@ -15,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Walkable
-  - Enemy
+  - Interactable
   - Reflection_Probes
   - Lighting
   - Props
@@ -23,7 +23,7 @@ TagManager:
   - Ground
   - AccessibleVolume
   - PostProcessing
-  - Item
+  - Enemy
   - MainGround
   - Player
   - 
