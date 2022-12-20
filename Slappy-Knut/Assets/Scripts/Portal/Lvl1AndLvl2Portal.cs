@@ -1,28 +1,34 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EnterPortal : MonoBehaviour
+public class Lvl1AndLvl2Portal : MonoBehaviour
 {
-    public float distance;
-
+    private float _distance;
     private Scene _activeScene;
     private GameObject _player;
     private GameObject _inventoryUi;
     private GameObject _glove;
+    private GameObject _canvas;
 
     private void Start()
     {
         _activeScene = SceneManager.GetActiveScene();
         _player = GameObject.FindGameObjectWithTag("Player");
-        _inventoryUi = FindObjectOfType<InventoryUI>().gameObject;
+        _inventoryUi = FindObjectOfType<InventoryUI>().gameObject; 
         _glove = FindObjectOfType<Glove>().gameObject;
+        _canvas = FindObjectOfType<Canvas>().gameObject;
+        
+        DontDestroyOnLoad(_player);
+        DontDestroyOnLoad(_inventoryUi);
+        DontDestroyOnLoad(_glove);
+        DontDestroyOnLoad(_canvas);
     }
 
     private void Update()
     {
-        distance = Vector3.Distance(_player.transform.position, transform.position);
+        _distance = Vector3.Distance(_player.transform.position, transform.position);
 
-        if (distance < 3 && IsEnterPortalPressed())
+        if (_distance < 3 && IsEnterPortalPressed())
         {
             UsePortal();
         }
@@ -30,9 +36,6 @@ public class EnterPortal : MonoBehaviour
 
     public void UsePortal()
     {
-        DontDestroyOnLoad(_player);
-        DontDestroyOnLoad(_inventoryUi);
-        DontDestroyOnLoad(_glove);
         if (_activeScene.name == "The_Viking_Village")
         {
             SceneManager.LoadScene("Midnight_Viking_Village_Level");
