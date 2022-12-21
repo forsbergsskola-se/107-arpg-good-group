@@ -1,3 +1,4 @@
+using Interfaces;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
@@ -8,7 +9,10 @@ public class Interactable : MonoBehaviour
     private Transform _player;//Reference to the player transform
     private bool _hasInteracted = false; //Have we already interacted with the object?
 
-    protected virtual void Interact() {}
+    protected virtual void Interact()
+    {
+        FindObjectOfType<PlayerInteract>().Interact(this);
+    }
 
     protected virtual void Update()
     {
@@ -28,6 +32,8 @@ public class Interactable : MonoBehaviour
 
     public void OnFocused(Transform playerTransform)
     {
+        IDamagable damagable = GetComponent<IDamagable>();
+        if (damagable != null) radius = Weapon.CurrEquippedWeapon.Range;
         _isFocus = true;
         _player = playerTransform;
         _hasInteracted = false;

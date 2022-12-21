@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,9 +9,23 @@ public class InventorySlot : MonoBehaviour
     public Button removeButton;
     
     //testing
-    public InventoryItem _inventoryItem;
-    //private InventoryItem _inventoryItem;
-    
+    [HideInInspector] public InventoryItem _inventoryItem;
+    public GameObject _descriptionBox;
+    public TextMeshProUGUI _descriptionText;
+
+    public void ShowDescription()
+    {
+        if (_inventoryItem != null)
+        {
+            _descriptionBox.SetActive(true);
+            _descriptionText.text = _inventoryItem.weapon.Description;
+        }
+    }
+
+    public void HideDescription()
+    {
+        _descriptionBox.SetActive(false);
+    }
     public void AddItem(InventoryItem newInventoryItem)//Makes the icon appear
     {
         _inventoryItem = newInventoryItem;
@@ -33,6 +49,7 @@ public class InventorySlot : MonoBehaviour
         Inventory.Instance.Remove(_inventoryItem);
     }
 
+    
     public void UseItem()
     {
         if (_inventoryItem != null)

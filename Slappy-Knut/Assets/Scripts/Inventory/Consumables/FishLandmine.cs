@@ -8,13 +8,13 @@ public class FishLandmine : Interactable, IConsumable
     public float power;
     public GameObject explosion;
     public GameObject fishBody;
-    public Image icon;
+    public Sprite icon;
 
     private PlayerLevelLogic _playerLevelLogic;
     private PlayerRage _playerRage;
 
     public string Name { get; set; }
-    public Image Icon { get; set; }
+    public Sprite Icon { get; set; }
     public float Power { get; set; }
     public string Description { get; set; }
     public float Cooldown { get; set; }
@@ -22,13 +22,11 @@ public class FishLandmine : Interactable, IConsumable
     public static int Count { get; set; }
 
     private AudioSource _audioSource;
-    // public IConsumable consumable;
 
     private void Start()
     {
         Icon = icon;
         _audioSource = GetComponent<AudioSource>();
-        // consumable = GetComponent<IConsumable>();
         Power = power;
         Description = "Fish that causes damage when you get too close.";
         Cooldown = 20;
@@ -37,11 +35,6 @@ public class FishLandmine : Interactable, IConsumable
         GameObject player = GameObject.FindGameObjectWithTag("Player"); //THIS CODE IS FRAGILE
         _playerLevelLogic = player.GetComponent<PlayerLevelLogic>();//We should probaby come up with something better for this
         _playerRage = player.GetComponent<PlayerRage>();
-    }
-    protected override void Interact()
-    {
-        IncreaseCount();
-        Destroy(gameObject);
     }
     public void Use()
     {

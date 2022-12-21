@@ -12,27 +12,14 @@ public class NPC : Interactable, IDamagable
     protected float health;
     protected bool iFramesActive;
     private NPCAudioManager _audioManager;
-    private PlayerAttack pAttack;
     void Start()
     {
-        pAttack = FindObjectOfType<PlayerAttack>();
-
         rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         RandomizeValues();
         
         health = startHealth;
         _audioManager = GetComponent<NPCAudioManager>();
         iFramesActive = false;
-    }
-    
-    //update is used in interactable
-    protected override void Update()
-    {
-        base.Update();
-    }
-    protected override void Interact()
-    {
-        pAttack._animator.Play("attack");
     }
 
     protected void RandomizeValues()//This is where we want to generate loot later, dont remove this function

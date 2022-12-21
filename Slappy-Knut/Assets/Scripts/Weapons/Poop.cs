@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Hand : Weapon
+public class Poop : Weapon
 {
     public override string Name { get; set; }
     public override Sprite Icon { get; set; }
@@ -16,13 +16,13 @@ public class Hand : Weapon
     
     protected override void Start()
     {
-        Name = "Hand";
+        Name = "Poop";
         Icon = _icon;
-        Power = 4;
-        Range = 2;
-        Chargable = false;
-        ChargeTime = 0;
-        Description = $"Knut only needs his hands of fury. -Hand has {Power} damage";
+        Power = 10;
+        Range = 3;
+        Chargable = true;
+        ChargeTime = 2;
+        Description = $"Knut can throw the poop - poop has {Power} damage";
         Cooldown = 0;
         IsEquipped = false;
     }
