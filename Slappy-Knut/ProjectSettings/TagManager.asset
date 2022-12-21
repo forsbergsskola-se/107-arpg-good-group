@@ -8,6 +8,7 @@ TagManager:
   - Ogre
   - AttackPoint
   - Inventory
+  - DescriptionBox
   layers:
   - Default
   - TransparentFX

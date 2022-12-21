@@ -15,7 +15,6 @@ public class SwitchWeapon : MonoBehaviour
             }
         }
     }
-
     
     private void Update()
     {

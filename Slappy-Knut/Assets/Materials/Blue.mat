@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Black 1
+  m_Name: Blue
   m_Shader: {fileID: -6465566751694194690, guid: 65ab067e659b9d64cb1b6f50a7ee7735,
     type: 3}
   m_ValidKeywords: []
