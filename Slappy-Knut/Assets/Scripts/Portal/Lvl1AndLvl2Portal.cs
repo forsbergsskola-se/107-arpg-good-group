@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,12 +13,16 @@ public class Lvl1AndLvl2Portal : MonoBehaviour
     private PlayerLevelLogic _levelLogic;
     private GameObject _glove;
 
+    private AudioSource _audioSource;
+
     private void Start()
     {
         _activeScene = SceneManager.GetActiveScene();
         _player = GameObject.FindGameObjectWithTag("Player");
         _levelLogic = _player.GetComponent<PlayerLevelLogic>();
         _glove = FindObjectOfType<Glove>().gameObject;
+
+        _audioSource = GetComponent<AudioSource>();
 
         DontDestroyOnLoad(_glove);
     }
@@ -33,8 +38,20 @@ public class Lvl1AndLvl2Portal : MonoBehaviour
         }
     }
 
-    public void UsePortal()
+    private void UsePortal()
     {
+        _audioSource.Play();
+        StartCoroutine(WaitForSceneLoad());
+    }
+
+    private bool IsEnterPortalPressed()
+    {
+        return Input.GetKey(KeyCode.E);
+    }
+
+    private IEnumerator WaitForSceneLoad()
+    {
+        yield return new WaitForSeconds(1f);
         if (_activeScene.name == "The_Viking_Village")
         {
             SceneManager.LoadScene("Midnight_Viking_Village_Level");
@@ -43,10 +60,5 @@ public class Lvl1AndLvl2Portal : MonoBehaviour
         {
             SceneManager.LoadScene("The_Viking_Village");
         }
-    }
-
-    private bool IsEnterPortalPressed()
-    {
-        return Input.GetKey(KeyCode.E);
     }
 }
