@@ -1,3 +1,5 @@
+
+using System;
 using Interfaces;
 using UnityEngine.EventSystems;
 using UnityEngine;
@@ -15,6 +17,15 @@ public class PlayerController : MonoBehaviour
     private PlayerAudioManager _audioManager;
     public static bool MouseHeld;
     public static float TimeHeld = 1;
+    
+    // Start is called before the first frame update
+    //Use this for initialization
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     void Start()
     {
         _motor = GetComponent<PlayerMotor>();

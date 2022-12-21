@@ -61,4 +61,11 @@ public class PlayerRage : MonoBehaviour, IDamagable
         if (CurrentRage < 0) CurrentRage = 0; //clamps the rage bar
         rageBar.value = CurrentRage;
     }
+
+    public void IncreaseStats(float rage, float defenceRating)
+    {
+        maxRage *= rage;
+        this.DefenseRating *= defenceRating;
+    }
+    
 }
