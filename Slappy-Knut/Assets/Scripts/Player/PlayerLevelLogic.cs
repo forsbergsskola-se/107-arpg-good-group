@@ -34,7 +34,7 @@ public class PlayerLevelLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //IncreaseXP(1*Time.deltaTime);
+        //IncreaseXP(5*Time.deltaTime);
     }
 
     public void IncreaseXP(float addition)

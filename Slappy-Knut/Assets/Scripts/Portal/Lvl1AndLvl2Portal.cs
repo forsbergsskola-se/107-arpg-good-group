@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,7 +6,7 @@ public class Lvl1AndLvl2Portal : MonoBehaviour
 {
     public int levelRequirement = 1;
     
-    private float _distance;
+    
     private Scene _activeScene;
     private GameObject _player;
     private PlayerLevelLogic _levelLogic;
@@ -21,13 +22,12 @@ public class Lvl1AndLvl2Portal : MonoBehaviour
         DontDestroyOnLoad(_glove);
     }
 
-    private void Update()
+    
+    private void OnTriggerStay(Collider other)
     {
-        
-        _distance = Vector3.Distance(_player.transform.position, transform.position);
         Debug.Log("Level: " + _levelLogic.level);
 
-        if (_distance < 3 && IsEnterPortalPressed() && _levelLogic.level >= levelRequirement)
+        if (IsEnterPortalPressed() && _levelLogic.level >= levelRequirement)
         {
             UsePortal();
         }
