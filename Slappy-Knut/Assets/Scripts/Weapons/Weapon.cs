@@ -1,10 +1,12 @@
-using System;
 using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour, IItem
 {
+    public string Name { get; set; }
+    public Image Icon { get; set; }
     public float Power { get; set; }
     public string Description { get; set; }
     public float Cooldown { get; set; }
