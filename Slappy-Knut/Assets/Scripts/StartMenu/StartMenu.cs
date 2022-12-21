@@ -21,7 +21,7 @@ public class StartMenu : MonoBehaviour
         
         SceneManager.LoadScene("The_Viking_Village");
         canvas.GetComponent<Canvas>().enabled = true;
-        _player.transform.position = new Vector3(-85,5,12);
+        
     }
 
     public void ExitGame()
