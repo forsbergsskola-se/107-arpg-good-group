@@ -10,7 +10,7 @@ public class PlayerAttack : MonoBehaviour
     private PlayerLevelLogic _playerSatis;
     private PlayerAudioManager _audioManager;
     private PlayerController _playerMovement;
-    private Animator _animator;
+    [HideInInspector] public Animator _animator;
     private float damageModifier;
 
     private bool _mouseHeld;
