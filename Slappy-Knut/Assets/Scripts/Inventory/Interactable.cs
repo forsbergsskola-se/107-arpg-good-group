@@ -1,3 +1,4 @@
+using Interfaces;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
@@ -31,6 +32,8 @@ public class Interactable : MonoBehaviour
 
     public void OnFocused(Transform playerTransform)
     {
+        IDamagable damagable = GetComponent<IDamagable>();
+        if (damagable != null) radius = Weapon.CurrEquippedWeapon.Range;
         _isFocus = true;
         _player = playerTransform;
         _hasInteracted = false;
