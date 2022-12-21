@@ -752,7 +752,6 @@ GameObject:
   - component: {fileID: 2122399718}
   - component: {fileID: 5012624539372762668}
   - component: {fileID: 5052753448860610466}
-  - component: {fileID: 6488831786265881713}
   m_Layer: 7
   m_Name: FishLandmine
   m_TagString: Untagged
@@ -915,24 +914,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d5e84544f380be469897a146cf16514, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 3
   power: 0
   explosion: {fileID: 1916654942306520338}
   fishBody: {fileID: 3056982533342112445}
   icon: {fileID: 0}
---- !u!114 &6488831786265881713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1916654942182664184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b7116e6dbbb4b3196721884881cc3b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 3
-  interactionTransform: {fileID: 1916654942182664190}
 --- !u!1 &1916654942250823919
 GameObject:
   m_ObjectHideFlags: 0

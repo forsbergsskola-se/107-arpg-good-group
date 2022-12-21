@@ -8344,6 +8344,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 262359424}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &262965685 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7873197440197815287, guid: 04fa65afaa12c7c4099956b4347a1dca,
+    type: 3}
+  m_PrefabInstance: {fileID: 2994828387815255040}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &263716667 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2492589434950263708, guid: 70df8fec56482ce4cbecb1e4c8a0d57c,
@@ -46986,43 +46992,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1290385356}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &1294777065
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: WaterDepthMap
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!4 &1296229028 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4209614434616532, guid: d3c9d0f652fa2454eb70f623ca29ddc4,
@@ -75775,6 +75744,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 130852540, guid: 04fa65afaa12c7c4099956b4347a1dca, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2994828389178029690, guid: 04fa65afaa12c7c4099956b4347a1dca,
         type: 3}
       propertyPath: waypoints.Array.data[0]
@@ -75810,6 +75783,11 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[6]
       value: 
       objectReference: {fileID: 1912122120}
+    - target: {fileID: 2994828389178029693, guid: 04fa65afaa12c7c4099956b4347a1dca,
+        type: 3}
+      propertyPath: interactionTransform
+      value: 
+      objectReference: {fileID: 262965685}
     - target: {fileID: 7873197440197815285, guid: 04fa65afaa12c7c4099956b4347a1dca,
         type: 3}
       propertyPath: m_Name

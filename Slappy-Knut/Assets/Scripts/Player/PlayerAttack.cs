@@ -13,11 +13,6 @@ public class PlayerAttack : MonoBehaviour
     [HideInInspector] public Animator _animator;
     private float damageModifier;
 
-    private bool _mouseHeld;
-    private float _timeHeld = 1;
-
-
-
     void Start()
     {
         _playerRage = GetComponent<PlayerRage>();
@@ -50,12 +45,6 @@ public class PlayerAttack : MonoBehaviour
             _animator.speed = 0;
         }
     }
-    public void AttackRelease()
-    {
-        _animator.speed = 1;
-        _timeHeld = 1;
-    }
-
     public void IncreaseAttackPower(float powerIncreaseMultiplier)
     {
         damageModifier *= powerIncreaseMultiplier;
