@@ -8,7 +8,10 @@ public class Interactable : MonoBehaviour
     private Transform _player;//Reference to the player transform
     private bool _hasInteracted = false; //Have we already interacted with the object?
 
-    protected virtual void Interact() {}
+    protected virtual void Interact()
+    {
+        FindObjectOfType<PlayerInteract>().Interact(this);
+    }
 
     protected virtual void Update()
     {

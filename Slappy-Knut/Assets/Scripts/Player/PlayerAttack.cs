@@ -21,6 +21,11 @@ public class PlayerAttack : MonoBehaviour
         _animator = GetComponent<Animator>();
         damageModifier = 1;
     }
+
+    public void AttackAnimation()
+    {
+        _animator.Play("attack");
+    }
     //tied to the animator as an event, only triggered when the slap lands
     public void Attack()
     {

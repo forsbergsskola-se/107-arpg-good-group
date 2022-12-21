@@ -3,10 +3,10 @@ using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Weapon : MonoBehaviour, IItem
+public class Weapon : Interactable, IItem
 {
     public string Name { get; set; }
-    public Image Icon { get; set; }
+    public Sprite Icon { get; set; }
     public float Power { get; set; }
     public string Description { get; set; }
     public float Cooldown { get; set; }

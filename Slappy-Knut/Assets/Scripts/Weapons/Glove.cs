@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class Glove : Weapon
 {
+    public Sprite icon;
     [SerializeField] private float _power = 4f;
     public GameObject glovePrefab;
     private void Start()
     {
+        Icon = icon;
         Power = _power;
         Chargable = true;
         ChargeTime = 2;
