@@ -1,6 +1,3 @@
-
-using System;
-using Interfaces;
 using UnityEngine.EventSystems;
 using UnityEngine;
 //Control the player. Here we choose our "focus" and where to move

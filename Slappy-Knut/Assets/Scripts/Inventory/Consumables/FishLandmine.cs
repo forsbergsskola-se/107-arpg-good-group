@@ -11,6 +11,7 @@ public class FishLandmine : MonoBehaviour, IConsumable
     public Image icon;
 
     private PlayerLevelLogic _playerLevelLogic;
+    private PlayerRage _playerRage;
 
     public string Name { get; set; }
     public Image Icon { get; set; }
@@ -32,6 +33,7 @@ public class FishLandmine : MonoBehaviour, IConsumable
 
         GameObject player = GameObject.FindGameObjectWithTag("Player"); //THIS CODE IS FRAGILE
         _playerLevelLogic = player.GetComponent<PlayerLevelLogic>();//We should probaby come up with something better for this
+        _playerRage = player.GetComponent<PlayerRage>();
     }
 
     public void Use()
@@ -54,6 +56,7 @@ public class FishLandmine : MonoBehaviour, IConsumable
         _audioSource.Play();
         damagable.TakeDamage(Power, gameObject);
         _playerLevelLogic.IncreaseXP(power);
+        _playerRage.TakeDamage(power * -1, gameObject);
         // coroutine is used to let the particle explosion finish before destroying the game object
         StartCoroutine(Explosion());
     }

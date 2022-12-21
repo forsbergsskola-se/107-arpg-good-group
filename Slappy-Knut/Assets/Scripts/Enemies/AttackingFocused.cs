@@ -9,6 +9,6 @@ public class AttackingFocused : Interactable
 
     protected override void Interact()
     {
-        //pAttack._animator.Play("attack");
+        pAttack._animator.Play("attack");
     }
 }
