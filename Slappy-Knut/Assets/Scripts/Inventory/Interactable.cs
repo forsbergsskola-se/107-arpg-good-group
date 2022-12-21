@@ -3,7 +3,6 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public float radius = 3f; //How close do we need to be to interact
-    public Transform interactionTransform; //The transform where we interact
 
     private bool _isFocus = false; //Is this interactable currently being focused?
     private Transform _player;//Reference to the player transform
@@ -11,14 +10,14 @@ public class Interactable : MonoBehaviour
 
     protected virtual void Interact() {}
 
-    private void Update()
+    protected virtual void Update()
     {
         //If we are currently being focused
         //And we haven't already interacted with the object
         if (_isFocus && !_hasInteracted)
         {
             //If we are close enough
-            float distance = Vector3.Distance(_player.position, interactionTransform.position);
+            float distance = Vector3.Distance(_player.position, transform.position);
             if (distance <= radius)
             {
                 Interact();
@@ -41,13 +40,13 @@ public class Interactable : MonoBehaviour
         _hasInteracted = false;
     }
 
-    private void OnDrawGizmosSelected()//Creates distance checking between player and object 
-    {
-        if (interactionTransform == null)
-        {
-            interactionTransform = transform;
-        }
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(interactionTransform.position, radius);
-    }
+    // private void OnDrawGizmosSelected()//Creates distance checking between player and object 
+    // {
+    //     if (interactionTransform == null)
+    //     {
+    //         interactionTransform = transform;
+    //     }
+    //     Gizmos.color = Color.yellow;
+    //     Gizmos.DrawWireSphere(transform.position, radius);
+    // }
 }

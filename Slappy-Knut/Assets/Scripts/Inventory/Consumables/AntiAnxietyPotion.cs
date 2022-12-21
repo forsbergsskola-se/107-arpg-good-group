@@ -1,7 +1,6 @@
-using UnityEngine;
 using UnityEngine.UI;
 
-public class AntiAnxietyPotion : MonoBehaviour, IConsumable
+public class AntiAnxietyPotion : Interactable, IConsumable
 {
     public float power = 10;
     public Image icon;
@@ -17,6 +16,8 @@ public class AntiAnxietyPotion : MonoBehaviour, IConsumable
     public static int Count { get; set; }
     
     private PlayerAudioManager _audioManager;
+    // public IConsumable consumable;
+
     private void Start()
     {
         Icon = icon;
@@ -26,8 +27,13 @@ public class AntiAnxietyPotion : MonoBehaviour, IConsumable
         Cooldown = 10;
         Range = 0;
         _audioManager = GetComponent<PlayerAudioManager>();
+        // consumable = GetComponent<IConsumable>();
     }
-    
+    protected override void Interact()
+    {
+        IncreaseCount();
+        Destroy(gameObject);
+    }
     public void Use()
     {
         if (Count < 1) return;
@@ -40,6 +46,5 @@ public class AntiAnxietyPotion : MonoBehaviour, IConsumable
     public void IncreaseCount()
     {
         Count++;
-        Debug.Log(Count);
     }
 }

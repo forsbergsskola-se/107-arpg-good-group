@@ -3,7 +3,7 @@ using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FishLandmine : MonoBehaviour, IConsumable
+public class FishLandmine : Interactable, IConsumable
 {
     public float power;
     public GameObject explosion;
@@ -22,10 +22,13 @@ public class FishLandmine : MonoBehaviour, IConsumable
     public static int Count { get; set; }
 
     private AudioSource _audioSource;
+    // public IConsumable consumable;
+
     private void Start()
     {
         Icon = icon;
         _audioSource = GetComponent<AudioSource>();
+        // consumable = GetComponent<IConsumable>();
         Power = power;
         Description = "Fish that causes damage when you get too close.";
         Cooldown = 20;
@@ -35,7 +38,11 @@ public class FishLandmine : MonoBehaviour, IConsumable
         _playerLevelLogic = player.GetComponent<PlayerLevelLogic>();//We should probaby come up with something better for this
         _playerRage = player.GetComponent<PlayerRage>();
     }
-
+    protected override void Interact()
+    {
+        IncreaseCount();
+        Destroy(gameObject);
+    }
     public void Use()
     {
         if (Count < 1) return;
