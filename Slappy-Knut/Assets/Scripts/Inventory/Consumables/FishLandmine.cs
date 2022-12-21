@@ -10,6 +10,8 @@ public class FishLandmine : MonoBehaviour, IConsumable
     public GameObject fishBody;
     public Image icon;
 
+    private PlayerLevelLogic _playerLevelLogic;
+
     public string Name { get; set; }
     public Image Icon { get; set; }
     public float Power { get; set; }
@@ -27,6 +29,9 @@ public class FishLandmine : MonoBehaviour, IConsumable
         Description = "Fish that causes damage when you get too close.";
         Cooldown = 20;
         Range = 10;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player"); //THIS CODE IS FRAGILE
+        _playerLevelLogic = player.GetComponent<PlayerLevelLogic>();//We should probaby come up with something better for this
     }
 
     public void Use()
@@ -48,6 +53,7 @@ public class FishLandmine : MonoBehaviour, IConsumable
         _audioSource.time = 1f; // removes audio delay
         _audioSource.Play();
         damagable.TakeDamage(Power, gameObject);
+        _playerLevelLogic.IncreaseXP(power);
         // coroutine is used to let the particle explosion finish before destroying the game object
         StartCoroutine(Explosion());
     }

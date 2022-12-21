@@ -7,16 +7,24 @@ public class PlayerAttack : MonoBehaviour
     public GameObject attackPoint;
     
     private PlayerRage _playerRage;
-    private PlayerSatisfaction _playerSatis;
+    private PlayerLevelLogic _playerSatis;
     private PlayerAudioManager _audioManager;
-    [HideInInspector] public Animator _animator;
+    private PlayerController _playerMovement;
+    private Animator _animator;
+    private float damageModifier;
+
+    private bool _mouseHeld;
+    private float _timeHeld = 1;
+
+
 
     void Start()
     {
         _playerRage = GetComponent<PlayerRage>();
-        _playerSatis = GetComponent<PlayerSatisfaction>();
+        _playerSatis = GetComponent<PlayerLevelLogic>();
         _audioManager = GetComponent<PlayerAudioManager>();
         _animator = GetComponent<Animator>();
+        damageModifier = 1;
     }
     //tied to the animator as an event, only triggered when the slap lands
     public void Attack()
@@ -30,8 +38,9 @@ public class PlayerAttack : MonoBehaviour
         {
             enemy.GetComponent<IDamagable>().TakeDamage(wpn.Power *  PlayerController.TimeHeld, gameObject);
             _audioManager.AS_BasicSlap.Play();
+
             _playerRage.TakeDamage(-1f, gameObject);
-            _playerSatis.AddSatisfaction(wpn.Power);
+            _playerSatis.IncreaseXP(wpn.Power);
         }
     }
     public void AttackHold() //Holds the animation for charge attack
@@ -40,5 +49,15 @@ public class PlayerAttack : MonoBehaviour
         {
             _animator.speed = 0;
         }
+    }
+    public void AttackRelease()
+    {
+        _animator.speed = 1;
+        _timeHeld = 1;
+    }
+
+    public void IncreaseAttackPower(float powerIncreaseMultiplier)
+    {
+        damageModifier *= powerIncreaseMultiplier;
     }
 }
