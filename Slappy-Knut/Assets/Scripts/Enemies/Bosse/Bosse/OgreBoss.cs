@@ -1,8 +1,9 @@
 
+using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OgreBoss : MonoBehaviour
+public class OgreBoss : MonoBehaviour, IDamagable
 {
     public GameObject runawayCheckPoint;
     public Image healthBar;
@@ -13,8 +14,8 @@ public class OgreBoss : MonoBehaviour
     private Animator _anim;
     
     [SerializeField] private bool _runAway;
-    [SerializeField] private int _health;
-    [SerializeField] private int _maxHealth = 10;
+    [SerializeField] private float _health;
+    [SerializeField] private float _maxHealth = 10;
     private bool _hasRaged;
 
     private void Start()
@@ -54,16 +55,17 @@ public class OgreBoss : MonoBehaviour
             _rb.MovePosition(Vector3.MoveTowards(_rb.position, position, 0.1f));
         }
     }
-    
-    public void TakeDamage(int damage) => Health -= damage; //temp placeholder TODO: implement IDamagable here
 
-    private int Health //temp placeholder
+    public void TakeDamage(float damage, GameObject attacker) => Health -= damage;
+    
+
+    private float Health //temp placeholder
     {
         get => _health;
         set
         {
             _health = value;
-            healthBar.fillAmount = value / (float)_maxHealth;
+            healthBar.fillAmount = value / _maxHealth;
             HealthLogic();
         }
     }
@@ -85,13 +87,6 @@ public class OgreBoss : MonoBehaviour
             AfterDeathLogic();
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        //temp placeholder
-        if(collision.collider.CompareTag("Player"))
-            TakeDamage(1);
-    }
-
     private void AfterDeathLogic()
     {
         _audioManager.AS_Death.Play();
@@ -110,5 +105,13 @@ public class OgreBoss : MonoBehaviour
     {
         //using this in the event listener on the animation to play on every footstep
         _audioManager.AS_FootSteps.Play();
+    }
+    
+    public float DefenseRating { get; set; }
+    
+
+    public void OnDeath()
+    {
+        throw new System.NotImplementedException();
     }
 }
