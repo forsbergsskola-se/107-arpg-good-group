@@ -33,14 +33,17 @@ public class PlayerAttack : MonoBehaviour
         //Detect enemies in range of attack
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.transform.position, wpn.Range, interactableLayer);
         //Damage
-        
         foreach (Collider enemy in hitEnemies)
         {
-            enemy.GetComponent<IDamagable>().TakeDamage(wpn.Power *  PlayerController.TimeHeld, gameObject);
-            _audioManager.AS_BasicSlap.Play();
+            IDamagable damagable = enemy.GetComponent<IDamagable>();
+            if (damagable != null)
+            {
+                damagable.TakeDamage(wpn.Power *  PlayerController.TimeHeld, gameObject);
+                _audioManager.AS_BasicSlap.Play();
 
-            _playerRage.TakeDamage(-1f, gameObject);
-            _playerSatis.IncreaseXP(wpn.Power);
+                _playerRage.TakeDamage(-1f, gameObject);
+                _playerSatis.IncreaseXP(wpn.Power);    
+            }
         }
     }
     public void AttackHold() //Holds the animation for charge attack
