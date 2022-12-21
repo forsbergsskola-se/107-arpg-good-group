@@ -99,6 +99,10 @@ public class OgreBoss : MonoBehaviour, IDamagable
         healthBar.GetComponentInParent<Canvas>().enabled = false;
         //Call OgreDeath state in the chicken
         _chick.OgreDead();
+        
+        //Testing
+        //GameObject test;
+        GameObject.FindWithTag("Gate").SetActive(false);
     }
     
     public void PlayStepSound()

@@ -25,10 +25,7 @@ public class ChickBoss : MonoBehaviour
 
     private StateEnum State
     {
-        get
-        {
-            return stateEnum;
-        }
+        get => stateEnum;
         set
         {
             stateEnum = value;
@@ -45,6 +42,11 @@ public class ChickBoss : MonoBehaviour
     
     private void Start()
     {
+        //testing
+        if(_player != null)
+            Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());
+        Physics.IgnoreCollision(FindObjectOfType<OgreBoss>().GetComponent<Collider>(), GetComponent<Collider>());
+        
         _player = GameObject.FindWithTag("Player");
         _audioManager = GetComponent<ChickAudioManager>();
         timer = _maxTimer;
@@ -135,6 +137,8 @@ public class ChickBoss : MonoBehaviour
             _anim.Play("Jump W Root");
             //making sjicken bigger when angry
             _rb.transform.localScale += new Vector3(2.5f,2.5f,2.5f) * Time.deltaTime;
+            //making the pich lower when raging
+            _audioManager.AS_RageChirp.pitch -= .1f * Time.deltaTime;
             if (_rb.transform.localScale.x > 15f) 
             {
                 _enRaged = true;
@@ -169,6 +173,8 @@ public class ChickBoss : MonoBehaviour
             {
                 Debug.Log("Player got hit!");
                 _audioManager.AS_AttackChirp.Play();
+                //test to make chicken sound deeper when bigger
+                _audioManager.AS_AttackChirp.pitch = 0.45f;
                 Vector3 force = Vector3.up * (knockBackForce * 6f);
                 _playerRb.AddForce(force, ForceMode.Impulse);
                 _gotHit = true;
