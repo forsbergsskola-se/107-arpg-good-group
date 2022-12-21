@@ -25,6 +25,8 @@ public class PlayerRage : MonoBehaviour, IDamagable
     void Start()
     {
         CurrentRage = 0;
+        GameObject rageSlider = GameObject.Find("RageBar");
+        rageBar = rageSlider.GetComponent<Slider>();
         _scene = SceneManager.GetActiveScene();
         _animator = GetComponent<Animator>();
         _audioManager = GetComponent<PlayerAudioManager>();

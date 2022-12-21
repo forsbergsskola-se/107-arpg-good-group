@@ -26,13 +26,15 @@ public class PlayerLevelLogic : MonoBehaviour
         nextLevelXP = 100;
         rageLogic = GetComponent<PlayerRage>();
         attackLogic = GetComponent<PlayerAttack>();
+        GameObject XPSlider = GameObject.Find("SatisfactionBar");
+        satisfactionBar = XPSlider.GetComponent<Slider>();
         IncreaseXP(50);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //IncreaseXP(1*Time.deltaTime);
     }
 
     public void IncreaseXP(float addition)
