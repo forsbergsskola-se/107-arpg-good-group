@@ -19,8 +19,8 @@ public class Glove : Weapon
         Name = "Glove";
         Icon = _icon;
         Power = 10;
-        Range = 2;
-        Chargable = false;
+        Range = 3;
+        Chargable = true;
         ChargeTime = 2;
         Description = $"Knut can really hit as hard as he charges, the soft glove protects his hand -glove has {Power} damage";
         Cooldown = 0;
