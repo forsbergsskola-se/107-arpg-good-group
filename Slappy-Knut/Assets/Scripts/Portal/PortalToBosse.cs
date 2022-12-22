@@ -53,7 +53,7 @@ public class PortalToBosse : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (_activeScene.name == "Day_Viking_Village_Level")
         {
-            SceneManager.LoadScene("BossScene");
+            SceneManager.LoadScene("Boss_Scene_Portal_Level");
         }
         else
         {

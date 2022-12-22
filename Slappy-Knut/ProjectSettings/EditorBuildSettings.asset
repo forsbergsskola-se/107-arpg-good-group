@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/The_Viking_Village.unity
     guid: 087d6dae144bd1048a9b88f357848931
   - enabled: 1
-    path: Assets/Scenes/BossScene.unity
+    path: Assets/Scenes/Boss_Scene_Portal_Level.unity
     guid: c77e1e7af75492944b0cd004a61a2f30
   - enabled: 1
     path: Assets/Scenes/Day_Viking_Village_Level.unity
