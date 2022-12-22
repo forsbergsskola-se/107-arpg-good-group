@@ -3,11 +3,11 @@ using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OgreBoss : MonoBehaviour, IDamagable
+public class OgreBoss : Interactable, IDamagable
 {
     public GameObject runawayCheckPoint;
     public Image healthBar;
-    private GameObject _player;
+    private GameObject _player1;
     private OgreAudioManager _audioManager;
     private ChickBoss _chick;
     private Rigidbody _rb;
@@ -21,7 +21,7 @@ public class OgreBoss : MonoBehaviour, IDamagable
     private void Start()
     {
         _audioManager = GetComponent<OgreAudioManager>();
-        _player = GameObject.FindWithTag("Player");
+        _player1 = GameObject.FindWithTag("Player");
         _health = _maxHealth;
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
@@ -35,7 +35,7 @@ public class OgreBoss : MonoBehaviour, IDamagable
         else
         {
             if(Health > 0)
-                transform.LookAt(new Vector3(_player.transform.position.x,0,_player.transform.position.z));
+                transform.LookAt(new Vector3(_player1.transform.position.x,0,_player1.transform.position.z));
         }
     }
 
@@ -56,7 +56,7 @@ public class OgreBoss : MonoBehaviour, IDamagable
         }
     }
 
-    public void TakeDamage(float damage, GameObject attacker) => Health -= damage;
+    public void TakeDamage(float damage, GameObject attacker) => Health -= damage; //<--- look into attacker thing
     
 
     private float Health //temp placeholder

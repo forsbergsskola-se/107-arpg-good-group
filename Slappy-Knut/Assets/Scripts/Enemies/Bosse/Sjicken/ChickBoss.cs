@@ -1,3 +1,4 @@
+using Interfaces;
 using UnityEngine;
 
 public class ChickBoss : MonoBehaviour
@@ -19,6 +20,9 @@ public class ChickBoss : MonoBehaviour
     private Rigidbody _playerRb;
     private LineRenderer _lineRenderer;
     private GameObject _player;
+
+    //private IDamagable takeDamage;
+    private PlayerRage _playerRage;
 
     [Header("State")] 
     [SerializeField] private StateEnum stateEnum;
@@ -42,6 +46,10 @@ public class ChickBoss : MonoBehaviour
     
     private void Start()
     {
+        if(_player != null)
+            _playerRage = _player.GetComponent<PlayerRage>();
+        //if(_player != null)
+        //    takeDamage = _player.GetComponent<IDamagable>();
         //testing
         if(_player != null)
             Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());
@@ -90,17 +98,21 @@ public class ChickBoss : MonoBehaviour
             //Todo: player loses health
             if(!_once)
             {
+                if(_player != null)
+                    _playerRage = _player.GetComponent<PlayerRage>();
                 //timer to make damage once every few msecs ? or iframes
                 Debug.Log("Player took damage!");
+                //takeDamage?.TakeDamage(0.1f); //<--check damage number
+                //if(_playerRage != null) 
+                _playerRage.TakeDamage(0.1f,gameObject);
+                    
                 _audioManager.AS_AttackChirp.Play();
                 _once = true;
                 
                 //knock backs the player when hit
                 Vector3 difference = (_player.transform.position-transform.position).normalized;
                 Vector3 force = difference * (knockBackForce * 5);
-                _playerRb.AddForce(force, ForceMode.Impulse); 
-            
-                _anim.SetBool("Run", false);
+                _playerRb.AddForce(force, ForceMode.Impulse);
             }
         }
         else
@@ -137,7 +149,7 @@ public class ChickBoss : MonoBehaviour
             _anim.Play("Jump W Root");
             //making sjicken bigger when angry
             _rb.transform.localScale += new Vector3(2.5f,2.5f,2.5f) * Time.deltaTime;
-            //making the pich lower when raging
+            //making the pitch lower when raging
             _audioManager.AS_RageChirp.pitch -= .1f * Time.deltaTime;
             if (_rb.transform.localScale.x > 15f) 
             {
@@ -193,7 +205,8 @@ public class ChickBoss : MonoBehaviour
             _gotHit = false;
             
             //Knock back the Sjicken  when he hits a fence
-            Vector3 difference = -(transform.forward);
+            //Vector3 difference = -(transform.forward);
+            Vector3 difference = collision.transform.forward;
             difference.y = 1f;
             Vector3 force = difference * knockBackForce * 0.5f;
             _rb.AddForce(force, ForceMode.Impulse); 

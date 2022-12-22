@@ -16,7 +16,7 @@ public class OutOfArena : MonoBehaviour
         //if either chicken and player get out of the arena resets them in the center
         if(other.GetComponent<ChickBoss>())
             _chickBoss.transform.position = new Vector3(0, 0, 0);
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && _player != null)
             _player.transform.position = new Vector3(0, 0, 0);
     }
 }
