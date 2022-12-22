@@ -24,15 +24,6 @@ public class ConsumableInventory : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            _antiAnxietyPotion.Use();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            _fishLandmine.Use();
-        }
-        
         if (AntiAnxietyPotion.Count > 0) SetColorEnabled(antiAnxietyIcon);
         if (AntiAnxietyPotion.Count == 0) SetColorDisabled(antiAnxietyIcon);
         if (FishLandmine.Count > 0) SetColorEnabled(fishLandmineIcon);

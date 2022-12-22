@@ -9,6 +9,8 @@ public class FishLandmine : Interactable, IConsumable
     public GameObject explosion;
     public GameObject fishBody;
     public Sprite icon;
+    public GameObject prefab;
+    public Collider collider;
 
     private PlayerLevelLogic _playerLevelLogic;
     private PlayerRage _playerRage;
@@ -43,7 +45,7 @@ public class FishLandmine : Interactable, IConsumable
         Transform pTransform = FindObjectOfType<PlayerController>().transform;
         Vector3 p = pTransform.transform.position;
         Vector3 spawnOffset = new Vector3(p.x, p.y + 0.2f, p.z);
-        Instantiate(gameObject, spawnOffset, pTransform.rotation);
+        Instantiate(prefab, spawnOffset, pTransform.rotation);
         Count--;
     }
     private void OnTriggerEnter(Collider other) // this is supposed to be DoT maybe?
@@ -63,6 +65,7 @@ public class FishLandmine : Interactable, IConsumable
     private IEnumerator Explosion()
     {
         explosion.SetActive(true);
+        collider.enabled = false;
         Destroy(fishBody);
         yield return new WaitForSecondsRealtime(1.5f);
         Destroy(gameObject);

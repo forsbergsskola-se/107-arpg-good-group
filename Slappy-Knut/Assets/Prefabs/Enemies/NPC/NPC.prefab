@@ -1264,7 +1264,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  interactionTransform: {fileID: 7873197440197815287}
   startHealth: 50
 --- !u!114 &2994828389178029681
 MonoBehaviour:

@@ -919,6 +919,8 @@ MonoBehaviour:
   explosion: {fileID: 1916654942306520338}
   fishBody: {fileID: 3056982533342112445}
   icon: {fileID: 0}
+  prefab: {fileID: 1916654942182664184}
+  collider: {fileID: 1916654942182664191}
 --- !u!1 &1916654942250823919
 GameObject:
   m_ObjectHideFlags: 0
