@@ -19,7 +19,7 @@ public class Poop : Weapon
         Name = "Poop";
         Icon = _icon;
         Power = 10;
-        Range = 3;
+        Range = 10;
         Chargable = true;
         ChargeTime = 2;
         Description = $"Knut can throw the poop - poop has {Power} damage";
