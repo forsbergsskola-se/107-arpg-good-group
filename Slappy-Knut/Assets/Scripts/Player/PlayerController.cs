@@ -1,4 +1,3 @@
-using Interfaces;
 using UnityEngine.EventSystems;
 using UnityEngine;
 //Control the player. Here we choose our "focus" and where to move
@@ -15,6 +14,15 @@ public class PlayerController : MonoBehaviour
     private PlayerAudioManager _audioManager;
     public static bool MouseHeld;
     public static float TimeHeld = 1;
+    
+    // Start is called before the first frame update
+    //Use this for initialization
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Start()
     {
         _motor = GetComponent<PlayerMotor>();
@@ -47,7 +55,6 @@ public class PlayerController : MonoBehaviour
         {
             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
-            
             //Getting either item on focus or enemy to walk towards them
             if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, interactableLayer))
             {

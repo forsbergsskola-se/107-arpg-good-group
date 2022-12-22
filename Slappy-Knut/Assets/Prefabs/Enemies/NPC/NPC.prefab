@@ -1179,7 +1179,6 @@ GameObject:
   - component: {fileID: 2994828389178029681}
   - component: {fileID: 2994828387355510823}
   - component: {fileID: 376720599}
-  - component: {fileID: 130852540}
   m_Layer: 7
   m_Name: NPC
   m_TagString: Untagged
@@ -1264,6 +1263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf8f374ef6739e479d223fa38b948a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 3
+  interactionTransform: {fileID: 7873197440197815287}
   startHealth: 50
 --- !u!114 &2994828389178029681
 MonoBehaviour:
@@ -1321,20 +1322,6 @@ CapsuleCollider:
   m_Height: 1.7953286
   m_Direction: 1
   m_Center: {x: 0, y: 1.1278708, z: 0}
---- !u!114 &130852540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7873197440197815285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47587c4e4fa898846a73b5b24244273b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radius: 3
-  interactionTransform: {fileID: 7873197440197815287}
 --- !u!1 &7873197440205912067
 GameObject:
   m_ObjectHideFlags: 0

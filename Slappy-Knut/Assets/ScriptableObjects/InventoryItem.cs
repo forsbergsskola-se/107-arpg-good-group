@@ -25,7 +25,7 @@ public class InventoryItem : ScriptableObject
 
         if (newSlot == _equippedSlot)
         {
-            Debug.Log("Equipping " + name);
+            Debug.Log("Equipping hand");
             Weapon.Switch(Weapon.DefaultWeapon);
             _equippedSlot = null;
         }
