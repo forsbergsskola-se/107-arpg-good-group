@@ -13583,6 +13583,8 @@ MonoBehaviour:
     type: 3}
   inventoryUiPrefab: {fileID: 2771619872676165141, guid: 4d855731dacf5794cbb902fbc63499e7,
     type: 3}
+  glovePrefab: {fileID: 4834642345348076956, guid: 4a53aea83ea6b404bbe3190985df587d,
+    type: 3}
 --- !u!4 &1734683086
 Transform:
   m_ObjectHideFlags: 0

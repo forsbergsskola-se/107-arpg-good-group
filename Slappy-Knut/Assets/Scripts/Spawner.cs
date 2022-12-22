@@ -45,7 +45,7 @@ public class Spawner : MonoBehaviour
         }
 
         _activeScene = SceneManager.GetActiveScene();
-        if (_activeScene.name != "Daytime_Viking_Village_Level")
+        if (_activeScene.name != "Day_Viking_Village_Level")
         {
             _glove.transform.position = new Vector3(0,100,0);
         }
