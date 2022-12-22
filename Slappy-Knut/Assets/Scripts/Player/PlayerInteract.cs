@@ -1,5 +1,6 @@
 using Interfaces;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -14,18 +15,9 @@ public class PlayerInteract : MonoBehaviour
     {
         Weapon wpn = interactable.GetComponent<Weapon>();
         InventoryItem inventoryItem = ScriptableObject.CreateInstance<InventoryItem>();
-        inventoryItem.icon = wpn.Icon;
-        inventoryItem.name = wpn.Name;
-        
-        bool wasPickedUp = Inventory.Instance.Add(inventoryItem);
-        
-        // Sets gameObject to the weapon in inventoryItem
         inventoryItem.weapon = wpn;
-        //Add to inventory
-        if (wasPickedUp)
-        { 
-            interactable.gameObject.SetActive(false);
-        }
+        bool wasPickedUp = Inventory.Instance.Add(inventoryItem);
+        if (wasPickedUp) Destroy(interactable.gameObject);
     }
 
     void ConsumablePickUp(Interactable interactable)
