@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         }
         newFocus.OnFocused(transform);
     }
-    void RemoveFocus()
+    public void RemoveFocus()
     {
         if (focus != null)
         {

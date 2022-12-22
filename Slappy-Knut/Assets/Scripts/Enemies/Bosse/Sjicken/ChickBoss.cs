@@ -46,10 +46,6 @@ public class ChickBoss : MonoBehaviour
     
     private void Start()
     {
-        if(_player != null)
-            _playerRage = _player.GetComponent<PlayerRage>();
-        //if(_player != null)
-        //    takeDamage = _player.GetComponent<IDamagable>();
         //testing
         if(_player != null)
             Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());
@@ -95,24 +91,20 @@ public class ChickBoss : MonoBehaviour
         if (Vector3.Distance(_rb.position, _player.transform.position) < 1.5f)
         {
             //the chick is close enough to attack the player
-            //Todo: player loses health
             if(!_once)
             {
                 if(_player != null)
                     _playerRage = _player.GetComponent<PlayerRage>();
-                //timer to make damage once every few msecs ? or iframes
-                Debug.Log("Player took damage!");
-                //takeDamage?.TakeDamage(0.1f); //<--check damage number
-                //if(_playerRage != null) 
                 _playerRage.TakeDamage(0.1f,gameObject);
+                Debug.Log("Player took damage!");
                     
                 _audioManager.AS_AttackChirp.Play();
                 _once = true;
                 
                 //knock backs the player when hit
-                Vector3 difference = (_player.transform.position-transform.position).normalized;
-                Vector3 force = difference * (knockBackForce * 5);
-                _playerRb.AddForce(force, ForceMode.Impulse);
+               // Vector3 difference = (_player.transform.position-transform.position).normalized;
+                //Vector3 force = difference * (knockBackForce * 5);
+                //_playerRb.AddForce(force, ForceMode.Impulse);
             }
         }
         else

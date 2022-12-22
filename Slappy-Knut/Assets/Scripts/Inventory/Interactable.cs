@@ -26,6 +26,7 @@ public class Interactable : MonoBehaviour
             {
                 Interact();
                 _hasInteracted = true;
+                FindObjectOfType<PlayerController>().RemoveFocus();
             }
         }
     }
