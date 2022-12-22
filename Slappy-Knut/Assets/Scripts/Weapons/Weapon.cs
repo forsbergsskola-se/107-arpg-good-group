@@ -23,7 +23,7 @@ public abstract class Weapon : Interactable, IItem
     public static void Switch(Weapon newWeapon)
     {
         foreach (var weapon in AllWeapons)
-            if (newWeapon.name == weapon.name)
+            if (newWeapon.Name == weapon.Name)
                 newWeapon = weapon;
         CurrEquippedWeapon.gameObject.SetActive(false);
         CurrEquippedWeapon = newWeapon;
