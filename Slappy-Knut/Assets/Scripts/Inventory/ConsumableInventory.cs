@@ -37,7 +37,6 @@ public class ConsumableInventory : MonoBehaviour
         if (AntiAnxietyPotion.Count == 0) SetColorDisabled(antiAnxietyIcon);
         if (FishLandmine.Count > 0) SetColorEnabled(fishLandmineIcon);
         if (FishLandmine.Count == 0) SetColorDisabled(fishLandmineIcon);
-        antiAnxietyCountText.text = $"{AntiAnxietyPotion.Count}";
         fishLandmineCountText.text = $"{FishLandmine.Count}";
     }
 
