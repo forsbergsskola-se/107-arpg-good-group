@@ -52,13 +52,13 @@ public class Lvl1AndLvl2Portal : MonoBehaviour
     private IEnumerator WaitForSceneLoad()
     {
         yield return new WaitForSeconds(1f);
-        if (_activeScene.name == "The_Viking_Village")
+        if (_activeScene.name == "Day_Viking_Village_Level")
         {
             SceneManager.LoadScene("Midnight_Viking_Village_Level");
         }
         else
         {
-            SceneManager.LoadScene("The_Viking_Village");
+            SceneManager.LoadScene("Day_Viking_Village_Level");
         }
     }
 }
