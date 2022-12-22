@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,12 +12,16 @@ public class PortalToBosse : MonoBehaviour
     private PlayerLevelLogic _levelLogic;
     private GameObject _glove;
 
+    private AudioSource _audioSource;
+
     private void Start()
     {
         _activeScene = SceneManager.GetActiveScene();
         _player = GameObject.FindGameObjectWithTag("Player");
         _levelLogic = _player.GetComponent<PlayerLevelLogic>();
         _glove = FindObjectOfType<Glove>().gameObject;
+
+        _audioSource = GetComponent<AudioSource>();
 
         DontDestroyOnLoad(_glove);
     }
@@ -34,6 +39,18 @@ public class PortalToBosse : MonoBehaviour
 
     public void UsePortal()
     {
+        _audioSource.Play();
+        StartCoroutine(WaitForSceneLoad());
+    }
+
+    private bool IsEnterPortalPressed()
+    {
+        return Input.GetKey(KeyCode.E);
+    }
+
+    private IEnumerator WaitForSceneLoad()
+    {
+        yield return new WaitForSeconds(1f);
         if (_activeScene.name == "The_Viking_Village")
         {
             SceneManager.LoadScene("BossScene");
@@ -42,10 +59,5 @@ public class PortalToBosse : MonoBehaviour
         {
             SceneManager.LoadScene("The_Viking_Village");
         }
-    }
-
-    private bool IsEnterPortalPressed()
-    {
-        return Input.GetKey(KeyCode.E);
     }
 }
