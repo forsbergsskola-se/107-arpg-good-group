@@ -18,15 +18,20 @@ public class NPCAudioManager : MonoBehaviour
     {
         AS_FootSteps = gameObject.AddComponent<AudioSource>();
         AS_FootSteps.clip = footSteps;
-        
+        AS_FootSteps.spatialBlend = 1;
+
         AS_Damage = gameObject.AddComponent<AudioSource>();
         AS_Damage.clip = damage;
+        AS_Damage.spatialBlend = 1;
 
         AS_Hit = gameObject.AddComponent<AudioSource>();
         AS_Hit.clip = hit;
+        AS_Hit.spatialBlend = 1;
 
         AS_Swing = gameObject.AddComponent<AudioSource>();
         AS_Swing.clip = swing;
+        AS_Hit.spatialBlend = 1;
+
     }
     
 }
