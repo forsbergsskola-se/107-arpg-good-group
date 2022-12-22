@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Spawner : MonoBehaviour
     private static GameObject _canvas;
     private static GameObject _inventoryUi;
     private static GameObject _glove;
+    private Scene _activeScene;
     private void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -40,6 +42,12 @@ public class Spawner : MonoBehaviour
             Instantiate(glovePrefab, new Vector3(12,4,15), Quaternion.Euler(0,0,0));
             _glove = FindObjectOfType<Glove>().gameObject;
             DontDestroyOnLoad(_glove);
+        }
+
+        _activeScene = SceneManager.GetActiveScene();
+        if (_activeScene.name != "Daytime_Viking_Village_Level")
+        {
+            _glove.transform.position = new Vector3(0,100,0);
         }
     }
 }
