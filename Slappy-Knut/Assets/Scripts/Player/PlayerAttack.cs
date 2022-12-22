@@ -13,11 +13,6 @@ public class PlayerAttack : MonoBehaviour
     [HideInInspector] public Animator _animator;
     private float damageModifier;
 
-    private bool _mouseHeld;
-    private float _timeHeld = 1;
-
-
-
     void Start()
     {
         _playerRage = GetComponent<PlayerRage>();
@@ -26,6 +21,11 @@ public class PlayerAttack : MonoBehaviour
         _animator = GetComponent<Animator>();
         damageModifier = 1;
     }
+
+    public void AttackAnimation()
+    {
+        _animator.Play("attack");
+    }
     //tied to the animator as an event, only triggered when the slap lands
     public void Attack()
     {
@@ -33,14 +33,17 @@ public class PlayerAttack : MonoBehaviour
         //Detect enemies in range of attack
         Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.transform.position, wpn.Range, interactableLayer);
         //Damage
-        
         foreach (Collider enemy in hitEnemies)
         {
-            enemy.GetComponent<IDamagable>().TakeDamage(wpn.Power *  PlayerController.TimeHeld, gameObject);
-            _audioManager.AS_BasicSlap.Play();
+            IDamagable damagable = enemy.GetComponent<IDamagable>();
+            if (damagable != null)
+            {
+                damagable.TakeDamage(wpn.Power *  PlayerController.TimeHeld, gameObject);
+                _audioManager.AS_BasicSlap.Play();
 
-            _playerRage.TakeDamage(-1f, gameObject);
-            _playerSatis.IncreaseXP(wpn.Power);
+                _playerRage.TakeDamage(-1f, gameObject);
+                _playerSatis.IncreaseXP(wpn.Power);    
+            }
         }
     }
     public void AttackHold() //Holds the animation for charge attack
@@ -50,12 +53,6 @@ public class PlayerAttack : MonoBehaviour
             _animator.speed = 0;
         }
     }
-    public void AttackRelease()
-    {
-        _animator.speed = 1;
-        _timeHeld = 1;
-    }
-
     public void IncreaseAttackPower(float powerIncreaseMultiplier)
     {
         damageModifier *= powerIncreaseMultiplier;

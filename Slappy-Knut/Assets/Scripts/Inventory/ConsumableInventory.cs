@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 public class ConsumableInventory : MonoBehaviour
 {
+    private AntiAnxietyPotion _antiAnxietyPotion;
+    private FishLandmine _fishLandmine;
+    
     public GameObject antiAnxietySlot;
     public Image antiAnxietyIcon;
     public TextMeshProUGUI antiAnxietyCountText;
@@ -13,12 +16,23 @@ public class ConsumableInventory : MonoBehaviour
     
     private void Start()
     {
+        _antiAnxietyPotion = gameObject.AddComponent<AntiAnxietyPotion>();
+        _fishLandmine = gameObject.AddComponent<FishLandmine>();
         SetColorDisabled(antiAnxietyIcon);
         SetColorDisabled(fishLandmineIcon);
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            _antiAnxietyPotion.Use();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            _fishLandmine.Use();
+        }
+        
         if (AntiAnxietyPotion.Count > 0) SetColorEnabled(antiAnxietyIcon);
         if (AntiAnxietyPotion.Count == 0) SetColorDisabled(antiAnxietyIcon);
         if (FishLandmine.Count > 0) SetColorEnabled(fishLandmineIcon);

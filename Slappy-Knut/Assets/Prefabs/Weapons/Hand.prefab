@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c21d93e43239ec34c83bf52e7121b463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _power: 2
-  handPrefab: {fileID: 4834642345348076956}
+  radius: 3
+  _icon: {fileID: 21300000, guid: b2791cda845e14da3af29c4f1a475a55, type: 3}

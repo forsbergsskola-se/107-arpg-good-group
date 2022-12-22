@@ -25,12 +25,12 @@ public class InventoryUI : MonoBehaviour
         if (Input.GetButtonDown("Inventory"))
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
+            if(inventoryUI.activeSelf) _slots[0].HideDescription();
         }
     }
 
     void UpdateUI()
     {
-        Debug.Log("UPDATING UI");
 
         for (int i = 0; i < _slots.Length; i++)
         {

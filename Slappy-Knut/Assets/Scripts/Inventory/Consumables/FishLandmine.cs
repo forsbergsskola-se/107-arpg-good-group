@@ -3,18 +3,18 @@ using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FishLandmine : MonoBehaviour, IConsumable
+public class FishLandmine : Interactable, IConsumable
 {
     public float power;
     public GameObject explosion;
     public GameObject fishBody;
-    public Image icon;
+    public Sprite icon;
 
     private PlayerLevelLogic _playerLevelLogic;
     private PlayerRage _playerRage;
 
     public string Name { get; set; }
-    public Image Icon { get; set; }
+    public Sprite Icon { get; set; }
     public float Power { get; set; }
     public string Description { get; set; }
     public float Cooldown { get; set; }
@@ -22,6 +22,7 @@ public class FishLandmine : MonoBehaviour, IConsumable
     public static int Count { get; set; }
 
     private AudioSource _audioSource;
+
     private void Start()
     {
         Icon = icon;
@@ -35,7 +36,6 @@ public class FishLandmine : MonoBehaviour, IConsumable
         _playerLevelLogic = player.GetComponent<PlayerLevelLogic>();//We should probaby come up with something better for this
         _playerRage = player.GetComponent<PlayerRage>();
     }
-
     public void Use()
     {
         if (Count < 1) return;

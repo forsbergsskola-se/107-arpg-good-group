@@ -1,26 +1,23 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class AntiAnxietyPotion : MonoBehaviour, IConsumable
+public class AntiAnxietyPotion : Interactable, IConsumable
 {
     public float power = 10;
-    public Image icon;
+    public Sprite icon;
     
     public string Name { get; set; }
-    public Image Icon { get; set; }
+    public Sprite Icon { get; set; }
     public float Power { get; set; }
     public string Description { get; set; }
     public float Cooldown { get; set; }
     public float Range { get; set; }
-    public bool Equipable { get; set; }
-    public bool Chargable { get; set; }
     public static int Count { get; set; }
     
     private PlayerAudioManager _audioManager;
+
     private void Start()
     {
         Icon = icon;
-        Chargable = false;
         Power = power;
         Description = $"Potion that lowers rage by {power}";
         Cooldown = 10;
@@ -40,6 +37,5 @@ public class AntiAnxietyPotion : MonoBehaviour, IConsumable
     public void IncreaseCount()
     {
         Count++;
-        Debug.Log(Count);
     }
 }
