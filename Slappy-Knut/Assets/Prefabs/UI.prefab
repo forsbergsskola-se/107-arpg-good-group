@@ -31,7 +31,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7084438354503438926}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -1190,6 +1190,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07ee44e0df240c5469efaaca7cebeb5d, type: 3}
+--- !u!1 &288401596640445578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6812338863878368214, guid: 07ee44e0df240c5469efaaca7cebeb5d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6524257508602031964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &152174341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288401596640445578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e2424a77768bbf4793f4610f713f580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 3
+  power: 10
+  icon: {fileID: 0}
 --- !u!224 &736123729019372897 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5818066889523964477, guid: 07ee44e0df240c5469efaaca7cebeb5d,
