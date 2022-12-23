@@ -20,8 +20,7 @@ public class Poop : Weapon
         Icon = _icon;
         Power = 10;
         Range = 10;
-        Chargable = true;
-        ChargeTime = 2;
+        Chargable = false;
         Description = $"Knut can throw the poop - poop has {Power} damage";
         Cooldown = 0;
         IsEquipped = false;

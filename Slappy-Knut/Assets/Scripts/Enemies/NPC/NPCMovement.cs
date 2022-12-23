@@ -170,7 +170,6 @@ public class NPCMovement : MonoBehaviour
         if (delta.magnitude < detectionRange || fleeingCooldownInProgress)
         {
             agent.isStopped = false;
-            Debug.Log("Delta normalized: " + delta.normalized.magnitude);
             //agent.speed = movementSpeed;
             Vector3 direction = delta.normalized; //Not sure if this is needed TBH, probably isnt
             //Making this point be further away from the NPCs current location will likely make it

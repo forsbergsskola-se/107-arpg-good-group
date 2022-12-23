@@ -1,7 +1,6 @@
 using System.Collections;
 using Interfaces;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class FishLandmine : Interactable, IConsumable
 {
@@ -10,7 +9,6 @@ public class FishLandmine : Interactable, IConsumable
     public GameObject fishBody;
     public Sprite icon;
     public GameObject prefab;
-    public Collider collider;
 
     private PlayerLevelLogic _playerLevelLogic;
     private PlayerRage _playerRage;
@@ -65,7 +63,7 @@ public class FishLandmine : Interactable, IConsumable
     private IEnumerator Explosion()
     {
         explosion.SetActive(true);
-        collider.enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
         Destroy(fishBody);
         yield return new WaitForSecondsRealtime(1.5f);
         Destroy(gameObject);
