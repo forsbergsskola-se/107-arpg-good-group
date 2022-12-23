@@ -25,25 +25,18 @@ public class Inventory : MonoBehaviour
 
     public bool Add(InventoryItem inventoryItem)
     {
-        if (!inventoryItem.isDefaultItem)
+        if (items.Count >= space)
         {
-            if (items.Count >= space)
-            {
-                Debug.Log("Not enough room.");
-                return false;
-            }
-            items.Add(inventoryItem);
-
-            if (OnItemChangedCallback != null)
-            {
-                OnItemChangedCallback.Invoke();
-            }
-            
-            
+            Debug.Log("Not enough room.");
+            return false;
         }
+        items.Add(inventoryItem);
 
+        if (OnItemChangedCallback != null)
+        {
+            OnItemChangedCallback.Invoke();
+        }
         return true;
-
     }
 
     public void Remove(InventoryItem inventoryItem)

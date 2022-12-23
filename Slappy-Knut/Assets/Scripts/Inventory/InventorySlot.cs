@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,7 +29,7 @@ public class InventorySlot : MonoBehaviour
     {
         _inventoryItem = newInventoryItem;
         
-        icon.sprite = _inventoryItem.icon;
+        icon.sprite = _inventoryItem.weapon.Icon;
         icon.enabled = true;
         removeButton.interactable = true;
     }
