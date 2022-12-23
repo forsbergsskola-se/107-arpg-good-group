@@ -42,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
                 _audioManager.AS_BasicSlap.Play();
 
                 _playerRage.TakeDamage(-1f, gameObject);
-                _playerSatis.IncreaseXP(wpn.Power);    
+                _playerSatis.IncreaseXP(wpn.Power * 1.1f);
             }
         }
     }

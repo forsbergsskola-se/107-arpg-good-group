@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,27 +12,20 @@ public class PlayerLevelLogic : MonoBehaviour
     private float nextLevelXP; //Stores what the next levels required XP is
     public ParticleSystem levelUpVisualEffect;
     public int level;
+    public TextMeshProUGUI levelInfo;
     
     public Slider satisfactionBar;
 
     
-    // Start is called before the first frame update
     void Start()
     {
         XPEarned = 0;
         level = 0;
+        levelInfo.text = level.ToString();
         nextLevelXP = 100;
         rageLogic = GetComponent<PlayerRage>();
         attackLogic = GetComponent<PlayerAttack>();
-        GameObject XPSlider = GameObject.Find("SatisfactionBar");
-        satisfactionBar = XPSlider.GetComponent<Slider>();
         IncreaseXP(50);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //IncreaseXP(5*Time.deltaTime);
     }
 
     public void IncreaseXP(float addition)
@@ -47,7 +41,8 @@ public class PlayerLevelLogic : MonoBehaviour
         {
             XPEarned -= nextLevelXP;
             level++;
-            nextLevelXP = nextLevelXP * 1.5f;
+            levelInfo.text = level.ToString();
+            nextLevelXP *= 1.5f;
             rageLogic.IncreaseStats(2,1.2f);
             PlayerRage.CurrentRage = 0;
             attackLogic.IncreaseAttackPower(1.3f);

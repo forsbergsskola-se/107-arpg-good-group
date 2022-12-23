@@ -8,7 +8,7 @@ public class NPCMovement : MonoBehaviour
 {
     public bool canFlee;
     public bool canAttack;
-    public float detectionRange = 20;
+    public float detectionRange = 6;
     public float attackSpeed = 2; //This is how long the time in seconds is between attacks, not attacks per minute or other some such measurement
     public float attackRange = 4; // this should be much lower than detection range, use your brain
     public float movementSpeed;
@@ -23,6 +23,7 @@ public class NPCMovement : MonoBehaviour
     protected bool fledLastFrame, fleeingCooldownInProgress;
     protected NPCAudioManager _audioManager;
     protected bool ideling;
+    protected float walkSpeed = 2;
     
     private Animator _animator;
     
@@ -41,19 +42,20 @@ public class NPCMovement : MonoBehaviour
         attackIsOnCooldown = false;
         startPosition = transform.position;
         _audioManager = GetComponent<NPCAudioManager>();
-        //GetComponent<MeshCollider>()
-
-        // _animator.SetTrigger("Run");
+        
+        GameObject player = GameObject.FindWithTag("Player");
+        NavMeshAgent playerAgent = player.GetComponent<NavMeshAgent>();
+        //Make sure the player can always reach the NPC
+        //So if the NPC is too fast, set their max speed to 90% of the players speed
+        if (movementSpeed > playerAgent.speed * 0.9)
+        {
+            movementSpeed = (float)(playerAgent.speed * 0.9);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        canFlee = true; //THIS NEEDS TO BE DELETED WHEN DEBUGGING ENDS
-        canAttack = false; //SAME FOR THIS, DONT FORGET!
-        //YOU WILL ANYWAY, BUT ATLEAST I TRIED
-        // The order of the calls below is important, it essentially gives the NPC priorities, the later a function is
-        // called the higher the priority is
         Roam();
         if (canFlee)
         {
@@ -83,7 +85,7 @@ public class NPCMovement : MonoBehaviour
     protected void Roam()
     {
         Vector3 GoalDelta = transform.position - agent.destination;
-
+        agent.speed = walkSpeed;
         if (agent.velocity.magnitude > 0.5f)
         {
             _animator.SetBool("Walking", true);
@@ -156,9 +158,10 @@ public class NPCMovement : MonoBehaviour
         
         //Gets a vector of the distance between the player and NPC, pointing away from the player towards the NPC
         Vector3 delta = transform.position - playerReference.transform.position;
-        
         if (fledLastFrame && delta.magnitude > detectionRange)
         {
+            
+            //agent.speed = movementSpeed;
             fledLastFrame = false;
             fleeingCooldownInProgress = true;
             StartCoroutine(waitForFleeCooldown());
@@ -166,6 +169,8 @@ public class NPCMovement : MonoBehaviour
         
         if (delta.magnitude < detectionRange || fleeingCooldownInProgress)
         {
+            agent.isStopped = false;
+            //agent.speed = movementSpeed;
             Vector3 direction = delta.normalized; //Not sure if this is needed TBH, probably isnt
             //Making this point be further away from the NPCs current location will likely make it
             //better at navigating around obstacles
@@ -182,9 +187,10 @@ public class NPCMovement : MonoBehaviour
     {
         //Check if the player is within detection range, if they are, start walking towards them
         Vector3 delta = transform.position - playerReference.transform.position;
+        
         if (delta.magnitude < detectionRange)
         {
-
+            agent.speed = movementSpeed;
             
             if (delta.magnitude < attackRange)
             {

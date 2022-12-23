@@ -29,5 +29,6 @@ public abstract class Weapon : Interactable, IItem
         CurrEquippedWeapon = newWeapon;
         CurrEquippedWeapon.gameObject.SetActive(true);
     }
+    
 
 }
