@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 1577599691}
   - component: {fileID: 1577599687}
   m_Layer: 0
-  m_Name: PortalEight
+  m_Name: PortalToLevels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
