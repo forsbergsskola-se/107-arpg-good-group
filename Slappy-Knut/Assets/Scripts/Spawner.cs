@@ -5,12 +5,10 @@ using UnityEngine.SceneManagement;
 public class Spawner : MonoBehaviour
 {
     public GameObject knutPrefab;
-    public GameObject canvasPrefab;
     public GameObject inventoryUiPrefab;
     public GameObject glovePrefab;
 
     private GameObject _player;
-    private static GameObject _canvas;
     private static GameObject _inventoryUi;
     private static GameObject _glove;
     private Scene _activeScene;
@@ -24,12 +22,6 @@ public class Spawner : MonoBehaviour
         else
         {
             _player.transform.position = new Vector3(-85, 5, 12);
-        }
-        if (_canvas == null)
-        {
-            Instantiate(canvasPrefab);
-            _canvas = FindObjectOfType<Canvas>().gameObject;
-            DontDestroyOnLoad(_canvas);
         }
         if (_inventoryUi == null)
         {
@@ -45,7 +37,7 @@ public class Spawner : MonoBehaviour
         }
 
         _activeScene = SceneManager.GetActiveScene();
-        if (_activeScene.name != "Day_Viking_Village_Level")
+        if (_activeScene.name != "VillageDay")
         {
             _glove.transform.position = new Vector3(0,100,0);
         }
