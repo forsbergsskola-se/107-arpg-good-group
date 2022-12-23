@@ -160,7 +160,8 @@ public class NPCMovement : MonoBehaviour
         Vector3 delta = transform.position - playerReference.transform.position;
         if (fledLastFrame && delta.magnitude > detectionRange)
         {
-            agent.speed = movementSpeed;
+            
+            //agent.speed = movementSpeed;
             fledLastFrame = false;
             fleeingCooldownInProgress = true;
             StartCoroutine(waitForFleeCooldown());
@@ -168,7 +169,9 @@ public class NPCMovement : MonoBehaviour
         
         if (delta.magnitude < detectionRange || fleeingCooldownInProgress)
         {
-            agent.speed = movementSpeed;
+            agent.isStopped = false;
+            Debug.Log("Delta normalized: " + delta.normalized.magnitude);
+            //agent.speed = movementSpeed;
             Vector3 direction = delta.normalized; //Not sure if this is needed TBH, probably isnt
             //Making this point be further away from the NPCs current location will likely make it
             //better at navigating around obstacles
