@@ -1241,7 +1241,7 @@ MonoBehaviour:
   detectionRange: 10
   attackSpeed: 2
   attackRange: 1.5
-  movementSpeed: 0
+  movementSpeed: 5
   waypoints:
   - {fileID: 0}
   - {fileID: 0}

@@ -37,8 +37,11 @@ public class NPC : Interactable, IDamagable
         yield return new WaitForSeconds(10);
         health = startHealth;
         GetComponent<NPCMovement>().ToggleAgentSpeed(false);
-        GetComponent<MeshRenderer>().enabled = true;
         GetComponent<CapsuleCollider>().enabled = true;
+        foreach (var mesh in GetComponentsInChildren<SkinnedMeshRenderer>())
+        {
+            mesh.enabled = true;
+        }
     }
     
     protected IEnumerator waitForiFrames()
