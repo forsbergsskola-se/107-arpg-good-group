@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         //If we press the left mouse button
-         if (Input.GetMouseButtonDown(0))
+         if (Input.GetMouseButton(0))
          {
              //We create a ray
              Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
