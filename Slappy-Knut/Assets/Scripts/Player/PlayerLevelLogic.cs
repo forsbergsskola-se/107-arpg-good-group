@@ -25,7 +25,6 @@ public class PlayerLevelLogic : MonoBehaviour
         nextLevelXP = 100;
         rageLogic = GetComponent<PlayerRage>();
         attackLogic = GetComponent<PlayerAttack>();
-        IncreaseXP(50);
     }
 
     public void IncreaseXP(float addition)
