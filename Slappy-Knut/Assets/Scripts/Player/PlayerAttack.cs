@@ -29,22 +29,12 @@ public class PlayerAttack : MonoBehaviour
     //tied to the animator as an event, only triggered when the slap lands
     public void Attack()
     {
-        Weapon wpn = Weapon.CurrEquippedWeapon;
-        //Detect enemies in range of attack
-        Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.transform.position, wpn.Range, interactableLayer);
-        //Damage
-        foreach (Collider enemy in hitEnemies)
-        {
-            IDamagable damagable = enemy.GetComponent<IDamagable>();
-            if (damagable != null)
-            {
-                damagable.TakeDamage(wpn.Power *  PlayerController.TimeHeld, gameObject);
-                _audioManager.AS_BasicSlap.Play();
-
-                _playerRage.TakeDamage(-1f, gameObject);
-                _playerSatis.IncreaseXP(wpn.Power * 1.1f);
-            }
-        }
+        float weaponPower = Weapon.CurrEquippedWeapon.Power;
+        IDamagable enemi = PlayerController.LastClickedTarget.collider.GetComponent<IDamagable>();
+        enemi.TakeDamage(weaponPower * PlayerController.TimeHeld);
+        _audioManager.AS_BasicSlap.Play();
+        _playerRage.TakeDamage(-1f, gameObject);
+        _playerSatis.IncreaseXP(weaponPower * 1.1f);
     }
     public void AttackHold() //Holds the animation for charge attack
     {

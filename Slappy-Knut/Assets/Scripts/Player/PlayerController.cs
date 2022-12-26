@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private PlayerAudioManager _audioManager;
     public static bool MouseHeld;
     public static float TimeHeld = 1;
+
+    public static RaycastHit LastClickedTarget;
     
     // Start is called before the first frame update
     //Use this for initialization
@@ -44,6 +46,7 @@ public class PlayerController : MonoBehaviour
              //If the ray hits
              if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, walkableLayer))
              {
+                 LastClickedTarget = hitInfo;
                  //Move our player to what we hit
                  _motor.MoveToPoint(hitInfo.point);
                  //Stop focusing any object
@@ -58,6 +61,7 @@ public class PlayerController : MonoBehaviour
             //Getting either item on focus or enemy to walk towards them
             if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, interactableLayer))
             {
+                LastClickedTarget = hitInfo;
                 //Check if we hit and interactable
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
                 //If we did, set it as our focus
