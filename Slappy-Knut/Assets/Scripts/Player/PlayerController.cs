@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
              //If the ray hits
              if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, walkableLayer))
              {
-                 LastClickedTarget = hitInfo;
                  //Move our player to what we hit
                  _motor.MoveToPoint(hitInfo.point);
                  //Stop focusing any object
@@ -91,7 +90,7 @@ public class PlayerController : MonoBehaviour
         }
         newFocus.OnFocused(transform);
     }
-    void RemoveFocus()
+    public void RemoveFocus()
     {
         if (focus != null)
         {

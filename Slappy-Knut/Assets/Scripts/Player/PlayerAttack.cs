@@ -30,8 +30,8 @@ public class PlayerAttack : MonoBehaviour
     public void Attack()
     {
         float weaponPower = Weapon.CurrEquippedWeapon.Power;
-        IDamagable enemi = PlayerController.LastClickedTarget.collider.GetComponent<IDamagable>();
-        enemi.TakeDamage(weaponPower * PlayerController.TimeHeld);
+        IDamagable enemy = PlayerController.LastClickedTarget.collider.GetComponent<IDamagable>();
+        enemy.TakeDamage(weaponPower * PlayerController.TimeHeld);
         _audioManager.AS_BasicSlap.Play();
         _playerRage.TakeDamage(-1f, gameObject);
         _playerSatis.IncreaseXP(weaponPower * 1.1f);
