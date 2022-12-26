@@ -12,9 +12,11 @@ public class NPCMovement : MonoBehaviour
     public float attackSpeed = 2; //This is how long the time in seconds is between attacks, not attacks per minute or other some such measurement
     public float attackRange = 4; // this should be much lower than detection range, use your brain
     public float movementSpeed;
-    public Transform[] waypoints; //This is where the target points for roaming are stored
+    public Transform waypointsParent;
     public int idleTime = 5;
     
+    
+    protected NPCRoamGoal[] waypoints; //This is where the target points for roaming are stored
     protected NavMeshAgent agent;
     protected GameObject playerReference;
     protected Random rand = new Random();
@@ -30,6 +32,7 @@ public class NPCMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        waypoints = waypointsParent.GetComponentsInChildren<NPCRoamGoal>();
         agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
         playerReference = GameObject.FindWithTag("Player");
@@ -37,11 +40,11 @@ public class NPCMovement : MonoBehaviour
         RandomizeValues();
         Roam();
         agent.speed = movementSpeed;
-        agent.destination = waypoints[0].position;
         rand = new Random();
         attackIsOnCooldown = false;
         startPosition = transform.position;
         _audioManager = GetComponent<NPCAudioManager>();
+        agent.destination = waypoints[0].transform.position;
         
         GameObject player = GameObject.FindWithTag("Player");
         NavMeshAgent playerAgent = player.GetComponent<NavMeshAgent>();
@@ -115,10 +118,10 @@ public class NPCMovement : MonoBehaviour
             List<Transform> goalsNotAtPlayer = new List<Transform>();
             for (int i = 0; i < waypoints.Length; i++)
             {
-                Vector3 delta = playerReference.transform.position - waypoints[i].position;
+                Vector3 delta = playerReference.transform.position - waypoints[i].transform.position;
                 if (delta.magnitude > detectionRange)
                 {
-                    goalsNotAtPlayer.Add(waypoints[i]);
+                    goalsNotAtPlayer.Add(waypoints[i].transform);
                 }
             }
 
@@ -139,7 +142,7 @@ public class NPCMovement : MonoBehaviour
 
             if (GoalDelta.magnitude < 2)
             {
-                agent.destination = waypoints[rand.Next(0, waypoints.Length-1)].position;
+                agent.destination = waypoints[rand.Next(0, waypoints.Length-1)].transform.position;
                 agent.isStopped = true;
                 StartCoroutine(IdleWait());
             }
