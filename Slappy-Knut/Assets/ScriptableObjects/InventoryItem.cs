@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class InventoryItem : ScriptableObject
 {
-    public Weapon weapon;
+    public string weaponName;
+    public string weaponDesc;
+    public Sprite weaponIcon;
     
-    private static InventorySlot _equippedSlot;
+    public static InventorySlot EquippedSlot;
     
     public virtual void Use()
     {
@@ -13,26 +15,27 @@ public class InventoryItem : ScriptableObject
         
         foreach (var t in iUi._slots)
         {
-            if (t._inventoryItem.weapon.Name == weapon.Name)
+            if (t._inventoryItem.weaponName == weaponName)
             {
                 newSlot = t;
                 break;
             }
         }
 
-        if (newSlot == _equippedSlot)
+        if (newSlot == EquippedSlot)
         {
-            _equippedSlot.icon.color = Color.white;
+            EquippedSlot.icon.color = Color.white;
             //unequip if selected slot is the same as the currently equipped one
-            Weapon.Switch(Weapon.DefaultWeapon);
-            _equippedSlot = null;
+            Weapon.Switch(Weapon.DefaultWeapon.Name);
+            EquippedSlot = null;
         }
         else
         {
-            if(_equippedSlot) _equippedSlot.icon.color = Color.white;
+            if(EquippedSlot) EquippedSlot.icon.color = Color.white;
             newSlot.icon.color = Color.red;
-            Weapon.Switch(weapon);
-            _equippedSlot = newSlot;
+            Weapon.Switch(weaponName);
+            Debug.Log(Weapon.CurrEquippedWeapon);
+            EquippedSlot = newSlot;
         }
     }
 }

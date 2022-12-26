@@ -17,7 +17,7 @@ public class InventorySlot : MonoBehaviour
         if (_inventoryItem != null)
         {
             _descriptionBox.SetActive(true);
-            _descriptionText.text = _inventoryItem.weapon.Description;
+            _descriptionText.text = _inventoryItem.weaponDesc;
         }
     }
 
@@ -29,7 +29,7 @@ public class InventorySlot : MonoBehaviour
     {
         _inventoryItem = newInventoryItem;
         
-        icon.sprite = _inventoryItem.weapon.Icon;
+        icon.sprite = _inventoryItem.weaponIcon;
         icon.enabled = true;
         removeButton.interactable = true;
     }

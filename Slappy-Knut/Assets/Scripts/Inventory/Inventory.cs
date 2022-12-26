@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour
     public delegate void OnItemChanged();
     public OnItemChanged OnItemChangedCallback;
     public int space = 6;
-    public List<InventoryItem> items = new List<InventoryItem>();
+    public List<InventoryItem> items = new();
 
     public bool Add(InventoryItem inventoryItem)
     {
@@ -30,22 +30,28 @@ public class Inventory : MonoBehaviour
             Debug.Log("Not enough room.");
             return false;
         }
+
+        foreach (InventoryItem item in items)
+        {
+            if (item.weaponName == inventoryItem.weaponName)
+            {
+                Debug.Log("Weapon already owned.");
+                return false;
+            }
+        }
         items.Add(inventoryItem);
 
-        if (OnItemChangedCallback != null)
-        {
-            OnItemChangedCallback.Invoke();
-        }
+        if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
         return true;
     }
 
     public void Remove(InventoryItem inventoryItem)
     {
+        Weapon.Switch(Weapon.DefaultWeapon.Name);
+        InventoryItem.EquippedSlot.icon.color = Color.white;
+        InventoryItem.EquippedSlot = null;
         items.Remove(inventoryItem);
         
-        if (OnItemChangedCallback != null)
-        {
-            OnItemChangedCallback.Invoke();
-        }
+        if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
     }
 }
