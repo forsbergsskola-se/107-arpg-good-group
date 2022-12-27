@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelRequirement: 3
-  nextScene: Boss_Scene_Portal_Level
+  nextScene: 
 --- !u!1 &4130239556686452119
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,7 +34,6 @@ public class InventoryItem : ScriptableObject
             if(EquippedSlot) EquippedSlot.icon.color = Color.white;
             newSlot.icon.color = Color.red;
             Weapon.Switch(weaponName);
-            Debug.Log(Weapon.CurrEquippedWeapon);
             EquippedSlot = newSlot;
         }
     }

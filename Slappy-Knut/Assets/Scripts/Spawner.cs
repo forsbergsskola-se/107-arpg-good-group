@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,6 +34,7 @@ public class Spawner : MonoBehaviour
             _glove = FindObjectOfType<Glove>().gameObject;
             DontDestroyOnLoad(_glove);
         }
+        
 
         _activeScene = SceneManager.GetActiveScene();
         if (_activeScene.name != "VillageDay")

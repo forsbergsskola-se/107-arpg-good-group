@@ -13,7 +13,7 @@ public class Portals : MonoBehaviour
     private GameObject _glove;
 
     private AudioSource _audioSource;
-
+    
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -49,6 +49,7 @@ public class Portals : MonoBehaviour
     private IEnumerator WaitForSceneLoad()
     {
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(nextScene);
+        if(nextScene != null) SceneManager.LoadScene(nextScene);
     }
+    
 }

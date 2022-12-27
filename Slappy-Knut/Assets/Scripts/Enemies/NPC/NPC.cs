@@ -55,7 +55,6 @@ public class NPC : Interactable, IDamagable
     public void TakeDamage(float damage, GameObject attacker)
     {
         health -= damage;
-        Debug.Log("Took Damage!\n New health is: " + health.ToString());
         _audioManager.AS_Damage.Play();
         if(health < 1) OnDeath();
     }

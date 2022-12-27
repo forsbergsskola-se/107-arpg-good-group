@@ -713,7 +713,6 @@ GameObject:
   - component: {fileID: 4205706605715779660}
   - component: {fileID: 4205706605715779663}
   - component: {fileID: 4205706605715779662}
-  - component: {fileID: 4205706605715779661}
   m_Layer: 7
   m_Name: Capsule (4)
   m_TagString: Untagged
@@ -786,20 +785,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4205706605715779661
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4205706605715779659}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4205706605820385099
 GameObject:
   m_ObjectHideFlags: 0
@@ -12833,7 +12818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   XPEarned: 0
   levelUpVisualEffect: {fileID: 4205706605923317632}
-  level: 0
+  level: 3
   levelInfo: {fileID: 6077238717867741620}
   satisfactionBar: {fileID: 6199885710797750216}
 --- !u!114 &4205706605671335778
@@ -15177,7 +15162,6 @@ GameObject:
   - component: {fileID: 8738586886234113923}
   - component: {fileID: 8738586886234113920}
   - component: {fileID: 8738586886234113925}
-  - component: {fileID: 6314964634496739349}
   - component: {fileID: 6222227295463593260}
   m_Layer: 7
   m_Name: Glove
@@ -15270,19 +15254,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   _icon: {fileID: 21300000, guid: 9385f137644d94b41a94f1d3e135b018, type: 3}
---- !u!135 &6314964634496739349
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8738586886234113982}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.09161556
-  m_Center: {x: 0.11952946, y: 0.01602189, z: 0.003884105}
 --- !u!222 &6222227295463593260
 CanvasRenderer:
   m_ObjectHideFlags: 0

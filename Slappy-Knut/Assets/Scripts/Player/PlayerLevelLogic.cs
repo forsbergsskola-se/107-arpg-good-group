@@ -20,7 +20,6 @@ public class PlayerLevelLogic : MonoBehaviour
     void Start()
     {
         XPEarned = 0;
-        level = 0;
         levelInfo.text = level.ToString();
         nextLevelXP = 100;
         rageLogic = GetComponent<PlayerRage>();
@@ -30,11 +29,11 @@ public class PlayerLevelLogic : MonoBehaviour
     public void IncreaseXP(float addition)
     {
         XPEarned += addition;
-        checkForLevelUp();
+        CheckForLevelUp();
         satisfactionBar.value = XPEarned / nextLevelXP;
     }
 
-    private void checkForLevelUp()
+    private void CheckForLevelUp()
     {
         if (XPEarned > nextLevelXP)
         {

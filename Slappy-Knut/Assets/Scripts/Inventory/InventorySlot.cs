@@ -7,7 +7,6 @@ public class InventorySlot : MonoBehaviour
     public Image icon; //Reference the icon in Unity
     public Button removeButton;
     
-    //testing
     [HideInInspector] public InventoryItem _inventoryItem;
     public GameObject _descriptionBox;
     public TextMeshProUGUI _descriptionText;
@@ -20,7 +19,6 @@ public class InventorySlot : MonoBehaviour
             _descriptionText.text = _inventoryItem.weaponDesc;
         }
     }
-
     public void HideDescription()
     {
         _descriptionBox.SetActive(false);
@@ -33,7 +31,6 @@ public class InventorySlot : MonoBehaviour
         icon.enabled = true;
         removeButton.interactable = true;
     }
-
     public void ClearSlot()
     {
         _inventoryItem = null;
@@ -42,13 +39,10 @@ public class InventorySlot : MonoBehaviour
         icon.enabled = false;
         removeButton.interactable = false;
     }
-
     public void OnRemoveButton()
     {
         Inventory.Instance.Remove(_inventoryItem);
     }
-
-    
     public void UseItem()
     {
         if (_inventoryItem != null)
