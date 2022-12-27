@@ -14,8 +14,7 @@ public class StartMenu : MonoBehaviour
     public void StartGame()
     {
         _audioSource.Play();
-        //StartCoroutine(WaitForStartGame());
-        SceneManager.LoadScene("Day_Viking_Village_Level");
+        StartCoroutine(WaitForStartGame());
     }
 
     public void ExitGame()
@@ -27,7 +26,7 @@ public class StartMenu : MonoBehaviour
     private IEnumerator WaitForStartGame()
     {
         yield return new WaitForSeconds(0.6f);
-        SceneManager.LoadScene("Day_Viking_Village_Level");
+        SceneManager.LoadScene(1);
     }
 
     private IEnumerator WaitForExitGame()
@@ -37,6 +36,5 @@ public class StartMenu : MonoBehaviour
         //UnitEditor.EditorApplication.isPlaying = false;
         //#endif
         Application.Quit();
-        Debug.Log("Game is exiting");
     }
 }
