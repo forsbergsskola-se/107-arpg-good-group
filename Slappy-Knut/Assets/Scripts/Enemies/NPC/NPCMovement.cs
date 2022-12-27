@@ -37,7 +37,7 @@ public class NPCMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
         playerReference = GameObject.FindWithTag("Player");
         ideling = false;
-        RandomizeValues();
+        // RandomizeValues();
         Roam();
         agent.speed = movementSpeed;
         rand = new Random();

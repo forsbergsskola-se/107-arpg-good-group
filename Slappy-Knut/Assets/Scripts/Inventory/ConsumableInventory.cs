@@ -9,7 +9,6 @@ public class ConsumableInventory : MonoBehaviour
     
     public GameObject antiAnxietySlot;
     public Image antiAnxietyIcon;
-    public TextMeshProUGUI antiAnxietyCountText;
     public GameObject fishLandmineSlot;
     public Image fishLandmineIcon;
     public TextMeshProUGUI fishLandmineCountText;
