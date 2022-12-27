@@ -13,8 +13,7 @@ public class PlayerController : MonoBehaviour
     private Animator _animator;
     private PlayerAudioManager _audioManager;
     public static bool MouseHeld;
-    public static float TimeHeld = 1;
-
+    
     public static RaycastHit LastClickedTarget;
     
     // Start is called before the first frame update
@@ -63,18 +62,14 @@ public class PlayerController : MonoBehaviour
                 LastClickedTarget = hitInfo;
                 //Check if we hit and interactable
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
-                //If we did, set it as our focus
-                if (Vector3.Distance(hitInfo.transform.position, transform.position) < Weapon.CurrEquippedWeapon.Range)
-                {
-                    TimeHeld += Time.deltaTime;
-                } 
+                PlayerAttack.TimeHeld += Time.deltaTime;
                 if (interactable != null)
                 {
                     SetFocus(interactable);
                 }
             }
         }
-        if(TimeHeld -1 > Weapon.CurrEquippedWeapon.ChargeTime || !MouseHeld) AttackRelease();
+        if(PlayerAttack.TimeHeld -1 > Weapon.CurrEquippedWeapon.ChargeTime || !MouseHeld) PlayerAttack.AttackRelease();
         _animator.SetBool("isRunning", _motor.agent.velocity.magnitude >= .5);
     }
     void SetFocus(Interactable newFocus)
@@ -102,10 +97,5 @@ public class PlayerController : MonoBehaviour
     public void PlayStepSound() //called as an event in the animator
     {
         _audioManager.AS_FootSteps.Play();
-    }
-    public void AttackRelease()
-    {
-        _animator.speed = 1;
-        TimeHeld = 1;
     }
 }
