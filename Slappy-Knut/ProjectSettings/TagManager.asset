@@ -7,7 +7,9 @@ TagManager:
   - Fence
   - Ogre
   - AttackPoint
-  - Gate
+  - Inventory
+  - DescriptionBox
+  - PlayerSpawnPoint
   layers:
   - Default
   - TransparentFX

@@ -22467,43 +22467,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3c9d0f652fa2454eb70f623ca29ddc4, type: 3}
---- !u!84 &628581910
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: WaterDepthMap
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1001 &629332852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40060,17 +40023,17 @@ PrefabInstance:
     - target: {fileID: 8903449741633459306, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.11483765
+      value: -88.755066
       objectReference: {fileID: 0}
     - target: {fileID: 8903449741633459306, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2064934
+      value: 4.3844576
       objectReference: {fileID: 0}
     - target: {fileID: 8903449741633459306, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.13417149
+      value: 13.061722
       objectReference: {fileID: 0}
     - target: {fileID: 8903449741633459306, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}
@@ -66461,6 +66424,43 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1876826759}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &1879147036
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterDepthMap
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 1024
+  m_Height: 1024
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!4 &1882863768 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4209614434616532, guid: d3c9d0f652fa2454eb70f623ca29ddc4,
@@ -69288,17 +69288,17 @@ PrefabInstance:
     - target: {fileID: 892306575797419132, guid: 35a4cd026aaf0b84c8a59be53839275a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.3199005
+      value: -86.55
       objectReference: {fileID: 0}
     - target: {fileID: 892306575797419132, guid: 35a4cd026aaf0b84c8a59be53839275a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.87429714
+      value: 4.716654
       objectReference: {fileID: 0}
     - target: {fileID: 892306575797419132, guid: 35a4cd026aaf0b84c8a59be53839275a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.3658934
+      value: 6.83
       objectReference: {fileID: 0}
     - target: {fileID: 892306575797419132, guid: 35a4cd026aaf0b84c8a59be53839275a,
         type: 3}
@@ -75415,7 +75415,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112299537}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -88.8699, y: 5.590951, z: 13.195893}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -77196,12 +77196,12 @@ PrefabInstance:
     - target: {fileID: 9124085380879543466, guid: 5be2538110d1b0c4baa436cb78c4c7bd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9124085380879543466, guid: 5be2538110d1b0c4baa436cb78c4c7bd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.85
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9124085380879543466, guid: 5be2538110d1b0c4baa436cb78c4c7bd,
         type: 3}
