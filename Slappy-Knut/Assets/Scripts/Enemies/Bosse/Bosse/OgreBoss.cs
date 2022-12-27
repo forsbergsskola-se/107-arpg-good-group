@@ -35,12 +35,16 @@ public class OgreBoss : Interactable, IDamagable
         if (_runAway)
             Runaway();
         else
-        {
-            if(Health > 0)
-                transform.LookAt(new Vector3(_player1.transform.position.x,0,_player1.transform.position.z));
-        }
+            if (Health > 0) FaceTarget();
     }
 
+    void FaceTarget()
+    {
+        Vector3 direction = (_player1.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+    
     private void Runaway()
     {
         //Half health ogre runs to the other side of arena while chicken gets larger
