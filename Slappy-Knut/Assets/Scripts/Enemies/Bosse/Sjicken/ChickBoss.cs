@@ -46,13 +46,15 @@ public class ChickBoss : MonoBehaviour
     
     private void Start()
     {
-       // _player.AddComponent<CapsuleCollider>()
+        _player = GameObject.FindWithTag("Player");
+
+        _player.GetComponent<CapsuleCollider>().enabled = true;
         //testing, should work now when i added the collider on knut when in bossScene
         if(_player != null)
             Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());
         Physics.IgnoreCollision(FindObjectOfType<OgreBoss>().GetComponent<Collider>(), GetComponent<Collider>());
         
-        _player = GameObject.FindWithTag("Player");
+       
         _audioManager = GetComponent<ChickAudioManager>();
         timer = _maxTimer;
         _anim = GetComponent<Animator>();
@@ -225,6 +227,8 @@ public class ChickBoss : MonoBehaviour
             _enRaged = false;
 
         _lineRenderer.enabled = false;
+        //turn collider off we are basically only using it so player cant through the fence and to trigger boss
+        _player.GetComponent<CapsuleCollider>().enabled = false;
     }
     
     public void PlayStepSound()
