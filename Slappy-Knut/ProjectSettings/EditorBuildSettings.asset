@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VillageMidnight.unity
     guid: 407e5e248e99eaa49843ffed2726ae4c
+  - enabled: 1
+    path: Assets/Scenes/BossFightFixScene.unity
+    guid: 0c0d5bdeb88a4fa4a9eeef063e0279c8
   m_configObjects: {}

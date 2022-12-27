@@ -1,4 +1,5 @@
 
+using System;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,6 +31,7 @@ public class OgreBoss : Interactable, IDamagable
     
     private void FixedUpdate()
     {
+        Physics.IgnoreCollision(_player1.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
         if (_runAway)
             Runaway();
         else
@@ -99,9 +101,7 @@ public class OgreBoss : Interactable, IDamagable
         healthBar.GetComponentInParent<Canvas>().enabled = false;
         //Call OgreDeath state in the chicken
         _chick.OgreDead();
-        
-        //Testing
-        //GameObject test;
+        //Open the gate after bosse is dead
         GameObject.FindWithTag("Gate").SetActive(false);
     }
     

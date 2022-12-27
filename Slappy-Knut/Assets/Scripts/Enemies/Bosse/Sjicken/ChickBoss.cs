@@ -1,4 +1,4 @@
-using Interfaces;
+using System.Collections;
 using UnityEngine;
 
 public class ChickBoss : MonoBehaviour
@@ -102,9 +102,11 @@ public class ChickBoss : MonoBehaviour
                 _once = true;
                 
                 //knock backs the player when hit
-               // Vector3 difference = (_player.transform.position-transform.position).normalized;
-                //Vector3 force = difference * (knockBackForce * 5);
-                //_playerRb.AddForce(force, ForceMode.Impulse);
+                Vector3 difference = (_player.transform.position-transform.position).normalized;
+                difference.y = 1f; // Need to make knut fly micro up and back down(knock back)
+                Vector3 force = difference * (knockBackForce * 5);
+                _playerRb.AddForce(force, ForceMode.Impulse);
+                StartCoroutine(ResetPlayerMovement());
             }
         }
         else
@@ -118,6 +120,12 @@ public class ChickBoss : MonoBehaviour
 
             _once = false;
         }
+    }
+
+    IEnumerator ResetPlayerMovement()
+    { 
+        yield return new WaitForSeconds(0.3f);
+        _playerRb.velocity = Vector3.zero;
     }
 
     public void StartBossFight() => stateEnum = StateEnum.Attack;
