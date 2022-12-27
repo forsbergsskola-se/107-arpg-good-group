@@ -37,7 +37,7 @@ public class SpawnerToBosse : MonoBehaviour
         if (_inventoryUi == null)
         {
             Instantiate(inventoryUiPrefab);
-            _inventoryUi = FindObjectOfType<InventoryUI>().gameObject;
+            _inventoryUi = FindObjectOfType<Inventory>().inventoryUI.gameObject;
             DontDestroyOnLoad(_inventoryUi);
         }
 
