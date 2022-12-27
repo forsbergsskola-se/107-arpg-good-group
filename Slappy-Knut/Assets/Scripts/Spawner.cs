@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 public class Spawner : MonoBehaviour
 {
     public GameObject knutPrefab;
-    public GameObject inventoryUiPrefab;
+    public GameObject uiPrefab;
 
     private GameObject _player;
-    private static GameObject _inventoryUi;
+    private static GameObject _ui;
     private Scene _activeScene;
     private Transform _playerSpawnPoint;
     private void Awake()
@@ -22,11 +22,11 @@ public class Spawner : MonoBehaviour
         {
             _player.transform.position = _playerSpawnPoint.position;
         }
-        if (_inventoryUi == null)
+        if (_ui == null)
         {
-            Instantiate(inventoryUiPrefab);
-            _inventoryUi = FindObjectOfType<InventoryUI>().gameObject;
-            DontDestroyOnLoad(_inventoryUi);
+            Instantiate(uiPrefab);
+            _ui = GameObject.FindGameObjectWithTag("UI");
+            DontDestroyOnLoad(_ui);
         }
     }
 }

@@ -47,6 +47,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     void LoadScene() //invoke requires a parameterless function
     {
         Weapon.AllWeapons.Clear();
+        Destroy(gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     void SetInactive() //called on the animator
