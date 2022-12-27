@@ -34,7 +34,7 @@ public class Interactable : MonoBehaviour
     public void OnFocused(Transform playerTransform)
     {
         IDamagable damagable = GetComponent<IDamagable>();
-        if (damagable != null) radius = Weapon.CurrEquippedWeapon.Range;
+        if (damagable != null) radius = Weapon.CurrEquippedWeapon.Range * .9f;
         _isFocus = true;
         _player = playerTransform;
         _hasInteracted = false;
@@ -46,14 +46,4 @@ public class Interactable : MonoBehaviour
         _player = null;
         _hasInteracted = false;
     }
-
-    // private void OnDrawGizmosSelected()//Creates distance checking between player and object 
-    // {
-    //     if (interactionTransform == null)
-    //     {
-    //         interactionTransform = transform;
-    //     }
-    //     Gizmos.color = Color.yellow;
-    //     Gizmos.DrawWireSphere(transform.position, radius);
-    // }
 }

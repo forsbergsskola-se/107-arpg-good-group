@@ -1,16 +1,14 @@
 using Interfaces;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public LayerMask interactableLayer;
-    public GameObject attackPoint;
-    
     private PlayerRage _playerRage;
     private PlayerLevelLogic _playerSatis;
     private PlayerAudioManager _audioManager;
-    private PlayerController _playerMovement;
-    [HideInInspector] public Animator _animator;
+    [HideInInspector] public static Animator _animator;
+    public static float TimeHeld = 1;
     private float damageModifier;
 
     void Start()
@@ -21,7 +19,6 @@ public class PlayerAttack : MonoBehaviour
         _animator = GetComponent<Animator>();
         damageModifier = 1;
     }
-
     public void AttackAnimation()
     {
         _animator.Play("attack");
@@ -29,12 +26,18 @@ public class PlayerAttack : MonoBehaviour
     //tied to the animator as an event, only triggered when the slap lands
     public void Attack()
     {
+        Transform targetTransform = PlayerController.LastClickedTarget.collider.transform;
+        transform.LookAt(targetTransform);
         float weaponPower = Weapon.CurrEquippedWeapon.Power;
         IDamagable enemy = PlayerController.LastClickedTarget.collider.GetComponent<IDamagable>();
-        enemy.TakeDamage(weaponPower * PlayerController.TimeHeld);
-        _audioManager.AS_BasicSlap.Play();
-        _playerRage.TakeDamage(-1f, gameObject);
-        _playerSatis.IncreaseXP(weaponPower * 1.1f);
+        if (Vector3.Distance(transform.position, targetTransform.position) <= Weapon.CurrEquippedWeapon.Range)
+        {
+            enemy.TakeDamage(weaponPower * TimeHeld);
+            _audioManager.AS_BasicSlap.Play();
+            _playerRage.TakeDamage(-1f, gameObject);
+            _playerSatis.IncreaseXP(weaponPower * 1.1f);
+            GetComponent<NavMeshAgent>().SetDestination(transform.position);
+        }
     }
     public void AttackHold() //Holds the animation for charge attack
     {
@@ -42,6 +45,11 @@ public class PlayerAttack : MonoBehaviour
         {
             _animator.speed = 0;
         }
+    }
+    public static void AttackRelease()
+    {
+        _animator.speed = 1;
+        TimeHeld = 1;
     }
     public void IncreaseAttackPower(float powerIncreaseMultiplier)
     {

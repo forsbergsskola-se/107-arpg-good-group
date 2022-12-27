@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Poop : Weapon
+public class Rock : Weapon
 {
     public override string Name { get; set; }
     public override Sprite Icon { get; set; }
@@ -16,12 +16,12 @@ public class Poop : Weapon
     
     protected override void Start()
     {
-        Name = "Poop";
+        Name = "Rock";
         Icon = _icon;
         Power = 10;
         Range = 10;
         Chargable = false;
-        Description = $"Knut can throw the poop - poop has {Power} damage";
+        Description = $"Knut can throw the {Name} - {Name} has {Power} damage";
         Cooldown = 0;
         IsEquipped = false;
     }

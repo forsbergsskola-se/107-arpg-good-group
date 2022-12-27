@@ -35,8 +35,8 @@ public class PlayerRage : MonoBehaviour, IDamagable
     { 
         CurrentRage += rageDOT * Time.deltaTime;
         rageBar.value = CurrentRage;
-        if(Math.Abs(CurrentRage - maxRage) < .01) OnDeath(); //checks if maxRage reached 
-                                                                //it's actually not expensive (not called every frame)
+        if(CurrentRage > maxRage) OnDeath(); //checks if maxRage reached 
+                                        //it's actually not expensive (not called every frame)
     }
     public void OnDeath()
     {
