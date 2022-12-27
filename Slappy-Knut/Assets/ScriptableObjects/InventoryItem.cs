@@ -1,13 +1,12 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class InventoryItem : ScriptableObject
 {
-    new public string name = "New Item";
-    public Sprite icon = null;
-    public bool isDefaultItem = false;
-    public Weapon weapon;
-    private static InventorySlot _equippedSlot;
+    public string weaponName;
+    public string weaponDesc;
+    public Sprite weaponIcon;
+    
+    public static InventorySlot EquippedSlot;
     
     public virtual void Use()
     {
@@ -16,36 +15,26 @@ public class InventoryItem : ScriptableObject
         
         foreach (var t in iUi._slots)
         {
-            if (t._inventoryItem.name == name)
+            if (t._inventoryItem.weaponName == weaponName)
             {
                 newSlot = t;
                 break;
             }
         }
 
-        if (newSlot == _equippedSlot)
+        if (newSlot == EquippedSlot)
         {
-            Debug.Log("Equipping hand");
-            Weapon.Switch(Weapon.DefaultWeapon);
-            _equippedSlot = null;
+            EquippedSlot.icon.color = Color.white;
+            //unequip if selected slot is the same as the currently equipped one
+            Weapon.Switch(Weapon.DefaultWeapon.Name);
+            EquippedSlot = null;
         }
         else
         {
-            Debug.Log("Equipping " + name);
-            Weapon.Switch(weapon);
-            _equippedSlot = newSlot;
+            if(EquippedSlot) EquippedSlot.icon.color = Color.white;
+            newSlot.icon.color = Color.red;
+            Weapon.Switch(weaponName);
+            EquippedSlot = newSlot;
         }
-
-        
-        //Rest is set to white to display which is the equipped one.
-        // shit mix to make everything other than equipped white, because of above nullReference error when trying to compare to null, works atm!
-        foreach (var t in iUi._slots)
-        {
-            
-            //inventorySlot.icon.color = Color.red;
-            t.icon.color = Color.white;
-        }
-
-        if (_equippedSlot != null) _equippedSlot.icon.color = Color.red;
     }
 }

@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private PlayerAudioManager _audioManager;
     public static bool MouseHeld;
     public static float TimeHeld = 1;
+
+    public static RaycastHit LastClickedTarget;
     
     // Start is called before the first frame update
     //Use this for initialization
@@ -36,7 +38,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
         //If we press the left mouse button
-         if (Input.GetMouseButtonDown(0))
+         if (Input.GetMouseButton(0))
          {
              //We create a ray
              Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -58,6 +60,7 @@ public class PlayerController : MonoBehaviour
             //Getting either item on focus or enemy to walk towards them
             if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, interactableLayer))
             {
+                LastClickedTarget = hitInfo;
                 //Check if we hit and interactable
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
                 //If we did, set it as our focus

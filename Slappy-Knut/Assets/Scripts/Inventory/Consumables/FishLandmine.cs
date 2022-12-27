@@ -1,7 +1,6 @@
 using System.Collections;
 using Interfaces;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class FishLandmine : Interactable, IConsumable
 {
@@ -9,8 +8,10 @@ public class FishLandmine : Interactable, IConsumable
     public GameObject explosion;
     public GameObject fishBody;
     public Sprite icon;
+    public GameObject prefab;
 
     private PlayerLevelLogic _playerLevelLogic;
+    private PlayerRage _playerRage;
 
     public string Name { get; set; }
     public Sprite Icon { get; set; }
@@ -33,6 +34,7 @@ public class FishLandmine : Interactable, IConsumable
 
         GameObject player = GameObject.FindGameObjectWithTag("Player"); //THIS CODE IS FRAGILE
         _playerLevelLogic = player.GetComponent<PlayerLevelLogic>();//We should probaby come up with something better for this
+        _playerRage = player.GetComponent<PlayerRage>();
     }
     public void Use()
     {
@@ -41,7 +43,7 @@ public class FishLandmine : Interactable, IConsumable
         Transform pTransform = FindObjectOfType<PlayerController>().transform;
         Vector3 p = pTransform.transform.position;
         Vector3 spawnOffset = new Vector3(p.x, p.y + 0.2f, p.z);
-        Instantiate(gameObject, spawnOffset, pTransform.rotation);
+        Instantiate(prefab, spawnOffset, pTransform.rotation);
         Count--;
     }
     private void OnTriggerEnter(Collider other) // this is supposed to be DoT maybe?
@@ -54,12 +56,14 @@ public class FishLandmine : Interactable, IConsumable
         _audioSource.Play();
         damagable.TakeDamage(Power, gameObject);
         _playerLevelLogic.IncreaseXP(power);
+        _playerRage.TakeDamage(power * -1, gameObject);
         // coroutine is used to let the particle explosion finish before destroying the game object
         StartCoroutine(Explosion());
     }
     private IEnumerator Explosion()
     {
         explosion.SetActive(true);
+        GetComponent<CapsuleCollider>().enabled = false;
         Destroy(fishBody);
         yield return new WaitForSecondsRealtime(1.5f);
         Destroy(gameObject);

@@ -37,8 +37,11 @@ public class NPC : Interactable, IDamagable
         yield return new WaitForSeconds(10);
         health = startHealth;
         GetComponent<NPCMovement>().ToggleAgentSpeed(false);
-        GetComponent<MeshRenderer>().enabled = true;
         GetComponent<CapsuleCollider>().enabled = true;
+        foreach (var mesh in GetComponentsInChildren<SkinnedMeshRenderer>())
+        {
+            mesh.enabled = true;
+        }
     }
     
     protected IEnumerator waitForiFrames()
@@ -52,7 +55,6 @@ public class NPC : Interactable, IDamagable
     public void TakeDamage(float damage, GameObject attacker)
     {
         health -= damage;
-        Debug.Log("Took Damage!\n New health is: " + health.ToString());
         _audioManager.AS_Damage.Play();
         if(health < 1) OnDeath();
     }

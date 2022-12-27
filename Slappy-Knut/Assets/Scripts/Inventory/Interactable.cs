@@ -9,9 +9,11 @@ public class Interactable : MonoBehaviour
     private Transform _player;//Reference to the player transform
     private bool _hasInteracted = false; //Have we already interacted with the object?
 
-    protected virtual void Interact()
+    private void Interact()
     {
         FindObjectOfType<PlayerInteract>().Interact(this);
+        FindObjectOfType<PlayerController>().RemoveFocus();
+        _hasInteracted = true;
     }
 
     protected virtual void Update()
@@ -25,8 +27,6 @@ public class Interactable : MonoBehaviour
             if (distance <= radius)
             {
                 Interact();
-                _hasInteracted = true;
-                FindObjectOfType<PlayerController>().RemoveFocus();
             }
         }
     }

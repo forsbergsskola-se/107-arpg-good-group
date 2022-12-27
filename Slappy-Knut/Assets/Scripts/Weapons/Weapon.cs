@@ -17,17 +17,19 @@ public abstract class Weapon : Interactable, IItem
     protected abstract void Start();
 
     public static Weapon CurrEquippedWeapon;
-    public static List<Weapon> AllWeapons = new List<Weapon>();
+    public static List<Weapon> AllWeapons = new();
     public static Weapon DefaultWeapon;
 
-    public static void Switch(Weapon newWeapon)
+    public static void Switch(string newWeaponName)
     {
         foreach (var weapon in AllWeapons)
-            if (newWeapon.name == weapon.name)
-                newWeapon = weapon;
-        CurrEquippedWeapon.gameObject.SetActive(false);
-        CurrEquippedWeapon = newWeapon;
-        CurrEquippedWeapon.gameObject.SetActive(true);
+        {
+            if (newWeaponName == weapon.name)
+            {
+                CurrEquippedWeapon.gameObject.SetActive(false);
+                CurrEquippedWeapon = weapon;
+                CurrEquippedWeapon.gameObject.SetActive(true);
+            }
+        }
     }
-
 }

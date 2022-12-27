@@ -20,9 +20,10 @@ public class AntiAnxietyPotion : Interactable, IConsumable
         Icon = icon;
         Power = power;
         Description = $"Potion that lowers rage by {power}";
-        Cooldown = 10;
+        Cooldown = 4;
         Range = 0;
-        _audioManager = GetComponent<PlayerAudioManager>();
+        _audioManager = FindObjectOfType<PlayerAudioManager>();
+        Count = 1;
     }
     
     public void Use()
@@ -30,8 +31,9 @@ public class AntiAnxietyPotion : Interactable, IConsumable
         if (Count < 1) return;
         _audioManager.AS_DrinkPotion.Play();
         // lowers player's current rage by power
-        GetComponent<PlayerRage>().TakeDamage(-power, null);
+        FindObjectOfType<PlayerRage>().TakeDamage(-power, null);
         Count--;
+        Invoke("IncreaseCount", Cooldown);
     }
 
     public void IncreaseCount()
