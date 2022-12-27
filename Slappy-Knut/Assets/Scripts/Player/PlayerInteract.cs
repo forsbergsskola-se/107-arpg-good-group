@@ -14,13 +14,7 @@ public class PlayerInteract : MonoBehaviour
     void WeaponPickUp(Interactable interactable)
     {
         Weapon wpn = interactable.GetComponent<Weapon>();
-        InventoryItem inventoryItem = ScriptableObject.CreateInstance<InventoryItem>();
-        
-        inventoryItem.weaponName = wpn.Name;
-        inventoryItem.weaponDesc = wpn.Description;
-        inventoryItem.weaponIcon = wpn.Icon;
-        
-        bool wasPickedUp = Inventory.Instance.Add(inventoryItem);
+        bool wasPickedUp = Inventory.Instance.AddToInventory(wpn);
         if (wasPickedUp) Destroy(interactable.gameObject);
     }
 

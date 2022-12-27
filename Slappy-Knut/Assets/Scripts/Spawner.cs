@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
         if (_inventoryUi == null)
         {
             Instantiate(inventoryUiPrefab);
-            _inventoryUi = FindObjectOfType<InventoryUI>().gameObject;
+            _inventoryUi = FindObjectOfType<Inventory>().gameObject;
             DontDestroyOnLoad(_inventoryUi);
         }
     }
