@@ -9,9 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: c11ad08b236cf4e45b10b25d10e2828a
   - enabled: 1
-    path: Assets/Scenes/VillageDay.unity
+    path: Assets/Scenes/VillageDayPauseMenu.unity
     guid: 087d6dae144bd1048a9b88f357848931
   - enabled: 1
-    path: Assets/Scenes/VillageMidnight.unity
+    path: Assets/Scenes/VillageMidnightPauseMenu.unity
     guid: 407e5e248e99eaa49843ffed2726ae4c
   m_configObjects: {}
