@@ -27,7 +27,6 @@ public class PlayerRage : MonoBehaviour, IDamagable
         CurrentRage = 0;
         GameObject rageSlider = GameObject.Find("RageBar");
         rageBar = rageSlider.GetComponent<Slider>();
-        _scene = SceneManager.GetActiveScene();
         _animator = GetComponent<Animator>();
         _audioManager = GetComponent<PlayerAudioManager>();
         _playerMovement = GetComponent<PlayerController>();
@@ -48,7 +47,8 @@ public class PlayerRage : MonoBehaviour, IDamagable
     void LoadScene() //invoke requires a parameterless function
     {
         Weapon.AllWeapons.Clear();
-        SceneManager.LoadScene(_scene.name);
+        Destroy(gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     void SetInactive() //called on the animator
     {
