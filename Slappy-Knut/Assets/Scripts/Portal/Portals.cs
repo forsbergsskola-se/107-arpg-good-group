@@ -10,7 +10,6 @@ public class Portals : MonoBehaviour
     private bool _portalStay;
     private GameObject _player;
     private PlayerLevelLogic _levelLogic;
-    private GameObject _glove;
 
     private AudioSource _audioSource;
     
@@ -18,11 +17,8 @@ public class Portals : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _levelLogic = _player.GetComponent<PlayerLevelLogic>();
-        _glove = FindObjectOfType<Glove>().gameObject;
 
         _audioSource = GetComponent<AudioSource>();
-
-        DontDestroyOnLoad(_glove);
     }
 
     private void Update()
