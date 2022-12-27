@@ -26,7 +26,8 @@ public class Spawner : MonoBehaviour
         {
             Instantiate(uiPrefab);
             _ui = GameObject.FindGameObjectWithTag("UI");
-            DontDestroyOnLoad(_ui);
+            if(_ui != null)
+                DontDestroyOnLoad(_ui);
         }
     }
 }

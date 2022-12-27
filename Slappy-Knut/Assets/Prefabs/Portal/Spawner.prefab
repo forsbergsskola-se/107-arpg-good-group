@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4563261964443463926}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -85, y: 5, z: 12}
+  m_LocalPosition: {x: -12.47, y: 2.56, z: 2.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -78,7 +78,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   knutPrefab: {fileID: 4234816177995080892, guid: 123610bf9d3e31a4e8689d22725d7a15,
     type: 3}
-  inventoryUiPrefab: {fileID: 2771619872676165141, guid: 4d855731dacf5794cbb902fbc63499e7,
-    type: 3}
-  glovePrefab: {fileID: 4834642345348076956, guid: 4a53aea83ea6b404bbe3190985df587d,
+  uiPrefab: {fileID: 2693856620641267570, guid: 00736904f88ca8645a05ae40959e5139,
     type: 3}

@@ -46,7 +46,8 @@ public class ChickBoss : MonoBehaviour
     
     private void Start()
     {
-        //testing
+       // _player.AddComponent<CapsuleCollider>()
+        //testing, should work now when i added the collider on knut when in bossScene
         if(_player != null)
             Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());
         Physics.IgnoreCollision(FindObjectOfType<OgreBoss>().GetComponent<Collider>(), GetComponent<Collider>());
@@ -93,9 +94,10 @@ public class ChickBoss : MonoBehaviour
             //the chick is close enough to attack the player
             if(!_once)
             {
-                if(_player != null)
-                    _playerRage = _player.GetComponent<PlayerRage>();
-                _playerRage.TakeDamage(0.1f,gameObject);
+                if(_player != null) 
+                    _player.GetComponent<PlayerRage>().TakeDamage(0.1f,gameObject);
+                // _playerRage = _player.GetComponent<PlayerRage>();
+                //_playerRage.TakeDamage(0.1f,gameObject);
                 Debug.Log("Player took damage!");
                     
                 _audioManager.AS_AttackChirp.Play();
