@@ -1,24 +1,48 @@
-using System;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
-{ 
+{
+    private AudioSource _audioSource;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            PlaySound();
             ResumeGame();
         }
     }
     public void ResumeGame ()
     {
-        Time.timeScale = 1;
-        GetComponentInParent<Canvas>().gameObject.SetActive(false);
+        StartCoroutine(WaitForResumeGame());
     }
 
     public void ExitGame()
     {
+        StartCoroutine(WaitForExitGame());
+    }
+
+    public void PlaySound()
+    {
+        _audioSource.Play();
+    }
+
+    IEnumerator WaitForResumeGame()
+    {
+        yield return new WaitForSecondsRealtime(0.6f);
+        Time.timeScale = 1;
+        GetComponentInParent<Canvas>().gameObject.SetActive(false);
+    }
+    
+    IEnumerator WaitForExitGame()
+    {
+        yield return new WaitForSecondsRealtime(0.6f);
         Application.Quit();
         Debug.Log("Exiting game.");
     }
