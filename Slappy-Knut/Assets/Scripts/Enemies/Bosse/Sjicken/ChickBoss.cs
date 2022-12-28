@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -27,7 +26,7 @@ public class ChickBoss : MonoBehaviour
     private GameObject _player;
     private PlayerRage _playerRage;
     private NavMeshAgent _navPlayer;
-    
+
     [Header("State")] 
     [SerializeField] private StateEnum stateEnum;
 
@@ -52,6 +51,7 @@ public class ChickBoss : MonoBehaviour
     {
         //for caching
         _player = GameObject.FindWithTag("Player");
+        ogrePos = GetComponent<OgreBoss>();
         //turning the collider on or the boss fight
         _player.GetComponent<CapsuleCollider>().enabled = true;
         _navPlayer = _player.GetComponent<NavMeshAgent>();
@@ -70,6 +70,7 @@ public class ChickBoss : MonoBehaviour
     
     private void FixedUpdate()
     {
+        //to turn on the navmesh update position when player isGrounded
         if(_playerRb.velocity.y == 0)
         {
             _navPlayer.updatePosition = true;
@@ -100,10 +101,6 @@ public class ChickBoss : MonoBehaviour
     }
     private void Attack()
     {
-        //testing to make sjicken stop attacking when player is dead
-        //if (!_player.activeInHierarchy) <--- player doesn't get inactive when dead, need bool isDead or something so i can call it here
-          //  stateEnum = StateEnum.Idle;
-        
         if (Vector3.Distance(_rb.position, _player.transform.position) < 1.5f)
         {
             //the chick is close enough to attack the player
@@ -227,10 +224,8 @@ public class ChickBoss : MonoBehaviour
     {
         _anim.SetBool("Run", false);
         //Making sjicken small again
-        if(_enRaged)
+        if (_rb.transform.localScale.x > 2f)
             _rb.transform.localScale -= new Vector3(2.5f,2.5f,2.5f) * Time.deltaTime;
-        if (_rb.transform.localScale.x < 5f)
-            _enRaged = false;
 
         _lineRenderer.enabled = false;
         //turn collider off we are basically only using it so player cant through the fence and to trigger boss

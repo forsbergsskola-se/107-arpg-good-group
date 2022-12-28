@@ -1,5 +1,4 @@
 
-using System;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +14,7 @@ public class OgreBoss : Interactable, IDamagable
     private Animator _anim;
     
     [SerializeField] private bool _runAway;
-    [SerializeField] private float _health;
+    private float _health;
     [SerializeField] private float _maxHealth = 10;
     private bool _hasRaged;
 
@@ -32,14 +31,13 @@ public class OgreBoss : Interactable, IDamagable
     
     private void FixedUpdate()
     {
-        
         if (_runAway)
             Runaway();
         else
             if (Health > 0) FaceTarget();
     }
 
-    void FaceTarget()
+    private void FaceTarget()
     {
         Vector3 direction = (_player1.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
@@ -65,8 +63,7 @@ public class OgreBoss : Interactable, IDamagable
 
     public void TakeDamage(float damage, GameObject attacker) => Health -= damage; //<--- look into attacker thing
     
-
-    private float Health //temp placeholder
+    private float Health
     {
         get => _health;
         set
