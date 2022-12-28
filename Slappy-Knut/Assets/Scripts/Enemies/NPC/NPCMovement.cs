@@ -99,7 +99,6 @@ public class NPCMovement : MonoBehaviour
         }
         else if (Agent.velocity.magnitude > 3)
         {
-            // _animator.Play("Sprint");
             _animator.SetBool("Walking", false);
             _animator.SetBool("Running", true);
         }
@@ -197,7 +196,6 @@ public class NPCMovement : MonoBehaviour
                     AttackIsOnCooldown = true;
                     
                     StartCoroutine(WaitForAttackCooldown());
-                
                 }
             }
             else
