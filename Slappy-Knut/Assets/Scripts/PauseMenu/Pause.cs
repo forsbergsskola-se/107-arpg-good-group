@@ -14,8 +14,8 @@ public class Pause : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PlaySound();
-            ResumeGame();
+            Time.timeScale = 1;
+            GetComponentInParent<Canvas>().gameObject.SetActive(false);
         }
     }
     public void ResumeGame ()
