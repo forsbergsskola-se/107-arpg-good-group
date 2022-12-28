@@ -27,9 +27,11 @@ public class NPCMovement : MonoBehaviour
     protected float WalkSpeed = 2;
     
     private Animator _animator;
+    private NPC npc;
     
     void Start()
     {
+        npc = GetComponent<NPC>();
         Waypoints = GameObject.FindGameObjectsWithTag("NPCWayPoint");
         Agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
@@ -56,6 +58,7 @@ public class NPCMovement : MonoBehaviour
 
     void Update()
     {
+        if (npc.health <= 0) return;
         Roam();
         if (canFlee)
         {
@@ -150,7 +153,7 @@ public class NPCMovement : MonoBehaviour
 
     IEnumerator IdleWait()
     {
-        yield return new WaitForSeconds(Rand.Next(System.Convert.ToInt32(idleTime-(idleTime*0.5)), idleTime));
+        yield return new WaitForSeconds(Rand.Next(System.Convert.ToInt32(idleTime*0.5), idleTime));
         Agent.isStopped = false;
         Idling = false;
     }
@@ -182,8 +185,6 @@ public class NPCMovement : MonoBehaviour
                 FledLastFrame = true;
             }
         }
-
-        
     }
     
     protected void Attack()
@@ -270,4 +271,5 @@ public class NPCMovement : MonoBehaviour
             AudioManager.AS_Hit.Play();
         }
     }
+    
 }

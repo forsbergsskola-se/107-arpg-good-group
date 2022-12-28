@@ -1,20 +1,23 @@
 using System.Collections;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = System.Random;
 
 public class NPC : Interactable, IDamagable
 {
     public float startHealth = 100; 
+    public float health;
     //public Item[] loot; TODO: uncomment this when items are finished
     
-    protected Random rand = new Random();
-    protected float health;
+    protected Random Rand = new();
     protected bool iFramesActive;
     private NPCAudioManager _audioManager;
+    private Animator _animator;
     void Start()
     {
-        rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
+        _animator = GetComponent<Animator>();
+        Rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         RandomizeValues();
         
         health = startHealth;
@@ -32,7 +35,7 @@ public class NPC : Interactable, IDamagable
         
     }
 
-    protected IEnumerator waitForiFrames()
+    protected IEnumerator WaitForiFrames()
     {
         yield return new WaitForSeconds(0.5f);
         iFramesActive = false;
@@ -44,11 +47,20 @@ public class NPC : Interactable, IDamagable
     {
         health -= damage;
         _audioManager.AS_Damage.Play();
-        if(health < 1) OnDeath();
+        if (health < 1)
+        {
+            OnDeath();
+        }
     }
     
     public void OnDeath()
     {
-        
+        GetComponent<NavMeshAgent>().destination = transform.position;
+        GetComponent<Collider>().enabled = false;
+        GetComponent<NPCMovement>().enabled = false;
+        _animator.Play("Death");
+        Invoke("Destroy", 3);
     }
+
+    private void Destroy() => Destroy(gameObject);
 }
