@@ -52,7 +52,7 @@ public class ChickBoss : MonoBehaviour
         //for caching
         _player = GameObject.FindWithTag("Player");
         //turning the collider on or the boss fight
-        _player.GetComponent<CapsuleCollider>().enabled = true;
+        _player.GetComponent<CapsuleCollider>().isTrigger = false;
         _navPlayer = _player.GetComponent<NavMeshAgent>();
         //ignoring player and ogre colliders so chicken can charge through them
         Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());
@@ -228,7 +228,7 @@ public class ChickBoss : MonoBehaviour
 
         _lineRenderer.enabled = false;
         //turn collider off we are basically only using it so player cant through the fence and to trigger boss
-        _player.GetComponent<CapsuleCollider>().enabled = false;
+        _player.GetComponent<CapsuleCollider>().isTrigger = true;
     }
     
     public void PlayStepSound()
