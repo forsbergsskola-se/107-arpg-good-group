@@ -32,18 +32,6 @@ public class NPC : Interactable, IDamagable
         
     }
 
-    protected IEnumerator respawnWait()
-    {
-        yield return new WaitForSeconds(10);
-        health = startHealth;
-        GetComponent<NPCMovement>().ToggleAgentSpeed(false);
-        GetComponent<CapsuleCollider>().enabled = true;
-        foreach (var mesh in GetComponentsInChildren<SkinnedMeshRenderer>())
-        {
-            mesh.enabled = true;
-        }
-    }
-    
     protected IEnumerator waitForiFrames()
     {
         yield return new WaitForSeconds(0.5f);
@@ -59,16 +47,8 @@ public class NPC : Interactable, IDamagable
         if(health < 1) OnDeath();
     }
     
-    public void OnDeath()//I dont know what to do with this function tbh
+    public void OnDeath()
     {
-        GetComponent<NPCMovement>().ToggleAgentSpeed(true);
-        foreach (var mesh in GetComponentsInChildren<SkinnedMeshRenderer>())
-        {
-            mesh.enabled = false;
-        }
-        GetComponent<CapsuleCollider>().enabled = false;
-        //The NPC is reset in the respawnWait coroutine
-        var tst = StartCoroutine(respawnWait());
-        RandomizeValues();
+        
     }
 }
