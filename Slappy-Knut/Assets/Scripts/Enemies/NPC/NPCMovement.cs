@@ -14,6 +14,7 @@ public class NPCMovement : MonoBehaviour
     public float movementSpeed;
     public GameObject waypointsParent;
     public int idleTime = 5;
+    public bool isDamaged;
     
     protected GameObject[] Waypoints; //This is where the target points for roaming are stored
     protected NavMeshAgent Agent;
@@ -37,7 +38,7 @@ public class NPCMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
         PlayerReference = GameObject.FindWithTag("Player");
         Idling = false;
-        // RandomizeValues();
+        RandomizeValues();
         Roam();
         Agent.speed = movementSpeed;
         Rand = new Random();
@@ -60,13 +61,10 @@ public class NPCMovement : MonoBehaviour
     {
         if (npc.health <= 0) return;
         Roam();
-        if (canFlee)
+        if (isDamaged)
         {
-            Flee();
-        }
-        if (canAttack)
-        {
-            Attack();
+            if (canFlee) Flee();
+            if (canAttack) Attack();    
         }
     }
     
@@ -77,12 +75,9 @@ public class NPCMovement : MonoBehaviour
         canFlee = true;
         
         //Randomise values
-        if (Rand.NextDouble() > 0.8)//TODO: tweak odds
+        if (Rand.NextDouble() > 0.8) //TODO: tweak odds
         {
             canAttack = true;
-        }
-        if (Rand.NextDouble() > 0.8)
-        {
             canFlee = false;
         }
     }
@@ -91,29 +86,25 @@ public class NPCMovement : MonoBehaviour
     {
         Vector3 GoalDelta = transform.position - Agent.destination;
         Agent.speed = WalkSpeed;
-        if (Agent.velocity.magnitude > 0.5f)
-        {
-            _animator.SetBool("Walking", true);
-            _animator.speed = 1f;
-        }
-        else
+        if (Agent.velocity.magnitude < 0.1f)
         {
             _animator.SetBool("Walking", false);
-            _animator.speed = 1f;
-        }
-
-        if (Agent.velocity.magnitude > 3)
-        {
-            _animator.SetBool("Running", true);
-            _animator.speed = 0.75f;
-        }
-        else
-        {
             _animator.SetBool("Running", false);
-            _animator.speed = 1;
+        }
+        else if (Agent.velocity.magnitude is > 0.5f and < 2.5f)
+        {
+            _animator.SetBool("Walking", true);
+            _animator.SetBool("Running", false);
+
+        }
+        else if (Agent.velocity.magnitude > 3)
+        {
+            // _animator.Play("Sprint");
+            _animator.SetBool("Walking", false);
+            _animator.SetBool("Running", true);
         }
 
-        if (canFlee && GoalDelta.magnitude < 2 && !Idling)
+        if (isDamaged && canFlee && GoalDelta.magnitude < 2 && !Idling)
         {
             //The idea here is to find a goal which is not near enough to the player to cause us to flee
             //This code is kinda ugly, but this is as good as its going to get
@@ -175,7 +166,7 @@ public class NPCMovement : MonoBehaviour
         if (delta.magnitude < detectionRange || FleeingCooldownInProgress)
         {
             Agent.isStopped = false;
-            //agent.speed = movementSpeed;
+            Agent.speed *= 1.5f;
             Vector3 direction = delta.normalized; //Not sure if this is needed TBH, probably isnt
             //Making this point be further away from the NPCs current location will likely make it
             //better at navigating around obstacles
@@ -191,7 +182,6 @@ public class NPCMovement : MonoBehaviour
     {
         //Check if the player is within detection range, if they are, start walking towards them
         Vector3 delta = transform.position - PlayerReference.transform.position;
-        
         
         if (delta.magnitude < detectionRange)
         {

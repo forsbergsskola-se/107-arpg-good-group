@@ -45,6 +45,7 @@ public class NPC : Interactable, IDamagable
     
     public void TakeDamage(float damage, GameObject attacker)
     {
+        GetComponent<NPCMovement>().isDamaged = true;
         health -= damage;
         _audioManager.AS_Damage.Play();
         if (health < 1)
