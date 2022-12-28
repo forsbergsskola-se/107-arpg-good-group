@@ -10,7 +10,6 @@ public class Portals : MonoBehaviour
     private bool _portalStay;
     private GameObject _player;
     private PlayerLevelLogic _levelLogic;
-
     private AudioSource _audioSource;
     
     private void Start()
@@ -19,6 +18,7 @@ public class Portals : MonoBehaviour
         _levelLogic = _player.GetComponent<PlayerLevelLogic>();
 
         _audioSource = GetComponent<AudioSource>();
+        _audioSource.volume = .3f;
     }
 
     private void Update()

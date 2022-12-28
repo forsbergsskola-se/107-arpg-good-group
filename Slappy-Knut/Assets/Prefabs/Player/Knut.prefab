@@ -11812,7 +11812,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4234816177995080892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 3.9, z: 8.73}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12020,7 +12020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   XPEarned: 0
   levelUpVisualEffect: {fileID: 4205706605923317632}
-  level: 0
+  level: 3
   levelInfo: {fileID: 220397188153733452}
   satisfactionBar: {fileID: 95658945543839536}
 --- !u!114 &4205706605671335778
