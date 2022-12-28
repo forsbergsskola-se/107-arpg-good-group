@@ -1237,19 +1237,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canFlee: 0
-  canAttack: 1
+  canAttack: 0
   detectionRange: 10
   attackSpeed: 2
   attackRange: 1.5
   movementSpeed: 5
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  waypointsParent: {fileID: 1812661893087524302, guid: 4922ca66840b5424aa165ad6ca47341c,
+    type: 3}
   idleTime: 5
 --- !u!114 &2994828389178029693
 MonoBehaviour:
