@@ -9,6 +9,8 @@ TagManager:
   - AttackPoint
   - Inventory
   - DescriptionBox
+  - PlayerSpawnPoint
+  - UI
   layers:
   - Default
   - TransparentFX

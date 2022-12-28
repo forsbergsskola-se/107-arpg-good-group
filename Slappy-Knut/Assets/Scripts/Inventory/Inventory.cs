@@ -1,57 +1,56 @@
 using System.Collections.Generic;
+using Interfaces;
+using TMPro;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    #region Singleton
-    
     public static Inventory Instance; //singleton
-    private void Awake()
-    {
-        if (Instance != null)
-        {
-            Debug.LogWarning("More than one instance of Inventory found!");
-            return;
-        }
+    public static List<InventorySlot> Slots = new();
+    public static InventorySlot EquippedSlot;
+    public static GameObject DescriptionBox;
+    public static TextMeshProUGUI DescriptionText;
+    public GameObject inventoryUI;
 
+    void Start()
+    {
         Instance = this;
+        Slots.AddRange(GetComponentsInChildren<InventorySlot>());
+        DescriptionBox = GameObject.FindGameObjectWithTag("DescriptionBox");
+        DescriptionText = DescriptionBox.GetComponentInChildren<TextMeshProUGUI>();
+        
+        // hide on start
+        DescriptionBox.SetActive(false);
+        inventoryUI.SetActive(false);
     }
-    #endregion
-
-    public delegate void OnItemChanged();
-    public OnItemChanged OnItemChangedCallback;
-    public int space = 6;
-    public List<InventoryItem> items = new();
-
-    public bool Add(InventoryItem inventoryItem)
+    void Update()
     {
-        if (items.Count >= space)
+        if (Input.GetButtonDown("Inventory"))
         {
-            Debug.Log("Not enough room.");
-            return false;
+            inventoryUI.SetActive(!inventoryUI.activeSelf);
+            if (inventoryUI.activeSelf) DescriptionBox.SetActive(false);
         }
-
-        foreach (InventoryItem item in items)
+    }
+    
+    public bool AddToInventory(IItem item)
+    {
+        InventorySlot firstAvailableSlot = null;
+        
+        foreach (InventorySlot slot in Slots)
         {
-            if (item.weaponName == inventoryItem.weaponName)
+            if (slot.itemName == "")
             {
-                Debug.Log("Weapon already owned.");
+                firstAvailableSlot = slot;
+                break;
+            }
+            if (slot == Slots[^1] && slot.itemName != "")
+            {
+                Debug.Log("Not enough space in inventory."); // test this
                 return false;
             }
         }
-        items.Add(inventoryItem);
-
-        if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
-        return true;
-    }
-
-    public void Remove(InventoryItem inventoryItem)
-    {
-        Weapon.Switch(Weapon.DefaultWeapon.Name);
-        InventoryItem.EquippedSlot.icon.color = Color.white;
-        InventoryItem.EquippedSlot = null;
-        items.Remove(inventoryItem);
+        firstAvailableSlot.AddItem(item);
         
-        if (OnItemChangedCallback != null) OnItemChangedCallback.Invoke();
+        return true;
     }
 }

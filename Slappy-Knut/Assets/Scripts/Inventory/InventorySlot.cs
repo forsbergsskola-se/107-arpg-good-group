@@ -1,53 +1,59 @@
-using TMPro;
+using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class InventorySlot : MonoBehaviour
 {
-    public Image icon; //Reference the icon in Unity
+    public string itemName;
+    public string itemDesc;
+    public Image icon;
     public Button removeButton;
     
-    [HideInInspector] public InventoryItem _inventoryItem;
-    public GameObject _descriptionBox;
-    public TextMeshProUGUI _descriptionText;
-
     public void ShowDescription()
     {
-        if (_inventoryItem != null)
+        if (itemName != "")
         {
-            _descriptionBox.SetActive(true);
-            _descriptionText.text = _inventoryItem.weaponDesc;
+            Inventory.DescriptionText.text = itemDesc;
+            Inventory.DescriptionBox.SetActive(true);
         }
     }
-    public void HideDescription()
+    public void HideDescription() => Inventory.DescriptionBox.SetActive(false);
+    public void AddItem(IItem item)
     {
-        _descriptionBox.SetActive(false);
-    }
-    public void AddItem(InventoryItem newInventoryItem)//Makes the icon appear
-    {
-        _inventoryItem = newInventoryItem;
-        
-        icon.sprite = _inventoryItem.weaponIcon;
+        itemName = item.Name;
+        itemDesc = item.Description;
+        icon.sprite = item.Icon;
         icon.enabled = true;
         removeButton.interactable = true;
     }
-    public void ClearSlot()
+    public void OnRemoveButton()
     {
-        _inventoryItem = null;
-
+        itemName = "";
+        itemDesc = "";
         icon.sprite = null;
         icon.enabled = false;
         removeButton.interactable = false;
+        if (Inventory.EquippedSlot == this) Unequip();
     }
-    public void OnRemoveButton()
+
+    public void Unequip()
     {
-        Inventory.Instance.Remove(_inventoryItem);
+        Inventory.EquippedSlot = null;
+        icon.color = Color.white;
+        Weapon.Switch(Weapon.DefaultWeapon.name);
     }
+
     public void UseItem()
     {
-        if (_inventoryItem != null)
+        if (this == null) return; // no item in slot, return
+        if (this == Inventory.EquippedSlot) Unequip();
+        else
         {
-            _inventoryItem.Use();
+            // equipping new weapon
+            if (Inventory.EquippedSlot)
+                Inventory.EquippedSlot.icon.color = Color.white; // if other weapon  already equipped, color it white
+            Inventory.EquippedSlot = this;
+            Weapon.Switch(itemName);
+            icon.color = Color.red;
         }
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4509848265256369595
 RectTransform:
   m_ObjectHideFlags: 0
@@ -265,7 +265,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2771619871334126124
 RectTransform:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 790.17676, y: 1267.4027}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &2771619871334126123
@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 2771619872676165138}
   - component: {fileID: 2771619872676165139}
   - component: {fileID: 2771619872676165140}
-  - component: {fileID: 2771619872676165136}
+  - component: {fileID: 4345040090679467411}
   m_Layer: 5
   m_Name: InventoryUI
   m_TagString: Untagged
@@ -719,7 +719,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2771619872676165136
+--- !u!114 &4345040090679467411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -728,12 +728,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2771619872676165141}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35b98e2de3f813e49903fbc798a86367, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c4e58177479f5e488c05de287c2d1db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsParent: {fileID: 2771619871820614796}
   inventoryUI: {fileID: 2771619871334126125}
-  _slots: []
+  itemsParent: {fileID: 2771619871820614797}
 --- !u!1001 &356176632973630314
 PrefabInstance:
   m_ObjectHideFlags: 0
