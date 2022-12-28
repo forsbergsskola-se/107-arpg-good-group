@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -29,7 +30,7 @@ public class Spawner : MonoBehaviour
         }
         else
         {
-            _player.transform.position = _playerSpawnPoint.position;
+            _player.GetComponent<NavMeshAgent>().Warp(_playerSpawnPoint.position);
         }
         if (_ui == null)
         {
