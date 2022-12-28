@@ -192,6 +192,7 @@ public class NPCMovement : MonoBehaviour
         //Check if the player is within detection range, if they are, start walking towards them
         Vector3 delta = transform.position - PlayerReference.transform.position;
         
+        
         if (delta.magnitude < detectionRange)
         {
             Agent.speed = movementSpeed;
@@ -200,10 +201,11 @@ public class NPCMovement : MonoBehaviour
             {
                 Agent.isStopped = true; //We always want the NPC to be stopped when within range, even if its waiting on its cooldown
                 if(!AttackIsOnCooldown){
+                    transform.LookAt(PlayerReference.transform);
                     //If the player is inside our attack range and our attack isnt on cooldown we should attack them
                     _animator.SetTrigger("Attack"); //Triggers the attack animation, this should have priority over all other animations
                     AttackIsOnCooldown = true;
-                    AudioManager.AS_Swing.Play();
+                    
                     StartCoroutine(WaitForAttackCooldown());
                 
                 }
@@ -259,15 +261,18 @@ public class NPCMovement : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider is IDamagable test)
+            var damagable = hitCollider.GetComponent<IDamagable>();
+            if (damagable != null && hitCollider.gameObject.CompareTag("Player"))
             {
-                test.TakeDamage(50, gameObject);
+                Debug.Log("damagable is" + damagable);
+                damagable.TakeDamage(.09f, gameObject);
                 playAttackSound = true;
             }
         }
 
         if (playAttackSound)
         {
+            Debug.Log("attack sound");
             AudioManager.AS_Hit.Play();
         }
     }
