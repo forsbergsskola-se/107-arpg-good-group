@@ -1237,20 +1237,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canFlee: 0
-  canAttack: 1
+  canAttack: 0
   detectionRange: 10
   attackSpeed: 2
   attackRange: 1.5
   movementSpeed: 5
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  waypointsParent: {fileID: 1812661893087524302, guid: 4922ca66840b5424aa165ad6ca47341c,
+    type: 3}
   idleTime: 5
+  isDamaged: 0
 --- !u!114 &2994828389178029693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1265,6 +1260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   startHealth: 50
+  health: 0
 --- !u!114 &2994828389178029681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1278,12 +1274,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AS_FootSteps: {fileID: 0}
-  footSteps: {fileID: 8300000, guid: 3b95034c0b2914643b2b649db01cb503, type: 3}
   AS_Damage: {fileID: 0}
   AS_Hit: {fileID: 0}
-  AS_Swing: {fileID: 0}
-  hit: {fileID: 8300000, guid: f577ff05270c4bf4bb61ab4023915ecc, type: 3}
-  swing: {fileID: 8300000, guid: e703033eb1765d94493e880eebb3f015, type: 3}
+  footSteps: {fileID: 8300000, guid: 3b95034c0b2914643b2b649db01cb503, type: 3}
+  hit: {fileID: 8300000, guid: e703033eb1765d94493e880eebb3f015, type: 3}
   damage: {fileID: 8300000, guid: 230864fa601831749915d26b38fb76c9, type: 3}
 --- !u!195 &2994828387355510823
 NavMeshAgent:

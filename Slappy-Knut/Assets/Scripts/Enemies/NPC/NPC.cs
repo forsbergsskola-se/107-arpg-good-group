@@ -1,20 +1,23 @@
 using System.Collections;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.AI;
 using Random = System.Random;
 
 public class NPC : Interactable, IDamagable
 {
     public float startHealth = 100; 
+    public float health;
     //public Item[] loot; TODO: uncomment this when items are finished
     
-    protected Random rand = new Random();
-    protected float health;
+    protected Random Rand = new();
     protected bool iFramesActive;
     private NPCAudioManager _audioManager;
+    private Animator _animator;
     void Start()
     {
-        rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
+        _animator = GetComponent<Animator>();
+        Rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         RandomizeValues();
         
         health = startHealth;
@@ -32,19 +35,7 @@ public class NPC : Interactable, IDamagable
         
     }
 
-    protected IEnumerator respawnWait()
-    {
-        yield return new WaitForSeconds(10);
-        health = startHealth;
-        GetComponent<NPCMovement>().ToggleAgentSpeed(false);
-        GetComponent<CapsuleCollider>().enabled = true;
-        foreach (var mesh in GetComponentsInChildren<SkinnedMeshRenderer>())
-        {
-            mesh.enabled = true;
-        }
-    }
-    
-    protected IEnumerator waitForiFrames()
+    protected IEnumerator WaitForiFrames()
     {
         yield return new WaitForSeconds(0.5f);
         iFramesActive = false;
@@ -54,21 +45,23 @@ public class NPC : Interactable, IDamagable
     
     public void TakeDamage(float damage, GameObject attacker)
     {
+        GetComponent<NPCMovement>().isDamaged = true;
         health -= damage;
         _audioManager.AS_Damage.Play();
-        if(health < 1) OnDeath();
+        if (health < 1)
+        {
+            OnDeath();
+        }
     }
     
-    public void OnDeath()//I dont know what to do with this function tbh
+    public void OnDeath()
     {
-        GetComponent<NPCMovement>().ToggleAgentSpeed(true);
-        foreach (var mesh in GetComponentsInChildren<SkinnedMeshRenderer>())
-        {
-            mesh.enabled = false;
-        }
-        GetComponent<CapsuleCollider>().enabled = false;
-        //The NPC is reset in the respawnWait coroutine
-        var tst = StartCoroutine(respawnWait());
-        RandomizeValues();
+        GetComponent<NavMeshAgent>().destination = transform.position;
+        GetComponent<Collider>().enabled = false;
+        GetComponent<NPCMovement>().enabled = false;
+        _animator.Play("Death");
+        Invoke("Destroy", 3);
     }
+
+    private void Destroy() => Destroy(gameObject);
 }

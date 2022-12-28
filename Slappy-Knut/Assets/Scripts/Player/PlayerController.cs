@@ -32,13 +32,14 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            return;
-        }
+        if(PlayerAttack.CurrCooldown > -1) PlayerAttack.CurrCooldown -= Time.deltaTime; //Decrease CD of the weapon
         //If we press the left mouse button
          if (Input.GetMouseButton(0))
          {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
              //We create a ray
              Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
              RaycastHit hitInfo;
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour
             //Getting either item on focus or enemy to walk towards them
             if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, interactableLayer))
             {
-                LastClickedTarget = hitInfo;
+                LastClickedTarget = hitInfo; //used in PlayerAttack.cs
                 //Check if we hit and interactable
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
                 PlayerAttack.TimeHeld += Time.deltaTime;
