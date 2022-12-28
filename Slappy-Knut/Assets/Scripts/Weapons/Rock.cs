@@ -18,11 +18,11 @@ public class Rock : Weapon
     {
         Name = "Rock";
         Icon = _icon;
-        Power = 10;
+        Power = 15;
         Range = 10;
         Chargable = false;
         Description = $"Knut can throw the {Name} - {Name} has {Power} damage";
-        Cooldown = 0;
+        Cooldown = 5;
         IsEquipped = false;
     }
 }

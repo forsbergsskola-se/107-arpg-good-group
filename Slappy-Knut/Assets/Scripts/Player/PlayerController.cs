@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if(PlayerAttack.CurrCooldown > -1) PlayerAttack.CurrCooldown -= Time.deltaTime; //Decrease CD of the weapon
         //If we press the left mouse button
          if (Input.GetMouseButton(0))
          {
