@@ -227,6 +227,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1577599687, guid: db4cfaf2038b8be4ea938a36b58198b7, type: 3}
+      propertyPath: nextScene
+      value: NPC-Fix
+      objectReference: {fileID: 0}
     - target: {fileID: 8125822979606793936, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}
       propertyPath: m_Name
