@@ -10,6 +10,7 @@ public class Portals : MonoBehaviour
     private bool _portalStay;
     private GameObject _player;
     private PlayerLevelLogic _levelLogic;
+    private GameObject _backgroundMusic;
 
     private AudioSource _audioSource;
     
@@ -17,6 +18,7 @@ public class Portals : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _levelLogic = _player.GetComponent<PlayerLevelLogic>();
+        _backgroundMusic = GameObject.FindGameObjectWithTag("BackgroundMusic");
 
         _audioSource = GetComponent<AudioSource>();
     }
@@ -46,6 +48,7 @@ public class Portals : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         if(nextScene != null) SceneManager.LoadScene(nextScene);
+        Destroy(_backgroundMusic);
     }
     
 }

@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour
     private static GameObject _ui;
     private Scene _activeScene;
     private Transform _playerSpawnPoint;
+    private GameObject _backgroundMusic;
     private void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
@@ -27,6 +28,11 @@ public class Spawner : MonoBehaviour
             Instantiate(uiPrefab);
             _ui = GameObject.FindGameObjectWithTag("UI");
             DontDestroyOnLoad(_ui);
+        }
+        _backgroundMusic = GameObject.FindGameObjectWithTag("BackgroundMusic");
+        if (_backgroundMusic != null)
+        {
+            DontDestroyOnLoad(_backgroundMusic);
         }
     }
 }
