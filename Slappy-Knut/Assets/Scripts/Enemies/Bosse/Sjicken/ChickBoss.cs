@@ -51,7 +51,6 @@ public class ChickBoss : MonoBehaviour
     {
         //for caching
         _player = GameObject.FindWithTag("Player");
-        ogrePos = GetComponent<OgreBoss>();
         //turning the collider on or the boss fight
         _player.GetComponent<CapsuleCollider>().enabled = true;
         _navPlayer = _player.GetComponent<NavMeshAgent>();
