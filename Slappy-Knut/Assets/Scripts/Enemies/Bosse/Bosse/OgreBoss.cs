@@ -27,11 +27,12 @@ public class OgreBoss : Interactable, IDamagable
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
         _chick = FindObjectOfType<ChickBoss>();
+        Physics.IgnoreCollision(_player1.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
     }
     
     private void FixedUpdate()
     {
-        Physics.IgnoreCollision(_player1.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
+        
         if (_runAway)
             Runaway();
         else

@@ -1,13 +1,18 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ChickBoss : MonoBehaviour
 {
     [SerializeField] private float timer;
-    [SerializeField] private float _maxTimer = 2f;
+    [SerializeField] private float maxTimer = 2f;
     [SerializeField] private float speed = 0.02f;
     [SerializeField] private float chargeSpeed = 10;
     [SerializeField] private float knockBackForce = 1.4f;
+    [Header("Attacks")]
+    [SerializeField] private float normalDamage;
+    [SerializeField] private float chargeDamage;
+    
     private bool _once;
     private bool _enRaged;
     private bool _canCharge;
@@ -20,10 +25,9 @@ public class ChickBoss : MonoBehaviour
     private Rigidbody _playerRb;
     private LineRenderer _lineRenderer;
     private GameObject _player;
-
-    //private IDamagable takeDamage;
     private PlayerRage _playerRage;
-
+    private NavMeshAgent _navPlayer;
+    
     [Header("State")] 
     [SerializeField] private StateEnum stateEnum;
 
@@ -46,17 +50,17 @@ public class ChickBoss : MonoBehaviour
     
     private void Start()
     {
+        //for caching
         _player = GameObject.FindWithTag("Player");
-
+        //turning the collider on or the boss fight
         _player.GetComponent<CapsuleCollider>().enabled = true;
-        //testing, should work now when i added the collider on knut when in bossScene
-        if(_player != null)
-            Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());
+        _navPlayer = _player.GetComponent<NavMeshAgent>();
+        //ignoring player and ogre colliders so chicken can charge through them
+        Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());
         Physics.IgnoreCollision(FindObjectOfType<OgreBoss>().GetComponent<Collider>(), GetComponent<Collider>());
-        
-       
+        _playerRage = _player.GetComponent<PlayerRage>();
         _audioManager = GetComponent<ChickAudioManager>();
-        timer = _maxTimer;
+        timer = maxTimer;
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
         _lineRenderer = GetComponent<LineRenderer>();
@@ -66,11 +70,14 @@ public class ChickBoss : MonoBehaviour
     
     private void FixedUpdate()
     {
+        if(_playerRb.velocity.y == 0)
+        {
+            _navPlayer.updatePosition = true;
+            _playerRb.velocity = Vector3.zero;
+        }
         ChangeState();
-
-        
     }
-    void ChangeState()
+    private void ChangeState()
     {
         switch (stateEnum)
         {
@@ -83,6 +90,7 @@ public class ChickBoss : MonoBehaviour
             case StateEnum.OgreDeath: // should here change into idle state until player picks him up as a weapon or item.
                 BackToNormal();
                 break;
+            case StateEnum.Idle:
             default:
                 //unexpected things happened
                 Application.Quit();
@@ -91,30 +99,32 @@ public class ChickBoss : MonoBehaviour
     }
     private void Attack()
     {
+        //testing to make sjicken stop attacking when player is dead
+        //if (!_player.activeInHierarchy) <--- player doesn't get inactive when dead, need bool isDead or something so i can call it here
+          //  stateEnum = StateEnum.Idle;
+        
         if (Vector3.Distance(_rb.position, _player.transform.position) < 1.5f)
         {
             //the chick is close enough to attack the player
             if(!_once)
             {
-                if(_player != null) 
-                    _player.GetComponent<PlayerRage>().TakeDamage(0.1f,gameObject);
-                // _playerRage = _player.GetComponent<PlayerRage>();
-                //_playerRage.TakeDamage(0.1f,gameObject);
-                Debug.Log("Player took damage!");
-                    
+                _playerRage.TakeDamage(normalDamage,gameObject);
                 _audioManager.AS_AttackChirp.Play();
                 _once = true;
-                
+                //turns the navmesh off to get the physics on player
+                _navPlayer.updatePosition = false;
+                //resets the path to nothing
+                _navPlayer.ResetPath();
                 //knock backs the player when hit
                 Vector3 difference = (_player.transform.position-transform.position).normalized;
-                difference.y = 1f; // Need to make knut fly micro up and back down(knock back)
-                Vector3 force = difference * (knockBackForce * 5);
+                difference.y = 1f;
+                Vector3 force = difference * (knockBackForce * 3);
                 _playerRb.AddForce(force, ForceMode.Impulse);
-                StartCoroutine(ResetPlayerMovement());
             }
         }
         else
         {
+            //_navPlayer.updatePosition = true;
             //Chicken Running at player
             _anim.SetBool("Eat", false);
             _anim.SetBool("Run", true);
@@ -136,9 +146,6 @@ public class ChickBoss : MonoBehaviour
 
     public void StartRage()
     {
-        //ignoring player and ogre colliders so chicken can charge through them
-        Physics.IgnoreCollision(_player.GetComponent<Collider>(), GetComponent<Collider>());
-        Physics.IgnoreCollision(FindObjectOfType<OgreBoss>().GetComponent<Collider>(), GetComponent<Collider>());
         stateEnum = StateEnum.Angry;
         _audioManager.AS_RageChirp.Play();
     }  
@@ -187,15 +194,32 @@ public class ChickBoss : MonoBehaviour
         {
             if(!_gotHit)
             {
+                _playerRage.TakeDamage(chargeDamage,gameObject);
                 Debug.Log("Player got hit!");
                 _audioManager.AS_AttackChirp.Play();
                 //test to make chicken sound deeper when bigger
                 _audioManager.AS_AttackChirp.pitch = 0.45f;
+                
+                //Todo: Make him go brr in air and the zzb back down
                 Vector3 force = Vector3.up * (knockBackForce * 6f);
                 _playerRb.AddForce(force, ForceMode.Impulse);
+                //StartCoroutine(knockPlayerUpwards());
+                
                 _gotHit = true;
+                
+                //turns the navmesh off to get the physics on player
+                _navPlayer.updatePosition = false;
+                //resets the path to nothing
+                _navPlayer.ResetPath();
             }
         }
+    }
+
+    void FaceTarget()
+    {
+        Vector3 direction = (_player.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -204,7 +228,7 @@ public class ChickBoss : MonoBehaviour
         {
             //resets all
             _hasChargeDirection = false;
-            timer = _maxTimer;
+            timer = maxTimer;
             _canCharge = false;
             _gotHit = false;
             
