@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class ChickBoss : MonoBehaviour
 {
     [SerializeField] private float timer;
-    [SerializeField] private float maxTimer = 2f;
+    [SerializeField] private float maxTimer = 1.5f;
     [SerializeField] private float speed = 0.02f;
     [SerializeField] private float chargeSpeed = 10;
     [SerializeField] private float knockBackForce = 1.4f;
@@ -74,6 +74,7 @@ public class ChickBoss : MonoBehaviour
         {
             _navPlayer.updatePosition = true;
             _playerRb.velocity = Vector3.zero;
+            _gotHit = false;
         }
         ChangeState();
     }
@@ -124,7 +125,6 @@ public class ChickBoss : MonoBehaviour
         }
         else
         {
-            //_navPlayer.updatePosition = true;
             //Chicken Running at player
             _anim.SetBool("Eat", false);
             _anim.SetBool("Run", true);
@@ -135,13 +135,6 @@ public class ChickBoss : MonoBehaviour
             _once = false;
         }
     }
-
-    IEnumerator ResetPlayerMovement()
-    { 
-        yield return new WaitForSeconds(0.3f);
-        _playerRb.velocity = Vector3.zero;
-    }
-
     public void StartBossFight() => stateEnum = StateEnum.Attack;
 
     public void StartRage()
@@ -161,7 +154,7 @@ public class ChickBoss : MonoBehaviour
             //making sjicken bigger when angry
             _rb.transform.localScale += new Vector3(2.5f,2.5f,2.5f) * Time.deltaTime;
             //making the pitch lower when raging
-            _audioManager.AS_RageChirp.pitch -= .1f * Time.deltaTime;
+            _audioManager.AS_RageChirp.pitch -= .08f * Time.deltaTime;
             if (_rb.transform.localScale.x > 15f) 
             {
                 _enRaged = true;
@@ -169,16 +162,17 @@ public class ChickBoss : MonoBehaviour
             }
         }
 
-        // calling this once: LookAt, lineRenderer and startCharging resets when hitting the fence.
-        if (!_hasChargeDirection && _enRaged)
+        _lineRenderer.SetPosition(0, transform.position);
+        // calling this once: LookAt, lineRenderer and startCharging resets when hitting the fence and touching the ground
+        if (!_hasChargeDirection && _enRaged && _rb.velocity == Vector3.zero)
         {
             //Trying to make him not go up or down just at players position, so chick doesn't rotate upwards/downwards when targeting
             Vector3 position = new Vector3(_player.transform.position.x, 0, _player.transform.position.z);
             transform.LookAt(position);
             _hasChargeDirection = true;
 
-            _lineRenderer.SetPosition(0, transform.position);
-            _lineRenderer.SetPosition(1, position);
+           _lineRenderer.SetPosition(1, transform.forward * 25 + transform.position);
+
         }       
         // charge timer until he can start charging
         if (timer > 0 && _enRaged)
@@ -192,19 +186,16 @@ public class ChickBoss : MonoBehaviour
         //Hits player and knocks him upwards
         if (Vector3.Distance(_rb.position, _player.transform.position) < 1.5f)
         {
-            if(!_gotHit)
+            if(!_gotHit && _rb.velocity != Vector3.zero)
             {
                 _playerRage.TakeDamage(chargeDamage,gameObject);
-                Debug.Log("Player got hit!");
                 _audioManager.AS_AttackChirp.Play();
                 //test to make chicken sound deeper when bigger
                 _audioManager.AS_AttackChirp.pitch = 0.45f;
                 
-                //Todo: Make him go brr in air and the zzb back down
-                Vector3 force = Vector3.up * (knockBackForce * 6f);
+                Vector3 force = Vector3.up * (knockBackForce * 4f);
                 _playerRb.AddForce(force, ForceMode.Impulse);
-                //StartCoroutine(knockPlayerUpwards());
-                
+
                 _gotHit = true;
                 
                 //turns the navmesh off to get the physics on player
@@ -215,13 +206,6 @@ public class ChickBoss : MonoBehaviour
         }
     }
 
-    void FaceTarget()
-    {
-        Vector3 direction = (_player.transform.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Fence"))
@@ -230,10 +214,8 @@ public class ChickBoss : MonoBehaviour
             _hasChargeDirection = false;
             timer = maxTimer;
             _canCharge = false;
-            _gotHit = false;
-            
+            //_gotHit = false;
             //Knock back the Sjicken  when he hits a fence
-            //Vector3 difference = -(transform.forward);
             Vector3 difference = collision.transform.forward;
             difference.y = 1f;
             Vector3 force = difference * knockBackForce * 0.5f;
