@@ -1,30 +1,32 @@
 
+using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OgreBoss : MonoBehaviour
+public class OgreBoss : Interactable, IDamagable
 {
     public GameObject runawayCheckPoint;
     public Image healthBar;
-    private GameObject _player;
+    private GameObject _player1;
     private OgreAudioManager _audioManager;
     private ChickBoss _chick;
     private Rigidbody _rb;
     private Animator _anim;
     
     [SerializeField] private bool _runAway;
-    [SerializeField] private int _health;
-    [SerializeField] private int _maxHealth = 10;
+    private float _health;
+    [SerializeField] private float _maxHealth = 10;
     private bool _hasRaged;
 
     private void Start()
     {
         _audioManager = GetComponent<OgreAudioManager>();
-        _player = GameObject.FindWithTag("Player");
+        _player1 = GameObject.FindWithTag("Player");
         _health = _maxHealth;
         _rb = GetComponent<Rigidbody>();
         _anim = GetComponent<Animator>();
         _chick = FindObjectOfType<ChickBoss>();
+        Physics.IgnoreCollision(_player1.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
     }
     
     private void FixedUpdate()
@@ -32,12 +34,16 @@ public class OgreBoss : MonoBehaviour
         if (_runAway)
             Runaway();
         else
-        {
-            if(Health > 0)
-                transform.LookAt(new Vector3(_player.transform.position.x,0,_player.transform.position.z));
-        }
+            if (Health > 0) FaceTarget();
     }
 
+    private void FaceTarget()
+    {
+        Vector3 direction = (_player1.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+    
     private void Runaway()
     {
         //Half health ogre runs to the other side of arena while chicken gets larger
@@ -54,16 +60,16 @@ public class OgreBoss : MonoBehaviour
             _rb.MovePosition(Vector3.MoveTowards(_rb.position, position, 0.1f));
         }
     }
-    
-    public void TakeDamage(int damage) => Health -= damage; //temp placeholder TODO: implement IDamagable here
 
-    private int Health //temp placeholder
+    public void TakeDamage(float damage, GameObject attacker) => Health -= damage; //<--- look into attacker thing
+    
+    private float Health
     {
         get => _health;
         set
         {
             _health = value;
-            healthBar.fillAmount = value / (float)_maxHealth;
+            healthBar.fillAmount = value / _maxHealth;
             HealthLogic();
         }
     }
@@ -85,13 +91,6 @@ public class OgreBoss : MonoBehaviour
             AfterDeathLogic();
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        //temp placeholder
-        if(collision.collider.CompareTag("Player"))
-            TakeDamage(1);
-    }
-
     private void AfterDeathLogic()
     {
         _audioManager.AS_Death.Play();
@@ -104,11 +103,21 @@ public class OgreBoss : MonoBehaviour
         healthBar.GetComponentInParent<Canvas>().enabled = false;
         //Call OgreDeath state in the chicken
         _chick.OgreDead();
+        //Open the gate after bosse is dead
+        GameObject.FindWithTag("Gate").SetActive(false);
     }
     
     public void PlayStepSound()
     {
         //using this in the event listener on the animation to play on every footstep
         _audioManager.AS_FootSteps.Play();
+    }
+    
+    public float DefenseRating { get; set; }
+    
+
+    public void OnDeath()
+    {
+        throw new System.NotImplementedException();
     }
 }

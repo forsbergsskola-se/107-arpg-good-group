@@ -1,6 +1,7 @@
 using System;
 using Interfaces;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,13 +16,12 @@ public class PlayerRage : MonoBehaviour, IDamagable
     public float DefenseRating { get; set; }
 
     public static float CurrentRage;
-   
     
     private Scene _scene;
     private Animator _animator;
     private PlayerAudioManager _audioManager;
     private PlayerController _playerMovement;
-    
+
     void Start()
     {
         CurrentRage = 0;
@@ -40,6 +40,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     public void OnDeath()
     {
+        _playerMovement._motor.agent.ResetPath();
         _playerMovement.enabled = false;
         _animator.Play("die");
         Invoke("LoadScene", 3f);

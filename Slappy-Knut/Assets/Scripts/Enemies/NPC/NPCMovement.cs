@@ -201,7 +201,7 @@ public class NPCMovement : MonoBehaviour
             else
             {
                 Agent.isStopped = false;
-                Agent.destination = PlayerReference.transform.position;
+                Agent.ResetPath();
             }
             
         }
@@ -252,7 +252,6 @@ public class NPCMovement : MonoBehaviour
             var damagable = hitCollider.GetComponent<IDamagable>();
             if (damagable != null && hitCollider.gameObject.CompareTag("Player"))
             {
-                Debug.Log("damagable is" + damagable);
                 damagable.TakeDamage(.09f, gameObject);
                 playAttackSound = true;
             }
@@ -260,7 +259,6 @@ public class NPCMovement : MonoBehaviour
 
         if (playAttackSound)
         {
-            Debug.Log("attack sound");
             AudioManager.AS_Hit.Play();
         }
     }
