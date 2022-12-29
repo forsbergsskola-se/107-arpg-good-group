@@ -21,8 +21,9 @@ public class Rock : Weapon
         Power = 15;
         Range = 10;
         Chargable = false;
-        Description = $"Knut can throw the {Name} - {Name} has {Power} damage";
         Cooldown = 5;
         IsEquipped = false;
+        Description = $"Knut can throw the {Name} - Rock tires his arm so he can't attack for {Cooldown} seconds. " +
+                      $"{Name} has {Power} damage";
     }
 }
