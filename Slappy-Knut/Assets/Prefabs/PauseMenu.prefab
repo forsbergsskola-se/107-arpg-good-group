@@ -721,9 +721,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ae09fb75628b8494b9e0c7accdcf6629, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 87dd4da1b1e2cf245abc9b434ab56d19, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1051,6 +1051,7 @@ GameObject:
   - component: {fileID: 8043625526777724903}
   - component: {fileID: 8043625526777724897}
   - component: {fileID: 8043625526777724900}
+  - component: {fileID: 1899192201}
   m_Layer: 15
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -1173,8 +1174,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8043625526777724900}
-        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+      - m_Target: {fileID: 1899192201}
+        m_TargetAssemblyTypeName: PauseGame, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
         m_Arguments:
@@ -1195,9 +1196,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ae09fb75628b8494b9e0c7accdcf6629, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 87dd4da1b1e2cf245abc9b434ab56d19, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1293,6 +1294,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04109637672e2574f945a00f656350fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1899192201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8043625526777724899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb807863dd8a9440a94e50797c5664d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 8043625526073566781}
 --- !u!1 &8043625527021773515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1721,9 +1735,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ae09fb75628b8494b9e0c7accdcf6629, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 87dd4da1b1e2cf245abc9b434ab56d19, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1965,9 +1979,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ae09fb75628b8494b9e0c7accdcf6629, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 87dd4da1b1e2cf245abc9b434ab56d19, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
