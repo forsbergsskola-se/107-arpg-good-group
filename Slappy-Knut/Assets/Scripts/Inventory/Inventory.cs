@@ -8,12 +8,14 @@ public class Inventory : MonoBehaviour
     public static Inventory Instance; //singleton
     public static List<InventorySlot> Slots = new();
     public static InventorySlot EquippedSlot;
+    public static InventorySlot EquippedPetSlot;
     public static GameObject DescriptionBox;
     public static TextMeshProUGUI DescriptionText;
-    public GameObject inventoryUI;
+    public static GameObject inventoryUI;
 
     void Start()
     {
+        inventoryUI = GameObject.FindGameObjectWithTag("Inventory");
         Instance = this;
         Slots.AddRange(GetComponentsInChildren<InventorySlot>());
         DescriptionBox = GameObject.FindGameObjectWithTag("DescriptionBox");

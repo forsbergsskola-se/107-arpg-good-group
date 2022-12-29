@@ -3,7 +3,10 @@ guid: 9658c4fd144c67346b0e7783b5a72360
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sjickenPrefab: {fileID: 9082963279586633146, guid: c3c2aeb80f9d4b24ca6cadf4157752c4,
+      type: 3}
+  - _icon: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

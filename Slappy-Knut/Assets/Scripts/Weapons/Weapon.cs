@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Weapon : Interactable, IItem
 {
+    public string Type => "Weapon";
     public abstract string Name { get; set; }
     public abstract Sprite Icon { get; set; }
     public abstract float Power { get; set; }

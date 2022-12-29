@@ -13,6 +13,7 @@ public class FishLandmine : Interactable, IConsumable
     private PlayerLevelLogic _playerLevelLogic;
     private PlayerRage _playerRage;
 
+    public string Type { get; }
     public string Name { get; set; }
     public Sprite Icon { get; set; }
     public float Power { get; set; }

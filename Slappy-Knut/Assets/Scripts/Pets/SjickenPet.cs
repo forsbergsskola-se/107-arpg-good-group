@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SjickenPet : Pet
 {
+    public GameObject sjickenPrefab;
     public override string Name { get; set; }
     public override Sprite Icon { get; set; }
     public override float Power { get; set; }
@@ -22,5 +23,10 @@ public class SjickenPet : Pet
         Description = $"This sjicken is a tool of mass destruction, point it at things u want destroyed -sjicken does {Power} damage";
         Cooldown = 0;
         IsEquipped = false;
+    }
+
+    public void SpawnPet()
+    { 
+        Instantiate(sjickenPrefab, FindObjectOfType<PlayerAttack>().transform.position, Quaternion.identity);
     }
 }

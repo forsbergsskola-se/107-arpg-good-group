@@ -21,14 +21,14 @@ public class SjickenMovement : MonoBehaviour
 
     void MoveToPlayer()
     {
-        if (Vector3.Distance(_rb.position, _player.transform.position) < 3f)
+        if (Vector3.Distance(_rb.position, _player.transform.position) < 4f)
         {
             //stop the chicken 3f away from player else follow him
         }
         else
         {
             transform.LookAt(_player.transform);
-            Vector3 newPos = Vector3.MoveTowards(_rb.position, _player.transform.position, 0.5f);
+            Vector3 newPos = Vector3.MoveTowards(_rb.position, _player.transform.position, 5f * Time.deltaTime);
             _rb.MovePosition(newPos);    
         }
         

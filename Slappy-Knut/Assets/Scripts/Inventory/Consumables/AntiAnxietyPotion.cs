@@ -4,7 +4,8 @@ public class AntiAnxietyPotion : Interactable, IConsumable
 {
     public float power = 10;
     public Sprite icon;
-    
+
+    public string Type { get; }
     public string Name { get; set; }
     public Sprite Icon { get; set; }
     public float Power { get; set; }

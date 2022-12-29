@@ -5,6 +5,7 @@ public class InventorySlot : MonoBehaviour
 {
     public string itemName;
     public string itemDesc;
+    public string itemType;
     public Image icon;
     public Button removeButton;
     
@@ -21,6 +22,7 @@ public class InventorySlot : MonoBehaviour
     {
         itemName = item.Name;
         itemDesc = item.Description;
+        itemType = item.Type;
         icon.sprite = item.Icon;
         icon.enabled = true;
         removeButton.interactable = true;
@@ -33,8 +35,15 @@ public class InventorySlot : MonoBehaviour
         icon.enabled = false;
         removeButton.interactable = false;
         if (Inventory.EquippedSlot == this) Unequip();
+        if (Inventory.EquippedPetSlot == this) UnequipPet();
     }
-
+    public void UnequipPet()
+    {
+        Inventory.EquippedPetSlot = null;
+        icon.color = Color.white;
+        Pet.CurrEquippedPet = null;
+        Pet.Switch(itemName);
+    }
     public void Unequip()
     {
         Inventory.EquippedSlot = null;
@@ -46,14 +55,28 @@ public class InventorySlot : MonoBehaviour
     {
         if (this == null) return; // no item in slot, return
         if (this == Inventory.EquippedSlot) Unequip();
+        if(this == Inventory.EquippedPetSlot) UnequipPet();
         else
         {
             // equipping new weapon
-            if (Inventory.EquippedSlot)
-                Inventory.EquippedSlot.icon.color = Color.white; // if other weapon  already equipped, color it white
-            Inventory.EquippedSlot = this;
-            Weapon.Switch(itemName);
-            icon.color = Color.red;
+            if (itemType == "Pet")
+            {
+                if (Inventory.EquippedPetSlot)
+                    Inventory.EquippedPetSlot.icon.color = Color.white;
+                
+                Inventory.EquippedPetSlot = this;
+                Pet.Switch(itemName);
+                icon.color = Color.green;
+            }
+            else if(itemType == "Weapon")
+            {
+                if (Inventory.EquippedSlot)
+                    Inventory.EquippedSlot.icon.color = Color.white; // if other weapon  already equipped, color it white
+                
+                Inventory.EquippedSlot = this;
+                Weapon.Switch(itemName);
+                icon.color = Color.red;
+            }
         }
     }
 }
