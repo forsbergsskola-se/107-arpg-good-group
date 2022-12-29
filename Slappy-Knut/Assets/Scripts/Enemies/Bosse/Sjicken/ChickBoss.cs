@@ -227,8 +227,9 @@ public class ChickBoss : MonoBehaviour
             _rb.transform.localScale -= new Vector3(2.5f,2.5f,2.5f) * Time.deltaTime;
 
         _lineRenderer.enabled = false;
-        //turn collider off we are basically only using it so player cant through the fence and to trigger boss
-        _player.GetComponent<CapsuleCollider>().isTrigger = true;
+        //turn collider off we are basically only using it so player cant through the fence and to trigger boss (after player has landed then turn off)
+        if(_playerRb.velocity.y == 0)
+            _player.GetComponent<CapsuleCollider>().isTrigger = true;
     }
     
     public void PlayStepSound()
