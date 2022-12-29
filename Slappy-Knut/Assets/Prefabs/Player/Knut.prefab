@@ -11980,6 +11980,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   maxRayCastDistance: 100
+  _motor: {fileID: 0}
 --- !u!114 &4205706606373358267
 MonoBehaviour:
   m_ObjectHideFlags: 0
