@@ -1,21 +1,55 @@
+using System.Collections;
 using UnityEngine;
 
 public class PauseGame : MonoBehaviour
 {
     public GameObject canvas;
-    public static bool isPaused;
-    void Update()
+    public static bool IsPaused;
+    private GameObject _inventory;
+
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        _inventory = GameObject.FindGameObjectWithTag("Inventory");
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && IsPaused == false)
         {
             canvas.SetActive(true);
-            isPaused = true;
+            IsPaused = true;
+            _inventory.SetActive(false);
             Pause();
         }
+        
+        else if (Input.GetKeyDown(KeyCode.Escape) && IsPaused)
+        {
+            Time.timeScale = 1;
+            IsPaused = false;
+            canvas.SetActive(false);
+        }
+
+        if (IsPaused == false)
+        {
+            _inventory.SetActive(true);
+        }
     }
-    
-    void Pause ()
+
+    private void Pause ()
     {
         Time.timeScale = 0;
+    }
+    
+    public void ResumeGame()
+    {
+        StartCoroutine(WaitForResumeGame());
+        IsPaused = false;
+    }
+    
+    IEnumerator WaitForResumeGame()
+    {
+        yield return new WaitForSecondsRealtime(0.6f);
+        Time.timeScale = 1;
+        canvas.SetActive(false);
     }
 }

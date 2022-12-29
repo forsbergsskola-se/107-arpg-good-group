@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         if(PlayerAttack.CurrCooldown > -1) PlayerAttack.CurrCooldown -= Time.deltaTime; //Decrease CD of the weapon
         //If we press the left mouse button
-         if (Input.GetMouseButton(0) && PauseGame.isPaused == false)
+         if (Input.GetMouseButton(0) && PauseGame.IsPaused == false)
          {
             if (EventSystem.current.IsPointerOverGameObject())
             {
@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
              }
          }
         MouseHeld = Input.GetMouseButton(1);
-        if (MouseHeld && PauseGame.isPaused == false)
+        if (MouseHeld && PauseGame.IsPaused == false)
         {
             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;

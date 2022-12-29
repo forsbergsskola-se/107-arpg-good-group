@@ -63140,6 +63140,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1797136258}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1797165434 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8043625526777724899, guid: 866ed363000d2db448918364cc7e6651,
+    type: 3}
+  m_PrefabInstance: {fileID: 8043625527310113227}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1797165441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797165434}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb807863dd8a9440a94e50797c5664d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 2140677550}
 --- !u!1001 &1797985189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68853,43 +68872,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1687186989}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &1966091855
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: WaterDepthMap
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1001 &1966475805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75810,6 +75792,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2140318022}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2140677550 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8043625526073566781, guid: 866ed363000d2db448918364cc7e6651,
+    type: 3}
+  m_PrefabInstance: {fileID: 8043625527310113227}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2143169354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76353,6 +76341,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043625526777724903, guid: 866ed363000d2db448918364cc7e6651,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1797165441}
+    - target: {fileID: 8043625526777724903, guid: 866ed363000d2db448918364cc7e6651,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ResumeGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8043625526777724903, guid: 866ed363000d2db448918364cc7e6651,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PauseGame, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8043625528010095390, guid: 866ed363000d2db448918364cc7e6651,
         type: 3}

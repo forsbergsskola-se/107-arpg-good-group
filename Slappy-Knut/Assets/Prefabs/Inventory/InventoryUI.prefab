@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 4345040090679467411}
   m_Layer: 5
   m_Name: InventoryUI
-  m_TagString: Untagged
+  m_TagString: Inventory
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -732,7 +732,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 2771619871334126125}
-  itemsParent: {fileID: 2771619871820614797}
 --- !u!1001 &356176632973630314
 PrefabInstance:
   m_ObjectHideFlags: 0
