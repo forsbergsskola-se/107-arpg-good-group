@@ -22,7 +22,7 @@ public class Pause : MonoBehaviour
 
     IEnumerator WaitForExitGame()
     {
-        yield return new WaitForSecondsRealtime(0.6f);
+        yield return new WaitForSecondsRealtime(0.1f);
         Application.Quit();
         Debug.Log("Exiting game.");
     }
