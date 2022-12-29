@@ -12,39 +12,40 @@ public class NPCMovement : MonoBehaviour
     public float attackSpeed = 2; //This is how long the time in seconds is between attacks, not attacks per minute or other some such measurement
     public float attackRange = 4; // this should be much lower than detection range, use your brain
     public float movementSpeed;
-    public Transform waypointsParent;
+    public GameObject waypointsParent;
     public int idleTime = 5;
+    public bool isDamaged;
     
-    
-    protected NPCRoamGoal[] waypoints; //This is where the target points for roaming are stored
-    protected NavMeshAgent agent;
-    protected GameObject playerReference;
-    protected Random rand = new Random();
-    protected bool attackIsOnCooldown;
-    protected Vector3 startPosition;
-    protected bool fledLastFrame, fleeingCooldownInProgress;
-    protected NPCAudioManager _audioManager;
-    protected bool ideling;
-    protected float walkSpeed = 2;
+    protected GameObject[] Waypoints; //This is where the target points for roaming are stored
+    protected NavMeshAgent Agent;
+    protected GameObject PlayerReference;
+    protected Random Rand = new();
+    protected bool AttackIsOnCooldown;
+    protected Vector3 StartPosition;
+    protected bool FledLastFrame, FleeingCooldownInProgress;
+    protected NPCAudioManager AudioManager;
+    protected bool Idling;
+    protected float WalkSpeed = 2;
     
     private Animator _animator;
+    private NPC npc;
     
-    // Start is called before the first frame update
     void Start()
     {
-        waypoints = waypointsParent.GetComponentsInChildren<NPCRoamGoal>();
-        agent = GetComponent<NavMeshAgent>();
+        npc = GetComponent<NPC>();
+        Waypoints = GameObject.FindGameObjectsWithTag("NPCWayPoint");
+        Agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
-        playerReference = GameObject.FindWithTag("Player");
-        ideling = false;
-        // RandomizeValues();
+        PlayerReference = GameObject.FindWithTag("Player");
+        Idling = false;
+        RandomizeValues();
         Roam();
-        agent.speed = movementSpeed;
-        rand = new Random();
-        attackIsOnCooldown = false;
-        startPosition = transform.position;
-        _audioManager = GetComponent<NPCAudioManager>();
-        agent.destination = waypoints[0].transform.position;
+        Agent.speed = movementSpeed;
+        Rand = new Random();
+        AttackIsOnCooldown = false;
+        StartPosition = transform.position;
+        AudioManager = GetComponent<NPCAudioManager>();
+        Agent.destination = Waypoints[0].transform.position;
         
         GameObject player = GameObject.FindWithTag("Player");
         NavMeshAgent playerAgent = player.GetComponent<NavMeshAgent>();
@@ -56,19 +57,17 @@ public class NPCMovement : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (npc.health <= 0) return;
         Roam();
-        if (canFlee)
+        if (isDamaged)
         {
-            Flee();
-        }
-        if (canAttack)
-        {
-            Attack();
+            if (canFlee) Flee();
+            if (canAttack) Attack();    
         }
     }
+    
     protected void RandomizeValues()
     {
         //set default values
@@ -76,74 +75,67 @@ public class NPCMovement : MonoBehaviour
         canFlee = true;
         
         //Randomise values
-        if (rand.NextDouble() > 0.8)//TODO: tweak odds
+        if (Rand.NextDouble() > 0.8) //TODO: tweak odds
         {
             canAttack = true;
-        }
-        if (rand.NextDouble() > 0.8)
-        {
             canFlee = false;
         }
     }
+    
     protected void Roam()
     {
-        Vector3 GoalDelta = transform.position - agent.destination;
-        agent.speed = walkSpeed;
-        if (agent.velocity.magnitude > 0.5f)
-        {
-            _animator.SetBool("Walking", true);
-            _animator.speed = 1f;
-        }
-        else
+        Vector3 GoalDelta = transform.position - Agent.destination;
+        Agent.speed = WalkSpeed;
+        if (Agent.velocity.magnitude < 0.1f)
         {
             _animator.SetBool("Walking", false);
-            _animator.speed = 1f;
-        }
-
-        if (agent.velocity.magnitude > 3)
-        {
-            _animator.SetBool("Running", true);
-            _animator.speed = 0.75f;
-        }
-        else
-        {
             _animator.SetBool("Running", false);
-            _animator.speed = 1;
+        }
+        else if (Agent.velocity.magnitude is > 0.5f and < 2.5f)
+        {
+            _animator.SetBool("Walking", true);
+            _animator.SetBool("Running", false);
+
+        }
+        else if (Agent.velocity.magnitude > 3)
+        {
+            _animator.SetBool("Walking", false);
+            _animator.SetBool("Running", true);
         }
 
-        if (canFlee && GoalDelta.magnitude < 2 && !ideling)
+        if (isDamaged && canFlee && GoalDelta.magnitude < 2 && !Idling)
         {
             //The idea here is to find a goal which is not near enough to the player to cause us to flee
             //This code is kinda ugly, but this is as good as its going to get
             List<Transform> goalsNotAtPlayer = new List<Transform>();
-            for (int i = 0; i < waypoints.Length; i++)
+            for (int i = 0; i < Waypoints.Length; i++)
             {
-                Vector3 delta = playerReference.transform.position - waypoints[i].transform.position;
+                Vector3 delta = PlayerReference.transform.position - Waypoints[i].transform.position;
                 if (delta.magnitude > detectionRange)
                 {
-                    goalsNotAtPlayer.Add(waypoints[i].transform);
+                    goalsNotAtPlayer.Add(Waypoints[i].transform);
                 }
             }
 
             if (goalsNotAtPlayer.Count > 0)
             {
-                agent.destination = goalsNotAtPlayer[rand.Next(0, goalsNotAtPlayer.Count)].position;
-                agent.isStopped = true;
+                Agent.destination = goalsNotAtPlayer[Rand.Next(0, goalsNotAtPlayer.Count)].position;
+                Agent.isStopped = true;
                 StartCoroutine(IdleWait());
                 
             }
             else
             {
-                agent.destination = transform.position;
+                Agent.destination = transform.position;
             }
         }
-        else if(!ideling)
+        else if(!Idling)
         { //If we cant flee there is no reason to do such a check
 
             if (GoalDelta.magnitude < 2)
             {
-                agent.destination = waypoints[rand.Next(0, waypoints.Length-1)].transform.position;
-                agent.isStopped = true;
+                Agent.destination = Waypoints[Rand.Next(0, Waypoints.Length - 1)].transform.position;
+                Agent.isStopped = true;
                 StartCoroutine(IdleWait());
             }
         }
@@ -151,111 +143,102 @@ public class NPCMovement : MonoBehaviour
 
     IEnumerator IdleWait()
     {
-        yield return new WaitForSeconds(rand.Next(System.Convert.ToInt32(idleTime-(idleTime*0.5)), idleTime));
-        agent.isStopped = false;
-        ideling = false;
+        yield return new WaitForSeconds(Rand.Next(System.Convert.ToInt32(idleTime*0.5), idleTime));
+        Agent.isStopped = false;
+        Idling = false;
     }
    
     void Flee()
     {
         
         //Gets a vector of the distance between the player and NPC, pointing away from the player towards the NPC
-        Vector3 delta = transform.position - playerReference.transform.position;
-        if (fledLastFrame && delta.magnitude > detectionRange)
+        Vector3 delta = transform.position - PlayerReference.transform.position;
+        if (FledLastFrame && delta.magnitude > detectionRange)
         {
             
             //agent.speed = movementSpeed;
-            fledLastFrame = false;
-            fleeingCooldownInProgress = true;
+            FledLastFrame = false;
+            FleeingCooldownInProgress = true;
             StartCoroutine(waitForFleeCooldown());
         }
         
-        if (delta.magnitude < detectionRange || fleeingCooldownInProgress)
+        if (delta.magnitude < detectionRange || FleeingCooldownInProgress)
         {
-            agent.isStopped = false;
-            //agent.speed = movementSpeed;
+            Agent.isStopped = false;
+            Agent.speed *= 1.5f;
             Vector3 direction = delta.normalized; //Not sure if this is needed TBH, probably isnt
             //Making this point be further away from the NPCs current location will likely make it
             //better at navigating around obstacles
-            agent.destination = transform.position + direction * 5;
+            Agent.destination = transform.position + direction * 5;
             if (delta.magnitude < detectionRange)
             {
-                fledLastFrame = true;
+                FledLastFrame = true;
             }
         }
-
-        
     }
+    
     protected void Attack()
     {
         //Check if the player is within detection range, if they are, start walking towards them
-        Vector3 delta = transform.position - playerReference.transform.position;
+        Vector3 delta = transform.position - PlayerReference.transform.position;
         
         if (delta.magnitude < detectionRange)
         {
-            agent.speed = movementSpeed;
+            Agent.speed = movementSpeed;
             
             if (delta.magnitude < attackRange)
             {
-                agent.isStopped = true; //We always want the NPC to be stopped when within range, even if its waiting on its cooldown
-                if(!attackIsOnCooldown){
+                Agent.isStopped = true; //We always want the NPC to be stopped when within range, even if its waiting on its cooldown
+                if(!AttackIsOnCooldown){
+                    transform.LookAt(PlayerReference.transform);
                     //If the player is inside our attack range and our attack isnt on cooldown we should attack them
                     _animator.SetTrigger("Attack"); //Triggers the attack animation, this should have priority over all other animations
-                    attackIsOnCooldown = true;
-                    _audioManager.AS_Swing.Play();
-                    StartCoroutine(waitForAttackCooldown());
-                
+                    AttackIsOnCooldown = true;
+                    
+                    StartCoroutine(WaitForAttackCooldown());
                 }
             }
             else
             {
-                agent.isStopped = false;
-                agent.destination = playerReference.transform.position;
+                Agent.isStopped = false;
+                Agent.destination = PlayerReference.transform.position;
             }
             
         }
     }
+    
     IEnumerator waitForFleeCooldown()
     {
         yield return new WaitForSeconds(5);
-        fleeingCooldownInProgress = false;
+        FleeingCooldownInProgress = false;
     }
     
-
-    protected IEnumerator waitForAttackCooldown()
+    protected IEnumerator WaitForAttackCooldown()
     {
         yield return new WaitForSeconds(attackSpeed);
-        attackIsOnCooldown = false;
+        AttackIsOnCooldown = false;
     }
-
+    
     public void ToggleAgentSpeed(bool setZero)//this is used by NPCHealt
     {
         if (setZero)
         {
-            agent.speed = 0;
+            Agent.speed = 0;
         }
         else
         {
-            agent.speed = movementSpeed;
-            transform.position = startPosition;
+            Agent.speed = movementSpeed;
+            transform.position = StartPosition;
         }
     }
-
+    
     public void PlayStepSound()
     {
         //Here we play footstep sounds from walking
         //This is triggered by the animation itself
-        // if (_animator.GetBool("Running") == false)
-        // {
-        //     _audioManager.AS_FootSteps.volume = 0.5f;
-        // }
-        // else
-        // {
-        //     _audioManager.AS_FootSteps.volume = 1f;
-        // }
-        _audioManager?.AS_FootSteps.Play();
+        AudioManager?.AS_FootSteps.Play();
     }
-
+    
     public void DealDamage()
     {
         //This is triggered by the attack animation, which is triggered by Attack();
@@ -266,17 +249,20 @@ public class NPCMovement : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider is IDamagable)
+            var damagable = hitCollider.GetComponent<IDamagable>();
+            if (damagable != null && hitCollider.gameObject.CompareTag("Player"))
             {
-                var test = hitCollider as IDamagable;
-                test.TakeDamage(50, this.gameObject);
+                Debug.Log("damagable is" + damagable);
+                damagable.TakeDamage(.09f, gameObject);
                 playAttackSound = true;
             }
         }
 
         if (playAttackSound)
         {
-            _audioManager.AS_Hit.Play();
+            Debug.Log("attack sound");
+            AudioManager.AS_Hit.Play();
         }
     }
+    
 }

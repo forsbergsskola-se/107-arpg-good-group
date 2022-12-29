@@ -67,7 +67,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     public void IncreaseStats(float rage, float defenceRating)
     {
         maxRage *= rage;
-        this.DefenseRating *= defenceRating;
+        DefenseRating *= defenceRating;
     }
     
 }

@@ -9,9 +9,9 @@ TagManager:
   - AttackPoint
   - Inventory
   - DescriptionBox
-  - PlayerSpawnPoint
   - UI
-  - BackgroundMusic
+  - NPCWayPoint
+  - NPCSpawnPoint
   layers:
   - Default
   - TransparentFX
@@ -28,7 +28,7 @@ TagManager:
   - Ground
   - AccessibleVolume
   - PostProcessing
-  - Enemy
+  - 
   - MainGround
   - Player
   - 
