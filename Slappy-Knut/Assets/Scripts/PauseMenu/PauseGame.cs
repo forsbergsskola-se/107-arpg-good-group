@@ -27,6 +27,8 @@ public class PauseGame : MonoBehaviour
             Time.timeScale = 1;
             IsPaused = false;
             canvas.SetActive(false);
+            _inventory.SetActive(false);
+            Inventory.DescriptionBox.SetActive(false);
         }
 
         if (IsPaused == false)
