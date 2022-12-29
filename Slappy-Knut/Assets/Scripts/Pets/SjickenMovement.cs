@@ -5,16 +5,16 @@ using UnityEngine;
 public class SjickenMovement : MonoBehaviour
 {
     private GameObject _player;
-
     private Rigidbody _rb;
-    // Start is called before the first frame update
     void Start()
     {
         _player = FindObjectOfType<PlayerAttack>().gameObject;
         _rb = GetComponent<Rigidbody>();
+        //testing
+        DontDestroyOnLoad(gameObject);
     }
 
-    void Update()
+    void LateUpdate()
     {
         MoveToPlayer();
     }
@@ -23,7 +23,7 @@ public class SjickenMovement : MonoBehaviour
     {
         if (Vector3.Distance(_rb.position, _player.transform.position) < 4f)
         {
-            //stop the chicken 3f away from player else follow him
+            //stop the chicken 4f away from player else follow him
         }
         else
         {

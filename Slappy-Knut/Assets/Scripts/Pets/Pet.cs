@@ -15,7 +15,7 @@ public abstract class Pet : Interactable, IItem
     
     public abstract bool IsEquipped { get; set; }
     
-    public static Pet CurrEquippedPet;
+    public static GameObject CurrEquippedPet;
     public static List<Pet> AllPets = new();
 
     protected abstract void Start();
@@ -23,29 +23,18 @@ public abstract class Pet : Interactable, IItem
     public static void Switch(string newPetName)
     {
         if(CurrEquippedPet == null)
-        {
             FindObjectOfType<SjickenPet>().SpawnPet();
-            
-            AllPets.Add(FindObjectOfType<SjickenPet>());
-            Debug.Log(AllPets[0]);
-            CurrEquippedPet = AllPets[0];
-        }
         else
+            FindObjectOfType<SjickenPet>().KillPet();
+        
+        //if we are going to have more pets we can implement this like in weapon.
+        /* foreach (var pet in AllPets)
         {
-            //Destroy(AllPets[0].gameObject);
-            //Debug.Log("hvenær kem eg hingað?");
-            //FindObjectOfType<SjickenMovement>().gameObject.SetActive(false);
-           //Destroy(FindObjectOfType<SjickenMovement>().gameObject);
-        }
-        // foreach (var pet in AllPets)
-        //{
-            //if (newPetName == pet.name)
-           // {
-            //    CurrEquippedPet = pet;
-            //    FindObjectOfType<SjickenPet>().SpawnPet();
-           //     Debug.Log("kem eg hingað?");
-           // }
-        //}
+            if (newPetName == pet.name)
+            {
+                CurrEquippedPet = pet;
+               FindObjectOfType<SjickenPet>().SpawnPet();
+            }
+        }*/
     }
-    
 }

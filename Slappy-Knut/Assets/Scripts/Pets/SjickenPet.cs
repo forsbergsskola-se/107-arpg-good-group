@@ -13,6 +13,7 @@ public class SjickenPet : Pet
     public override bool IsEquipped { get; set; }
 
     [SerializeField] private Sprite _icon;
+    private GameObject _currentPet;
 
     protected override void Start()
     {
@@ -26,7 +27,14 @@ public class SjickenPet : Pet
     }
 
     public void SpawnPet()
-    { 
-        Instantiate(sjickenPrefab, FindObjectOfType<PlayerAttack>().transform.position, Quaternion.identity);
+    {
+        _currentPet = Instantiate(sjickenPrefab, FindObjectOfType<PlayerAttack>().transform.position, Quaternion.identity);
+        CurrEquippedPet = _currentPet;
+    }
+
+    public void KillPet()
+    {
+        Destroy(_currentPet);
+        _currentPet = null;
     }
 }

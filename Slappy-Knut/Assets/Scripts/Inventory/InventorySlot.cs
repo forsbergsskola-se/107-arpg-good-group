@@ -41,8 +41,8 @@ public class InventorySlot : MonoBehaviour
     {
         Inventory.EquippedPetSlot = null;
         icon.color = Color.white;
-        Pet.CurrEquippedPet = null;
         Pet.Switch(itemName);
+        Pet.CurrEquippedPet = null;
     }
     public void Unequip()
     {
