@@ -13,11 +13,11 @@ public class UseConsumable : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && PauseGame.isPaused == false)
         {
             antiAnxietyPotion.Use();
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && PauseGame.isPaused == false)
         {
             fishLandmine.Use();
         }

@@ -25,7 +25,7 @@ public class Inventory : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetButtonDown("Inventory"))
+        if (Input.GetButtonDown("Inventory") && PauseGame.isPaused == false)
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             if (inventoryUI.activeSelf) DescriptionBox.SetActive(false);

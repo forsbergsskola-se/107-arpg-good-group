@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8043625525890409632}
   - component: {fileID: 8043625525890409638}
   - component: {fileID: 8043625525890409639}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 8043625525919901122}
   - component: {fileID: 8043625525919901120}
   - component: {fileID: 8043625525919901121}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: PanelBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 8043625526073566770}
   - component: {fileID: 8043625526073566771}
   - component: {fileID: 8043625526073566780}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: PauseMenuCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 8043625526288908290}
   - component: {fileID: 8043625526288908288}
   - component: {fileID: 8043625526288908289}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8043625526394013600}
   - component: {fileID: 8043625526394013607}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 8043625526514025879}
   - component: {fileID: 8043625526514025877}
   - component: {fileID: 8043625526514025878}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: SlappyKnut Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 8043625526664647452}
   - component: {fileID: 8043625526664647454}
   - component: {fileID: 8043625526664647441}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: LoadButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -830,7 +830,7 @@ GameObject:
   - component: {fileID: 8043625526667541175}
   - component: {fileID: 8043625526667541173}
   - component: {fileID: 8043625526667541174}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 8043625526730607426}
   - component: {fileID: 8043625526730607424}
   - component: {fileID: 8043625526730607425}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1051,7 +1051,7 @@ GameObject:
   - component: {fileID: 8043625526777724903}
   - component: {fileID: 8043625526777724897}
   - component: {fileID: 8043625526777724900}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: ResumeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1304,7 +1304,7 @@ GameObject:
   - component: {fileID: 8043625527021773514}
   - component: {fileID: 8043625527021773512}
   - component: {fileID: 8043625527021773513}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1439,7 +1439,7 @@ GameObject:
   - component: {fileID: 8043625527135425418}
   - component: {fileID: 8043625527135425416}
   - component: {fileID: 8043625527135425417}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1577,7 +1577,7 @@ GameObject:
   - component: {fileID: 8043625527675994500}
   - component: {fileID: 8043625527675994502}
   - component: {fileID: 8043625527675994521}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1833,7 +1833,7 @@ GameObject:
   - component: {fileID: 8043625527922529859}
   - component: {fileID: 8043625527922529869}
   - component: {fileID: 8043625527922529856}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: SaveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2074,7 +2074,7 @@ GameObject:
   - component: {fileID: 8043625528010095390}
   - component: {fileID: 8043625528010095388}
   - component: {fileID: 8043625528010095389}
-  m_Layer: 5
+  m_Layer: 15
   m_Name: PanelBorder 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

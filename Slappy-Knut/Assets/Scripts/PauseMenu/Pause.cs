@@ -15,12 +15,14 @@ public class Pause : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Time.timeScale = 1;
+            PauseGame.isPaused = false;
             GetComponentInParent<Canvas>().gameObject.SetActive(false);
         }
     }
     public void ResumeGame ()
     {
         StartCoroutine(WaitForResumeGame());
+        PauseGame.isPaused = false;
     }
 
     public void ExitGame()
