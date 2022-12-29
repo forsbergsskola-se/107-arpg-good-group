@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask interactableLayer;
     public int maxRayCastDistance = 100;
     
-    private PlayerMotor _motor; //Reference to our motor
+    [HideInInspector] public PlayerMotor _motor; //Reference to our motor
     private Animator _animator;
     private PlayerAudioManager _audioManager;
     public static bool MouseHeld;

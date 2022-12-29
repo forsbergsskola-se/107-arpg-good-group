@@ -24,7 +24,6 @@ public class PlayerAttack : MonoBehaviour
     public void AttackAnimation()
     {
         if (CurrCooldown < 0) _animator.Play("attack");
-        
     }
     //tied to the animator as an event, only triggered when the slap lands
     public void Attack()
@@ -39,7 +38,7 @@ public class PlayerAttack : MonoBehaviour
                 _audioManager.AS_BasicSlap.Play();
                 _playerRage.TakeDamage(-1f, gameObject);
                 _playerSatis.IncreaseXP(weaponPower * 1.1f);
-                GetComponent<NavMeshAgent>().SetDestination(transform.position);
+                GetComponent<PlayerController>()._motor.agent.ResetPath();
                 CurrCooldown = Weapon.CurrEquippedWeapon.Cooldown;
             }
     }
