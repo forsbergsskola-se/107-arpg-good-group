@@ -8404,6 +8404,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Fence
       objectReference: {fileID: 0}
+    - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2061649551440640780, guid: 70d9a8bab78072a42ba6b331f1ed56ce,
         type: 3}
       propertyPath: m_RootOrder
@@ -17782,6 +17787,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Fence
       objectReference: {fileID: 0}
+    - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2061649551440640780, guid: 70d9a8bab78072a42ba6b331f1ed56ce,
         type: 3}
       propertyPath: m_RootOrder
@@ -18449,6 +18459,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Fence
       objectReference: {fileID: 0}
+    - target: {fileID: 2061649551440340780, guid: 70d9a8bab78072a42ba6b331f1ed56ce,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2061649551440640780, guid: 70d9a8bab78072a42ba6b331f1ed56ce,
         type: 3}
       propertyPath: m_RootOrder
@@ -18569,6 +18584,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PT_Medieval_Wooden_Cross_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 695846715852028315, guid: 8541fc084b623f644ba306f182511d36,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 695846715852028315, guid: 8541fc084b623f644ba306f182511d36,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 695846715852121531, guid: 8541fc084b623f644ba306f182511d36,
         type: 3}
