@@ -12,6 +12,7 @@ TagManager:
   - UI
   - NPCWayPoint
   - NPCSpawnPoint
+  - BackgroundMusic
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - Ground
   - AccessibleVolume
   - PostProcessing
-  - 
+  - PauseMenu
   - MainGround
   - Player
   - 

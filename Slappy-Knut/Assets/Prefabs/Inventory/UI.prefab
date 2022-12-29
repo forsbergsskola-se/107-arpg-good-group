@@ -1226,16 +1226,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2693856620641267571}
     m_Modifications:
-    - target: {fileID: 2771619871334126124, guid: 4d855731dacf5794cbb902fbc63499e7,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2771619871449966795, guid: 4d855731dacf5794cbb902fbc63499e7,
-        type: 3}
-      propertyPath: m_Name
-      value: InventoryTitle
-      objectReference: {fileID: 0}
     - target: {fileID: 2771619872676165137, guid: 4d855731dacf5794cbb902fbc63499e7,
         type: 3}
       propertyPath: m_Pivot.x
