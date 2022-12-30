@@ -39,6 +39,10 @@ public class Spawner : MonoBehaviour
             if(_ui != null)
                 DontDestroyOnLoad(_ui);
         }
+
+        if (Pet.CurrEquippedPet != null)
+            Pet.CurrEquippedPet.transform.position = _player.transform.position;
+
     }
 
     private void Update()
