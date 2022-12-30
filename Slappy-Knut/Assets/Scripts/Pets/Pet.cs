@@ -23,14 +23,14 @@ public abstract class Pet : Interactable, IItem
     public static void Switch(string newPetName, bool replacePet)
     {
         SjickenPet pet = FindObjectOfType<SjickenPet>();
-        if(CurrEquippedPet == null)
+        if(CurrEquippedPet == null) // if no pet CurrEquipped we spawn it
             pet.SpawnPet();
-        else if(replacePet)
+        else if(replacePet) // if pet is CurrEquipped and we equip another pet in inventory we kill and spawn it
         {
             pet.KillPet();
             pet.SpawnPet();
         }
-        else
+        else // if we have pet CurrEquipped and we unEquip it in inventory we kill it
             pet.KillPet();
         
         //if we are going to have more pets we can implement this like in weapon.

@@ -21,7 +21,7 @@ public class SjickenPet : Pet
         Icon = _icon;
         Power = 9001; //over 9000?
         Range = 3;
-        Description = $"This sjicken is a tool of mass destruction, point it at things u want destroyed -sjicken does {Power} damage";
+        Description = $"This sjicken is a tool of mass destruction, point it at things u want destroyed - sjicken does {Power} damage";
         Cooldown = 0;
         IsEquipped = false;
     }
