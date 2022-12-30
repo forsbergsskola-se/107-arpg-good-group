@@ -41,7 +41,7 @@ public class InventorySlot : MonoBehaviour
     {
         Inventory.EquippedPetSlot = null;
         icon.color = Color.white;
-        Pet.Switch(itemName);
+        Pet.Switch(itemName,false);
     }
     public void Unequip()
     {
@@ -68,7 +68,9 @@ public class InventorySlot : MonoBehaviour
                 //Else if Pet.CurrEquippedPet is null we instantiate it
                 //need to change this if we have more pets, then we just need to call the void KillPet() and then void SpawnPet() to replace the pet
                 if(Pet.CurrEquippedPet == null)
-                    Pet.Switch(itemName);
+                    Pet.Switch(itemName, false);
+                else
+                    Pet.Switch(itemName,true);
                 icon.color = Color.green;
             }
             else if(itemType == "Weapon")

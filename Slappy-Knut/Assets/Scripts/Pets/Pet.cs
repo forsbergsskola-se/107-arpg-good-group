@@ -20,12 +20,18 @@ public abstract class Pet : Interactable, IItem
 
     protected abstract void Start();
     
-    public static void Switch(string newPetName)
+    public static void Switch(string newPetName, bool replacePet)
     {
+        SjickenPet pet = FindObjectOfType<SjickenPet>();
         if(CurrEquippedPet == null)
-            FindObjectOfType<SjickenPet>().SpawnPet();
+            pet.SpawnPet();
+        else if(replacePet)
+        {
+            pet.KillPet();
+            pet.SpawnPet();
+        }
         else
-            FindObjectOfType<SjickenPet>().KillPet();
+            pet.KillPet();
         
         //if we are going to have more pets we can implement this like in weapon.
         /* foreach (var pet in AllPets)
