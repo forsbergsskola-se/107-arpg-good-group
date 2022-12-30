@@ -42,7 +42,6 @@ public class InventorySlot : MonoBehaviour
         Inventory.EquippedPetSlot = null;
         icon.color = Color.white;
         Pet.Switch(itemName);
-        Pet.CurrEquippedPet = null;
     }
     public void Unequip()
     {
@@ -65,14 +64,18 @@ public class InventorySlot : MonoBehaviour
                     Inventory.EquippedPetSlot.icon.color = Color.white;
                 
                 Inventory.EquippedPetSlot = this;
-                Pet.Switch(itemName);
+                //If we have a pet equipped and push another slot that contains pet it does nothing but change the equipped slot to green.
+                //Else if Pet.CurrEquippedPet is null we instantiate it
+                //need to change this if we have more pets, then we just need to call the void KillPet() and then void SpawnPet() to replace the pet
+                if(Pet.CurrEquippedPet == null)
+                    Pet.Switch(itemName);
                 icon.color = Color.green;
             }
             else if(itemType == "Weapon")
             {
                 if (Inventory.EquippedSlot)
                     Inventory.EquippedSlot.icon.color = Color.white; // if other weapon  already equipped, color it white
-                
+                Debug.Log(this);
                 Inventory.EquippedSlot = this;
                 Weapon.Switch(itemName);
                 icon.color = Color.red;

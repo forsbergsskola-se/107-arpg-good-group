@@ -33,7 +33,7 @@ public abstract class Pet : Interactable, IItem
             if (newPetName == pet.name)
             {
                 CurrEquippedPet = pet;
-               FindObjectOfType<SjickenPet>().SpawnPet();
+                FindObjectOfType<SjickenPet>().SpawnPet();
             }
         }*/
     }
