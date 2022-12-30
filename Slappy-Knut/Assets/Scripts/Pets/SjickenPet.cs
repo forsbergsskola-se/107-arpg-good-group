@@ -34,7 +34,9 @@ public class SjickenPet : Pet
 
     public void KillPet()
     {
-        Destroy(_currentPet);
+        Destroy(CurrEquippedPet);
+        //Destroy(_currentPet);
+        CurrEquippedPet = null;
         _currentPet = null;
     }
 }
