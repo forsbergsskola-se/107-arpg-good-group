@@ -15,6 +15,7 @@ public class PlayerLevelLogic : MonoBehaviour
     public TextMeshProUGUI levelInfo;
     
     public Slider satisfactionBar;
+    public Slider rageBar;
 
     
     void Start()
@@ -35,7 +36,7 @@ public class PlayerLevelLogic : MonoBehaviour
 
     private void CheckForLevelUp()
     {
-        if (XPEarned > nextLevelXP)
+        if (XPEarned >= nextLevelXP)
         {
             XPEarned -= nextLevelXP;
             level++;
@@ -44,6 +45,10 @@ public class PlayerLevelLogic : MonoBehaviour
             rageLogic.IncreaseStats(2,1.2f);
             PlayerRage.CurrentRage = 0;
             attackLogic.IncreaseAttackPower(1.3f);
+
+            satisfactionBar.maxValue = nextLevelXP;
+            rageBar.maxValue = rageLogic.maxRage;
+            
             levelUpVisualEffect?.Play();
         }
     }

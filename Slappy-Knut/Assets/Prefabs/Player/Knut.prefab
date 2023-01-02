@@ -12024,6 +12024,7 @@ MonoBehaviour:
   level: 3
   levelInfo: {fileID: 220397188153733452}
   satisfactionBar: {fileID: 95658945543839536}
+  rageBar: {fileID: 3836410617840107469}
 --- !u!114 &4205706605671335778
 MonoBehaviour:
   m_ObjectHideFlags: 0
