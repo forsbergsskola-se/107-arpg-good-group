@@ -11973,7 +11973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rageBar: {fileID: 3836410617840107469}
   maxRage: 1
-  rageDOT: 0.1
+  rageDOT: 0
   bodyMesh: {fileID: 4263212475617512858}
   hairMesh: {fileID: 4262839039380142678}
   fartCloud: {fileID: 4205706605912695972}
