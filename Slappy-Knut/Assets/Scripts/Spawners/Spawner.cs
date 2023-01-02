@@ -40,7 +40,7 @@ public class Spawner : MonoBehaviour
                 DontDestroyOnLoad(_ui);
         }
 
-        if (Pet.CurrEquippedPet != null)
+        if (Pet.CurrEquippedPet != null && _player != null) // sjicken has to wait for player to spawn
             Pet.CurrEquippedPet.transform.position = _player.transform.position;
 
     }
