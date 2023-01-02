@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PauseGame : MonoBehaviour
@@ -20,6 +21,12 @@ public class PauseGame : MonoBehaviour
     
     public void ResumeGame()
     {
+        StartCoroutine(WaitForSound());
+    }
+
+    IEnumerator WaitForSound()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
         Time.timeScale = 1;
         IsPaused = false;
         canvas.SetActive(false);
