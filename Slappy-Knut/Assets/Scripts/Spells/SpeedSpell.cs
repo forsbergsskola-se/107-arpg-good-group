@@ -12,13 +12,10 @@ public class SpeedSpell : MonoBehaviour
     private PlayerMotor _motor;
     private float _coolDown;
     private float _duration;
-    private float _movementSpeed;
     private bool _spellActive;
 
     private void Start()
     {
-        _motor = FindObjectOfType<PlayerMotor>();
-        _movementSpeed = _motor.agent.speed;
         _duration = maxDuration;
         coolDownImage.fillAmount = _coolDown / maxCoolDown;
     }
@@ -28,6 +25,7 @@ public class SpeedSpell : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Alpha2) && _coolDown <= 0)
         {
+            _motor = FindObjectOfType<PlayerMotor>();
             _spellActive = true;
             _motor.agent.speed *= speedMultiplier;
         }
@@ -46,7 +44,7 @@ public class SpeedSpell : MonoBehaviour
         if (_duration < 0)
         {
             inUseImage.color = Color.white;
-            _motor.agent.speed = _movementSpeed;
+            _motor.agent.speed /= speedMultiplier;
             _duration = maxDuration;
             _spellActive = false;
             _coolDown = maxCoolDown;

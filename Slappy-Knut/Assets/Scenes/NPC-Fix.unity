@@ -14574,7 +14574,7 @@ PrefabInstance:
     - target: {fileID: 8043625526394013600, guid: 866ed363000d2db448918364cc7e6651,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8043625526394013600, guid: 866ed363000d2db448918364cc7e6651,
         type: 3}
@@ -18582,7 +18582,7 @@ PrefabInstance:
     - target: {fileID: 992719998523163912, guid: 4a53aea83ea6b404bbe3190985df587d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 992719998523163912, guid: 4a53aea83ea6b404bbe3190985df587d,
         type: 3}
@@ -20573,6 +20573,43 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 568603263}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &569489579
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterDepthMap
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 1024
+  m_Height: 1024
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1001 &572344877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21753,7 +21790,7 @@ Transform:
   - {fileID: 1584466664}
   - {fileID: 599170898}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &616004153
 PrefabInstance:
@@ -24843,7 +24880,7 @@ Transform:
   - {fileID: 934262268}
   - {fileID: 126286804}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &708983996
 PrefabInstance:
@@ -68045,7 +68082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 421212, guid: 943b48a47f2b6844f902de299af71248, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 421212, guid: 943b48a47f2b6844f902de299af71248, type: 3}
       propertyPath: m_LocalPosition.x
@@ -70330,7 +70367,7 @@ PrefabInstance:
     - target: {fileID: 2079656487040081051, guid: 70df8fec56482ce4cbecb1e4c8a0d57c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2079656487040081051, guid: 70df8fec56482ce4cbecb1e4c8a0d57c,
         type: 3}
@@ -70962,7 +70999,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!182 &2030673662
 WindZone:
@@ -71110,7 +71147,7 @@ Transform:
   - {fileID: 1447977817}
   - {fileID: 2050502026}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2041124179
 PrefabInstance:
@@ -74428,7 +74465,7 @@ Transform:
   - {fileID: 1964021669}
   - {fileID: 1054945329}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2112796761 stripped
 Transform:
@@ -76201,7 +76238,7 @@ PrefabInstance:
     - target: {fileID: 9124085380879543466, guid: 5be2538110d1b0c4baa436cb78c4c7bd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9124085380879543466, guid: 5be2538110d1b0c4baa436cb78c4c7bd,
         type: 3}

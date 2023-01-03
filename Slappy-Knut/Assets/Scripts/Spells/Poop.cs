@@ -27,6 +27,5 @@ public class Poop : MonoBehaviour
             _playerSatis.IncreaseXP(power);
         }
     }
-
     void Destroy() => Destroy(gameObject);
 }
