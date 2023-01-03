@@ -7,8 +7,6 @@ public class FishLandmine : Interactable, IConsumable
     public float power;
     public GameObject explosion;
     public GameObject fishBody;
-    public Sprite icon;
-    public GameObject prefab;
 
     private PlayerLevelLogic _playerLevelLogic;
     private PlayerRage _playerRage;
@@ -20,13 +18,11 @@ public class FishLandmine : Interactable, IConsumable
     public string Description { get; set; }
     public float Cooldown { get; set; }
     public float Range { get; set; }
-    public static int Count { get; set; }
 
     private AudioSource _audioSource;
 
     private void Start()
     {
-        Icon = icon;
         _audioSource = GetComponent<AudioSource>();
         Power = power;
         Description = "Fish that causes damage when you get too close.";
@@ -36,16 +32,6 @@ public class FishLandmine : Interactable, IConsumable
         GameObject player = GameObject.FindGameObjectWithTag("Player"); //THIS CODE IS FRAGILE
         _playerLevelLogic = player.GetComponent<PlayerLevelLogic>();//We should probaby come up with something better for this
         _playerRage = player.GetComponent<PlayerRage>();
-    }
-    public void Use()
-    {
-        if (Count < 1) return;
-        
-        Transform pTransform = FindObjectOfType<PlayerController>().transform;
-        Vector3 p = pTransform.transform.position;
-        Vector3 spawnOffset = new Vector3(p.x, p.y + 0.2f, p.z);
-        Instantiate(prefab, spawnOffset, pTransform.rotation);
-        Count--;
     }
     private void OnTriggerEnter(Collider other) // this is supposed to be DoT maybe?
     {
@@ -71,6 +57,6 @@ public class FishLandmine : Interactable, IConsumable
     }
     public void IncreaseCount()
     {
-        Count++;
+        FindObjectOfType<FishLandmineSpawner>().Add();
     }
 }

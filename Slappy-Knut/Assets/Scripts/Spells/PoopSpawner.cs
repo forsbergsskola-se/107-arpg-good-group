@@ -5,25 +5,25 @@ public class PoopSpawner : MonoBehaviour
 {
     public GameObject poop;
     public float distance = 25;
-    public float maxCoolDown = 10f;
+    public float maxCooldown = 10f;
     public LayerMask walkableLayer;
-    public Image coolDownImage;
+    public Image cooldownImage;
     
     private int _maxRayCastDistance = 100;
     private GameObject _player;
-    private float _coolDown;
+    private float _cooldown;
     private bool _spellActive;
     private AudioSource _audioSource;
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        coolDownImage.fillAmount = _coolDown / maxCoolDown;
+        cooldownImage.fillAmount = _cooldown / maxCooldown;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha3) && _coolDown <= 0) 
+        if (Input.GetKeyDown(KeyCode.Alpha3) && _cooldown <= 0) 
         {
             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hitInfo;
@@ -35,12 +35,12 @@ public class PoopSpawner : MonoBehaviour
                 else
                 {
                     Instantiate(poop, hitInfo.point, Quaternion.Euler(0,0,0));
-                    _coolDown = maxCoolDown;
+                    _cooldown = maxCooldown;
                 }
             }
         }
-        if (_coolDown < 0) _coolDown = 0;
-        else _coolDown -= Time.deltaTime;
-        coolDownImage.fillAmount = _coolDown / maxCoolDown;
+        if (_cooldown < 0) _cooldown = 0;
+        else _cooldown -= Time.deltaTime;
+        cooldownImage.fillAmount = _cooldown / maxCooldown;
     }
 }

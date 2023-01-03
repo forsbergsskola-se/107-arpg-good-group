@@ -1,44 +1,38 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class AntiAnxietyPotion : Interactable, IConsumable
+public class AntiAnxietyPotion : MonoBehaviour
 {
     public float power = 10;
-    public Sprite icon;
+    public float maxCooldown = 4;
 
-    public string Type { get; }
-    public string Name { get; set; }
-    public Sprite Icon { get; set; }
-    public float Power { get; set; }
     public string Description { get; set; }
-    public float Cooldown { get; set; }
-    public float Range { get; set; }
-    public static int Count { get; set; }
-    
-    private PlayerAudioManager _audioManager;
+    public float cooldown;
+
+    public Image cooldownImage;
+
+    private AudioSource _audioSource;
 
     private void Start()
     {
-        Icon = icon;
-        Power = power;
+        _audioSource = GetComponent<AudioSource>();
         Description = $"Potion that lowers rage by {power}";
-        Cooldown = 4;
-        Range = 0;
-        _audioManager = FindObjectOfType<PlayerAudioManager>();
-        Count = 1;
     }
     
-    public void Use()
+    private void Update()
     {
-        if (Count < 1) return;
-        _audioManager.AS_DrinkPotion.Play();
-        // lowers player's current rage by power
-        FindObjectOfType<PlayerRage>().TakeDamage(-power, null);
-        Count--;
-        Invoke("IncreaseCount", Cooldown);
-    }
-
-    public void IncreaseCount()
-    {
-        Count++;
+        if (Input.GetKeyDown(KeyCode.Q) && cooldown <= 0)
+        {
+            _audioSource.Play();
+            // lowers player's current rage by power
+            FindObjectOfType<PlayerRage>().TakeDamage(-power, null);
+            cooldown = maxCooldown;
+        }
+        if (cooldown < 0) cooldown = 0;
+        else
+        {
+            cooldown -= Time.deltaTime;
+            cooldownImage.fillAmount = cooldown / maxCooldown;
+        }
     }
 }
