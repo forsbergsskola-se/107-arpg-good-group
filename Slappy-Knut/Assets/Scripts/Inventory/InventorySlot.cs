@@ -54,7 +54,7 @@ public class InventorySlot : MonoBehaviour
     {
         if (this == null) return; // no item in slot, return
         if (this == Inventory.EquippedSlot) Unequip();
-        if(this == Inventory.EquippedPetSlot) UnequipPet();
+        else if (this == Inventory.EquippedPetSlot) UnequipPet();
         else
         {
             // equipping new weapon
