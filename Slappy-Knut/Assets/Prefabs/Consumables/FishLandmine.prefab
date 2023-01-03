@@ -915,7 +915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  power: 0
+  power: 10
   explosion: {fileID: 1916654942306520338}
   fishBody: {fileID: 3056982533342112445}
   icon: {fileID: 0}
