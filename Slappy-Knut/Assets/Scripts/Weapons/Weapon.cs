@@ -25,9 +25,9 @@ public abstract class Weapon : Interactable, IItem
     {
         foreach (var weapon in AllWeapons)
         {
-            if (newWeaponName == weapon.name)
+            if (newWeaponName == weapon.Name)
             {
-                CurrEquippedWeapon.gameObject.SetActive(false);
+                if (CurrEquippedWeapon) CurrEquippedWeapon.gameObject.SetActive(false);
                 CurrEquippedWeapon = weapon;
                 CurrEquippedWeapon.gameObject.SetActive(true);
             }
