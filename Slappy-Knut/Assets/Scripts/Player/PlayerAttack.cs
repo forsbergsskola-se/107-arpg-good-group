@@ -29,19 +29,19 @@ public class PlayerAttack : MonoBehaviour
     public void Attack()
     {
         Transform targetTransform = PlayerController.LastClickedTarget.collider.transform;
-            transform.LookAt(targetTransform);
-            Weapon currWeapon = Weapon.CurrEquippedWeapon;
-            float weaponPower = currWeapon.Power;
-            IDamagable enemy = PlayerController.LastClickedTarget.collider.GetComponent<IDamagable>();
-            if (Vector3.Distance(transform.position, targetTransform.position) <= currWeapon.Range)
-            {
-                enemy.TakeDamage(weaponPower * TimeHeld);
-                _audioManager.AS_BasicSlap.Play();
-                _playerRage.TakeDamage(-1f, gameObject);
-                _playerSatis.IncreaseXP(weaponPower * 1.1f);
-                GetComponent<PlayerController>()._motor.agent.ResetPath();
-                CurrCooldown = currWeapon.Cooldown;
-            }
+        transform.LookAt(targetTransform);
+        Weapon currWeapon = Weapon.CurrEquippedWeapon;
+        float weaponPower = currWeapon.Power;
+        IDamagable enemy = PlayerController.LastClickedTarget.collider.GetComponent<IDamagable>();
+        if (Vector3.Distance(transform.position, targetTransform.position) <= currWeapon.Range)
+        {
+            enemy.TakeDamage(weaponPower * TimeHeld);
+            _audioManager.AS_BasicSlap.Play();
+            _playerRage.TakeDamage(-1f, gameObject);
+            _playerSatis.IncreaseXP(weaponPower * 1.1f);
+            GetComponent<PlayerController>()._motor.agent.ResetPath();
+            CurrCooldown = currWeapon.Cooldown;
+        }
     }
     public void AttackHold() //Holds the animation for charge attack
     {

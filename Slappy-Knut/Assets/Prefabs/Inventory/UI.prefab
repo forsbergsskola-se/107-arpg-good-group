@@ -432,6 +432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 604432653}
+  - component: {fileID: 4636530980024602527}
   m_Layer: 5
   m_Name: PoopSpell
   m_TagString: Untagged
@@ -460,6 +461,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4636530980024602527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604432652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17327cacc16a13d4282730a0387dbcc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poop: {fileID: 3753429912495141463, guid: ea668c1094646bd41a5b8957dc163c47, type: 3}
+  distance: 10
+  walkableLayer:
+    serializedVersion: 2
+    m_Bits: 65536
 --- !u!1 &767054236
 GameObject:
   m_ObjectHideFlags: 0
