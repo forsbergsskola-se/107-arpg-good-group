@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,6 +42,12 @@ public class EasyObjectsFade : MonoBehaviour
             if (time > 0.1f) return 0.01f;
             else return 0.09f;
         }
+    }
+
+    private void Start()
+    {
+        GameObject _player = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = _player.GetComponent<Transform>();
     }
 
     // Update is called once per frame
