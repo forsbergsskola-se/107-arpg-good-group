@@ -21,7 +21,7 @@ public class AntiAnxietyPotion : MonoBehaviour
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && cooldown <= 0)
+        if (Input.GetKeyDown(KeyCode.Q) && cooldown <= 0 && !PauseGame.IsPaused)
         {
             _audioSource.Play();
             // lowers player's current rage by power

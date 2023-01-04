@@ -23,7 +23,7 @@ public class SpeedSpell : MonoBehaviour
     private void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Alpha2) && _cooldown <= 0)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && _cooldown <= 0 && !PauseGame.IsPaused)
         {
             _motor = FindObjectOfType<PlayerMotor>();
             _spellActive = true;
