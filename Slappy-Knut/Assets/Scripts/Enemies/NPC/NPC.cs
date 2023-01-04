@@ -23,6 +23,7 @@ public class NPC : Interactable, IDamagable
         _animator = GetComponent<Animator>();
         Rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         
+        
         health = startHealth;
         _audioManager = GetComponent<NPCAudioManager>();
         iFramesActive = false;
@@ -33,9 +34,10 @@ public class NPC : Interactable, IDamagable
         randomNumber = new Random().Next(0,total);
         for (int i = 0; i < percentageTable.Length; i++)
         {
-            if (randomNumber <= percentageTable[i]) 
+            if (randomNumber <= percentageTable[i])
             {
-                Instantiate(loot[i], transform.position, Quaternion.identity);
+                GameObject item = Instantiate(loot[i], transform.position, Quaternion.identity);
+                item.GetComponentInChildren<Light>().enabled = true;
                 return;
             }
             randomNumber -= percentageTable[i];

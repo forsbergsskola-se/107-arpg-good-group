@@ -24,9 +24,7 @@ public class FishLandmineSpawner : MonoBehaviour
             else
             {
                 Transform pTransform = FindObjectOfType<PlayerController>().transform;
-                Vector3 p = pTransform.transform.position;
-                Vector3 spawnOffset = new Vector3(p.x, p.y + 0.2f, p.z);
-                Instantiate(prefab, spawnOffset, pTransform.rotation);
+                Instantiate(prefab, pTransform.position, pTransform.rotation);
                 Count--;
                 countText.text = Count.ToString();
             }
