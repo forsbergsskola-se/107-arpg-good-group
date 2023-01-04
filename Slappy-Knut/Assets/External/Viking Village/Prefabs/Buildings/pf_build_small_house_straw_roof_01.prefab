@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
   - component: {fileID: 6500004}
+  - component: {fileID: 4220570688571347462}
   m_Layer: 18
   m_Name: pf_build_small_house_straw_roof_01
   m_TagString: Untagged
@@ -192,3 +193,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.78, y: 3.6668959, z: 6.3408117}
   m_Center: {x: 0.12120533, y: 1.7048221, z: -0.15681553}
+--- !u!64 &4220570688571347462
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300038, guid: d2504d68eaca7e141a7898d1a61bf0c8, type: 3}
