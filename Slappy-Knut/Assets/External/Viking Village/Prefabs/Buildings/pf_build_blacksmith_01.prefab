@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400002}
   - component: {fileID: 6500008}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 2300020}
   - component: {fileID: 6500004}
   - component: {fileID: 6500002}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_blacksmith_01_roof_wooden_elements
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 3300002}
   - component: {fileID: 2300002}
   - component: {fileID: 6500006}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_blacksmith_01_walls_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 400014}
   - component: {fileID: 3300008}
   - component: {fileID: 2300008}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_blacksmith_01_planks_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 400016}
   - component: {fileID: 3300018}
   - component: {fileID: 2300018}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_blacksmith_01_pillars_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 6500016}
   - component: {fileID: 6500014}
   - component: {fileID: 6500018}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: pf_build_blacksmith_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 3300010}
   - component: {fileID: 2300010}
   - component: {fileID: 6510178}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_blacksmith_01_fence_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -630,7 +630,7 @@ GameObject:
   - component: {fileID: 13600004}
   - component: {fileID: 13600002}
   - component: {fileID: 13600000}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_blacksmith_01_walls_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -964,7 +964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400026}
   - component: {fileID: 6500010}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1009,7 +1009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400028}
   - component: {fileID: 6500012}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400000}
   - component: {fileID: 9500000}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: pf_build_crane_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400002}
   - component: {fileID: 6500010}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400004}
   - component: {fileID: 6500012}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400006}
   - component: {fileID: 6500014}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400008}
   - component: {fileID: 6500016}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400010}
   - component: {fileID: 6500018}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400012}
   - component: {fileID: 6500002}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 400014}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_crane_01_wheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +431,7 @@ GameObject:
   - component: {fileID: 3300002}
   - component: {fileID: 18300000}
   - component: {fileID: 13700000}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_crane_01_rope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -832,7 +832,7 @@ GameObject:
   - component: {fileID: 3300006}
   - component: {fileID: 2300004}
   - component: {fileID: 6500006}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_crane_01_metalpiece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -927,7 +927,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400020}
   - component: {fileID: 6500004}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -973,7 +973,7 @@ GameObject:
   - component: {fileID: 400024}
   - component: {fileID: 3300004}
   - component: {fileID: 2300002}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_crane_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1059,7 +1059,7 @@ GameObject:
   - component: {fileID: 6500008}
   - component: {fileID: 6500020}
   - component: {fileID: 6500000}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1143,7 +1143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 479022}
   - component: {fileID: 6534038}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider6
   m_TagString: Untagged
   m_Icon: {fileID: 0}

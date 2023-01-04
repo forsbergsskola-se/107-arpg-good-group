@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400024}
   - component: {fileID: 6500000}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400026}
   - component: {fileID: 6500002}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 6500008}
   - component: {fileID: 13600002}
   - component: {fileID: 13600000}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: pf_build_bighouse_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

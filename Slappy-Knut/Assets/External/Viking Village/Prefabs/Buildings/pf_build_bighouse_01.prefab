@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 400004}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_bighouse_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 400022}
   - component: {fileID: 3300002}
   - component: {fileID: 2300002}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_bighouse_01_dragonhead_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400026}
   - component: {fileID: 6500000}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400028}
   - component: {fileID: 6500002}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 400048}
   - component: {fileID: 6500006}
   - component: {fileID: 6500004}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: pf_build_bighouse_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
