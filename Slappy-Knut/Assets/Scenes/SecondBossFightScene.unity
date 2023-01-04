@@ -383,8 +383,8 @@ GameObject:
   m_Name: Wood (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &85734599
 Transform:
@@ -1290,8 +1290,8 @@ GameObject:
   m_Name: SandWall (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &212158291
 Transform:
@@ -2643,6 +2643,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeachBucket_Yellow_Desktop (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 427238, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2769,8 +2777,8 @@ GameObject:
   m_Name: SandWall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &483742058
 Transform:
@@ -3193,8 +3201,8 @@ GameObject:
   m_Name: SandWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &557936263
 Transform:
@@ -3428,14 +3436,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 564195575}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.23, y: 13.2, z: 15.198}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -57.308598, y: 49.59292, z: -17.529425}
   m_LocalScale: {x: 0.1, y: 1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 167048602}
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 643710057}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &571981971
 PrefabInstance:
@@ -3704,7 +3712,7 @@ PrefabInstance:
     - target: {fileID: 8903449741633459306, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.29174072
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 8903449741633459306, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}
@@ -3842,6 +3850,14 @@ PrefabInstance:
     - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
       propertyPath: m_Name
       value: BeachBucket_Yellow_Desktop (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 427238, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
       propertyPath: m_RootOrder
@@ -4183,8 +4199,8 @@ GameObject:
   m_Name: Wood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &623673883
 Transform:
@@ -4350,6 +4366,10 @@ Transform:
   - {fileID: 798165215}
   - {fileID: 212158291}
   - {fileID: 886292103}
+  - {fileID: 854558818}
+  - {fileID: 564195578}
+  - {fileID: 682647828}
+  - {fileID: 1361647924}
   m_Father: {fileID: 1568327579}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4536,14 +4556,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651281831}
-  m_LocalRotation: {x: 0.012215434, y: 0.015793372, z: -0.9998007, w: 0.00019296135}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
   m_LocalPosition: {x: 8.757, y: 0.5386, z: 0}
-  m_LocalScale: {x: 16.968, y: 0.82082635, z: 0.19999999}
+  m_LocalScale: {x: 16.968, y: 0.8, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1361647924}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 178.19, y: 178.6, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 180, z: 0}
 --- !u!23 &651281833
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4797,14 +4817,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682647825}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.23, y: 10.94, z: 22.82}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -57.308598, y: 47.33292, z: -9.907425}
   m_LocalScale: {x: 0.1, y: 1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 953783885}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 643710057}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &688133096
 PrefabInstance:
@@ -5452,6 +5472,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Game_Stairs_01
       objectReference: {fileID: 0}
+    - target: {fileID: 947576878283017124, guid: 3b50afe5616a95e4d8fcb29f08b823fa,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 947576878283017124, guid: 3b50afe5616a95e4d8fcb29f08b823fa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b50afe5616a95e4d8fcb29f08b823fa, type: 3}
 --- !u!4 &770208204 stripped
@@ -5798,8 +5828,8 @@ GameObject:
   m_Name: SandWall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &798165215
 Transform:
@@ -6378,14 +6408,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 854558815}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.117, y: 13.2, z: 15.198}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -45.961597, y: 49.59292, z: -17.529425}
   m_LocalScale: {x: 0.1, y: 1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1664869599}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 643710057}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &855984284 stripped
 Transform:
@@ -7198,14 +7228,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953783884}
-  m_LocalRotation: {x: 0.012215434, y: 0.015793372, z: -0.9998007, w: 0.00019296135}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
   m_LocalPosition: {x: 8.757, y: 0.5386, z: 0}
-  m_LocalScale: {x: 16.968, y: 0.82082635, z: 0.19999999}
+  m_LocalScale: {x: 16.968, y: 0.8, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 682647828}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 178.19, y: 178.6, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 180, z: 0}
 --- !u!23 &953783886
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7661,6 +7691,14 @@ PrefabInstance:
     - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
       propertyPath: m_Name
       value: BeachBucket_Yellow_Desktop (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 427238, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
       propertyPath: m_RootOrder
@@ -8136,6 +8174,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Crossbar_Stairs_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 530147588502193990, guid: 0a01ce2f5c886ac469ab722a233b6650,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 530147588502193990, guid: 0a01ce2f5c886ac469ab722a233b6650,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 869378075295768060, guid: 0a01ce2f5c886ac469ab722a233b6650,
         type: 3}
@@ -8936,6 +8984,14 @@ PrefabInstance:
     - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
       propertyPath: m_Name
       value: BeachBucket_Yellow_Desktop
+      objectReference: {fileID: 0}
+    - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 427238, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
       propertyPath: m_RootOrder
@@ -10137,14 +10193,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361647921}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.14, y: 10.94, z: 22.82}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -45.9386, y: 47.33292, z: -9.907425}
   m_LocalScale: {x: 0.1, y: 1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 651281832}
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 643710057}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1364553860
 PrefabInstance:
@@ -10156,6 +10212,14 @@ PrefabInstance:
     - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
       propertyPath: m_Name
       value: BeachBucket_Yellow_Desktop (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 134126, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 427238, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
       propertyPath: m_RootOrder
@@ -10846,6 +10910,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Swings_01
       objectReference: {fileID: 0}
+    - target: {fileID: 207510570429624245, guid: 9fc0d344e6ba1574183600c17ba78f3b,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 207510570429624245, guid: 9fc0d344e6ba1574183600c17ba78f3b,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 696625756258235663, guid: 9fc0d344e6ba1574183600c17ba78f3b,
         type: 3}
       propertyPath: m_RootOrder
@@ -11377,8 +11451,8 @@ GameObject:
   m_Name: Wood (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1523541035
 Transform:
@@ -11741,6 +11815,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Toy_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227770572395643567, guid: 7db570eaa30856d4990fda8502c9ce04,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227770572395643567, guid: 7db570eaa30856d4990fda8502c9ce04,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7db570eaa30856d4990fda8502c9ce04, type: 3}
@@ -13706,8 +13790,8 @@ GameObject:
   m_Name: Wood (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1987867289
 Transform:
@@ -14504,8 +14588,8 @@ GameObject:
   m_Name: SandWall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2109300282
 Transform:
@@ -14956,6 +15040,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1806676170}
     m_Modifications:
+    - target: {fileID: 792704677020607305, guid: f0cec3d8e5cf6d842a8143cd38f8ac81,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 792704677020607305, guid: f0cec3d8e5cf6d842a8143cd38f8ac81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3968854904100117416, guid: f0cec3d8e5cf6d842a8143cd38f8ac81,
         type: 3}
       propertyPath: m_RootOrder
@@ -15011,10 +15105,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5160085407521454819, guid: f0cec3d8e5cf6d842a8143cd38f8ac81,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160085407521454819, guid: f0cec3d8e5cf6d842a8143cd38f8ac81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6295885628267391676, guid: f0cec3d8e5cf6d842a8143cd38f8ac81,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6295885628267391676, guid: f0cec3d8e5cf6d842a8143cd38f8ac81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8956597338146565853, guid: f0cec3d8e5cf6d842a8143cd38f8ac81,
         type: 3}
       propertyPath: m_Name
       value: ArmyTruck
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956597338146565853, guid: f0cec3d8e5cf6d842a8143cd38f8ac81,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956597338146565853, guid: f0cec3d8e5cf6d842a8143cd38f8ac81,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0cec3d8e5cf6d842a8143cd38f8ac81, type: 3}
