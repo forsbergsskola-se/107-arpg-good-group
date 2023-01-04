@@ -11954,11 +11954,9 @@ MonoBehaviour:
   AS_FootSteps: {fileID: 0}
   AS_RageFart: {fileID: 0}
   AS_BasicSlap: {fileID: 0}
-  AS_DrinkPotion: {fileID: 0}
   footSteps: {fileID: 8300000, guid: 3b95034c0b2914643b2b649db01cb503, type: 3}
   rageFart: {fileID: 8300000, guid: c1d6968de9d4b444996e1d1151336b6e, type: 3}
   basicSlap: {fileID: 8300000, guid: 09b5464cf5ae48a4983c4a5cee361d15, type: 3}
-  drinkPotion: {fileID: 8300000, guid: 922b387f90e833f438fa942727e0f16d, type: 3}
 --- !u!114 &4205706606166639104
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,6 +7,7 @@ public class Portals : MonoBehaviour
 {
     public int levelRequirement = 1;
     public string nextScene;
+    public TextMeshProUGUI hotkeyText;
 
     private bool _portalStay;
     private GameObject _player;
@@ -23,17 +25,23 @@ public class Portals : MonoBehaviour
 
     private void Update()
     {
-        if (_portalStay && _levelLogic.level >= levelRequirement && Input.GetKey(KeyCode.E)) UsePortal();
+        if (_portalStay && _levelLogic.level >= levelRequirement && Input.GetKey(KeyCode.E))
+        {
+            
+            UsePortal();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         _portalStay = true;
+        if (_levelLogic.level >= levelRequirement) hotkeyText.gameObject.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
         _portalStay = false;
+        hotkeyText.gameObject.SetActive(false);
     }
 
     private void UsePortal()

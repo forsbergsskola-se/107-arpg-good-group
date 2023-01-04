@@ -486,12 +486,12 @@ GameObject:
   - component: {fileID: 7609260844014169016}
   - component: {fileID: 917164088521477763}
   m_Layer: 5
-  m_Name: HotKey
+  m_Name: Hotkey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4185987536996383479
 RectTransform:
   m_ObjectHideFlags: 0
@@ -852,3 +852,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelRequirement: 1
   nextScene: VillageMidnight
+  hotkeyText: {fileID: 917164088521477763}
