@@ -25,14 +25,13 @@ public class PlayerRage : MonoBehaviour, IDamagable
     void Start()
     {
         CurrentRage = 0;
-        GameObject rageSlider = GameObject.Find("RageBar");
-        rageBar = rageSlider.GetComponent<Slider>();
+        rageBar.maxValue = maxRage;
         _animator = GetComponent<Animator>();
         _audioManager = GetComponent<PlayerAudioManager>();
         _playerMovement = GetComponent<PlayerController>();
     }
     void Update()
-    { 
+    {
         CurrentRage += rageDOT * Time.deltaTime;
         rageBar.value = CurrentRage;
         if(CurrentRage > maxRage) OnDeath(); //checks if maxRage reached 
@@ -47,7 +46,6 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     void LoadScene() //invoke requires a parameterless function
     {
-        Weapon.AllWeapons.Clear();
         Destroy(gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -65,10 +63,10 @@ public class PlayerRage : MonoBehaviour, IDamagable
         rageBar.value = CurrentRage;
     }
 
-    public void IncreaseStats(float rage, float defenceRating)
+    public void IncreaseStats(float rageMultiplier, float defenseMultiplier)
     {
-        maxRage *= rage;
-        DefenseRating *= defenceRating;
+        maxRage *= rageMultiplier;
+        DefenseRating *= defenseMultiplier;
     }
     
 }

@@ -13,6 +13,7 @@ public class SjickenPet : Pet
     public override bool IsEquipped { get; set; }
 
     [SerializeField] private Sprite _icon;
+    private GameObject _currentPet;
 
     protected override void Start()
     {
@@ -20,13 +21,22 @@ public class SjickenPet : Pet
         Icon = _icon;
         Power = 9001; //over 9000?
         Range = 3;
-        Description = $"This sjicken is a tool of mass destruction, point it at things u want destroyed -sjicken does {Power} damage";
+        Description = $"This sjicken is a tool of mass destruction, point it at things u want destroyed - sjicken does {Power} damage";
         Cooldown = 0;
         IsEquipped = false;
     }
 
     public void SpawnPet()
-    { 
-        Instantiate(sjickenPrefab, FindObjectOfType<PlayerAttack>().transform.position, Quaternion.identity);
+    {
+        _currentPet = Instantiate(sjickenPrefab, FindObjectOfType<PlayerAttack>().transform.position, Quaternion.identity);
+        CurrEquippedPet = _currentPet;
+    }
+
+    public void KillPet()
+    {
+        Destroy(CurrEquippedPet);
+        //Destroy(_currentPet);
+        CurrEquippedPet = null;
+        _currentPet = null;
     }
 }
