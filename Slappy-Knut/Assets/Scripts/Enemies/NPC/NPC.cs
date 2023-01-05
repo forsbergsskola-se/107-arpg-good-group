@@ -66,10 +66,10 @@ public class NPC : Interactable, IDamagable
     public void OnDeath()
     {
         GetComponent<Collider>().enabled = false;
-        GetComponent<NavMeshAgent>().destination = transform.position;
+        GetComponent<NavMeshAgent>().ResetPath();
         GetComponent<NPCMovement>().enabled = false;
-        DropLoot();
         _animator.Play("Death");
+        DropLoot();
         Invoke("Destroy", 3);
     }
 
