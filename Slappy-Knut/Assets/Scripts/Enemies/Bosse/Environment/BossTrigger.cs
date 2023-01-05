@@ -6,7 +6,10 @@ public class BossTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            FindObjectOfType<ChickBoss>().StartBossFight();
+            if(FindObjectOfType<ChickBoss>() != null)
+                FindObjectOfType<ChickBoss>().StartBossFight();
+            if(FindObjectOfType<Combrat>() != null)
+                FindObjectOfType<Combrat>().StartBossFight();
             Destroy(gameObject);
         }
     }
