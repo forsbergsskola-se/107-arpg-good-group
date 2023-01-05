@@ -33,7 +33,7 @@ public class EasyObjectsFade : MonoBehaviour
 
     private List<Material> fadedOut = new List<Material>();
 
-    private float rayDistance = 10f;
+    private float rayDistance = 0;
 
     private float step
     {
@@ -75,7 +75,7 @@ public class EasyObjectsFade : MonoBehaviour
         else hits = hits1;
 
         //Uncomment to see raycasted line
-        //Debug.DrawRay(position, direction * rayDistance, Color.red);
+        Debug.DrawRay(position, direction * rayDistance, Color.red);
 
         List<Material> currentIds = new List<Material>();
         foreach (RaycastHit h in hits)
