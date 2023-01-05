@@ -46,16 +46,21 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        spawnTime -= Time.deltaTime;
-        if (spawnTime < 0)
+        if (spawnTime > 0) spawnTime -= Time.deltaTime;
+        else if (spawnTime == 0 &&_npcSpawnPoints.Length > 0)
         {
-            if (CurrentNpcCount < maxNPCs)
-            {
-                Vector3 randomSpawnPoint = _npcSpawnPoints[Random.Range(0, _npcSpawnPoints.Length)].transform.position;
-                Instantiate(npcPrefab, randomSpawnPoint, Quaternion.identity);
-                CurrentNpcCount++;
-            }
-            spawnTime = 5;
+           SpawnNPCs();
         }
+    }
+
+    void SpawnNPCs()
+    {
+        if (CurrentNpcCount < maxNPCs)
+        {
+            Vector3 randomSpawnPoint = _npcSpawnPoints[Random.Range(0, _npcSpawnPoints.Length)].transform.position;
+            Instantiate(npcPrefab, randomSpawnPoint, Quaternion.identity);
+            CurrentNpcCount++;
+        }
+        spawnTime = 5;
     }
 }
