@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 9178098776877297644}
   - component: {fileID: -8585490483956652464}
   - component: {fileID: -4443947519315331513}
-  - component: {fileID: -5079821334578661792}
+  - component: {fileID: 6693173378606713481}
   m_Layer: 0
   m_Name: PetSjicken
   m_TagString: Untagged
@@ -183,7 +183,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &-5079821334578661792
+--- !u!114 &6693173378606713481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,9 +192,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 9082963279586633146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f776866fed7d42d4f9ea482b442f34a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 9658c4fd144c67346b0e7783b5a72360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 3
+  _icon: {fileID: 21300000, guid: 5c2cc4cab67304c3eb99eec68c5fc0ca, type: 3}
+  _prefab: {fileID: 9082963279586633146}
+  movementDisabled: 0
 --- !u!1 &9083040108106223512
 GameObject:
   m_ObjectHideFlags: 0

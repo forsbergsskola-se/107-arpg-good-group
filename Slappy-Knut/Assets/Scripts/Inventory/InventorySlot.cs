@@ -8,6 +8,7 @@ public class InventorySlot : MonoBehaviour
     public string itemType;
     public Image icon;
     public Button removeButton;
+    public GameObject prefab;
     
     public void ShowDescription()
     {
@@ -26,6 +27,7 @@ public class InventorySlot : MonoBehaviour
         icon.sprite = item.Icon;
         icon.enabled = true;
         removeButton.interactable = true;
+        prefab = item.Prefab;
     }
     public void OnRemoveButton()
     {
@@ -39,9 +41,9 @@ public class InventorySlot : MonoBehaviour
     }
     public void UnequipPet()
     {
+        Pet.Unequip();
         Inventory.EquippedPetSlot = null;
         icon.color = Color.white;
-        Pet.Switch(itemName,false);
     }
     public void Unequip()
     {
@@ -53,19 +55,18 @@ public class InventorySlot : MonoBehaviour
     public void UseItem()
     {
         if (this == null) return; // no item in slot, return
+        
         if (this == Inventory.EquippedSlot) Unequip();
         else if (this == Inventory.EquippedPetSlot) UnequipPet();
         else
         {
-            // equipping new weapon
             if (itemType == "Pet")
             {
+                if(Pet.CurrEquippedPet != null) Inventory.EquippedPetSlot.UnequipPet();
+                Pet.SpawnPet(prefab);
                 if (Inventory.EquippedPetSlot)
                     Inventory.EquippedPetSlot.icon.color = Color.white;
                 Inventory.EquippedPetSlot = this;
-                
-                //if Pet.CurrEquippedPet == null false else true. To see in pet if we want to replacePet by destroying and instantiate new
-                Pet.Switch(itemName, Pet.CurrEquippedPet != null);
                 icon.color = Color.green;
             }
             else if(itemType == "Weapon")
@@ -75,7 +76,7 @@ public class InventorySlot : MonoBehaviour
                 Inventory.EquippedSlot = this;
                 Weapon.Switch(itemName);
                 icon.color = Color.red;
-            }
+            }   
         }
     }
 }

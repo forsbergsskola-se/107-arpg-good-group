@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public class SwitchWeapon : MonoBehaviour
+public class Respawn : MonoBehaviour
 {
     private bool diedWithWeapon;
+    private bool diedWithPet;
+    
     private void Start()
     {
         diedWithWeapon = Inventory.EquippedSlot != null;
@@ -16,5 +18,10 @@ public class SwitchWeapon : MonoBehaviour
             if (diedWithWeapon && Inventory.EquippedSlot.itemName == weapon.Name) Weapon.Switch(weapon.Name);
         }
         if (!diedWithWeapon) Weapon.Switch(Weapon.DefaultWeapon.Name);
+        diedWithPet = Inventory.EquippedPetSlot != null;
+        if (diedWithPet)
+        {
+            Pet.SpawnPet(Inventory.EquippedPetSlot.prefab);
+        }
     }
 }
