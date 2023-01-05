@@ -70,6 +70,7 @@ public class NPC : Interactable, IDamagable
         GetComponent<NPCMovement>().enabled = false;
         _animator.Play("Death");
         DropLoot();
+        Spawner.CurrentNpcCount--;
         Invoke("Destroy", 3);
     }
 
