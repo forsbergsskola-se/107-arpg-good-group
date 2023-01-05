@@ -6,7 +6,8 @@ public class PetRock : MonoBehaviour
 {
     private LineRenderer _line;
     private Combrat _combrat;
-
+    public Transform combratHand;
+    
     void Start()
     {
         _line = GetComponent<LineRenderer>();
@@ -21,8 +22,8 @@ public class PetRock : MonoBehaviour
 
     void Collar()
     {
-    //   _line.SetPosition(0, transform.position);
-//        _line.SetPosition(1, _combrat.transform.position);
+       _line.SetPosition(0, transform.position);
+       _line.SetPosition(1, combratHand.transform.position);
     }
 }
 
