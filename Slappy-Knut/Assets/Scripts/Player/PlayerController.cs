@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, interactableLayer))
             {
                 LastClickedTarget = hitInfo; //used in PlayerAttack.cs
-                //Check if we hit and interactable
+
                 Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
                 PlayerAttack.TimeHeld += Time.deltaTime;
                 if (interactable != null)

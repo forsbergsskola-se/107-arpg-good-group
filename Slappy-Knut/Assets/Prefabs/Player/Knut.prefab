@@ -11842,7 +11842,6 @@ GameObject:
   - component: {fileID: 4931549209684477252}
   - component: {fileID: 4205706606166639104}
   - component: {fileID: 4205706606373358267}
-  - component: {fileID: 4205706607343857291}
   - component: {fileID: 4205706607417369011}
   - component: {fileID: 4205706605671335778}
   m_Layer: 0
@@ -12042,20 +12041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6180482c80de314faceda47cd44f75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4205706607343857291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4234816177995080892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01a3f4e424686745ab4772d53569c85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fishLandmine: {fileID: 5052753448860610466, guid: 1e6ecff968d2a5b4dbc5c5baf303c26a,
-    type: 3}
 --- !u!114 &4205706607417369011
 MonoBehaviour:
   m_ObjectHideFlags: 0

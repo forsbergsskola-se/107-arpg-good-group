@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,31 +9,37 @@ public class NPC : Interactable, IDamagable
 {
     public float startHealth = 100; 
     public float health;
-    //public Item[] loot; TODO: uncomment this when items are finished
+    public List<GameObject> loot;
+    public int[] percentageTable = {20,30};
     
     protected Random Rand = new();
     protected bool iFramesActive;
     private NPCAudioManager _audioManager;
     private Animator _animator;
+    private int total = 100;
+    private int randomNumber;
     void Start()
     {
         _animator = GetComponent<Animator>();
         Rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
-        RandomizeValues();
         
         health = startHealth;
         _audioManager = GetComponent<NPCAudioManager>();
         iFramesActive = false;
     }
 
-    protected void RandomizeValues()//This is where we want to generate loot later, dont remove this function
+    protected void DropLoot()
     {
-        
-    }
-
-    protected void DropLoot() //We need actual loot to drop before implementing this
-    {
-        
+        randomNumber = new Random().Next(0,total);
+        for (int i = 0; i < percentageTable.Length; i++)
+        {
+            if (randomNumber <= percentageTable[i]) 
+            {
+                Instantiate(loot[i], transform.position, Quaternion.identity);
+                return;
+            }
+            randomNumber -= percentageTable[i];
+        }
     }
 
     protected IEnumerator WaitForiFrames()
@@ -56,9 +63,10 @@ public class NPC : Interactable, IDamagable
     
     public void OnDeath()
     {
-        GetComponent<NavMeshAgent>().destination = transform.position;
         GetComponent<Collider>().enabled = false;
+        GetComponent<NavMeshAgent>().destination = transform.position;
         GetComponent<NPCMovement>().enabled = false;
+        DropLoot();
         _animator.Play("Death");
         Invoke("Destroy", 3);
     }
