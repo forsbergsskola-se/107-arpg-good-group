@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 3300002}
   - component: {fileID: 2300002}
-  m_Layer: 0
+  - component: {fileID: 3413369292934147815}
+  m_Layer: 18
   m_Name: build_barracks_01_pillars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,6 +84,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3413369292934147815
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: fcdfed3146ad63b4e95278d7959d5317, type: 3}
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +109,8 @@ GameObject:
   - component: {fileID: 400002}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
-  m_Layer: 0
+  - component: {fileID: 3601108405990926304}
+  m_Layer: 18
   m_Name: build_barracks_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,6 +183,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3601108405990926304
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: fcdfed3146ad63b4e95278d7959d5317, type: 3}
 --- !u!1 &100012
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +211,7 @@ GameObject:
   - component: {fileID: 13600002}
   - component: {fileID: 13600000}
   - component: {fileID: 6500002}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -280,7 +310,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400014}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: pf_build_barracks_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -319,7 +349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400016}
   - component: {fileID: 6500004}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400018}
   - component: {fileID: 6500006}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400020}
   - component: {fileID: 6500008}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -454,7 +484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400022}
   - component: {fileID: 6500010}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
