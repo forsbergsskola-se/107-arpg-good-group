@@ -11,5 +11,6 @@ namespace Interfaces
         float Range { get; set; }
         string Description { get; set; }
         float Cooldown { get; set; }
+        GameObject Prefab { get; set; }
     }
 }

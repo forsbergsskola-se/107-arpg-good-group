@@ -19,6 +19,7 @@ public class FishLandmine : Interactable, IConsumable
     public float Power { get; set; }
     public string Description { get; set; }
     public float Cooldown { get; set; }
+    public GameObject Prefab { get; set; }
     public float Range { get; set; }
     public static int Count { get; set; }
 

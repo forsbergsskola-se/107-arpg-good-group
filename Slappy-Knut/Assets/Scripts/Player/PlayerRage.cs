@@ -1,7 +1,5 @@
-using System;
 using Interfaces;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -16,6 +14,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     public float DefenseRating { get; set; }
 
     public static float CurrentRage;
+    public static bool IsDead;
     
     private Scene _scene;
     private Animator _animator;
@@ -24,6 +23,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
 
     void Start()
     {
+        IsDead = false;
         CurrentRage = 0;
         rageBar.maxValue = maxRage;
         _animator = GetComponent<Animator>();
@@ -39,6 +39,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     public void OnDeath()
     {
+        IsDead = true;
         _playerMovement._motor.agent.ResetPath();
         _playerMovement.enabled = false;
         _animator.Play("die");
@@ -46,6 +47,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     void LoadScene() //invoke requires a parameterless function
     {
+        Destroy(Pet.CurrEquippedPet.gameObject);
         Destroy(gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

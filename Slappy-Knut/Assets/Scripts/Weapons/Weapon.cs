@@ -10,6 +10,7 @@ public abstract class Weapon : Interactable, IItem
     public abstract float Power { get; set; }
     public abstract string Description { get; set; }
     public abstract float Cooldown { get; set; }
+    public GameObject Prefab { get; set; }
     public abstract bool Chargable { get; set; }
     public abstract float ChargeTime { get; set; }
     public abstract float Range { get; set; }

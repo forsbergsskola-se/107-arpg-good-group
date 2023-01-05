@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class SjickenPet : Pet
+public class SjickenPickup : Pet
 {
+    // Start is called before the first frame update
     public override string Name { get; set; }
     public override Sprite Icon { get; set; }
     public override float Power { get; set; }
@@ -13,12 +14,19 @@ public class SjickenPet : Pet
     public override GameObject Player { get; set; }
     public override Rigidbody Rb { get; set; }
     public override Animator Anim { get; set; }
-    
+
+    [SerializeField] private Sprite _icon;
+    [SerializeField] private GameObject _prefab;
     protected override void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
-        Rb = GetComponent<Rigidbody>();
-        Anim = GetComponent<Animator>();
-        DontDestroyOnLoad(gameObject);
+        Name = "Sjicken";
+        Icon = _icon;
+        Power = 9001; //over 9000?
+        Range = 3;
+        Description =
+            $"{Name} is a tool of mass destruction, but it refuses to fight for you. It will still follow you though";
+        Cooldown = 0;
+        IsEquipped = false;
+        Prefab = _prefab;
     }
 }
