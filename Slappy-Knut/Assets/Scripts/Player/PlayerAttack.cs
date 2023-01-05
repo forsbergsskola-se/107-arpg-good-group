@@ -23,9 +23,9 @@ public class PlayerAttack : MonoBehaviour
     }
     public void AttackAnimation()
     {
-        NPC enemy = PlayerController.LastClickedTarget.collider.GetComponent<NPC>();
-        if (CurrCooldown < 0 && enemy.health > 0) _animator.Play("attack");
-        else if ( enemy.health < 1) GetComponent<NavMeshAgent>().ResetPath();
+        IDamagable enemy = PlayerController.LastClickedTarget.collider.GetComponent<IDamagable>();
+        if (CurrCooldown < 0 && enemy.Health > 0) _animator.Play("attack");
+        else if ( enemy.Health < 1) GetComponent<NavMeshAgent>().ResetPath();
     }
     //tied to the animator as an event, only triggered when the slap lands
     public void Attack()

@@ -22,7 +22,7 @@ public class PlayerLevelLogic : MonoBehaviour
     {
         XPEarned = 0;
         levelInfo.text = level.ToString();
-        nextLevelXP = 100;
+        nextLevelXP = 50;
         rageLogic = GetComponent<PlayerRage>();
         attackLogic = GetComponent<PlayerAttack>();
     }
@@ -46,7 +46,6 @@ public class PlayerLevelLogic : MonoBehaviour
             PlayerRage.CurrentRage = 0;
             attackLogic.IncreaseAttackPower(1.3f);
 
-            satisfactionBar.maxValue = nextLevelXP;
             rageBar.maxValue = rageLogic.maxRage;
             
             levelUpVisualEffect?.Play();

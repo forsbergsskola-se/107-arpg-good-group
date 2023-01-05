@@ -11,6 +11,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     public SkinnedMeshRenderer bodyMesh;
     public SkinnedMeshRenderer hairMesh;
     public ParticleSystem fartCloud;
+    public float Health { get; set; }
     public float DefenseRating { get; set; }
 
     public static float CurrentRage;
@@ -47,7 +48,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     void LoadScene() //invoke requires a parameterless function
     {
-        Destroy(Pet.CurrEquippedPet.gameObject);
+        if(Pet.CurrEquippedPet) Destroy(Pet.CurrEquippedPet.gameObject);
         Destroy(gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

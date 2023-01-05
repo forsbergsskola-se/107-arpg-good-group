@@ -11923,7 +11923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rageBar: {fileID: 3836410617840107469}
   maxRage: 1
-  rageDOT: 0
+  rageDOT: 0.1
   bodyMesh: {fileID: 4263212475617512858}
   hairMesh: {fileID: 4262839039380142678}
   fartCloud: {fileID: 4205706605912695972}
@@ -12004,7 +12004,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   XPEarned: 0
   levelUpVisualEffect: {fileID: 4205706605923317632}
-  level: 3
+  level: 0
   levelInfo: {fileID: 220397188153733452}
   satisfactionBar: {fileID: 95658945543839536}
   rageBar: {fileID: 3836410617840107469}

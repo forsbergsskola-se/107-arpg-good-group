@@ -230,7 +230,51 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1577599687, guid: db4cfaf2038b8be4ea938a36b58198b7, type: 3}
       propertyPath: nextScene
-      value: NPC-Fix
+      value: VillageDay
+      objectReference: {fileID: 0}
+    - target: {fileID: 1577599687, guid: db4cfaf2038b8be4ea938a36b58198b7, type: 3}
+      propertyPath: levelRequirement
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921454185, guid: db4cfaf2038b8be4ea938a36b58198b7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 145.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921454185, guid: db4cfaf2038b8be4ea938a36b58198b7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921454186, guid: db4cfaf2038b8be4ea938a36b58198b7, type: 3}
+      propertyPath: m_text
+      value: Village Daytime
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921454186, guid: db4cfaf2038b8be4ea938a36b58198b7, type: 3}
+      propertyPath: m_fontSize
+      value: 42.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126481861, guid: db4cfaf2038b8be4ea938a36b58198b7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6532815
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126481861, guid: db4cfaf2038b8be4ea938a36b58198b7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.27059805
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126481861, guid: db4cfaf2038b8be4ea938a36b58198b7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6532815
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126481861, guid: db4cfaf2038b8be4ea938a36b58198b7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.27059805
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126481861, guid: db4cfaf2038b8be4ea938a36b58198b7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 2126481861, guid: db4cfaf2038b8be4ea938a36b58198b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 8125822979606793936, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}

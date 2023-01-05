@@ -8,7 +8,6 @@ using Random = System.Random;
 public class NPC : Interactable, IDamagable
 {
     public float startHealth = 100; 
-    public float health;
     public List<GameObject> loot;
     public int[] percentageTable = {20,30}; //this has to have same amount of fields as loot
     
@@ -24,7 +23,7 @@ public class NPC : Interactable, IDamagable
         Rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         
         
-        health = startHealth;
+        Health = startHealth;
         _audioManager = GetComponent<NPCAudioManager>();
         iFramesActive = false;
     }
@@ -50,14 +49,15 @@ public class NPC : Interactable, IDamagable
         iFramesActive = false;
     }
 
+    public float Health { get; set; }
     public float DefenseRating { get; set; }
     
     public void TakeDamage(float damage, GameObject attacker)
     {
         GetComponent<NPCMovement>().isDamaged = true;
-        health -= damage;
+        Health -= damage;
         _audioManager.AS_Damage.Play();
-        if (health < 1)
+        if (Health < 1)
         {
             OnDeath();
         }

@@ -9,14 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: c11ad08b236cf4e45b10b25d10e2828a
   - enabled: 1
-    path: Assets/Scenes/VillageDayPauseMenu.unity
-    guid: 087d6dae144bd1048a9b88f357848931
+    path: Assets/Scenes/VillageDay.unity
+    guid: a512b5c3be37e86478716212978a1ae0
   - enabled: 1
-    path: Assets/Scenes/VillageMidnightPauseMenu.unity
-    guid: 407e5e248e99eaa49843ffed2726ae4c
-  - enabled: 1
-    path: Assets/Scenes/Archive/BossFightFixScene.unity
-    guid: 0c0d5bdeb88a4fa4a9eeef063e0279c8
+    path: Assets/Scenes/VillageMidnight.unity
+    guid: bc92281e2526aac4f9a73d53381d502a
   - enabled: 1
     path: Assets/Scenes/Bosse.unity
     guid: 98706e7f90eee5043bf1ad4661716823

@@ -59,7 +59,7 @@ public class NPCMovement : MonoBehaviour
 
     void Update()
     {
-        if (npc.health <= 0) return;
+        if (npc.Health <= 0) return;
         Roam();
         if (isDamaged)
         {
