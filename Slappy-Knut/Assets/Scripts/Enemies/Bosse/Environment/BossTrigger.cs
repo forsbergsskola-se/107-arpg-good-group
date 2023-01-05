@@ -10,6 +10,7 @@ public class BossTrigger : MonoBehaviour
                 FindObjectOfType<ChickBoss>().StartBossFight();
             if(FindObjectOfType<Combrat>() != null)
                 FindObjectOfType<Combrat>().StartBossFight();
+            FindObjectOfType<PlayerAttack>().GetComponent<CapsuleCollider>().isTrigger = false;
             Destroy(gameObject);
         }
     }

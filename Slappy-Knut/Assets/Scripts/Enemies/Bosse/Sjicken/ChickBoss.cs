@@ -51,8 +51,6 @@ public class ChickBoss : MonoBehaviour
     {
         //for caching
         _player = GameObject.FindWithTag("Player");
-        //turning the collider on or the boss fight
-        _player.GetComponent<CapsuleCollider>().isTrigger = false;
         _navPlayer = _player.GetComponent<NavMeshAgent>();
         //ignoring player and ogre colliders so chicken can charge through them
         Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());

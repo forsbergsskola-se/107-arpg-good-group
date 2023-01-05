@@ -15,6 +15,7 @@ public class Combrat : MonoBehaviour
 
     void Start()
     {
+        
         state = State.Idle;
     }
 
