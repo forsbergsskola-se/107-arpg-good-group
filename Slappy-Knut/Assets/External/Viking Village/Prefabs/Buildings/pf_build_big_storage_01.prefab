@@ -112,7 +112,6 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 3300010}
   - component: {fileID: 2300010}
-  - component: {fileID: 1606688189445961581}
   m_Layer: 18
   m_Name: build_big_storage_01_walls_up
   m_TagString: Untagged
@@ -185,20 +184,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1606688189445961581
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100006}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: ae04583bfa7e89144b9b5c7c76a54cdf, type: 3}
 --- !u!1 &100010
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +195,6 @@ GameObject:
   - component: {fileID: 400002}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
-  - component: {fileID: 6402670272967332613}
   m_Layer: 18
   m_Name: build_big_storage_01_walls_down
   m_TagString: Untagged
@@ -283,20 +267,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6402670272967332613
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100010}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300006, guid: ae04583bfa7e89144b9b5c7c76a54cdf, type: 3}
 --- !u!1 &100014
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +278,6 @@ GameObject:
   - component: {fileID: 400014}
   - component: {fileID: 3300012}
   - component: {fileID: 2300012}
-  - component: {fileID: 7170874055720033774}
   m_Layer: 18
   m_Name: build_big_storage_01_pillars_01
   m_TagString: Untagged
@@ -382,20 +351,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7170874055720033774
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100014}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: ae04583bfa7e89144b9b5c7c76a54cdf, type: 3}
 --- !u!1 &100016
 GameObject:
   m_ObjectHideFlags: 0
