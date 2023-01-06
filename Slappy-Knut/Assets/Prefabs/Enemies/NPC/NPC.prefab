@@ -1237,8 +1237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0999471dfc0a1914fa606ec3484f792c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canFlee: 0
-  canAttack: 0
   detectionRange: 10
   attackSpeed: 2
   attackRange: 1.5
@@ -1247,6 +1245,7 @@ MonoBehaviour:
     type: 3}
   idleTime: 5
   isDamaged: 0
+  chanceToBeAggressive: 0.25
 --- !u!114 &2994828389178029693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1261,7 +1260,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 3
   startHealth: 50
-  health: 0
   loot:
   - {fileID: 4834642345348076956, guid: 4a53aea83ea6b404bbe3190985df587d, type: 3}
   - {fileID: 1916654942182664184, guid: 1e6ecff968d2a5b4dbc5c5baf303c26a, type: 3}

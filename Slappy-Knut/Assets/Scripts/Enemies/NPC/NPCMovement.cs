@@ -6,8 +6,6 @@ using UnityEngine.AI;
 using Random = System.Random;
 public class NPCMovement : MonoBehaviour
 {
-    public bool canFlee;
-    public bool canAttack;
     public float detectionRange = 6;
     public float attackSpeed = 2; //This is how long the time in seconds is between attacks, not attacks per minute or other some such measurement
     public float attackRange = 4; // this should be much lower than detection range, use your brain
@@ -15,6 +13,7 @@ public class NPCMovement : MonoBehaviour
     public GameObject waypointsParent;
     public int idleTime = 5;
     public bool isDamaged;
+    public float chanceToBeAggressive = 0.5f;
     
     protected GameObject[] Waypoints; //This is where the target points for roaming are stored
     protected NavMeshAgent Agent;
@@ -29,7 +28,9 @@ public class NPCMovement : MonoBehaviour
     
     private Animator _animator;
     private NPC npc;
-    
+    private bool canFlee;
+    private bool canAttack;
+
     void Start()
     {
         npc = GetComponent<NPC>();
@@ -75,7 +76,7 @@ public class NPCMovement : MonoBehaviour
         canFlee = true;
         
         //Randomise values
-        if (Rand.NextDouble() > 0.8) //TODO: tweak odds
+        if (Rand.NextDouble() < chanceToBeAggressive) //TODO: tweak odds
         {
             canAttack = true;
             canFlee = false;
