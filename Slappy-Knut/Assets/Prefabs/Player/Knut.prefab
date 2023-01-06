@@ -13674,7 +13674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  _icon: {fileID: 21300000, guid: b2791cda845e14da3af29c4f1a475a55, type: 3}
+  _icon: {fileID: 21300000, guid: e67c8f8d226094ac5a1e523c5f7e3a69, type: 3}
 --- !u!1 &8738586886234113982
 GameObject:
   m_ObjectHideFlags: 0
