@@ -1260,12 +1260,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  startHealth: 50
-  health: 0
+  startHealth: 20
   loot:
   - {fileID: 4834642345348076956, guid: 4a53aea83ea6b404bbe3190985df587d, type: 3}
   - {fileID: 1916654942182664184, guid: 1e6ecff968d2a5b4dbc5c5baf303c26a, type: 3}
-  percentageTable: 1400000028000000
+  percentageTable: 1e0000003c000000
 --- !u!114 &2994828389178029681
 MonoBehaviour:
   m_ObjectHideFlags: 0
