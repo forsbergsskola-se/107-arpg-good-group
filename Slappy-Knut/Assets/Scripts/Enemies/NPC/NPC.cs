@@ -9,7 +9,7 @@ public class NPC : Interactable, IDamagable
 {
     public float startHealth = 100; 
     public List<GameObject> loot;
-    public int[] percentageTable = {20,30}; //this has to have same amount of fields as loot
+    public int[] percentageTable; //this has to have same amount of fields as loot
     
     protected Random Rand = new();
     protected bool iFramesActive;
