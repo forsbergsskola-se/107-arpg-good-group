@@ -2557,6 +2557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   power: 10
   maxCooldown: 4
+  cooldown: 0
   cooldownImage: {fileID: 6498742647208486690}
 --- !u!82 &1004786455661430369
 AudioSource:
