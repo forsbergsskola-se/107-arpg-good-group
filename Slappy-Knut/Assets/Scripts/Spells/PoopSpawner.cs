@@ -23,6 +23,8 @@ public class PoopSpawner : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.C)) _cooldown = 0;
+        
         if (Input.GetKeyDown(KeyCode.Alpha3) && _cooldown <= 0 && !PauseGame.IsPaused) 
         {
             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);

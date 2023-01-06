@@ -46,6 +46,8 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.N)) Instantiate(npcPrefab, FindObjectOfType<PlayerRage>().transform.position, Quaternion.identity);
+        
         if (spawnTime > -1) spawnTime -= Time.deltaTime;
         else if (spawnTime < 0 &&_npcSpawnPoints.Length > 0)
         {
