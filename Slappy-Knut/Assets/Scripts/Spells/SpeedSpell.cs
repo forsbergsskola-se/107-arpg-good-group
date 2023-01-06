@@ -8,6 +8,7 @@ public class SpeedSpell : MonoBehaviour
     public float speedMultiplier = 2f;
     public Image cooldownImage;
     public Image inUseImage;
+    public ParticleSystem speedUpParticle;
 
     private PlayerMotor _motor;
     private float _cooldown;
@@ -25,14 +26,13 @@ public class SpeedSpell : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Alpha2) && !PauseGame.IsPaused)
         {
-            Debug.Log(_cooldown + "cd");
-            Debug.Log(_duration);
             if (_cooldown <= 0 && _duration <= 0)
             {
                 _duration = maxDuration;
                 _motor = FindObjectOfType<PlayerMotor>();
                 _spellActive = true;
                 _motor.agent.speed *= speedMultiplier;
+                Instantiate(speedUpParticle, _motor.transform);
             }
         }
         

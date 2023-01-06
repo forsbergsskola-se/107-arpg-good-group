@@ -8,14 +8,14 @@ public class AntiAnxietyPotion : MonoBehaviour
 
     public string Description { get; set; }
     public float cooldown;
+    public ParticleSystem healParticle;
 
     public Image cooldownImage;
 
-    private AudioSource _audioSource;
+    
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
         Description = $"Potion that lowers rage by {power}";
     }
     
@@ -23,9 +23,10 @@ public class AntiAnxietyPotion : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q) && cooldown <= 0 && !PauseGame.IsPaused)
         {
-            _audioSource.Play();
             // lowers player's current rage by power
-            FindObjectOfType<PlayerRage>().TakeDamage(-power, null);
+            PlayerRage player = FindObjectOfType<PlayerRage>();
+            player.TakeDamage(-power, null);
+            Instantiate(healParticle, player.transform);
             cooldown = maxCooldown;
         }
         if (cooldown < 0) cooldown = 0;

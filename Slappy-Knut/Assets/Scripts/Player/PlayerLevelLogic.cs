@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,7 +10,7 @@ public class PlayerLevelLogic : MonoBehaviour
     private PlayerAttack attackLogic;
 
     private float nextLevelXP; //Stores what the next levels required XP is
-    public ParticleSystem levelUpVisualEffect;
+    public ParticleSystem levelUpParticle;
     public int level;
     public TextMeshProUGUI levelInfo;
     
@@ -58,7 +57,7 @@ public class PlayerLevelLogic : MonoBehaviour
 
             rageBar.maxValue = rageLogic.maxRage;
             
-            levelUpVisualEffect?.Play();
+            Instantiate(levelUpParticle, transform);
         }
     }
 }

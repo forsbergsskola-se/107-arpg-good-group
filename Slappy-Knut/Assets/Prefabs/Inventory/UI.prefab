@@ -1140,6 +1140,8 @@ MonoBehaviour:
   speedMultiplier: 2
   cooldownImage: {fileID: 5065610503132521417}
   inUseImage: {fileID: 216682626}
+  speedUpParticle: {fileID: 7454758666212883914, guid: cb0278040a19c4245931208794e622d7,
+    type: 3}
 --- !u!1 &1898762518
 GameObject:
   m_ObjectHideFlags: 0
@@ -2572,6 +2574,8 @@ MonoBehaviour:
   power: 10
   maxCooldown: 4
   cooldown: 0
+  healParticle: {fileID: 1399491476850481362, guid: 7e691a0229efacd4cba2922df3888456,
+    type: 3}
   cooldownImage: {fileID: 6498742647208486690}
 --- !u!82 &1004786455661430369
 AudioSource:
