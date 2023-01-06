@@ -46,8 +46,8 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (spawnTime > 0) spawnTime -= Time.deltaTime;
-        else if (spawnTime == 0 &&_npcSpawnPoints.Length > 0)
+        if (spawnTime > -1) spawnTime -= Time.deltaTime;
+        else if (spawnTime < 0 &&_npcSpawnPoints.Length > 0)
         {
            SpawnNPCs();
         }
