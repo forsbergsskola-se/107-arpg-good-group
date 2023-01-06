@@ -16,7 +16,6 @@ public class SpeedSpell : MonoBehaviour
 
     private void Start()
     {
-        _duration = maxDuration;
         cooldownImage.fillAmount = _cooldown / maxCooldown;
     }
 
@@ -24,11 +23,17 @@ public class SpeedSpell : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C)) _cooldown = 0;
         
-        if (Input.GetKeyDown(KeyCode.Alpha2) && _cooldown <= 0 && !PauseGame.IsPaused)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && !PauseGame.IsPaused)
         {
-            _motor = FindObjectOfType<PlayerMotor>();
-            _spellActive = true;
-            _motor.agent.speed *= speedMultiplier;
+            Debug.Log(_cooldown + "cd");
+            Debug.Log(_duration);
+            if (_cooldown <= 0 && _duration <= 0)
+            {
+                _duration = maxDuration;
+                _motor = FindObjectOfType<PlayerMotor>();
+                _spellActive = true;
+                _motor.agent.speed *= speedMultiplier;
+            }
         }
         
         if (_spellActive) CastSpell();
@@ -49,7 +54,6 @@ public class SpeedSpell : MonoBehaviour
         {
             inUseImage.color = Color.white;
             _motor.agent.speed /= speedMultiplier;
-            _duration = maxDuration;
             _spellActive = false;
             _cooldown = maxCooldown;
         }
