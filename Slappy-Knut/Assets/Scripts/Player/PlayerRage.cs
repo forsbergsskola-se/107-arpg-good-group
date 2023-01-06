@@ -33,6 +33,9 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.K)) OnDeath();
+        if (Input.GetKeyDown(KeyCode.G)) rageDOT = rageDOT == 0 ? 0.1f : 0;
+        
         CurrentRage += rageDOT * Time.deltaTime;
         rageBar.value = CurrentRage;
         if(CurrentRage > maxRage) OnDeath(); //checks if maxRage reached 

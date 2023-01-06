@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,6 +33,15 @@ public class PlayerLevelLogic : MonoBehaviour
         XPEarned += addition;
         CheckForLevelUp();
         satisfactionBar.value = XPEarned / nextLevelXP;
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            XPEarned = nextLevelXP;
+            CheckForLevelUp();
+        }
     }
 
     private void CheckForLevelUp()
