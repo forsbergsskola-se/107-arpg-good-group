@@ -185,7 +185,7 @@ public class NPCMovement : MonoBehaviour
         if (delta.magnitude < detectionRange)
         {
             Agent.speed = movementSpeed;
-            
+
             if (delta.magnitude < attackRange)
             {
                 Agent.isStopped = true; //We always want the NPC to be stopped when within range, even if its waiting on its cooldown
@@ -194,6 +194,7 @@ public class NPCMovement : MonoBehaviour
                     //If the player is inside our attack range and our attack isnt on cooldown we should attack them
                     _animator.SetTrigger("Attack"); //Triggers the attack animation, this should have priority over all other animations
                     AttackIsOnCooldown = true;
+                    _animator.SetBool("Combat", true);
                     
                     StartCoroutine(WaitForAttackCooldown());
                 }
@@ -201,7 +202,7 @@ public class NPCMovement : MonoBehaviour
             else
             {
                 Agent.isStopped = false;
-                Agent.ResetPath();
+                Agent.destination = PlayerReference.transform.position; 
             }
             
         }
@@ -217,6 +218,7 @@ public class NPCMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(attackSpeed);
         AttackIsOnCooldown = false;
+        _animator.SetBool("Combat", false);
     }
     
     public void ToggleAgentSpeed(bool setZero)//this is used by NPCHealt
