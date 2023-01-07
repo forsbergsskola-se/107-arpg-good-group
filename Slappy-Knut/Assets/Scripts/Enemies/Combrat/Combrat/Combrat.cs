@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Combrat : MonoBehaviour
@@ -18,8 +16,7 @@ public class Combrat : MonoBehaviour
         
         state = State.Idle;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         

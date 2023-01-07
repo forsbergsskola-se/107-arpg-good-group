@@ -34,12 +34,29 @@ public class PetRockHealth : Interactable, IDamagable
 
     public void OnDeath()
     {
-        //Disables and destroys things after death
-        //Todo: Makes eyes X when dead
+        //Disables and destroys things after death (gets called once)
+        ChangeToDeathLook();
         FindObjectOfType<GateDown>().canGateGoDown = true;
         GetComponent<PetRockMovement>().PetIsDead(); //Stops pet from calling movements 
         Destroy(_rb.GetComponent<SphereCollider>());
         Destroy(_rb);
         healthBar.GetComponentInParent<Canvas>().enabled = false;
     }
+
+    private void ChangeToDeathLook()
+    {
+        //Left eye change to X
+        transform.GetChild(0).GetChild(0).GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(0).GetChild(0).GetChild(1).gameObject.SetActive(true);
+        //Right eye Change to X
+        transform.GetChild(1).GetChild(0).GetChild(0).gameObject.SetActive(false);
+        transform.GetChild(1).GetChild(0).GetChild(1).gameObject.SetActive(true);
+        //Disable eyebrows
+        transform.GetChild(2).gameObject.SetActive(false);
+        transform.GetChild(3).gameObject.SetActive(false);
+        //Enable Dead twigs n stuff
+        transform.GetChild(7).gameObject.SetActive(true);
+    }
 }
+
+

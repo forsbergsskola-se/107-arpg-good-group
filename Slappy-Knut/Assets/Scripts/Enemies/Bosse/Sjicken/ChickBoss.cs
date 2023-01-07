@@ -223,7 +223,10 @@ public class ChickBoss : MonoBehaviour
         //Making sjicken small again
         if (_rb.transform.localScale.x > 2f)
             _rb.transform.localScale -= new Vector3(2.5f,2.5f,2.5f) * Time.deltaTime;
-
+        //turning the script off when chicken finishes going small so we dont call this repeatedly
+        if (_rb.transform.localScale.x < 2f) 
+            enabled = false;
+        
         _lineRenderer.enabled = false;
         //turn collider off we are basically only using it so player cant through the fence and to trigger boss (after player has landed then turn off)
         if(_playerRb.velocity.y == 0)
