@@ -7394,6 +7394,12 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 0fe09d884d05833478278bfad09bb050, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 895fa5b6130ca904fa29aa28406b3f40, type: 3}
+--- !u!4 &881303682 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1996425940663749753, guid: 27ad2ea89a6c2fb4da6bbb62953486e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1094940474}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &885752662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8127,7 +8133,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b10fec9bba2b7eb4285c00cedd56af11, type: 3}
   m_Controller: {fileID: 9100000, guid: ba506e6484d77794890ad58f4785b91c, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
@@ -9832,6 +9838,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 100002, guid: 948bc7d0588c10d4a9ccc00b25aed3c6, type: 3}
     - target: {fileID: 337927191, guid: 27ad2ea89a6c2fb4da6bbb62953486e5, type: 3}
+      propertyPath: combratHand
+      value: 
+      objectReference: {fileID: 881303682}
+    - target: {fileID: 337927191, guid: 27ad2ea89a6c2fb4da6bbb62953486e5, type: 3}
       propertyPath: riggingOfCombrat
       value: 
       objectReference: {fileID: 949011544}
@@ -10915,7 +10925,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combrat-v2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2582392668743360685, guid: 27ad2ea89a6c2fb4da6bbb62953486e5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 27ad2ea89a6c2fb4da6bbb62953486e5, type: 3}
 --- !u!4 &1099328702 stripped
 Transform:

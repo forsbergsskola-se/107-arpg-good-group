@@ -1,18 +1,14 @@
 
-using System.Collections;
 using UnityEngine;
 
 public class Combrat : MonoBehaviour
 {
     [Header("State")]
     [SerializeField] private State state;
-
-    public GameObject rockPrefab;
+    
     private Animator _riggingAnimator;
     private Animator _animator;
     private float _timeLeft;
-    
-    
     private enum State
     {
         Idle,
@@ -22,7 +18,9 @@ public class Combrat : MonoBehaviour
         SandWave,
         Death
     }
-
+    
+    public GameObject rockPrefab;
+    public Transform combratHand;
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -50,6 +48,7 @@ public class Combrat : MonoBehaviour
                break;
            case State.SandWave:
                break;
+            case State.Death:
             default:
                 //unexpected things happened
                 Application.Quit();
@@ -62,15 +61,20 @@ public class Combrat : MonoBehaviour
     private void RockThrowAttack()
     {
         //rockPrefab, position, no rotation
-        Instantiate(rockPrefab, transform.position+new Vector3(0,1,0), Quaternion.identity);
+        //todo: Add animation when instantiating 
+        _riggingAnimator.SetBool("Throwing", true);
+        Vector3 pos = combratHand.transform.position;
+        pos.y = 7f;
+        Instantiate(rockPrefab, pos, Quaternion.identity);
     }
 
-   void TimerToShoot()
+   private void TimerToShoot()
     {
         _timeLeft -= Time.deltaTime;
 
         if (_timeLeft < 0 && state == State.RockThrowAttack)
         {
+            _riggingAnimator.SetBool("Throwing", false);
             _timeLeft = 1f;
             RockThrowAttack();
         }
