@@ -8136,6 +8136,12 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!4 &949011544 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6697354134975244934, guid: 27ad2ea89a6c2fb4da6bbb62953486e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1094940474}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &953025682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 427238, guid: 895fa5b6130ca904fa29aa28406b3f40,
@@ -9821,6 +9827,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 337927191, guid: 27ad2ea89a6c2fb4da6bbb62953486e5, type: 3}
+      propertyPath: rockPrefab
+      value: 
+      objectReference: {fileID: 100002, guid: 948bc7d0588c10d4a9ccc00b25aed3c6, type: 3}
+    - target: {fileID: 337927191, guid: 27ad2ea89a6c2fb4da6bbb62953486e5, type: 3}
+      propertyPath: riggingOfCombrat
+      value: 
+      objectReference: {fileID: 949011544}
     - target: {fileID: 429459300890231409, guid: 27ad2ea89a6c2fb4da6bbb62953486e5,
         type: 3}
       propertyPath: m_LocalPosition.x
