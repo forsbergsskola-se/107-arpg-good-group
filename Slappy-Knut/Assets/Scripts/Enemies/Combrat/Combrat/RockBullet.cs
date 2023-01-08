@@ -22,7 +22,7 @@ public class RockBullet : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
-            //Todo: Hurt player, knock back.
+            //Todo: knock back.
             _playerRage.TakeDamage(damage,gameObject);
             Debug.Log("Player got hit!");
         }

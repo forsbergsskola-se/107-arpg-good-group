@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Combrat : MonoBehaviour
 {
@@ -7,13 +8,16 @@ public class Combrat : MonoBehaviour
     [SerializeField] private State state;
     
     private Animator _riggingAnimator;
-    private Animator _animator;
+    private GameObject _player;
     private float _timeLeft;
+    private bool _hasRolled;
+    private bool _hasCryTimerBeenSet;
     private enum State
     {
         Idle,
         RockThrowAttack,
-        CryOrScream,
+        Cry,
+        Scream,
         RockAirStrike,
         SandWave,
         Death
@@ -23,13 +27,15 @@ public class Combrat : MonoBehaviour
     public Transform combratHand;
     void Start()
     {
-        _animator = GetComponent<Animator>();
-        _riggingAnimator = transform.GetChild(6).GetComponent<Animator>();
+        _player = FindObjectOfType<PlayerAttack>().gameObject;
+        _riggingAnimator = transform.GetComponent<Animator>();
         state = State.Idle;
     }
     
-    void Update()
+    private void Update()
     {
+        if(!_hasRolled)
+            RngCryOrScream();
         ChangeState();
     }
     
@@ -42,7 +48,11 @@ public class Combrat : MonoBehaviour
             case State.RockThrowAttack:
                 TimerToShoot();
                 break;
-           case State.CryOrScream:
+           case State.Cry:
+               CryBaby();
+               break;
+           case State.Scream:
+               Screamo();
                break;
            case State.RockAirStrike:
                break;
@@ -55,29 +65,76 @@ public class Combrat : MonoBehaviour
                 break;
         }
     }
-    
+
     public void StartBossFight() => state = State.RockThrowAttack;
 
     private void RockThrowAttack()
     {
-        //rockPrefab, position, no rotation
-        //todo: Add animation when instantiating 
-        _riggingAnimator.SetBool("Throwing", true);
-        Vector3 pos = combratHand.transform.position;
-        pos.y = 7f;
-        Instantiate(rockPrefab, pos, Quaternion.identity);
+        //When animator plays the Animator Event calls Instantiate to match the throw
+        _riggingAnimator.Play("Throw",-1,0);
     }
 
    private void TimerToShoot()
-    {
-        _timeLeft -= Time.deltaTime;
+   {
+       _timeLeft -= Time.deltaTime;
+       switch (_timeLeft)
+       {
+           case < 0 when state == State.RockThrowAttack:
+               _timeLeft = 1f;
+               RockThrowAttack();
+               break;
+           case < 0 when state == State.Cry:
+               state = State.RockThrowAttack; // <-- if he starts go cry maybe we dont want always to default to this one, test and see
+               _hasRolled = false; // <--- hope this works and we go again if we roll again if close enough? and
+               _timeLeft = 5f;
+               //Roll(); //maybe scream if player doesn't go in after 5secs, or we Roll and is close enough, and if he isn't close enough we start just rockThrowAttack again?
+               break;
+       }
+   }
 
-        if (_timeLeft < 0 && state == State.RockThrowAttack)
-        {
-            _riggingAnimator.SetBool("Throwing", false);
-            _timeLeft = 1f;
-            RockThrowAttack();
-        }
-    }
-     
+   public void InstantiateRock()
+   {
+       //Instantiates the rockBullet when "Throw" plays at the right moment (the 7f is so the rock is not triggering on the ground
+       Vector3 pos = combratHand.transform.position;
+       pos.y = 7f;
+       Instantiate(rockPrefab, pos, Quaternion.identity);
+   }
+
+   private void RngCryOrScream()
+   {
+       Vector3 dir = _player.transform.position - transform.position;
+       //Debug.Log(dir.magnitude);
+       if (dir.magnitude < 4.5f)
+       {
+           Roll();
+       }
+   }
+
+   private void Roll()
+   {
+       // 80% to Cry / 20% Scream
+       //state = Random.Range(0, 1f) <= 0.7 ? State.Cry : State.Scream;
+       float tala = Random.Range(0, 1f);
+       Debug.Log(tala);
+       state = tala <= 0.7 ? State.Cry : State.Scream;
+       _hasRolled = true;
+   }
+
+   private void CryBaby()
+   {
+       _riggingAnimator.Play("Crying");
+       //todo: timer 5sec then reRoll
+       if (!_hasCryTimerBeenSet)
+       {
+           _timeLeft = 5f;
+           _hasCryTimerBeenSet = true;
+       }
+      
+       TimerToShoot();
+   }
+
+   private void Screamo()
+   {
+       _riggingAnimator.Play("Scream");
+   }
 }

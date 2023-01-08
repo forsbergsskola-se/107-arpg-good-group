@@ -8133,7 +8133,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b10fec9bba2b7eb4285c00cedd56af11, type: 3}
   m_Controller: {fileID: 9100000, guid: ba506e6484d77794890ad58f4785b91c, type: 2}
-  m_CullingMode: 1
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
@@ -8148,6 +8148,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1094940474}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &949011545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949011541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93bfc688de83407418fc95fc157c18f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  rockPrefab: {fileID: 100002, guid: 948bc7d0588c10d4a9ccc00b25aed3c6, type: 3}
+  combratHand: {fileID: 881303682}
 --- !u!4 &953025682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 427238, guid: 895fa5b6130ca904fa29aa28406b3f40,
@@ -9834,6 +9849,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 337927191, guid: 27ad2ea89a6c2fb4da6bbb62953486e5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 337927191, guid: 27ad2ea89a6c2fb4da6bbb62953486e5, type: 3}
       propertyPath: rockPrefab
       value: 
       objectReference: {fileID: 100002, guid: 948bc7d0588c10d4a9ccc00b25aed3c6, type: 3}
@@ -10927,6 +10946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2582392668743360685, guid: 27ad2ea89a6c2fb4da6bbb62953486e5, type: 3}
+    - {fileID: 337927191, guid: 27ad2ea89a6c2fb4da6bbb62953486e5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 27ad2ea89a6c2fb4da6bbb62953486e5, type: 3}
 --- !u!4 &1099328702 stripped
 Transform:
