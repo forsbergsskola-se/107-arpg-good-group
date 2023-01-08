@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PetRockHealth : Interactable, IDamagable
 {
-
     private Rigidbody _rb;
     private float _health;
     [SerializeField] private float maxHealth = 5;
@@ -27,6 +26,10 @@ public class PetRockHealth : Interactable, IDamagable
             _health = value;
             healthBar.fillAmount = value / maxHealth;
             
+            if(_health >= 0)
+            {
+               FindObjectOfType<Combrat>().StartScream();
+            }
             if(_health <= 0)
                 OnDeath();
         }

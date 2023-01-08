@@ -1,17 +1,25 @@
 
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Combrat : MonoBehaviour
 {
-    [Header("State")]
-    [SerializeField] private State state;
-    
+    private NavMeshAgent _navPlayer;
+    private Rigidbody _playerRb;
     private Animator _riggingAnimator;
     private GameObject _player;
-    private float _timeLeft;
+    private Vector3 _tempPos;
+    private float _shotTimeLeft;
+    private float _cryTimer;
     private bool _hasRolled;
-    private bool _hasCryTimerBeenSet;
+    private bool _hasMovedInAir;
+    public Image cryCdTimer;
+    public Canvas canvas;
+    
+    [Header("State")]
+    [SerializeField] private State state;
     private enum State
     {
         Idle,
@@ -28,12 +36,35 @@ public class Combrat : MonoBehaviour
     void Start()
     {
         _player = FindObjectOfType<PlayerAttack>().gameObject;
+        _navPlayer = _player.GetComponent<NavMeshAgent>();
+        _playerRb = _player.GetComponent<Rigidbody>();
         _riggingAnimator = transform.GetComponent<Animator>();
         state = State.Idle;
     }
     
     private void Update()
     {
+        if (RockBullet._hasBeenKnockedUp)
+        {
+            if (_navPlayer.destination != _navPlayer.nextPosition)
+            {
+                //If player moves when knockedUp(inAir) we save the location and when player lands he starts moving there
+                _tempPos = _navPlayer.destination;
+                _hasMovedInAir = true;
+            }
+        }
+        if(_playerRb.velocity.y == 0 && RockBullet._hasBeenKnockedUp)
+        {
+            //Reset navMeshAgent when player reaches ground so we can move again only called when a rock hits then checks when grounded then stops checking
+            _navPlayer.updatePosition = true;
+            //Warp puts the navMesh at the right place when player lands
+            _navPlayer.Warp(_player.transform.position);
+            if(_hasMovedInAir)
+                _navPlayer.destination = _tempPos;
+            _hasMovedInAir = false;
+            RockBullet._hasBeenKnockedUp = false;
+        }
+        
         if(!_hasRolled)
             RngCryOrScream();
         ChangeState();
@@ -68,6 +99,8 @@ public class Combrat : MonoBehaviour
 
     public void StartBossFight() => state = State.RockThrowAttack;
 
+    public void StartScream() => state = State.Scream;
+
     private void RockThrowAttack()
     {
         //When animator plays the Animator Event calls Instantiate to match the throw
@@ -76,25 +109,29 @@ public class Combrat : MonoBehaviour
 
    private void TimerToShoot()
    {
-       _timeLeft -= Time.deltaTime;
-       switch (_timeLeft)
+       _shotTimeLeft -= Time.deltaTime;
+       if (_shotTimeLeft < 0 && state == State.RockThrowAttack)
        {
-           case < 0 when state == State.RockThrowAttack:
-               _timeLeft = 1f;
-               RockThrowAttack();
-               break;
-           case < 0 when state == State.Cry:
-               state = State.RockThrowAttack; // <-- if he starts go cry maybe we dont want always to default to this one, test and see
-               _hasRolled = false; // <--- hope this works and we go again if we roll again if close enough? and
-               _timeLeft = 5f;
-               //Roll(); //maybe scream if player doesn't go in after 5secs, or we Roll and is close enough, and if he isn't close enough we start just rockThrowAttack again?
-               break;
+           _shotTimeLeft = 1f;
+           RockThrowAttack();
        }
+   }
+
+   private void CryTimer()
+   {
+       //If combrat cries, timer will start for 5secs for the player to hurt the Rock,
+       //else the combrat will go into Scream phase and push the player back to starting pos and we go again.
+       _cryTimer += Time.deltaTime;
+       cryCdTimer.fillAmount = _cryTimer / 5f;
+
+       if (!(_cryTimer > 5) || state != State.Cry) return;
+       state = State.Scream;
+       _cryTimer = 0f;
    }
 
    public void InstantiateRock()
    {
-       //Instantiates the rockBullet when "Throw" plays at the right moment (the 7f is so the rock is not triggering on the ground
+       //Instantiates the rockBullet when "Throw" animation plays at the right moment (the 7f is so the rock is not triggering by the ground and destroyed)
        Vector3 pos = combratHand.transform.position;
        pos.y = 7f;
        Instantiate(rockPrefab, pos, Quaternion.identity);
@@ -123,18 +160,19 @@ public class Combrat : MonoBehaviour
    private void CryBaby()
    {
        _riggingAnimator.Play("Crying");
-       //todo: timer 5sec then reRoll
-       if (!_hasCryTimerBeenSet)
-       {
-           _timeLeft = 5f;
-           _hasCryTimerBeenSet = true;
-       }
-      
-       TimerToShoot();
+       canvas.gameObject.SetActive(true);
+       CryTimer();
    }
 
    private void Screamo()
    {
        _riggingAnimator.Play("Scream");
+       
+       //todo: call next state and then change hasRolled to false
+       //Todo: Make SandWaves from the back of sandcastle to the start
+       canvas.gameObject.SetActive(false);
+       _cryTimer = 0;
+       cryCdTimer.fillAmount = 0;
+       //_hasRolled = false;
    }
 }
