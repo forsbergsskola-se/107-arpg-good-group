@@ -8,15 +8,20 @@ public class Combrat : MonoBehaviour
 {
     private NavMeshAgent _navPlayer;
     private Rigidbody _playerRb;
+    private Rigidbody _rb;
     private Animator _riggingAnimator;
     private GameObject _player;
     private Vector3 _tempPos;
     private float _shotTimeLeft;
     private float _cryTimer;
+    [SerializeField] private float moveSpeed;
     private bool _hasRolled;
     private bool _hasMovedInAir;
     public Image cryCdTimer;
     public Canvas canvas;
+    
+    //testing
+    float temp;
     
     [Header("State")]
     [SerializeField] private State state;
@@ -35,11 +40,14 @@ public class Combrat : MonoBehaviour
     public Transform combratHand;
     void Start()
     {
+        _rb = GetComponent<Rigidbody>();
         _player = FindObjectOfType<PlayerAttack>().gameObject;
         _navPlayer = _player.GetComponent<NavMeshAgent>();
         _playerRb = _player.GetComponent<Rigidbody>();
         _riggingAnimator = transform.GetComponent<Animator>();
         state = State.Idle;
+        Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());
+        
     }
     
     private void Update()
@@ -78,6 +86,7 @@ public class Combrat : MonoBehaviour
                 break;
             case State.RockThrowAttack:
                 TimerToShoot();
+                RandomMovement();
                 break;
            case State.Cry:
                CryBaby();
@@ -112,9 +121,21 @@ public class Combrat : MonoBehaviour
        _shotTimeLeft -= Time.deltaTime;
        if (_shotTimeLeft < 0 && state == State.RockThrowAttack)
        {
-           _shotTimeLeft = 1f;
+           _shotTimeLeft = 0.5f;
            RockThrowAttack();
        }
+   }
+
+   private void RandomMovement()
+   {
+       //min.x: -6.3 max.x: 7.06
+       if (Vector3.Distance(_rb.position, new Vector3(temp,_rb.position.y,_rb.position.z)) < 1f)
+       {
+           temp = Random.Range(-6.3f, 7.05f);
+           Debug.Log(temp);
+       }
+       else
+           _rb.MovePosition(Vector3.MoveTowards(_rb.position, new Vector3(temp,_rb.position.y,_rb.position.z), moveSpeed * Time.deltaTime));
    }
 
    private void CryTimer()

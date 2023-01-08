@@ -19,6 +19,8 @@ public class RockBullet : MonoBehaviour
         _navPlayer = _player.GetComponent<NavMeshAgent>();
         _playerRb = _player.GetComponent<Rigidbody>();
         _playerRage = FindObjectOfType<PlayerRage>();
+        
+        Physics.IgnoreCollision(FindObjectOfType<Combrat>().GetComponent<CapsuleCollider>(), GetComponent<Collider>());
     }
 
     void Update()
