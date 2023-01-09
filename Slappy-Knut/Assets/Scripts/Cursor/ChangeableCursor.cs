@@ -8,14 +8,10 @@ public class ChangeableCursor : MonoBehaviour
     public Texture2D attackCursor;
     public Texture2D interactableCursor;
 
-    private Vector2 _attackOffset;
-    private Vector2 _interactableOffset;
+    private Vector2 _attackOffset = new (14,2);
+    private Vector2 _interactableOffset = new (19,6);
 
-    private void Start()
-    {
-        _attackOffset = new Vector2(attackCursor.width / 2f, attackCursor.height / 2f);
-        _interactableOffset = new Vector2(interactableCursor.width / 2f, interactableCursor.height / 2f);
-    }
+    
 
 
     // Update is called once per frame
