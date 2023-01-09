@@ -10,6 +10,7 @@ public class Combrat : MonoBehaviour
     private Rigidbody _rb;
     private Animator _riggingAnimator;
     private GameObject _player;
+    private CombratAudioManager _audioManager;
     private Vector3 _tempPos;
     private Vector3 _moveCombrat;
     private float _shotTimeLeft;
@@ -40,6 +41,7 @@ public class Combrat : MonoBehaviour
     public Transform combratHand;
     void Start()
     {
+        _audioManager = GetComponent<CombratAudioManager>();
         _rb = GetComponent<Rigidbody>();
         _player = FindObjectOfType<PlayerAttack>().gameObject;
         _navPlayer = _player.GetComponent<NavMeshAgent>();
@@ -110,104 +112,119 @@ public class Combrat : MonoBehaviour
         _hasMovedInAir = false;
         RockBullet._hasBeenKnockedUp = false;
     }
+    
+    private void RngCryOrScream()
+    {
+        Vector3 dir = _player.transform.position - transform.position;
+        //Debug.Log(dir.magnitude);
+        if (dir.magnitude < 4.5f)
+        {
+            Roll();
+        }
+    }
 
+    private void Roll()
+    {
+        // 80% to Cry / 20% Scream
+        if (Random.Range(0, 1f) <= 0.7)
+        {
+            state = State.Cry;
+            _audioManager.AS_Cry.Play();
+        }
+        else
+        {
+            state = State.Scream;
+            _audioManager.AS_Scream.Play();
+        }
+        _hasRolled = true;
+    }
+    private void TimerToShoot()
+    {
+        _shotTimeLeft -= Time.deltaTime;
+        if (_shotTimeLeft < 0 && state == State.RockThrowAttack)
+        {
+            _shotTimeLeft = 0.5f; //<-- how fast we want to shot
+            RockThrowAttack();
+        }
+    }
+    
+    private void MoveToWall()
+    {
+        //Check if Player is closer to Left or Right wall and move combrat to that wall that player is closer to
+        var position = _rb.position;
+        _moveCombrat = Vector3.MoveTowards(position, _player.transform.position.x > 0.76f ? 
+            new Vector3(8,position.y,position.z) : new Vector3(-8,position.y,position.z), moveSpeed * Time.deltaTime);
+        _rb.MovePosition(_moveCombrat);
+    }
+    
+    private void RandomMovement()
+    {
+        //min.x: -6.3 max.x: 6.06 // Random number between the walls and moves to it after reaching randPos switch to MoveToWall()
+        //Could get lucky and the randNumber doesn't reach the player or we could force to playerPos if its smaller
+        if (Vector3.Distance(_rb.position, new Vector3(_randomPos,_rb.position.y,_rb.position.z)) < 1f)
+            _hasReachedRandomPos = true;
+        else
+            _rb.MovePosition(Vector3.MoveTowards(_rb.position, new Vector3(_randomPos,_rb.position.y,_rb.position.z), moveSpeed * Time.deltaTime));
+    }
+    
+    private void CryBaby()
+    {
+        _riggingAnimator.Play("Crying");
+        canvas.gameObject.SetActive(true);
+        CryTimer();
+    }
+    
+    private void CryTimer()
+    {
+        //If combrat cries, timer will start for 5secs for the player to hurt the Rock,
+        //else the combrat will go into Scream phase and push the player back to starting pos and we go again.
+        _cryTimer += Time.deltaTime;
+        cryCdTimer.fillAmount = _cryTimer / 5f;
+
+        if (!(_cryTimer > 5) || state != State.Cry) return;
+        state = State.Scream;
+        _cryTimer = 0f;
+        _audioManager.AS_Scream.Play();
+    }
+    
+    private void Screamo()
+    {
+        _riggingAnimator.Play("Scream");
+       
+        //todo: call next state and then change hasRolled to false
+        //Todo: Make SandWaves from the back of sandcastle to the start
+        canvas.gameObject.SetActive(false);
+        _cryTimer = 0;
+        cryCdTimer.fillAmount = 0;
+        //_hasRolled = false;
+    }
+    
     public void StartBossFight() => state = State.RockThrowAttack;
 
-    public void StartScream() => state = State.Scream;
+    public void StartScream()
+    {
+        state = State.Scream;
+        _audioManager.AS_Scream.Play();
+    }
 
     private void RockThrowAttack()
     {
         //When animator plays the Animator Event calls Instantiate to match the throw
         _riggingAnimator.Play("Throw",-1,0);
     }
-
-   private void TimerToShoot()
-   {
-       _shotTimeLeft -= Time.deltaTime;
-       if (_shotTimeLeft < 0 && state == State.RockThrowAttack)
-       {
-           _shotTimeLeft = 0.5f; //<-- how fast we want to shot
-           RockThrowAttack();
-       }
-   }
-
-   private void MoveToWall()
-   {
-       //Check if Player is closer to Left or Right wall and move combrat to that wall that player is closer to
-       var position = _rb.position;
-       _moveCombrat = Vector3.MoveTowards(position, _player.transform.position.x > 0.76f ? 
-           new Vector3(8,position.y,position.z) : new Vector3(-8,position.y,position.z), moveSpeed * Time.deltaTime);
-       _rb.MovePosition(_moveCombrat);
-   }
-   
-   private void RandomMovement()
-   {
-       //min.x: -6.3 max.x: 6.06 // Random number between the walls and moves to it after reaching randPos switch to MoveToWall()
-       //Could get lucky and the randNumber doesn't reach the player or we could force to playerPos if its smaller
-       if (Vector3.Distance(_rb.position, new Vector3(_randomPos,_rb.position.y,_rb.position.z)) < 1f)
-           _hasReachedRandomPos = true;
-       else
-           _rb.MovePosition(Vector3.MoveTowards(_rb.position, new Vector3(_randomPos,_rb.position.y,_rb.position.z), moveSpeed * Time.deltaTime));
-   }
-
-   private void CryTimer()
-   {
-       //If combrat cries, timer will start for 5secs for the player to hurt the Rock,
-       //else the combrat will go into Scream phase and push the player back to starting pos and we go again.
-       _cryTimer += Time.deltaTime;
-       cryCdTimer.fillAmount = _cryTimer / 5f;
-
-       if (!(_cryTimer > 5) || state != State.Cry) return;
-       state = State.Scream;
-       _cryTimer = 0f;
-   }
-
+    
    public void InstantiateRock()
    {
        //Instantiates the rockBullet when "Throw" animation plays at the right moment (the 7f is so the rock is not triggering by the ground and destroyed)
+       _audioManager.AS_Throw.Play();
        Vector3 pos = combratHand.transform.position;
        pos.y = 7f;
        Instantiate(rockPrefab, pos, Quaternion.identity);
    }
-
-   private void RngCryOrScream()
-   {
-       Vector3 dir = _player.transform.position - transform.position;
-       //Debug.Log(dir.magnitude);
-       if (dir.magnitude < 4.5f)
-       {
-           Roll();
-       }
-   }
-
-   private void Roll()
-   {
-       // 80% to Cry / 20% Scream
-       state = Random.Range(0, 1f) <= 0.7 ? State.Cry : State.Scream;
-       _hasRolled = true;
-   }
-
-   private void CryBaby()
-   {
-       _riggingAnimator.Play("Crying");
-       canvas.gameObject.SetActive(true);
-       CryTimer();
-   }
-
-   private void Screamo()
-   {
-       _riggingAnimator.Play("Scream");
-       
-       //todo: call next state and then change hasRolled to false
-       //Todo: Make SandWaves from the back of sandcastle to the start
-       canvas.gameObject.SetActive(false);
-       _cryTimer = 0;
-       cryCdTimer.fillAmount = 0;
-       //_hasRolled = false;
-   }
-
+   
    private void OnCollisionEnter(Collision collision)
    {
+       //When Combrat collides with walls we get randomPos
        _randomPos = Random.Range(-6.3f, 6.05f);
        _hasReachedRandomPos = false;
    }
