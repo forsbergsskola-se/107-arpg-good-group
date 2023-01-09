@@ -25,18 +25,15 @@ public class ChangeableCursor : MonoBehaviour
             IDamagable damageicon = hitInfo.collider.GetComponent<IDamagable>();
             if (damageicon != null)
             {
-                Debug.Log("Mouse on damageable");
                 Cursor.SetCursor(attackCursor, _attackOffset, CursorMode.Auto);
             }
             else
             {
-                Debug.Log("Mouse on interactable");
                 Cursor.SetCursor(interactableCursor, _interactableOffset, CursorMode.Auto);
             }
         }
         else
         {
-            Debug.Log("Default cursor");
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         }
     }
