@@ -1,4 +1,5 @@
 using Interfaces;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,7 +10,8 @@ public class PlayerAttack : MonoBehaviour
     private PlayerAudioManager _audioManager;
     [HideInInspector] public static Animator _animator;
     private float damageModifier;
-    
+
+    public ParticleSystem AttackParticle;
     public static float TimeHeld = 1;
     public static float CurrCooldown;
 
@@ -30,12 +32,14 @@ public class PlayerAttack : MonoBehaviour
     //tied to the animator as an event, only triggered when the slap lands
     public void Attack()
     {
-        Transform targetTransform = PlayerController.LastClickedTarget.collider.transform;
-        transform.LookAt(targetTransform);
+        Collider targetCollider = PlayerController.LastClickedTarget.collider;
+        Transform playerTransform = transform;
+        playerTransform.LookAt(targetCollider.transform);
+        Instantiate(AttackParticle, targetCollider.ClosestPoint(playerTransform.position), quaternion.identity);
         Weapon currWeapon = Weapon.CurrEquippedWeapon;
         float weaponPower = currWeapon.Power;
         IDamagable enemy = PlayerController.LastClickedTarget.collider.GetComponent<IDamagable>();
-        if (Vector3.Distance(transform.position, targetTransform.position) <= currWeapon.Range)
+        if (Vector3.Distance(transform.position, targetCollider.transform.position) <= currWeapon.Range)
         {
             enemy.TakeDamage(weaponPower * TimeHeld);
             _audioManager.AS_BasicSlap.Play();

@@ -474,7 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17327cacc16a13d4282730a0387dbcc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poop: {fileID: 3753429912495141463, guid: ea668c1094646bd41a5b8957dc163c47, type: 3}
+  poop: {fileID: 9037298878135093633, guid: ea668c1094646bd41a5b8957dc163c47, type: 3}
   distance: 10
   maxCooldown: 10
   walkableLayer:

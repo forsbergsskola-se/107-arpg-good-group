@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask walkableLayer; //Filter out everything not walkable
     public LayerMask interactableLayer;
     public int maxRayCastDistance = 100;
+    public ParticleSystem onClickParticle;
     
     [HideInInspector] public PlayerMotor _motor; //Reference to our motor
     private Animator _animator;
@@ -40,17 +41,22 @@ public class PlayerController : MonoBehaviour
             {
                 return;
             }
-             //We create a ray
-             Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
-             RaycastHit hitInfo;
-             //If the ray hits
-             if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, walkableLayer))
-             {
-                 //Move our player to what we hit
-                 _motor.MoveToPoint(hitInfo.point);
-                 //Stop focusing any object
-                 RemoveFocus();
-             }
+            //We create a ray
+            Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitInfo;
+            //If the ray hits
+            if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, walkableLayer))
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Instantiate(onClickParticle, hitInfo.point, Quaternion.identity);
+                    Debug.Log("yes");
+                }
+                //Move our player to what we hit
+                _motor.MoveToPoint(hitInfo.point);
+                //Stop focusing any object
+                RemoveFocus();
+            }
          }
         MouseHeld = Input.GetMouseButton(1);
         if (MouseHeld && PauseGame.IsPaused == false)

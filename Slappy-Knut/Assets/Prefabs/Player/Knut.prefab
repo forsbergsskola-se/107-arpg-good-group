@@ -7158,6 +7158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 188ba5c1b387b83428df83fbb20e80e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackPoint: {fileID: 4205706605820385099}
+  AttackParticle: {fileID: 2399831694689605071, guid: b0540e05743f82140b4af0b9a211d6c5,
+    type: 3}
 --- !u!114 &4931549209684477252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7196,6 +7199,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   maxRayCastDistance: 100
+  onClickParticle: {fileID: 766719830686977251, guid: 90ae8896c86120c4f89d9d04f20c86ac,
+    type: 3}
   _motor: {fileID: 0}
 --- !u!114 &4205706606373358267
 MonoBehaviour:
