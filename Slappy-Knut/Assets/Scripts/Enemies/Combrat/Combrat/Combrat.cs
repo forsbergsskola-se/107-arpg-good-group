@@ -16,15 +16,16 @@ public class Combrat : MonoBehaviour
     private float _shotTimeLeft;
     private float _cryTimer;
     [SerializeField] private float moveSpeed;
+    private bool _setOnce;
+    private float _randomPos;
+    private bool _hasReachedRandomPos;
     private bool _hasRolled;
     private bool _hasMovedInAir;
     public Transform resetPlayerPos;
+    public Transform sandWave;
     public Image cryCdTimer;
     public Canvas canvas;
-    private bool _setOnce;
-
-    private float _randomPos;
-    private bool _hasReachedRandomPos;
+   
     
     [Header("State")]
     [SerializeField] private State state;
@@ -187,13 +188,11 @@ public class Combrat : MonoBehaviour
     private void Screamo()
     {
         _riggingAnimator.Play("Scream");
-       
-        //todo: call next state and then change hasRolled to false
-        //Todo: Make SandWaves from the back of sandcastle to the start
-        //todo: playerCurrPos - playerSpawnPoint. Get direction to playerSpawnPoint, get magnitude of it/2 for midpoint, go in a arch to midpoint x-height,
-        //todo: then arch down to playerSpawnPoint
-        //Vector3 knockBackDirection = _player.transform.position - resetPlayerPos.position;
-        //var midPoint = knockBackDirection.magnitude / 2;
+        
+        // Makes SandWaves from the back of sandcastle to the start
+        sandWave.position = _player.transform.position + new Vector3(0,1f,2.3f);
+        sandWave.Rotate(0,40 * Time.deltaTime,0, Space.Self);
+        sandWave.gameObject.SetActive(true);
 
         if(!_setOnce)
         {
@@ -215,9 +214,10 @@ public class Combrat : MonoBehaviour
             _navPlayer.updatePosition = true;
             _navPlayer.Warp(_player.transform.position);
             _setOnce = false;
+            sandWave.gameObject.SetActive(false);
             state = State.RockThrowAttack;
         }
-        else
+        else //moves to resetPlayerPos
             _playerRb.MovePosition(Vector3.MoveTowards(_playerRb.position, resetPlayerPos.position, moveSpeed * Time.deltaTime));
     }
 
