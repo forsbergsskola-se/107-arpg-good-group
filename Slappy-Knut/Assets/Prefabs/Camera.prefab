@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2079656487040081051}
   - component: {fileID: 9034048986715392100}
+  - component: {fileID: 969073320}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -48,6 +49,24 @@ MonoBehaviour:
   horizontalAngle: 80
   verticalAngle: 45
   zoomLevel: -20
+--- !u!114 &969073320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203072804224727295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149ce517578a15f4dbff285c010ef490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  maxRayCastDistance: 100
+  attackCursor: {fileID: 2800000, guid: ce683041f000c7c48b73e8fbda566384, type: 3}
+  interactableCursor: {fileID: 2800000, guid: 42ec8a0e710138343a271d732299cfb6, type: 3}
 --- !u!1 &2492589434950263708
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +204,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 262144
-  time: 0.1459999978542328
+  time: 0.009999999776482582
   minimalOpacity: 0.1
   playerTransform: {fileID: 0}
