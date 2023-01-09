@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -12,6 +11,7 @@ public class Combrat : MonoBehaviour
     private Animator _riggingAnimator;
     private GameObject _player;
     private Vector3 _tempPos;
+    private Vector3 _moveCombrat;
     private float _shotTimeLeft;
     private float _cryTimer;
     [SerializeField] private float moveSpeed;
@@ -20,8 +20,8 @@ public class Combrat : MonoBehaviour
     public Image cryCdTimer;
     public Canvas canvas;
     
-    //testing
-    float temp;
+    private float _randomPos;
+    private bool _hasReachedRandomPos;
     
     [Header("State")]
     [SerializeField] private State state;
@@ -47,31 +47,11 @@ public class Combrat : MonoBehaviour
         _riggingAnimator = transform.GetComponent<Animator>();
         state = State.Idle;
         Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());
-        
     }
     
     private void Update()
     {
-        if (RockBullet._hasBeenKnockedUp)
-        {
-            if (_navPlayer.destination != _navPlayer.nextPosition)
-            {
-                //If player moves when knockedUp(inAir) we save the location and when player lands he starts moving there
-                _tempPos = _navPlayer.destination;
-                _hasMovedInAir = true;
-            }
-        }
-        if(_playerRb.velocity.y == 0 && RockBullet._hasBeenKnockedUp)
-        {
-            //Reset navMeshAgent when player reaches ground so we can move again only called when a rock hits then checks when grounded then stops checking
-            _navPlayer.updatePosition = true;
-            //Warp puts the navMesh at the right place when player lands
-            _navPlayer.Warp(_player.transform.position);
-            if(_hasMovedInAir)
-                _navPlayer.destination = _tempPos;
-            _hasMovedInAir = false;
-            RockBullet._hasBeenKnockedUp = false;
-        }
+        KnockUpLogic();
         
         if(!_hasRolled)
             RngCryOrScream();
@@ -86,7 +66,10 @@ public class Combrat : MonoBehaviour
                 break;
             case State.RockThrowAttack:
                 TimerToShoot();
-                RandomMovement();
+                if (_hasReachedRandomPos)
+                    MoveToWall();
+                else
+                    RandomMovement();
                 break;
            case State.Cry:
                CryBaby();
@@ -106,6 +89,28 @@ public class Combrat : MonoBehaviour
         }
     }
 
+    private void KnockUpLogic()
+    {
+        if (RockBullet._hasBeenKnockedUp)
+        {
+            if (_navPlayer.destination != _navPlayer.nextPosition)
+            {
+                //If player moves when knockedUp(inAir) we save the location and when player lands he starts moving there
+                _tempPos = _navPlayer.destination;
+                _hasMovedInAir = true;
+            }
+        }
+        if (_playerRb.velocity.y != 0 || !RockBullet._hasBeenKnockedUp) return;
+        //Reset navMeshAgent when player reaches ground so we can move again only called when a rock hits then checks when grounded then stops checking
+        _navPlayer.updatePosition = true;
+        //Warp puts the navMesh at the right place when player lands
+        _navPlayer.Warp(_player.transform.position);
+        if(_hasMovedInAir)
+            _navPlayer.destination = _tempPos;
+        _hasMovedInAir = false;
+        RockBullet._hasBeenKnockedUp = false;
+    }
+
     public void StartBossFight() => state = State.RockThrowAttack;
 
     public void StartScream() => state = State.Scream;
@@ -121,21 +126,28 @@ public class Combrat : MonoBehaviour
        _shotTimeLeft -= Time.deltaTime;
        if (_shotTimeLeft < 0 && state == State.RockThrowAttack)
        {
-           _shotTimeLeft = 0.5f;
+           _shotTimeLeft = 0.5f; //<-- how fast we want to shot
            RockThrowAttack();
        }
    }
 
+   private void MoveToWall()
+   {
+       //Check if Player is closer to Left or Right wall and move combrat to that wall that player is closer to
+       var position = _rb.position;
+       _moveCombrat = Vector3.MoveTowards(position, _player.transform.position.x > 0.76f ? 
+           new Vector3(8,position.y,position.z) : new Vector3(-8,position.y,position.z), moveSpeed * Time.deltaTime);
+       _rb.MovePosition(_moveCombrat);
+   }
+   
    private void RandomMovement()
    {
-       //min.x: -6.3 max.x: 7.06
-       if (Vector3.Distance(_rb.position, new Vector3(temp,_rb.position.y,_rb.position.z)) < 1f)
-       {
-           temp = Random.Range(-6.3f, 7.05f);
-           Debug.Log(temp);
-       }
+       //min.x: -6.3 max.x: 6.06 // Random number between the walls and moves to it after reaching randPos switch to MoveToWall()
+       //Could get lucky and the randNumber doesn't reach the player or we could force to playerPos if its smaller
+       if (Vector3.Distance(_rb.position, new Vector3(_randomPos,_rb.position.y,_rb.position.z)) < 1f)
+           _hasReachedRandomPos = true;
        else
-           _rb.MovePosition(Vector3.MoveTowards(_rb.position, new Vector3(temp,_rb.position.y,_rb.position.z), moveSpeed * Time.deltaTime));
+           _rb.MovePosition(Vector3.MoveTowards(_rb.position, new Vector3(_randomPos,_rb.position.y,_rb.position.z), moveSpeed * Time.deltaTime));
    }
 
    private void CryTimer()
@@ -171,10 +183,7 @@ public class Combrat : MonoBehaviour
    private void Roll()
    {
        // 80% to Cry / 20% Scream
-       //state = Random.Range(0, 1f) <= 0.7 ? State.Cry : State.Scream;
-       float tala = Random.Range(0, 1f);
-       Debug.Log(tala);
-       state = tala <= 0.7 ? State.Cry : State.Scream;
+       state = Random.Range(0, 1f) <= 0.7 ? State.Cry : State.Scream;
        _hasRolled = true;
    }
 
@@ -195,5 +204,11 @@ public class Combrat : MonoBehaviour
        _cryTimer = 0;
        cryCdTimer.fillAmount = 0;
        //_hasRolled = false;
+   }
+
+   private void OnCollisionEnter(Collision collision)
+   {
+       _randomPos = Random.Range(-6.3f, 6.05f);
+       _hasReachedRandomPos = false;
    }
 }
