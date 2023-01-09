@@ -6,8 +6,6 @@ using UnityEngine.AI;
 using Random = System.Random;
 public class NPCMovement : MonoBehaviour
 {
-    public bool canFlee;
-    public bool canAttack;
     public float detectionRange = 6;
     public float attackSpeed = 2; //This is how long the time in seconds is between attacks, not attacks per minute or other some such measurement
     public float attackRange = 4; // this should be much lower than detection range, use your brain
@@ -15,6 +13,7 @@ public class NPCMovement : MonoBehaviour
     public GameObject waypointsParent;
     public int idleTime = 5;
     public bool isDamaged;
+    public float chanceToBeAggressive = 0.5f;
     
     protected GameObject[] Waypoints; //This is where the target points for roaming are stored
     protected NavMeshAgent Agent;
@@ -29,7 +28,9 @@ public class NPCMovement : MonoBehaviour
     
     private Animator _animator;
     private NPC npc;
-    
+    private bool canFlee;
+    private bool canAttack;
+
     void Start()
     {
         npc = GetComponent<NPC>();
@@ -75,7 +76,7 @@ public class NPCMovement : MonoBehaviour
         canFlee = true;
         
         //Randomise values
-        if (Rand.NextDouble() > 0.8) //TODO: tweak odds
+        if (Rand.NextDouble() < chanceToBeAggressive) //TODO: tweak odds
         {
             canAttack = true;
             canFlee = false;
@@ -185,7 +186,7 @@ public class NPCMovement : MonoBehaviour
         if (delta.magnitude < detectionRange)
         {
             Agent.speed = movementSpeed;
-            
+
             if (delta.magnitude < attackRange)
             {
                 Agent.isStopped = true; //We always want the NPC to be stopped when within range, even if its waiting on its cooldown
@@ -194,6 +195,7 @@ public class NPCMovement : MonoBehaviour
                     //If the player is inside our attack range and our attack isnt on cooldown we should attack them
                     _animator.SetTrigger("Attack"); //Triggers the attack animation, this should have priority over all other animations
                     AttackIsOnCooldown = true;
+                    _animator.SetBool("Combat", true);
                     
                     StartCoroutine(WaitForAttackCooldown());
                 }
@@ -201,7 +203,7 @@ public class NPCMovement : MonoBehaviour
             else
             {
                 Agent.isStopped = false;
-                Agent.ResetPath();
+                Agent.destination = PlayerReference.transform.position; 
             }
             
         }
@@ -217,6 +219,7 @@ public class NPCMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(attackSpeed);
         AttackIsOnCooldown = false;
+        _animator.SetBool("Combat", false);
     }
     
     public void ToggleAgentSpeed(bool setZero)//this is used by NPCHealt

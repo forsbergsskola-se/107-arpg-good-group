@@ -31,6 +31,7 @@ public abstract class Weapon : Interactable, IItem
                 if (CurrEquippedWeapon) CurrEquippedWeapon.gameObject.SetActive(false);
                 CurrEquippedWeapon = weapon;
                 CurrEquippedWeapon.gameObject.SetActive(true);
+                FindObjectOfType<CurrentWeaponUI>().UpdateIcon(weapon.Icon);
             }
         }
     }

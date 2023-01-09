@@ -27,7 +27,15 @@ public class Inventory : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetButtonDown("Inventory") && PauseGame.IsPaused == false)
+        if (Input.GetButtonDown("Inventory"))
+        {
+            ToggleInventory();
+        }
+    }
+
+    public void ToggleInventory()
+    {
+        if(!PauseGame.IsPaused)
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
             if (inventoryUI.activeSelf) DescriptionBox.SetActive(false);
