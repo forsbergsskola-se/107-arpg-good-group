@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: c11ad08b236cf4e45b10b25d10e2828a
   - enabled: 1
-    path: Assets/Scenes/VillageDay.unity
+    path: Assets/Scenes/VillageDayTCSTest.unity
     guid: a512b5c3be37e86478716212978a1ae0
   - enabled: 1
     path: Assets/Scenes/VillageMidnight.unity
