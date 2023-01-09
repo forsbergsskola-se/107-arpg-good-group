@@ -1,5 +1,3 @@
-
-using System.Collections.Generic;
 using Interfaces;
 using UnityEngine;
 
@@ -12,40 +10,48 @@ public abstract class Pet : Interactable, IItem
     public abstract float Range { get; set; }
     public abstract string Description { get; set; }
     public abstract float Cooldown { get; set; }
-    
+    public abstract GameObject Prefab { get; set; }
     public abstract bool IsEquipped { get; set; }
-    
+    public abstract GameObject Player { get; set; }
+    public abstract Rigidbody Rb { get; set; }
+    public abstract Animator Anim { get; set; }
+
     public static Pet CurrEquippedPet;
-    public static List<Pet> AllPets = new();
+    public bool movementDisabled;
 
     protected abstract void Start();
     
-    public static void Switch(string newPetName)
+    public static void SpawnPet(GameObject prefab)
     {
-        if(CurrEquippedPet == null)
+        GameObject go = Instantiate(prefab, FindObjectOfType<PlayerAttack>().transform.position, Quaternion.identity);
+        CurrEquippedPet = go.GetComponent<Pet>();
+    }
+
+    public static void Unequip()
+    {
+        Destroy(CurrEquippedPet.gameObject);
+        CurrEquippedPet = null;
+    }
+    
+    void MoveToPlayer()
+    {
+        if (Vector3.Distance(Rb.position, Player.transform.position) < 4f)
         {
-            FindObjectOfType<SjickenPet>().SpawnPet();
-            
-            AllPets.Add(FindObjectOfType<SjickenPet>());
-            Debug.Log(AllPets[0]);
-            CurrEquippedPet = AllPets[0];
+            //stop the chicken 4f away from player else follow him
+            Anim.SetBool("Run", false);
+            //_anim.SetBool("Eat", true); // dno if we want eat idle
         }
         else
         {
-            //Destroy(AllPets[0].gameObject);
-            //Debug.Log("hvenær kem eg hingað?");
-            //FindObjectOfType<SjickenMovement>().gameObject.SetActive(false);
-           //Destroy(FindObjectOfType<SjickenMovement>().gameObject);
+            Anim.SetBool("Run", true);
+            transform.LookAt(Player.transform);
+            Vector3 newPos = Vector3.MoveTowards(Rb.position, Player.transform.position, 5f * Time.deltaTime);
+            Rb.MovePosition(newPos);    
         }
-        // foreach (var pet in AllPets)
-        //{
-            //if (newPetName == pet.name)
-           // {
-            //    CurrEquippedPet = pet;
-            //    FindObjectOfType<SjickenPet>().SpawnPet();
-           //     Debug.Log("kem eg hingað?");
-           // }
-        //}
+        
     }
-    
+    void LateUpdate()
+    {
+        if (!movementDisabled) MoveToPlayer();
+    }
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400002}
   - component: {fileID: 6500008}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,8 @@ GameObject:
   - component: {fileID: 2300020}
   - component: {fileID: 6500004}
   - component: {fileID: 6500002}
-  m_Layer: 0
+  - component: {fileID: 2104328943184954547}
+  m_Layer: 18
   m_Name: build_blacksmith_01_roof_wooden_elements
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,6 +159,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 23.34504, y: 3.930243, z: 0.5248127}
   m_Center: {x: 0.6998615, y: 1.89734, z: -6.945369}
+--- !u!64 &2104328943184954547
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300010, guid: 5c92accc78ab0da41886eefa8a4d2e0a, type: 3}
 --- !u!1 &100010
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +185,8 @@ GameObject:
   - component: {fileID: 3300002}
   - component: {fileID: 2300002}
   - component: {fileID: 6500006}
-  m_Layer: 0
+  - component: {fileID: 6279790958587535990}
+  m_Layer: 18
   m_Name: build_blacksmith_01_walls_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,6 +272,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 23.290936, y: 0.3164572, z: 13.314414}
   m_Center: {x: 0.5922661, y: 0.15451768, z: -0.08390379}
+--- !u!64 &6279790958587535990
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300008, guid: 5c92accc78ab0da41886eefa8a4d2e0a, type: 3}
 --- !u!1 &100014
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +297,8 @@ GameObject:
   - component: {fileID: 400014}
   - component: {fileID: 3300008}
   - component: {fileID: 2300008}
-  m_Layer: 0
+  - component: {fileID: 8216760301704191995}
+  m_Layer: 18
   m_Name: build_blacksmith_01_planks_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,6 +370,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8216760301704191995
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 5c92accc78ab0da41886eefa8a4d2e0a, type: 3}
 --- !u!1 &100016
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +395,8 @@ GameObject:
   - component: {fileID: 400016}
   - component: {fileID: 3300018}
   - component: {fileID: 2300018}
-  m_Layer: 0
+  - component: {fileID: 2836300045784802209}
+  m_Layer: 18
   m_Name: build_blacksmith_01_pillars_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,6 +468,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2836300045784802209
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100016}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5c92accc78ab0da41886eefa8a4d2e0a, type: 3}
 --- !u!1 &100018
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +494,7 @@ GameObject:
   - component: {fileID: 6500016}
   - component: {fileID: 6500014}
   - component: {fileID: 6500018}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: pf_build_blacksmith_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -516,7 +576,8 @@ GameObject:
   - component: {fileID: 3300010}
   - component: {fileID: 2300010}
   - component: {fileID: 6510178}
-  m_Layer: 0
+  - component: {fileID: 4939310446743271701}
+  m_Layer: 18
   m_Name: build_blacksmith_01_fence_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,6 +662,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.61038303, y: 4.0695305, z: 13.495777}
   m_Center: {x: 12.204182, y: 1.8658216, z: -0.10596132}
+--- !u!64 &4939310446743271701
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100020}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300006, guid: 5c92accc78ab0da41886eefa8a4d2e0a, type: 3}
 --- !u!1 &100022
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,7 +705,8 @@ GameObject:
   - component: {fileID: 13600004}
   - component: {fileID: 13600002}
   - component: {fileID: 13600000}
-  m_Layer: 0
+  - component: {fileID: 4488914821562883025}
+  m_Layer: 18
   m_Name: build_blacksmith_01_walls_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -954,6 +1030,20 @@ CapsuleCollider:
   m_Height: 4
   m_Direction: 1
   m_Center: {x: 11.99, y: 1.53, z: -7.2}
+--- !u!64 &4488914821562883025
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100022}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: 5c92accc78ab0da41886eefa8a4d2e0a, type: 3}
 --- !u!1 &100026
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,7 +1054,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400026}
   - component: {fileID: 6500010}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1009,7 +1099,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400028}
   - component: {fileID: 6500012}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

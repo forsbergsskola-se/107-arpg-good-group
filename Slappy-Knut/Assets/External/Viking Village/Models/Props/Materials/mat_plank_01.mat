@@ -21,18 +21,18 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mat_plank_01
-  m_Shader: {fileID: -6465566751694194690, guid: 65ab067e659b9d64cb1b6f50a7ee7735,
-    type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _EMISSION
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_ValidKeywords:
   - _NORMALMAP
   - _OCCLUSIONMAP
+  - _SPECULAR_SETUP
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
+  stringTagMap:
+    RenderType: Opaque
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -104,8 +104,11 @@ Material:
     - _AlphaTestRef: 0.5
     - _Blend: 0
     - _BumpScale: 0.93
+    - _ClearCoatMask: 0
+    - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EmissionScaleUI: 1
@@ -131,8 +134,8 @@ Material:
     - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.6539837, g: 0.6693755, b: 0.70588624, a: 1}
-    - _Color: {r: 0.3962264, g: 0.26763973, b: 0.20334637, a: 1}
+    - _BaseColor: {r: 0.39607844, g: 0.26666668, b: 0.20392157, a: 1}
+    - _Color: {r: 0.3960784, g: 0.26666665, b: 0.20392153, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0.99999994}
     - _EmissionColorUI: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColorWithMapUI: {r: 1, g: 1, b: 1, a: 1}

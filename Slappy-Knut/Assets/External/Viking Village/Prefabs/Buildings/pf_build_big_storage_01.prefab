@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 400004}
   - component: {fileID: 3300006}
   - component: {fileID: 2300008}
-  m_Layer: 0
+  - component: {fileID: 166936102226530972}
+  m_Layer: 18
   m_Name: build_big_storage_01_straw_roof_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,6 +87,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &166936102226530972
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300008, guid: ae04583bfa7e89144b9b5c7c76a54cdf, type: 3}
 --- !u!1 &100006
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +112,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 3300010}
   - component: {fileID: 2300010}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_big_storage_01_walls_up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +195,7 @@ GameObject:
   - component: {fileID: 400002}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_big_storage_01_walls_down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +278,7 @@ GameObject:
   - component: {fileID: 400014}
   - component: {fileID: 3300012}
   - component: {fileID: 2300012}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_big_storage_01_pillars_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +360,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 400016}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: pf_build_big_storage_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +402,7 @@ GameObject:
   - component: {fileID: 400018}
   - component: {fileID: 3300004}
   - component: {fileID: 2300006}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: build_big_storage_01_fence_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +503,7 @@ GameObject:
   - component: {fileID: 13600002}
   - component: {fileID: 13600000}
   - component: {fileID: 13600036}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400022}
   - component: {fileID: 6500002}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -844,7 +859,7 @@ GameObject:
   m_Component:
   - component: {fileID: 400024}
   - component: {fileID: 6500004}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -898,7 +913,7 @@ GameObject:
   - component: {fileID: 6500016}
   - component: {fileID: 6500014}
   - component: {fileID: 6500012}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: collider4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

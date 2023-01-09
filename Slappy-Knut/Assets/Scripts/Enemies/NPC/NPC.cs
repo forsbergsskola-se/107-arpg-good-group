@@ -8,9 +8,8 @@ using Random = System.Random;
 public class NPC : Interactable, IDamagable
 {
     public float startHealth = 100; 
-    public float health;
     public List<GameObject> loot;
-    public int[] percentageTable = {20,30};
+    public int[] percentageTable; //this has to have same amount of fields as loot
     
     protected Random Rand = new();
     protected bool iFramesActive;
@@ -23,7 +22,8 @@ public class NPC : Interactable, IDamagable
         _animator = GetComponent<Animator>();
         Rand = new Random(System.DateTime.Today.Second); //Not strictly necessary but eh
         
-        health = startHealth;
+        
+        Health = startHealth;
         _audioManager = GetComponent<NPCAudioManager>();
         iFramesActive = false;
     }
@@ -33,9 +33,10 @@ public class NPC : Interactable, IDamagable
         randomNumber = new Random().Next(0,total);
         for (int i = 0; i < percentageTable.Length; i++)
         {
-            if (randomNumber <= percentageTable[i]) 
+            if (randomNumber <= percentageTable[i])
             {
-                Instantiate(loot[i], transform.position, Quaternion.identity);
+                GameObject item = Instantiate(loot[i], transform.position, Quaternion.identity);
+                item.GetComponentInChildren<Light>().enabled = true;
                 return;
             }
             randomNumber -= percentageTable[i];
@@ -48,14 +49,15 @@ public class NPC : Interactable, IDamagable
         iFramesActive = false;
     }
 
+    public float Health { get; set; }
     public float DefenseRating { get; set; }
     
     public void TakeDamage(float damage, GameObject attacker)
     {
         GetComponent<NPCMovement>().isDamaged = true;
-        health -= damage;
+        Health -= damage;
         _audioManager.AS_Damage.Play();
-        if (health < 1)
+        if (Health < 1)
         {
             OnDeath();
         }
@@ -64,10 +66,11 @@ public class NPC : Interactable, IDamagable
     public void OnDeath()
     {
         GetComponent<Collider>().enabled = false;
-        GetComponent<NavMeshAgent>().destination = transform.position;
+        GetComponent<NavMeshAgent>().ResetPath();
         GetComponent<NPCMovement>().enabled = false;
-        DropLoot();
         _animator.Play("Death");
+        DropLoot();
+        Spawner.CurrentNpcCount--;
         Invoke("Destroy", 3);
     }
 

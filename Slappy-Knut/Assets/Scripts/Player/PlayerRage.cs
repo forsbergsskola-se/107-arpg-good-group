@@ -1,7 +1,5 @@
-using System;
 using Interfaces;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -13,9 +11,11 @@ public class PlayerRage : MonoBehaviour, IDamagable
     public SkinnedMeshRenderer bodyMesh;
     public SkinnedMeshRenderer hairMesh;
     public ParticleSystem fartCloud;
+    public float Health { get; set; }
     public float DefenseRating { get; set; }
 
     public static float CurrentRage;
+    public static bool IsDead;
     
     private Scene _scene;
     private Animator _animator;
@@ -24,15 +24,18 @@ public class PlayerRage : MonoBehaviour, IDamagable
 
     void Start()
     {
+        IsDead = false;
         CurrentRage = 0;
-        GameObject rageSlider = GameObject.Find("RageBar");
-        rageBar = rageSlider.GetComponent<Slider>();
+        rageBar.maxValue = maxRage;
         _animator = GetComponent<Animator>();
         _audioManager = GetComponent<PlayerAudioManager>();
         _playerMovement = GetComponent<PlayerController>();
     }
     void Update()
-    { 
+    {
+        if (Input.GetKeyDown(KeyCode.K)) OnDeath();
+        if (Input.GetKeyDown(KeyCode.G)) rageDOT = rageDOT == 0 ? 0.1f : 0;
+        
         CurrentRage += rageDOT * Time.deltaTime;
         rageBar.value = CurrentRage;
         if(CurrentRage > maxRage) OnDeath(); //checks if maxRage reached 
@@ -40,6 +43,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     public void OnDeath()
     {
+        IsDead = true;
         _playerMovement._motor.agent.ResetPath();
         _playerMovement.enabled = false;
         _animator.Play("die");
@@ -47,7 +51,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     void LoadScene() //invoke requires a parameterless function
     {
-        Weapon.AllWeapons.Clear();
+        if(Pet.CurrEquippedPet) Destroy(Pet.CurrEquippedPet.gameObject);
         Destroy(gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -65,10 +69,10 @@ public class PlayerRage : MonoBehaviour, IDamagable
         rageBar.value = CurrentRage;
     }
 
-    public void IncreaseStats(float rage, float defenceRating)
+    public void IncreaseStats(float rageMultiplier, float defenseMultiplier)
     {
-        maxRage *= rage;
-        DefenseRating *= defenceRating;
+        maxRage *= rageMultiplier;
+        DefenseRating *= defenseMultiplier;
     }
     
 }

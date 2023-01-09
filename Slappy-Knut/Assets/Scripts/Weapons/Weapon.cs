@@ -10,6 +10,7 @@ public abstract class Weapon : Interactable, IItem
     public abstract float Power { get; set; }
     public abstract string Description { get; set; }
     public abstract float Cooldown { get; set; }
+    public GameObject Prefab { get; set; }
     public abstract bool Chargable { get; set; }
     public abstract float ChargeTime { get; set; }
     public abstract float Range { get; set; }
@@ -25,11 +26,12 @@ public abstract class Weapon : Interactable, IItem
     {
         foreach (var weapon in AllWeapons)
         {
-            if (newWeaponName == weapon.name)
+            if (newWeaponName == weapon.Name)
             {
-                CurrEquippedWeapon.gameObject.SetActive(false);
+                if (CurrEquippedWeapon) CurrEquippedWeapon.gameObject.SetActive(false);
                 CurrEquippedWeapon = weapon;
                 CurrEquippedWeapon.gameObject.SetActive(true);
+                FindObjectOfType<CurrentWeaponUI>().UpdateIcon(weapon.Icon);
             }
         }
     }

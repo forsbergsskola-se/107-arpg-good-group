@@ -1,32 +1,24 @@
-
 using UnityEngine;
 
 public class SjickenPet : Pet
 {
-    public GameObject sjickenPrefab;
     public override string Name { get; set; }
     public override Sprite Icon { get; set; }
     public override float Power { get; set; }
     public override float Range { get; set; }
     public override string Description { get; set; }
     public override float Cooldown { get; set; }
+    public override GameObject Prefab { get; set; }
     public override bool IsEquipped { get; set; }
-
-    [SerializeField] private Sprite _icon;
-
+    public override GameObject Player { get; set; }
+    public override Rigidbody Rb { get; set; }
+    public override Animator Anim { get; set; }
+    
     protected override void Start()
     {
-        Name = "Sjicken";
-        Icon = _icon;
-        Power = 9001; //over 9000?
-        Range = 3;
-        Description = $"This sjicken is a tool of mass destruction, point it at things u want destroyed -sjicken does {Power} damage";
-        Cooldown = 0;
-        IsEquipped = false;
-    }
-
-    public void SpawnPet()
-    { 
-        Instantiate(sjickenPrefab, FindObjectOfType<PlayerAttack>().transform.position, Quaternion.identity);
+        Player = GameObject.FindGameObjectWithTag("Player");
+        Rb = GetComponent<Rigidbody>();
+        Anim = GetComponent<Animator>();
+        DontDestroyOnLoad(gameObject);
     }
 }

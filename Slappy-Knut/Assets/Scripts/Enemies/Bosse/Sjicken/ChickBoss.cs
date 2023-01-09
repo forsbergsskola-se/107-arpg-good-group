@@ -114,6 +114,7 @@ public class ChickBoss : MonoBehaviour
     }
     private void Attack()
     {
+        if (PlayerRage.IsDead) return;
         if (Vector3.Distance(_rb.position, _player.transform.position) < 1.5f)
         {
             //the chick is close enough to attack the player

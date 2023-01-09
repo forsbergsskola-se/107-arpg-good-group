@@ -6,7 +6,7 @@ public class Interactable : MonoBehaviour
     public float radius = 3f; //How close do we need to be to interact
 
     private bool _isFocus = false; //Is this interactable currently being focused?
-    private Transform _player;//Reference to the player transform
+    private Transform Player;//Reference to the player transform
     private bool _hasInteracted = false; //Have we already interacted with the object?
 
     private void Interact()
@@ -23,7 +23,7 @@ public class Interactable : MonoBehaviour
         if (_isFocus && !_hasInteracted)
         {
             //If we are close enough
-            float distance = Vector3.Distance(_player.position, transform.position);
+            float distance = Vector3.Distance(Player.position, transform.position);
             if (distance <= radius)
             {
                 Interact();
@@ -36,14 +36,14 @@ public class Interactable : MonoBehaviour
         IDamagable damagable = GetComponent<IDamagable>();
         if (damagable != null) radius = Weapon.CurrEquippedWeapon.Range * .9f;
         _isFocus = true;
-        _player = playerTransform;
+        Player = playerTransform;
         _hasInteracted = false;
     }
 
     public void OnDefocused()
     {
         _isFocus = false;
-        _player = null;
+        Player = null;
         _hasInteracted = false;
     }
 }

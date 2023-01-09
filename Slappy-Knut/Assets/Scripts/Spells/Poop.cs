@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Poop : MonoBehaviour
 {
-    public int power;
+    public float power;
 
     private GameObject _player;
     private PlayerRage _playerRage;

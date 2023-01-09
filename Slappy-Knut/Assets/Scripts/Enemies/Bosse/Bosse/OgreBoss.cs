@@ -62,8 +62,8 @@ public class OgreBoss : Interactable, IDamagable
     }
 
     public void TakeDamage(float damage, GameObject attacker) => Health -= damage; //<--- look into attacker thing
-    
-    private float Health
+
+    public float Health
     {
         get => _health;
         set

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -11,11 +10,11 @@ public class Spawner : MonoBehaviour
     public GameObject uiPrefab;
     public GameObject npcPrefab;
     public Transform _playerSpawnPoint;
-    public int minNPC = 20;
+    public int maxNPCs = 20;
+    public static int CurrentNpcCount;
 
     private GameObject[] _npcSpawnPoints;
     private GameObject _player;
-    private List<NPC> _npcs = new();
     private static GameObject _ui;
     private Scene _activeScene;
     private float spawnTime = 5;
@@ -23,10 +22,10 @@ public class Spawner : MonoBehaviour
     {
         _npcSpawnPoints = GameObject.FindGameObjectsWithTag("NPCSpawnPoint");
         _player = GameObject.FindGameObjectWithTag("Player");
-        _npcs.AddRange(FindObjectsOfType<NPC>());
+        CurrentNpcCount = FindObjectsOfType<NPC>().Length;
         if (_player == null)
         {
-            Instantiate(knutPrefab, _playerSpawnPoint.position, Quaternion.Euler(0,0,0));
+            Instantiate(knutPrefab, _playerSpawnPoint.position, Quaternion.identity);
         }
         else
         {
@@ -39,19 +38,31 @@ public class Spawner : MonoBehaviour
             if(_ui != null)
                 DontDestroyOnLoad(_ui);
         }
+
+        if (Pet.CurrEquippedPet != null && _player != null) // sjicken has to wait for player to spawn
+            Pet.CurrEquippedPet.transform.position = _player.transform.position;
+
     }
 
     private void Update()
     {
-        spawnTime -= Time.deltaTime;
-        if (spawnTime < 0)
+        if (Input.GetKeyDown(KeyCode.N)) Instantiate(npcPrefab, FindObjectOfType<PlayerRage>().transform.position, Quaternion.identity);
+        
+        if (spawnTime > -1) spawnTime -= Time.deltaTime;
+        else if (spawnTime < 0 &&_npcSpawnPoints.Length > 0)
         {
-            if (_npcs.Count < minNPC)
-            {
-                Vector3 randomSpawnPoint = _npcSpawnPoints[Random.Range(0, _npcSpawnPoints.Length)].transform.position;
-                Instantiate(npcPrefab, randomSpawnPoint, Quaternion.Euler(0, 0, 0));
-            }
-            spawnTime = 5;
+           SpawnNPCs();
         }
+    }
+
+    void SpawnNPCs()
+    {
+        if (CurrentNpcCount < maxNPCs)
+        {
+            Vector3 randomSpawnPoint = _npcSpawnPoints[Random.Range(0, _npcSpawnPoints.Length)].transform.position;
+            Instantiate(npcPrefab, randomSpawnPoint, Quaternion.identity);
+            CurrentNpcCount++;
+        }
+        spawnTime = 5;
     }
 }
