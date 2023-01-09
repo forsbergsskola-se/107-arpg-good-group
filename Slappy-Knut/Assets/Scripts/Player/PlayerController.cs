@@ -50,7 +50,6 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     Instantiate(onClickParticle, hitInfo.point, Quaternion.identity);
-                    Debug.Log("yes");
                 }
                 //Move our player to what we hit
                 _motor.MoveToPoint(hitInfo.point);
