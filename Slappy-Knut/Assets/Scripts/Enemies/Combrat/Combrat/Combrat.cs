@@ -218,7 +218,7 @@ public class Combrat : MonoBehaviour
        //Instantiates the rockBullet when "Throw" animation plays at the right moment (the 7f is so the rock is not triggering by the ground and destroyed)
        _audioManager.AS_Throw.Play();
        Vector3 pos = combratHand.transform.position;
-       pos.y = 7f;
+       pos.y = 8f;
        Instantiate(rockPrefab, pos, Quaternion.identity);
    }
    
