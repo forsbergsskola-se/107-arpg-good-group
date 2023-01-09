@@ -14,11 +14,13 @@ public class PetRockHealth : Interactable, IDamagable
     {
         _rb = GetComponent<Rigidbody>();
         _health = maxHealth;
+        //Disable the poop so it doesn't insta kill boss
+        FindObjectOfType<PoopSpawner>().enabled = false;
     }
 
     public float DefenseRating { get; set; }
     public void TakeDamage(float damage, GameObject attacker) => Health -= 1; //<--- testing 1 damage for maxHealth 5
-    private float Health
+    public float Health
     {
         get => _health;
         set
@@ -44,6 +46,9 @@ public class PetRockHealth : Interactable, IDamagable
         Destroy(_rb.GetComponent<SphereCollider>());
         Destroy(_rb);
         healthBar.GetComponentInParent<Canvas>().enabled = false;
+        //enable the poop spell
+        FindObjectOfType<PoopSpawner>().enabled = true;
+        FindObjectOfType<Combrat>().StartDeath();
     }
 
     private void ChangeToDeathLook()

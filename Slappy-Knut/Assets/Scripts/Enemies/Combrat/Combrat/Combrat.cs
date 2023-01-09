@@ -18,9 +18,11 @@ public class Combrat : MonoBehaviour
     [SerializeField] private float moveSpeed;
     private bool _hasRolled;
     private bool _hasMovedInAir;
+    public Transform resetPlayerPos;
     public Image cryCdTimer;
     public Canvas canvas;
-    
+    private bool _setOnce;
+
     private float _randomPos;
     private bool _hasReachedRandomPos;
     
@@ -32,8 +34,6 @@ public class Combrat : MonoBehaviour
         RockThrowAttack,
         Cry,
         Scream,
-        RockAirStrike,
-        SandWave,
         Death
     }
     
@@ -79,11 +79,9 @@ public class Combrat : MonoBehaviour
            case State.Scream:
                Screamo();
                break;
-           case State.RockAirStrike:
-               break;
-           case State.SandWave:
-               break;
             case State.Death:
+                DeathThings();
+                break;
             default:
                 //unexpected things happened
                 Application.Quit();
@@ -117,10 +115,9 @@ public class Combrat : MonoBehaviour
     {
         Vector3 dir = _player.transform.position - transform.position;
         //Debug.Log(dir.magnitude);
-        if (dir.magnitude < 4.5f)
-        {
+        if (dir.magnitude < 5.5f)
             Roll();
-        }
+        
     }
 
     private void Roll()
@@ -193,10 +190,40 @@ public class Combrat : MonoBehaviour
        
         //todo: call next state and then change hasRolled to false
         //Todo: Make SandWaves from the back of sandcastle to the start
-        canvas.gameObject.SetActive(false);
-        _cryTimer = 0;
-        cryCdTimer.fillAmount = 0;
-        //_hasRolled = false;
+        //todo: playerCurrPos - playerSpawnPoint. Get direction to playerSpawnPoint, get magnitude of it/2 for midpoint, go in a arch to midpoint x-height,
+        //todo: then arch down to playerSpawnPoint
+        //Vector3 knockBackDirection = _player.transform.position - resetPlayerPos.position;
+        //var midPoint = knockBackDirection.magnitude / 2;
+
+        if(!_setOnce)
+        {
+            //disable navMesh to move player
+            _navPlayer.updatePosition = false;
+            _navPlayer.ResetPath();
+
+            //disables and resets the cry things so its rdy to be used again
+            canvas.gameObject.SetActive(false);
+            _cryTimer = 0;
+            cryCdTimer.fillAmount = 0;
+            _setOnce = true;
+        }
+        
+        //reached destination and reset all and call the next phase only if rock has been hit else just reset same
+        if (Vector3.Distance(_playerRb.position, resetPlayerPos.position) < 1f)
+        {
+            _hasRolled = false;
+            _navPlayer.updatePosition = true;
+            _navPlayer.Warp(_player.transform.position);
+            _setOnce = false;
+            state = State.RockThrowAttack;
+        }
+        else
+            _playerRb.MovePosition(Vector3.MoveTowards(_playerRb.position, resetPlayerPos.position, moveSpeed * Time.deltaTime));
+    }
+
+    private void DeathThings()
+    {
+        _riggingAnimator.Play("CryFall");
     }
     
     public void StartBossFight() => state = State.RockThrowAttack;
@@ -206,6 +233,8 @@ public class Combrat : MonoBehaviour
         state = State.Scream;
         _audioManager.AS_Scream.Play();
     }
+
+    public void StartDeath() => state = State.Death;
 
     private void RockThrowAttack()
     {
