@@ -27,7 +27,7 @@ public class ChangeableCursor : MonoBehaviour
         Ray rayOrigin = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
         //Getting either item on focus or enemy to walk towards them
-        if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, interactableLayer))
+        if (Physics.Raycast(rayOrigin, out hitInfo, maxRayCastDistance, interactableLayer) && !PauseGame.IsPaused)
         {
             IDamagable damageicon = hitInfo.collider.GetComponent<IDamagable>();
             if (damageicon != null)
