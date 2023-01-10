@@ -256,7 +256,8 @@ public class Combrat : MonoBehaviour
     
     private void RaiseNextLevel()
     {
-        //Raises level from under BossArena by 0.6f until it reaches maxPosY. Then changes currLevel++
+        if (_currLevel == 5) return;
+            //Raises level from under BossArena by 0.6f until it reaches maxPosY. Then changes currLevel++
         switch (_levels[_currLevel].transform.position.y)
         {
             case < MaxPosY:
@@ -273,6 +274,8 @@ public class Combrat : MonoBehaviour
     {
         _riggingAnimator.Play("CryFall");
         canvas.gameObject.SetActive(false);
+        _currLevel++;
+        LowerLastLevel();
     }
     
     public void StartBossFight() => state = State.RockThrowAttack;
@@ -301,6 +304,7 @@ public class Combrat : MonoBehaviour
        //Throws at players location
        if (_currLevel < 3)
        {
+           rockPrefab.GetComponent<RockBullet>().speed = 10f;
            Vector3 position = new Vector3(_player.transform.position.x, 6.5f, _player.transform.position.z);
            transform.LookAt(position);
            Instantiate(rockPrefab, pos, transform.rotation);
