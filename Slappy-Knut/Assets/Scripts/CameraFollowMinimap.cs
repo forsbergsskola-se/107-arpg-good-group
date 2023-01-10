@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class CameraFollowMinimap : MonoBehaviour {
+public class CameraFollowMinimap : MonoBehaviour 
+{
     private Transform _playerTransform;
     private Transform _mainCameraTransform;
     private readonly int _lockedHeight = 80;

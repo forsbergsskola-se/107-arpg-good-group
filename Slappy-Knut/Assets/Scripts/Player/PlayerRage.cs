@@ -19,7 +19,6 @@ public class PlayerRage : MonoBehaviour, IDamagable
     [HideInInspector] public Slider rageBar;
     private Scene _scene;
     private Animator _animator;
-    private PlayerAudioManager _audioManager;
     private PlayerController _playerMovement;
 
     void Start()
@@ -29,7 +28,6 @@ public class PlayerRage : MonoBehaviour, IDamagable
         CurrentRage = 0;
         rageBar.maxValue = maxRage;
         _animator = GetComponent<Animator>();
-        _audioManager = GetComponent<PlayerAudioManager>();
         _playerMovement = GetComponent<PlayerController>();
     }
     void Update()
@@ -58,8 +56,8 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     void SetInactive() //called on the animator
     {
-        _audioManager.AS_RageFart.Play();
-        fartCloud.Play();
+        Vector3 offset = new Vector3(0, 1, 0);
+        Instantiate(fartCloud, gameObject.transform.position + offset, Quaternion.identity);
         bodyMesh.enabled = false;
         hairMesh.enabled = false;
     }

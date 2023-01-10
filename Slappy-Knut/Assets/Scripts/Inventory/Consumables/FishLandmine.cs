@@ -1,11 +1,12 @@
 using System.Collections;
 using Interfaces;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class FishLandmine : Interactable, IConsumable
 {
     public float power;
-    public GameObject explosion;
+    public ParticleSystem explosion;
     public GameObject fishBody;
 
     private PlayerLevelLogic _playerLevelLogic;
@@ -20,11 +21,9 @@ public class FishLandmine : Interactable, IConsumable
     public GameObject Prefab { get; set; }
     public float Range { get; set; }
 
-    private AudioSource _audioSource;
 
     private void Start()
     {
-        _audioSource = GetComponent<AudioSource>();
         Power = power;
         Description = "Fish that causes damage when you get too close.";
         Cooldown = 20;
@@ -40,8 +39,6 @@ public class FishLandmine : Interactable, IConsumable
         // only non-player IDamagables should set it off
         if (damagable == null || other.gameObject.CompareTag("Player")) return;
         
-        _audioSource.time = 1f; // removes audio delay
-        _audioSource.Play();
         damagable.TakeDamage(Power, gameObject);
         _playerLevelLogic.IncreaseXP(power);
         _playerRage.TakeDamage(power * -1, gameObject);
@@ -50,7 +47,8 @@ public class FishLandmine : Interactable, IConsumable
     }
     private IEnumerator Explosion()
     {
-        explosion.SetActive(true);
+        Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
+        // explosion.SetActive(true);
         GetComponent<CapsuleCollider>().enabled = false;
         Destroy(fishBody);
         yield return new WaitForSecondsRealtime(1.5f);
