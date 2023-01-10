@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerRage : MonoBehaviour, IDamagable
 {
-    public Slider rageBar;
     public float maxRage = 1;
     public float rageDOT;
     public SkinnedMeshRenderer bodyMesh;
@@ -17,6 +16,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     public static float CurrentRage;
     public static bool IsDead;
     
+    [HideInInspector] public Slider rageBar;
     private Scene _scene;
     private Animator _animator;
     private PlayerAudioManager _audioManager;
@@ -24,6 +24,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
 
     void Start()
     {
+        rageBar = GameObject.FindGameObjectWithTag("RageBar").GetComponent<Slider>();
         IsDead = false;
         CurrentRage = 0;
         rageBar.maxValue = maxRage;

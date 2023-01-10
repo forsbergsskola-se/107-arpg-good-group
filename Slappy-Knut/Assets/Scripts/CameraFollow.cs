@@ -9,8 +9,9 @@ public class CameraFollow : MonoBehaviour {
     public float zoomLevel = -10f;
     void Start()
     {
-        _cameraTransform = FindObjectOfType<Camera>().transform;
+        _cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        // DontDestroyOnLoad(gameObject);
     }
 
     void Update()
