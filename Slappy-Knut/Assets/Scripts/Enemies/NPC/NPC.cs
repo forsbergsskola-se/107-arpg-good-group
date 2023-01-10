@@ -39,7 +39,8 @@ public class NPC : Interactable, IDamagable
             if (randomNumber <= percentageTable[i])
             {
                 GameObject item = Instantiate(loot[i], GetComponent<NavMeshAgent>().destination, Quaternion.identity);
-                item.GetComponentInChildren<Light>().enabled = true;
+                Light light = item.GetComponentInChildren<Light>();
+                if(light) light.enabled = true;
                 return;
             }
             randomNumber -= percentageTable[i];
