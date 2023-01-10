@@ -218,6 +218,7 @@ public class Combrat : MonoBehaviour
             _cryTimer = 0;
             cryCdTimer.fillAmount = 0;
             _setOnce = true;
+            _playerRb.isKinematic = true;
         }
         
         //reached destination and reset all and call the next phase only if rock has been hit else just reset same
@@ -229,6 +230,7 @@ public class Combrat : MonoBehaviour
             sandWave.gameObject.SetActive(false);
             state = State.RockThrowAttack;
             _hasRolled = false;
+            _playerRb.isKinematic = false;
         }
         else //moves to resetPlayerPos
             _playerRb.MovePosition(Vector3.MoveTowards(_playerRb.position , resetPlayerPos.position, moveSpeed * Time.deltaTime));
