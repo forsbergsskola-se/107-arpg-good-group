@@ -30,12 +30,15 @@ public class NPC : Interactable, IDamagable
 
     protected void DropLoot()
     {
+        // Debug.Log(transform.position.y);
+        // Debug.Break();
+        
         randomNumber = new Random().Next(0,total);
         for (int i = 0; i < percentageTable.Length; i++)
         {
             if (randomNumber <= percentageTable[i])
             {
-                GameObject item = Instantiate(loot[i], transform.position, Quaternion.identity);
+                GameObject item = Instantiate(loot[i], GetComponent<NavMeshAgent>().destination, Quaternion.identity);
                 item.GetComponentInChildren<Light>().enabled = true;
                 return;
             }
