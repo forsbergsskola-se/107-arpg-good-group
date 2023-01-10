@@ -13,6 +13,8 @@ TagManager:
   - NPCWayPoint
   - NPCSpawnPoint
   - BackgroundMusic
+  - Gate
+  - Level
   layers:
   - Default
   - TransparentFX

@@ -5,19 +5,24 @@ using Random = UnityEngine.Random;
 
 public class Combrat : MonoBehaviour
 {
-    private NavMeshAgent _navPlayer;
-    private Rigidbody _playerRb;
+    private GameObject[] _levels = new GameObject[5];
+    private GameObject _getLevel;
     private Rigidbody _rb;
     private Animator _riggingAnimator;
     private GameObject _player;
+    private NavMeshAgent _navPlayer;
+    private Rigidbody _playerRb;
     private CombratAudioManager _audioManager;
     private Vector3 _tempPos;
     private Vector3 _moveCombrat;
+    private int _currLevel;
     private float _shotTimeLeft;
     private float _cryTimer;
+    private float _randomPos;
+    private const float MinPosY = -31.2f;
+    private const float MaxPosY = -29.38f;
     [SerializeField] private float moveSpeed;
     private bool _setOnce;
-    private float _randomPos;
     private bool _hasReachedRandomPos;
     private bool _hasRolled;
     private bool _hasMovedInAir;
@@ -40,8 +45,9 @@ public class Combrat : MonoBehaviour
     
     public GameObject rockPrefab;
     public Transform combratHand;
-    void Start()
+    private void Start()
     {
+        _currLevel++;
         _audioManager = GetComponent<CombratAudioManager>();
         _rb = GetComponent<Rigidbody>();
         _player = FindObjectOfType<PlayerAttack>().gameObject;
@@ -50,14 +56,20 @@ public class Combrat : MonoBehaviour
         _riggingAnimator = transform.GetComponent<Animator>();
         state = State.Idle;
         Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());
+
+        //Finds gameObjects Levels and sets them in correct order in the array
+        _getLevel = GameObject.FindGameObjectWithTag("Level");
+        for (var i = 0; i < _levels.Length; i++)
+        {
+            _levels[i] = _getLevel.transform.GetChild(i).gameObject;
+        }
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
         KnockUpLogic();
-        
         if(!_hasRolled)
-            RngCryOrScream();
+            DetectZoneAroundCombrat();
         ChangeState();
     }
     
@@ -69,16 +81,19 @@ public class Combrat : MonoBehaviour
                 break;
             case State.RockThrowAttack:
                 TimerToShoot();
-                if (_hasReachedRandomPos)
-                    MoveToWall();
-                else
-                    RandomMovement();
+                if(_currLevel > 2)
+                {
+                    if (_hasReachedRandomPos) MoveToWall();
+                    else RandomMovement();
+                }
                 break;
            case State.Cry:
                CryBaby();
                break;
            case State.Scream:
-               Screamo();
+               if(_hasRolled) ScreamPushPlayerBack();
+               if (!PetRockHealth.petGotHit) return;
+               LowerLastLevel();
                break;
             case State.Death:
                 DeathThings();
@@ -112,7 +127,7 @@ public class Combrat : MonoBehaviour
         RockBullet._hasBeenKnockedUp = false;
     }
     
-    private void RngCryOrScream()
+    private void DetectZoneAroundCombrat()
     {
         Vector3 dir = _player.transform.position - transform.position;
         //Debug.Log(dir.magnitude);
@@ -123,7 +138,7 @@ public class Combrat : MonoBehaviour
 
     private void Roll()
     {
-        // 80% to Cry / 20% Scream
+        // 70% to Cry / 30% Scream
         if (Random.Range(0, 1f) <= 0.7)
         {
             state = State.Cry;
@@ -185,22 +200,17 @@ public class Combrat : MonoBehaviour
         _audioManager.AS_Scream.Play();
     }
     
-    private void Screamo()
+    private void ScreamPushPlayerBack()
     {
-        _riggingAnimator.Play("Scream");
+        SandWave();
         
-        // Makes SandWaves from the back of sandcastle to the start
-        sandWave.position = _player.transform.position + new Vector3(0,1f,2.3f);
-        sandWave.Rotate(0,40 * Time.deltaTime,0, Space.Self);
-        sandWave.gameObject.SetActive(true);
-
+        _riggingAnimator.Play("Scream");
         if(!_setOnce)
         {
             //disable navMesh to move player
             _navPlayer.updatePosition = false;
             _navPlayer.ResetPath();
-
-            //disables and resets the cry things so its rdy to be used again
+            //disables and resets all so its rdy to be used again after being pushed to reset
             canvas.gameObject.SetActive(false);
             _cryTimer = 0;
             cryCdTimer.fillAmount = 0;
@@ -210,26 +220,68 @@ public class Combrat : MonoBehaviour
         //reached destination and reset all and call the next phase only if rock has been hit else just reset same
         if (Vector3.Distance(_playerRb.position, resetPlayerPos.position) < 1f)
         {
-            _hasRolled = false;
             _navPlayer.updatePosition = true;
             _navPlayer.Warp(_player.transform.position);
             _setOnce = false;
             sandWave.gameObject.SetActive(false);
             state = State.RockThrowAttack;
+            _hasRolled = false;
         }
         else //moves to resetPlayerPos
-            _playerRb.MovePosition(Vector3.MoveTowards(_playerRb.position, resetPlayerPos.position, moveSpeed * Time.deltaTime));
+            _playerRb.MovePosition(Vector3.MoveTowards(_playerRb.position , resetPlayerPos.position, moveSpeed * Time.deltaTime));
     }
-
+    
+    private void SandWave()
+    {
+        // Makes SandWaves from the back of sandcastle to the start
+        sandWave.position = _player.transform.position + new Vector3(0,1f,2.3f);
+        sandWave.Rotate(0,-50 * Time.deltaTime,0, Space.Self);
+        sandWave.gameObject.SetActive(true);
+    }
+    
+    private void LowerLastLevel()
+    {
+        //Lowers lastLevel under BossArena by 1.1f until it reaches MinPosY. Then starts raising next level
+        switch (_levels[_currLevel-1].transform.position.y)
+        {
+            case > MinPosY:
+                _levels[_currLevel-1].transform.position -= new Vector3(0, 1.1f, 0) * Time.deltaTime;
+                break;
+            case < MinPosY:
+                RaiseNextLevel();
+                break;
+            default:
+                RaiseNextLevel();
+                break;
+        }
+    }
+    
+    private void RaiseNextLevel()
+    {
+        //Raises level from under BossArena by 0.6f until it reaches maxPosY. Then changes currLevel++
+        switch (_levels[_currLevel].transform.position.y)
+        {
+            case < MaxPosY:
+                _levels[_currLevel].transform.position += new Vector3(0, 0.6f, 0) * Time.deltaTime;
+                break;
+            case > MaxPosY:
+                _currLevel++;
+                PetRockHealth.petGotHit = false;
+                break;
+        }
+    }
+    
     private void DeathThings()
     {
         _riggingAnimator.Play("CryFall");
+        canvas.gameObject.SetActive(false);
     }
     
     public void StartBossFight() => state = State.RockThrowAttack;
 
     public void StartScream()
     {
+        //Gets called from PetRock when he gets hit to start the rageState
         state = State.Scream;
         _audioManager.AS_Scream.Play();
     }

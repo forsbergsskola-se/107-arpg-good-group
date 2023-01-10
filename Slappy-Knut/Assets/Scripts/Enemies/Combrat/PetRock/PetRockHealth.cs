@@ -7,6 +7,7 @@ public class PetRockHealth : Interactable, IDamagable
 {
     private Rigidbody _rb;
     private float _health;
+    public static bool petGotHit;
     [SerializeField] private float maxHealth = 5;
     public Image healthBar;
     
@@ -31,6 +32,7 @@ public class PetRockHealth : Interactable, IDamagable
             if(_health >= 0)
             {
                FindObjectOfType<Combrat>().StartScream();
+               petGotHit = true;
             }
             if(_health <= 0)
                 OnDeath();
