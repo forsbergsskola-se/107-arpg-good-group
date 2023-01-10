@@ -22,7 +22,7 @@ public class ChickBoss : MonoBehaviour
     private Animator _anim;
     private Rigidbody _rb;
     private Rigidbody _playerRb;
-    private LineRenderer _lineRenderer;
+    public LineRenderer lineRenderer;
     private GameObject _player;
     private PlayerRage _playerRage;
     private NavMeshAgent _navPlayer;
@@ -62,7 +62,6 @@ public class ChickBoss : MonoBehaviour
         timer = maxTimer;
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
-        _lineRenderer = GetComponent<LineRenderer>();
         _playerRb = _player.GetComponent<Rigidbody>();
         stateEnum = StateEnum.Idle;
     }
@@ -159,7 +158,7 @@ public class ChickBoss : MonoBehaviour
             }
         }
 
-        _lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(0, transform.position);
         // calling this once: LookAt, lineRenderer and startCharging resets when hitting the fence and touching the ground
         if (!_hasChargeDirection && _enRaged && _rb.velocity == Vector3.zero)
         {
@@ -168,7 +167,7 @@ public class ChickBoss : MonoBehaviour
             transform.LookAt(position);
             _hasChargeDirection = true;
 
-           _lineRenderer.SetPosition(1, transform.forward * 25 + transform.position);
+           lineRenderer.SetPosition(1, transform.forward * 25 + transform.position);
 
         }       
         // charge timer until he can start charging
@@ -227,7 +226,7 @@ public class ChickBoss : MonoBehaviour
         if (_rb.transform.localScale.x > 2f)
             _rb.transform.localScale -= new Vector3(2.5f,2.5f,2.5f) * Time.deltaTime;
 
-        _lineRenderer.enabled = false;
+        lineRenderer.enabled = false;
         //turn collider off we are basically only using it so player cant through the fence and to trigger boss (after player has landed then turn off)
         if(_playerRb.velocity.y == 0)
             _player.GetComponent<CapsuleCollider>().isTrigger = true;
