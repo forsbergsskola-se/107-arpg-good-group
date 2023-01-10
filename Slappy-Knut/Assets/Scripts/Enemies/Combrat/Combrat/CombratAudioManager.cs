@@ -14,9 +14,9 @@ public class CombratAudioManager : MonoBehaviour
         AS_Throw = gameObject.AddComponent<AudioSource>();
         AS_Throw.volume = 0.05f;
         AS_Cry  = gameObject.AddComponent<AudioSource>();
-        AS_Cry.volume = 0.2f;
+        AS_Cry.volume = 0.3f;
         AS_Scream = gameObject.AddComponent<AudioSource>();
-        AS_Scream.volume = 0.2f;
+        AS_Scream.volume = 0.1f;
         AS_Throw.clip = throwing;
         AS_Cry.clip = crying;
         AS_Scream.clip = screaming;

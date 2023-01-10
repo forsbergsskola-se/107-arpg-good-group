@@ -30,6 +30,8 @@ public class Combrat : MonoBehaviour
     public Transform sandWave;
     public Image cryCdTimer;
     public Canvas canvas;
+    public GameObject rockPrefab;
+    public Transform combratHand;
     [Header("State")]
     [SerializeField] private State state;
     private enum State
@@ -41,12 +43,12 @@ public class Combrat : MonoBehaviour
         Death
     }
     
-    public GameObject rockPrefab;
-    public Transform combratHand;
+    
     private void Start()
     {
         _currLevel++;
         _audioManager = GetComponent<CombratAudioManager>();
+        _audioManager.AS_Scream.time = 0.95f;
         _rb = GetComponent<Rigidbody>();
         _player = FindObjectOfType<PlayerAttack>().gameObject;
         _navPlayer = _player.GetComponent<NavMeshAgent>();
@@ -145,6 +147,7 @@ public class Combrat : MonoBehaviour
         else
         {
             state = State.Scream;
+            _audioManager.AS_Cry.Stop();
             _audioManager.AS_Scream.Play();
         }
         _hasRolled = true;
@@ -195,6 +198,7 @@ public class Combrat : MonoBehaviour
         if (!(_cryTimer > 5) || state != State.Cry) return;
         state = State.Scream;
         _cryTimer = 0f;
+        _audioManager.AS_Cry.Stop();
         _audioManager.AS_Scream.Play();
     }
     
@@ -272,6 +276,8 @@ public class Combrat : MonoBehaviour
     
     private void DeathThings()
     {
+        _audioManager.AS_Scream.Stop();
+        _audioManager.AS_Cry.Stop();
         _riggingAnimator.Play("CryFall");
         canvas.gameObject.SetActive(false);
         LowerLastLevel();
@@ -283,6 +289,7 @@ public class Combrat : MonoBehaviour
     {
         //Gets called from PetRock when he gets hit to start the rageState
         state = State.Scream;
+        _audioManager.AS_Cry.Stop();
         _audioManager.AS_Scream.Play();
     }
 
