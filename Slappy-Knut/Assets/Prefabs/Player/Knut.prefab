@@ -1543,10 +1543,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AS_FootSteps: {fileID: 0}
-  AS_RageFart: {fileID: 0}
   AS_BasicSlap: {fileID: 0}
   footSteps: {fileID: 8300000, guid: 3b95034c0b2914643b2b649db01cb503, type: 3}
-  rageFart: {fileID: 8300000, guid: c1d6968de9d4b444996e1d1151336b6e, type: 3}
   basicSlap: {fileID: 8300000, guid: 09b5464cf5ae48a4983c4a5cee361d15, type: 3}
 --- !u!114 &4205706606166639104
 MonoBehaviour:
@@ -3387,7 +3385,7 @@ PrefabInstance:
     - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 9
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
         type: 3}
