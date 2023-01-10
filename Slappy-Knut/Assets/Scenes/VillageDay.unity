@@ -62413,59 +62413,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 376720599, guid: 04fa65afaa12c7c4099956b4347a1dca, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952012243855372140, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952012243855372140, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952012243855372140, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2952012243855372140, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2994828389178029690, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: canAttack
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2994828389178029693, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: startHealth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4037648749370872259, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_Name
-      value: MinimapCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 4037648749370872259, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7873197440197815285, guid: 04fa65afaa12c7c4099956b4347a1dca,
         type: 3}
       propertyPath: m_Name
       value: NPC (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7873197440197815285, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7873197440197815287, guid: 04fa65afaa12c7c4099956b4347a1dca,
         type: 3}
@@ -62522,64 +62473,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8307967094334162729, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8307967094334162729, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8307967094334162729, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8307967094334162729, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8307967094334162729, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8307967094334162729, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 8307967094334162729, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 8307967094334162729, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8307967094334162729, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8307967094334162729, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 8307967094334162729, guid: 04fa65afaa12c7c4099956b4347a1dca,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4816274667036625071, guid: 04fa65afaa12c7c4099956b4347a1dca, type: 3}
-    - {fileID: 6758607336206266642, guid: 04fa65afaa12c7c4099956b4347a1dca, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04fa65afaa12c7c4099956b4347a1dca, type: 3}
 --- !u!1 &1894402234
 GameObject:
@@ -65092,43 +64986,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1964950811}
   m_PrefabAsset: {fileID: 0}
---- !u!84 &1964990378
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: WaterDepthMap
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1001 &1965337276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67605,6 +67462,43 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2032216816}
   m_PrefabAsset: {fileID: 0}
+--- !u!84 &2034157996
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterDepthMap
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 1024
+  m_Height: 1024
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1 &2037073984
 GameObject:
   m_ObjectHideFlags: 0
