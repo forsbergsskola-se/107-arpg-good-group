@@ -26,6 +26,7 @@ public class Combrat : MonoBehaviour
     private bool _hasReachedRandomPos;
     private bool _hasRolled;
     private bool _hasMovedInAir;
+    private bool isCloserToRightWall;
     public Transform resetPlayerPos;
     public Transform sandWave;
     public Image cryCdTimer;
@@ -130,7 +131,6 @@ public class Combrat : MonoBehaviour
     private void DetectZoneAroundCombrat()
     {
         Vector3 dir = _player.transform.position - transform.position;
-        //Debug.Log(dir.magnitude);
         if (dir.magnitude < 5.5f)
             Roll();
         
@@ -166,8 +166,9 @@ public class Combrat : MonoBehaviour
     {
         //Check if Player is closer to Left or Right wall and move combrat to that wall that player is closer to
         var position = _rb.position;
-        _moveCombrat = Vector3.MoveTowards(position, _player.transform.position.x > 0.76f ? 
-            new Vector3(8,position.y,position.z) : new Vector3(-8,position.y,position.z), moveSpeed * Time.deltaTime);
+        //Change here to bool in collider that checks this and returns true or false for left or right moving to that wall after deciding
+        _moveCombrat = Vector3.MoveTowards(position, isCloserToRightWall ? new Vector3(8,position.y,position.z) :
+            new Vector3(-8,position.y,position.z), moveSpeed * Time.deltaTime);
         _rb.MovePosition(_moveCombrat);
     }
     
@@ -236,7 +237,7 @@ public class Combrat : MonoBehaviour
     private void SandWave()
     {
         // Makes SandWaves from the back of sandcastle to the start
-        sandWave.position = _player.transform.position + new Vector3(0,1f,2.3f);
+        sandWave.position = _player.transform.position + new Vector3(0,-3.5f,2.3f);
         sandWave.Rotate(0,-50 * Time.deltaTime,0, Space.Self);
         sandWave.gameObject.SetActive(true);
     }
@@ -307,7 +308,7 @@ public class Combrat : MonoBehaviour
        Vector3 pos = combratHand.transform.position;
        pos.y = 8f;
        _audioManager.AS_Throw.Play();
-       //Throws at players location
+       //Throws at players location if its level 1 or 2 else it throws in the random pattern
        if (_currLevel < 3)
        {
            rockPrefab.GetComponent<RockBullet>().speed = 10f;
@@ -325,6 +326,8 @@ public class Combrat : MonoBehaviour
    
    private void OnCollisionEnter()
    {
+       //0.76f is the center and checks if player is right or left of it and sets position to move to that wall
+       isCloserToRightWall = _player.transform.position.x > 0.76f;
        //When Combrat collides with walls we get randomPos
        _randomPos = Random.Range(-6.3f, 6.05f);
        _hasReachedRandomPos = false;
