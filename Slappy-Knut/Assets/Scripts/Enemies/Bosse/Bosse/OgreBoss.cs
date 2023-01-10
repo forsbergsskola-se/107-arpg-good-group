@@ -78,7 +78,6 @@ public class OgreBoss : Interactable, IDamagable
     {
         if(_health >= 0)
         {
-            _audioManager.AS_GetHit.Play();
             _anim.Play("damage");
         }
         if (_health <= _maxHealth / 2 && !_hasRaged)
@@ -111,6 +110,11 @@ public class OgreBoss : Interactable, IDamagable
     {
         //using this in the event listener on the animation to play on every footstep
         _audioManager.AS_FootSteps.Play();
+    }
+
+    public void PlayHurtSound()
+    {
+        _audioManager.AS_GetHit.Play();
     }
     
     public float DefenseRating { get; set; }
