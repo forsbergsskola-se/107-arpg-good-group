@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SjickenPet : Pet
 {
@@ -13,12 +14,15 @@ public class SjickenPet : Pet
     public override GameObject Player { get; set; }
     public override Rigidbody Rb { get; set; }
     public override Animator Anim { get; set; }
-    
+    public override NavMeshAgent Agent { get; set; }
+
+
     protected override void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         Rb = GetComponent<Rigidbody>();
         Anim = GetComponent<Animator>();
         DontDestroyOnLoad(gameObject);
+        Agent = GetComponent<NavMeshAgent>();
     }
 }
