@@ -274,7 +274,6 @@ public class Combrat : MonoBehaviour
     {
         _riggingAnimator.Play("CryFall");
         canvas.gameObject.SetActive(false);
-        _currLevel++;
         LowerLastLevel();
     }
     
