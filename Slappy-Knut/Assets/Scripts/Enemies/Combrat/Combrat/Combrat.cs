@@ -30,8 +30,6 @@ public class Combrat : MonoBehaviour
     public Transform sandWave;
     public Image cryCdTimer;
     public Canvas canvas;
-   
-    
     [Header("State")]
     [SerializeField] private State state;
     private enum State
@@ -107,7 +105,7 @@ public class Combrat : MonoBehaviour
 
     private void KnockUpLogic()
     {
-        if (RockBullet._hasBeenKnockedUp)
+        if (RockBullet.HasBeenKnockedUp)
         {
             if (_navPlayer.destination != _navPlayer.nextPosition)
             {
@@ -116,7 +114,7 @@ public class Combrat : MonoBehaviour
                 _hasMovedInAir = true;
             }
         }
-        if (_playerRb.velocity.y != 0 || !RockBullet._hasBeenKnockedUp) return;
+        if (_playerRb.velocity.y != 0 || !RockBullet.HasBeenKnockedUp) return;
         //Reset navMeshAgent when player reaches ground so we can move again only called when a rock hits then checks when grounded then stops checking
         _navPlayer.updatePosition = true;
         //Warp puts the navMesh at the right place when player lands
@@ -124,7 +122,7 @@ public class Combrat : MonoBehaviour
         if(_hasMovedInAir)
             _navPlayer.destination = _tempPos;
         _hasMovedInAir = false;
-        RockBullet._hasBeenKnockedUp = false;
+        RockBullet.HasBeenKnockedUp = false;
     }
     
     private void DetectZoneAroundCombrat()
@@ -296,14 +294,26 @@ public class Combrat : MonoBehaviour
     
    public void InstantiateRock()
    {
-       //Instantiates the rockBullet when "Throw" animation plays at the right moment (the 7f is so the rock is not triggering by the ground and destroyed)
-       _audioManager.AS_Throw.Play();
+       //Instantiates the rockBullet when "Throw" animation plays at the right moment
        Vector3 pos = combratHand.transform.position;
        pos.y = 8f;
-       Instantiate(rockPrefab, pos, Quaternion.identity);
+       _audioManager.AS_Throw.Play();
+       //Throws at players location
+       if (_currLevel < 3)
+       {
+           Vector3 position = new Vector3(_player.transform.position.x, 6.5f, _player.transform.position.z);
+           transform.LookAt(position);
+           Instantiate(rockPrefab, pos, transform.rotation);
+       }
+       else
+       {
+           rockPrefab.GetComponent<RockBullet>().speed = -5f;
+           transform.LookAt(resetPlayerPos);
+           Instantiate(rockPrefab, pos, Quaternion.identity);
+       }
    }
    
-   private void OnCollisionEnter(Collision collision)
+   private void OnCollisionEnter()
    {
        //When Combrat collides with walls we get randomPos
        _randomPos = Random.Range(-6.3f, 6.05f);

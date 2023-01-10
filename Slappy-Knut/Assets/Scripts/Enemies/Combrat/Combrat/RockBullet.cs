@@ -4,10 +4,10 @@ using UnityEngine.AI;
 
 public class RockBullet : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    public float speed;
     [SerializeField] private float damage;
     [SerializeField] private float knockBackForce;
-    public static bool _hasBeenKnockedUp;
+    public static bool HasBeenKnockedUp;
     
     private PlayerRage _playerRage;
     private GameObject _player;
@@ -23,9 +23,9 @@ public class RockBullet : MonoBehaviour
         Physics.IgnoreCollision(FindObjectOfType<Combrat>().GetComponent<CapsuleCollider>(), GetComponent<Collider>());
     }
 
-    void Update()
+    private void Update()
     {
-        transform.Translate(0, 0, -speed * Time.deltaTime);
+        transform.Translate(0, 0, speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider col)
@@ -39,7 +39,7 @@ public class RockBullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void KnockBack()
+    private void KnockBack()
     {
         //knock backs the player when hit
         Vector3 difference = (_player.transform.position-transform.position).normalized;
@@ -52,6 +52,6 @@ public class RockBullet : MonoBehaviour
        
         //resets the path to nothing
         _navPlayer.ResetPath();
-        _hasBeenKnockedUp = true;
+        HasBeenKnockedUp = true;
     }
 }

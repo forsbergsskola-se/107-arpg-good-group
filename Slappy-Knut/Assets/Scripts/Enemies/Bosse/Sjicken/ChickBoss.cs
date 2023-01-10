@@ -87,7 +87,7 @@ public class ChickBoss : MonoBehaviour
             if(_hasMovedInAir)
                 _navPlayer.destination = _tempPos;
             _hasMovedInAir = false;
-            RockBullet._hasBeenKnockedUp = false;
+            RockBullet.HasBeenKnockedUp = false;
             _gotHit = false;
         }
         ChangeState();
