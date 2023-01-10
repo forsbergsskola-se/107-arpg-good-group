@@ -178,5 +178,7 @@ MonoBehaviour:
     type: 3}
   npcPrefab: {fileID: 7873197440197815285, guid: 04fa65afaa12c7c4099956b4347a1dca,
     type: 3}
+  minimapPrefab: {fileID: 6932537207680892249, guid: 6d249da3c356ac64bb036952a70582b7,
+    type: 3}
   _playerSpawnPoint: {fileID: 1144268462856288300}
-  minNPC: 20
+  maxNPCs: 20

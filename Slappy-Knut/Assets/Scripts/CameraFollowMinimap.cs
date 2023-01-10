@@ -4,10 +4,12 @@ public class CameraFollowMinimap : MonoBehaviour
 {
     private Transform _playerTransform;
     private Transform _mainCameraTransform;
+    public static GameObject Minimap;
     private readonly int _lockedHeight = 80;
 
     void Start()
     {
+        Minimap = gameObject;
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         _mainCameraTransform = FindObjectOfType<CameraFollow>().transform;
     }

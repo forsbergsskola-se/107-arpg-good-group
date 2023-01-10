@@ -104,7 +104,7 @@ public class OgreBoss : Interactable, IDamagable
         //Call OgreDeath state in the chicken
         _chick.OgreDead();
         //Open the gate after bosse is dead
-        GameObject.FindWithTag("Gate").SetActive(false);
+        GameObject.FindWithTag("Gate")?.SetActive(false);
     }
     
     public void PlayStepSound()
