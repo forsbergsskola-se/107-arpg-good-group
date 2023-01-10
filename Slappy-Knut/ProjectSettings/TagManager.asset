@@ -15,7 +15,8 @@ TagManager:
   - BackgroundMusic
   - SatisfactionBar
   - RageBar
-  - MinimapIcon
+  - MinimapCamera
+  - Gate
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
@@ -7,11 +8,12 @@ public class CameraFollow : MonoBehaviour {
     public float horizontalAngle = 45f;
     public float verticalAngle = 45f;
     public float zoomLevel = -10f;
+
+
     void Start()
     {
         _cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").transform;
         _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        // DontDestroyOnLoad(gameObject);
     }
 
     void Update()
