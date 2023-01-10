@@ -116,6 +116,8 @@ public class Combrat : MonoBehaviour
                 _tempPos = _navPlayer.destination;
                 _hasMovedInAir = true;
             }
+            //If player is superKnockedUp(over y:8.5f) we clamp him down(little bit janky but it works)
+            if (_player.transform.position.y > 8.5f) _playerRb.velocity = new Vector3(_playerRb.velocity.x,-1,_playerRb.velocity.z);
         }
         if (_playerRb.velocity.y != 0 || !RockBullet.HasBeenKnockedUp) return;
         //Reset navMeshAgent when player reaches ground so we can move again only called when a rock hits then checks when grounded then stops checking
