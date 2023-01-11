@@ -6,7 +6,6 @@ using Random = UnityEngine.Random;
 public class Combrat : MonoBehaviour
 {
     private GameObject[] _levels = new GameObject[5];
-    private GameObject _getLevel;
     private Rigidbody _rb;
     private Animator _riggingAnimator;
     private GameObject _player;
@@ -60,7 +59,7 @@ public class Combrat : MonoBehaviour
         Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());
 
         //Finds gameObjects Levels and sets them in correct order in the array
-        _getLevel = GameObject.FindGameObjectWithTag("Level");
+        GameObject _getLevel = GameObject.FindGameObjectWithTag("Level");
         for (var i = 0; i < _levels.Length; i++)
         {
             _levels[i] = _getLevel.transform.GetChild(i).gameObject;
@@ -69,7 +68,6 @@ public class Combrat : MonoBehaviour
     
     private void FixedUpdate()
     {
-        //testing
         if(RockBullet.HasBeenKnockedUp)
             KnockUpLogic();
         if(!_hasRolled)
