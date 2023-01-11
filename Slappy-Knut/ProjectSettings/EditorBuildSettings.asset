@@ -18,6 +18,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Bosse.unity
     guid: 98706e7f90eee5043bf1ad4661716823
   - enabled: 1
-    path: Assets/Scenes/SecondBossFightScene.unity
+    path: Assets/Scenes/Combrat.unity
     guid: 186fd552c54353447a308c5434910ded
   m_configObjects: {}
