@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,7 @@ public class PlayerLevelLogic : MonoBehaviour
     private GameObject _satisfactionBar;
     private TextMeshProUGUI _levelInfo;
     private Slider _slider;
+    private LevelInformation _levelInformation;
 
     
     void Start()
@@ -23,11 +25,15 @@ public class PlayerLevelLogic : MonoBehaviour
         _satisfactionBar = GameObject.FindGameObjectWithTag("SatisfactionBar");
         _slider = _satisfactionBar.GetComponent<Slider>();
         _levelInfo = _satisfactionBar.GetComponentInChildren<TextMeshProUGUI>();
-        XPEarned = 0;
         _levelInfo.text = level.ToString();
-        nextLevelXP = 50;
+        _levelInformation = _satisfactionBar.GetComponent<LevelInformation>();
+        level = _levelInformation.CurrentLevel;
+        nextLevelXP = _levelInformation.nextLevelXP;
+        XPEarned = _levelInformation.CurrentXP;
         rageLogic = GetComponent<PlayerRage>();
         attackLogic = GetComponent<PlayerAttack>();
+        _slider.value = XPEarned / nextLevelXP;
+        _levelInfo.text = level.ToString();
     }
 
     public void IncreaseXP(float addition)
@@ -43,7 +49,11 @@ public class PlayerLevelLogic : MonoBehaviour
         {
             XPEarned = nextLevelXP;
             CheckForLevelUp();
+            
         }
+        _levelInformation.CurrentLevel = level;
+        _levelInformation.CurrentXP = XPEarned;
+        _levelInformation.nextLevelXP = nextLevelXP;
     }
 
     private void CheckForLevelUp()
@@ -57,6 +67,7 @@ public class PlayerLevelLogic : MonoBehaviour
             rageLogic.IncreaseStats(2,1.2f);
             PlayerRage.CurrentRage = 0;
             attackLogic.IncreaseAttackPower(1.3f);
+            
 
             rageLogic.rageBar.maxValue = rageLogic.maxRage;
             
