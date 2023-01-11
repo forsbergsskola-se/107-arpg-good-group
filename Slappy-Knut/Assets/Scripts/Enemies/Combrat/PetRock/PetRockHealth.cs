@@ -1,4 +1,3 @@
-
 using Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +17,13 @@ public class PetRockHealth : Interactable, IDamagable
         //Disable the poop so it doesn't insta kill boss
         FindObjectOfType<PoopSpawner>().poopImage.color = new Color(1,1,1,.2f);
         FindObjectOfType<PoopSpawner>().enabled = false;
+    }
+
+    protected override void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.X)) OnDeath();
+        if(Input.GetKeyDown(KeyCode.D)) Health -= 1;
+        base.Update();
     }
 
     public float DefenseRating { get; set; }
