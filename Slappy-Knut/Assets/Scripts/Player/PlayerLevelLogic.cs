@@ -34,6 +34,8 @@ public class PlayerLevelLogic : MonoBehaviour
         attackLogic = GetComponent<PlayerAttack>();
         _slider.value = XPEarned / nextLevelXP;
         _levelInfo.text = level.ToString();
+
+        rageLogic.IncreaseStats(MathF.Pow(2, level), MathF.Pow(1.2f, level));
     }
 
     public void IncreaseXP(float addition)
