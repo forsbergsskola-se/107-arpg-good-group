@@ -8780,7 +8780,7 @@ PrefabInstance:
     - target: {fileID: 8903449741633459306, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.048883054
       objectReference: {fileID: 0}
     - target: {fileID: 8903449741633459306, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}
@@ -8790,7 +8790,7 @@ PrefabInstance:
     - target: {fileID: 8903449741633459306, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.99880457
       objectReference: {fileID: 0}
     - target: {fileID: 8903449741633459306, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}
@@ -8805,7 +8805,7 @@ PrefabInstance:
     - target: {fileID: 8903449741633459306, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 174.396
       objectReference: {fileID: 0}
     - target: {fileID: 8903449741633459306, guid: db4cfaf2038b8be4ea938a36b58198b7,
         type: 3}
@@ -27550,6 +27550,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 215a971f0f2e59047bf9b5991ec49964, type: 3}
+--- !u!84 &761566292
+RenderTexture:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterDepthMap
+  m_ImageContentsHash:
+    serializedVersion: 2
+    Hash: 00000000000000000000000000000000
+  m_ForcedFallbackFormat: 4
+  m_DownscaleFallback: 0
+  m_IsAlphaChannelOptional: 0
+  serializedVersion: 5
+  m_Width: 1024
+  m_Height: 1024
+  m_AntiAliasing: 1
+  m_MipCount: -1
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 0
+  m_MipMap: 0
+  m_GenerateMips: 1
+  m_SRGB: 0
+  m_UseDynamicScale: 0
+  m_BindMS: 0
+  m_EnableCompatibleFormat: 1
+  m_TextureSettings:
+    serializedVersion: 2
+    m_FilterMode: 1
+    m_Aniso: 1
+    m_MipBias: 0
+    m_WrapU: 1
+    m_WrapV: 1
+    m_WrapW: 1
+  m_Dimension: 2
+  m_VolumeDepth: 1
+  m_ShadowSamplingMode: 2
 --- !u!1001 &763376594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41760,43 +41797,6 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
---- !u!84 &1133801890
-RenderTexture:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: WaterDepthMap
-  m_ImageContentsHash:
-    serializedVersion: 2
-    Hash: 00000000000000000000000000000000
-  m_ForcedFallbackFormat: 4
-  m_DownscaleFallback: 0
-  m_IsAlphaChannelOptional: 0
-  serializedVersion: 5
-  m_Width: 1024
-  m_Height: 1024
-  m_AntiAliasing: 1
-  m_MipCount: -1
-  m_DepthStencilFormat: 94
-  m_ColorFormat: 0
-  m_MipMap: 0
-  m_GenerateMips: 1
-  m_SRGB: 0
-  m_UseDynamicScale: 0
-  m_BindMS: 0
-  m_EnableCompatibleFormat: 1
-  m_TextureSettings:
-    serializedVersion: 2
-    m_FilterMode: 1
-    m_Aniso: 1
-    m_MipBias: 0
-    m_WrapU: 1
-    m_WrapV: 1
-    m_WrapW: 1
-  m_Dimension: 2
-  m_VolumeDepth: 1
-  m_ShadowSamplingMode: 2
 --- !u!1001 &1135805892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76007,6 +76007,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 104479974}
     m_Modifications:
+    - target: {fileID: 1933034853828813439, guid: 2c1c3219cbaefc441beff06370cbb749,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 628fb358393e6492eb92424c9f20a05a,
+        type: 3}
     - target: {fileID: 3133128062592393656, guid: 2c1c3219cbaefc441beff06370cbb749,
         type: 3}
       propertyPath: m_Radius
@@ -76027,6 +76033,12 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.0525794
       objectReference: {fileID: 0}
+    - target: {fileID: 4996123502075377551, guid: 2c1c3219cbaefc441beff06370cbb749,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 628fb358393e6492eb92424c9f20a05a,
+        type: 3}
     - target: {fileID: 7225329391624411361, guid: 2c1c3219cbaefc441beff06370cbb749,
         type: 3}
       propertyPath: m_Name
