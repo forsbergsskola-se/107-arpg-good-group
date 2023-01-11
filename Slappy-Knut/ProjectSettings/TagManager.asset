@@ -17,6 +17,7 @@ TagManager:
   - RageBar
   - MinimapCamera
   - Gate
+  - Level
   layers:
   - Default
   - TransparentFX
