@@ -68,7 +68,9 @@ public class Combrat : MonoBehaviour
     
     private void FixedUpdate()
     {
-        KnockUpLogic();
+        //testing
+        if(RockBullet.HasBeenKnockedUp)
+            KnockUpLogic();
         if(!_hasRolled)
             DetectZoneAroundCombrat();
         ChangeState();
@@ -106,7 +108,7 @@ public class Combrat : MonoBehaviour
         }
     }
 
-    private void KnockUpLogic()
+    private void KnockUpLogic() //<--- should be handled in playerMovement i think
     {
         if (RockBullet.HasBeenKnockedUp)
         {
@@ -282,13 +284,11 @@ public class Combrat : MonoBehaviour
     private void DeathThings()
     {
         _audioManager.AS_Scream.Stop();
-        _audioManager.AS_Cry.Stop();
         //Play this once. maybe it resets when we go to the portal?
         _audioManager.AS_Cry.Play();
         _riggingAnimator.Play("CryFall");
         canvas.gameObject.SetActive(false);
         LowerLastLevel();
-        
     }
     
     public void StartBossFight() => state = State.RockThrowAttack;
@@ -336,7 +336,7 @@ public class Combrat : MonoBehaviour
        //0.76f is the center and checks if player is right or left of it and sets position to move to that wall
        _isCloserToRightWall = _player.transform.position.x > 0.76f;
        //When Combrat collides with walls we get randomPos
-       _randomPos = Random.Range(-6.3f, 6.05f);
+       _randomPos = Random.Range(-5.3f, 6.05f);
        _hasReachedRandomPos = false;
    }
 }
