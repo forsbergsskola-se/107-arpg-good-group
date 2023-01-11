@@ -8,6 +8,7 @@ public class PoopSpawner : MonoBehaviour
     public float maxCooldown = 10f;
     public LayerMask walkableLayer;
     public Image cooldownImage;
+    public Image poopImage;
     
     private int _maxRayCastDistance = 100;
     private GameObject _player;

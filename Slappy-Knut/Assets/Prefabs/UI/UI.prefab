@@ -481,6 +481,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 65536
   cooldownImage: {fileID: 6842015441549142277}
+  poopImage: {fileID: 5706979614192353632}
 --- !u!82 &3954977508687563409
 AudioSource:
   m_ObjectHideFlags: 0
