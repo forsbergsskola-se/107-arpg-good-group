@@ -285,6 +285,12 @@ public class Combrat : MonoBehaviour
         //Play the sounds once and it needs to be called multiple times for the loweLastlevel to go down, then we should disable the script? or stop calling stateHandler
         if (!_playCrySoundsOnce)
         {
+            //If player kills petRock when in sandWave
+            _navPlayer.updatePosition = true;
+            _navPlayer.Warp(_player.transform.position);
+            sandWave.gameObject.SetActive(false);
+            _playerRb.isKinematic = false;
+            
             _audioManager.AS_Scream.Stop();
             _audioManager.AS_Cry.Stop();
             _audioManager.AS_Cry.PlayOneShot(_audioManager.AS_Cry.clip);
