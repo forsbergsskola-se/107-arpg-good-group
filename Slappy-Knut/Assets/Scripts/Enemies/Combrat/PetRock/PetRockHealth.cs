@@ -16,7 +16,7 @@ public class PetRockHealth : Interactable, IDamagable
         _rb = GetComponent<Rigidbody>();
         _health = maxHealth;
         //Disable the poop so it doesn't insta kill boss
-        FindObjectOfType<PoopSpawner>().poopImage.enabled = false;
+        FindObjectOfType<PoopSpawner>().poopImage.color = new Color(1,1,1,.2f);
         FindObjectOfType<PoopSpawner>().enabled = false;
     }
 
@@ -51,7 +51,7 @@ public class PetRockHealth : Interactable, IDamagable
         healthBar.GetComponentInParent<Canvas>().enabled = false;
         //enable the poop spell
         FindObjectOfType<PoopSpawner>().enabled = true;
-        FindObjectOfType<PoopSpawner>().poopImage.enabled = true;
+        FindObjectOfType<PoopSpawner>().poopImage.color = new Color(1,1,1,1);
         FindObjectOfType<Combrat>().StartDeath();
     }
 
