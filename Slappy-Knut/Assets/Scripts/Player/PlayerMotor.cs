@@ -16,6 +16,7 @@ public class PlayerMotor : MonoBehaviour
     {
         if (target != null)
         {
+            if (agent.speed < 0.005f) agent.ResetPath();
             agent.SetDestination(target.position);
             FaceTarget();
         }
