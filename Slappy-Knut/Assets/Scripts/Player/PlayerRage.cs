@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerRage : MonoBehaviour, IDamagable
 {
-    public Slider rageBar;
     public float maxRage = 1;
     public float rageDOT;
     public SkinnedMeshRenderer bodyMesh;
@@ -17,18 +16,18 @@ public class PlayerRage : MonoBehaviour, IDamagable
     public static float CurrentRage;
     public static bool IsDead;
     
+    [HideInInspector] public Slider rageBar;
     private Scene _scene;
     private Animator _animator;
-    private PlayerAudioManager _audioManager;
     private PlayerController _playerMovement;
 
     void Start()
     {
+        rageBar = GameObject.FindGameObjectWithTag("RageBar").GetComponent<Slider>();
         IsDead = false;
         CurrentRage = 0;
         rageBar.maxValue = maxRage;
         _animator = GetComponent<Animator>();
-        _audioManager = GetComponent<PlayerAudioManager>();
         _playerMovement = GetComponent<PlayerController>();
     }
     void Update()
@@ -57,8 +56,8 @@ public class PlayerRage : MonoBehaviour, IDamagable
     }
     void SetInactive() //called on the animator
     {
-        _audioManager.AS_RageFart.Play();
-        fartCloud.Play();
+        Vector3 offset = new Vector3(0, 1, 0);
+        Instantiate(fartCloud, gameObject.transform.position + offset, Quaternion.identity);
         bodyMesh.enabled = false;
         hairMesh.enabled = false;
     }

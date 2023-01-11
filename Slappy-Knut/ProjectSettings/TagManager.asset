@@ -13,6 +13,9 @@ TagManager:
   - NPCWayPoint
   - NPCSpawnPoint
   - BackgroundMusic
+  - SatisfactionBar
+  - RageBar
+  - MinimapCamera
   - Gate
   - Level
   layers:
@@ -35,7 +38,7 @@ TagManager:
   - MainGround
   - Player
   - Buildings
-  - 
+  - MinimapIcon
   - 
   - 
   - 

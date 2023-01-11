@@ -17,15 +17,12 @@ public class ChickBoss : MonoBehaviour
     private bool _canCharge;
     private bool _hasChargeDirection;
     private bool _gotHit;
-    private bool _hasMovedInAir;
-    
-    private Vector3 _tempPos;
 
     private ChickAudioManager _audioManager;
     private Animator _anim;
     private Rigidbody _rb;
     private Rigidbody _playerRb;
-    private LineRenderer _lineRenderer;
+    public LineRenderer lineRenderer;
     private GameObject _player;
     private PlayerRage _playerRage;
     private NavMeshAgent _navPlayer;
@@ -54,6 +51,8 @@ public class ChickBoss : MonoBehaviour
     {
         //for caching
         _player = GameObject.FindWithTag("Player");
+        //turning the collider on or the boss fight
+        _player.GetComponent<CapsuleCollider>().isTrigger = false;
         _navPlayer = _player.GetComponent<NavMeshAgent>();
         //ignoring player and ogre colliders so chicken can charge through them
         Physics.IgnoreCollision(_player.GetComponent<CapsuleCollider>(), GetComponent<Collider>());
@@ -63,31 +62,17 @@ public class ChickBoss : MonoBehaviour
         timer = maxTimer;
         _anim = GetComponent<Animator>();
         _rb = GetComponent<Rigidbody>();
-        _lineRenderer = GetComponent<LineRenderer>();
         _playerRb = _player.GetComponent<Rigidbody>();
         stateEnum = StateEnum.Idle;
     }
     
     private void FixedUpdate()
     {
-        if(_gotHit)
-            if (_navPlayer.destination != _navPlayer.nextPosition)
-            {
-                //If player moves when knockedUp(inAir) we save the location and when player lands he starts moving there
-                _tempPos = _navPlayer.destination;
-                _hasMovedInAir = true;
-            }
         //to turn on the navmesh update position when player isGrounded
-        if(_playerRb.velocity.y == 0 && _gotHit)
+        if(_playerRb.velocity.y == 0)
         {
-            //Reset navMeshAgent when player reaches ground so we can move again only called when a rock hits then checks when grounded then stops checking
             _navPlayer.updatePosition = true;
-            //Warp puts the navMesh at the right place when player lands
-            _navPlayer.Warp(_player.transform.position);
-            if(_hasMovedInAir)
-                _navPlayer.destination = _tempPos;
-            _hasMovedInAir = false;
-            RockBullet.HasBeenKnockedUp = false;
+            _playerRb.velocity = Vector3.zero;
             _gotHit = false;
         }
         ChangeState();
@@ -123,19 +108,15 @@ public class ChickBoss : MonoBehaviour
                 _playerRage.TakeDamage(normalDamage,gameObject);
                 _audioManager.AS_AttackChirp.Play();
                 _once = true;
-              
+                //turns the navmesh off to get the physics on player
+                _navPlayer.updatePosition = false;
+                //resets the path to nothing
+                _navPlayer.ResetPath();
                 //knock backs the player when hit
                 Vector3 difference = (_player.transform.position-transform.position).normalized;
                 difference.y = 1f;
                 Vector3 force = difference * (knockBackForce * 3);
                 _playerRb.AddForce(force, ForceMode.Impulse);
-
-                _gotHit = true;
-                
-                //turns the navmesh off to get the physics on player
-                _navPlayer.updatePosition = false;
-                //resets the path to nothing
-                _navPlayer.ResetPath();
             }
         }
         else
@@ -177,7 +158,7 @@ public class ChickBoss : MonoBehaviour
             }
         }
 
-        _lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(0, transform.position);
         // calling this once: LookAt, lineRenderer and startCharging resets when hitting the fence and touching the ground
         if (!_hasChargeDirection && _enRaged && _rb.velocity == Vector3.zero)
         {
@@ -186,7 +167,7 @@ public class ChickBoss : MonoBehaviour
             transform.LookAt(position);
             _hasChargeDirection = true;
 
-           _lineRenderer.SetPosition(1, transform.forward * 25 + transform.position);
+           lineRenderer.SetPosition(1, transform.forward * 25 + transform.position);
 
         }       
         // charge timer until he can start charging
@@ -229,6 +210,7 @@ public class ChickBoss : MonoBehaviour
             _hasChargeDirection = false;
             timer = maxTimer;
             _canCharge = false;
+            //_gotHit = false;
             //Knock back the Sjicken  when he hits a fence
             Vector3 difference = collision.transform.forward;
             difference.y = 1f;
@@ -243,11 +225,8 @@ public class ChickBoss : MonoBehaviour
         //Making sjicken small again
         if (_rb.transform.localScale.x > 2f)
             _rb.transform.localScale -= new Vector3(2.5f,2.5f,2.5f) * Time.deltaTime;
-        //turning the script off when chicken finishes going small so we dont call this repeatedly
-        if (_rb.transform.localScale.x < 2f) 
-            enabled = false;
-        
-        _lineRenderer.enabled = false;
+
+        lineRenderer.enabled = false;
         //turn collider off we are basically only using it so player cant through the fence and to trigger boss (after player has landed then turn off)
         if(_playerRb.velocity.y == 0)
             _player.GetComponent<CapsuleCollider>().isTrigger = true;

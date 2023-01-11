@@ -51,7 +51,7 @@ public class EasyObjectsFade : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void FixedUpdate()
+    private void Update()
     {
         RaycastHit[] hits;
         rayDistance = Vector3.Distance(playerTransform.position, transform.position);

@@ -12,16 +12,19 @@ public class PlayerLevelLogic : MonoBehaviour
     private float nextLevelXP; //Stores what the next levels required XP is
     public ParticleSystem levelUpParticle;
     public int level;
-    public TextMeshProUGUI levelInfo;
     
-    public Slider satisfactionBar;
-    public Slider rageBar;
+    private GameObject _satisfactionBar;
+    private TextMeshProUGUI _levelInfo;
+    private Slider _slider;
 
     
     void Start()
     {
+        _satisfactionBar = GameObject.FindGameObjectWithTag("SatisfactionBar");
+        _slider = _satisfactionBar.GetComponent<Slider>();
+        _levelInfo = _satisfactionBar.GetComponentInChildren<TextMeshProUGUI>();
         XPEarned = 0;
-        levelInfo.text = level.ToString();
+        _levelInfo.text = level.ToString();
         nextLevelXP = 50;
         rageLogic = GetComponent<PlayerRage>();
         attackLogic = GetComponent<PlayerAttack>();
@@ -31,7 +34,7 @@ public class PlayerLevelLogic : MonoBehaviour
     {
         XPEarned += addition;
         CheckForLevelUp();
-        satisfactionBar.value = XPEarned / nextLevelXP;
+        _slider.value = XPEarned / nextLevelXP;
     }
 
     public void Update()
@@ -49,13 +52,13 @@ public class PlayerLevelLogic : MonoBehaviour
         {
             XPEarned -= nextLevelXP;
             level++;
-            levelInfo.text = level.ToString();
+            _levelInfo.text = level.ToString();
             nextLevelXP *= 1.5f;
             rageLogic.IncreaseStats(2,1.2f);
             PlayerRage.CurrentRage = 0;
             attackLogic.IncreaseAttackPower(1.3f);
 
-            rageBar.maxValue = rageLogic.maxRage;
+            rageLogic.rageBar.maxValue = rageLogic.maxRage;
             
             Instantiate(levelUpParticle, transform);
         }

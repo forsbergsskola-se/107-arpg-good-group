@@ -1,5 +1,6 @@
 using Interfaces;
 using UnityEngine;
+using UnityEngine.AI;
 
 public abstract class Pet : Interactable, IItem
 {
@@ -15,15 +16,19 @@ public abstract class Pet : Interactable, IItem
     public abstract GameObject Player { get; set; }
     public abstract Rigidbody Rb { get; set; }
     public abstract Animator Anim { get; set; }
+    public abstract NavMeshAgent Agent { get; set; }
+
 
     public static Pet CurrEquippedPet;
     public bool movementDisabled;
+
+    
 
     protected abstract void Start();
     
     public static void SpawnPet(GameObject prefab)
     {
-        GameObject go = Instantiate(prefab, FindObjectOfType<PlayerAttack>().transform.position, Quaternion.identity);
+        GameObject go = Instantiate(prefab, FindObjectOfType<PlayerAttack>().transform.position + new Vector3(0, 0, -1.5f), Quaternion.identity);
         CurrEquippedPet = go.GetComponent<Pet>();
     }
 
@@ -35,18 +40,17 @@ public abstract class Pet : Interactable, IItem
     
     void MoveToPlayer()
     {
-        if (Vector3.Distance(Rb.position, Player.transform.position) < 4f)
+        if (Vector3.Distance( transform.position, Player.transform.position) < 4f)
         {
             //stop the chicken 4f away from player else follow him
             Anim.SetBool("Run", false);
             //_anim.SetBool("Eat", true); // dno if we want eat idle
+            Agent.ResetPath();
         }
         else
         {
             Anim.SetBool("Run", true);
-            transform.LookAt(Player.transform);
-            Vector3 newPos = Vector3.MoveTowards(Rb.position, Player.transform.position, 5f * Time.deltaTime);
-            Rb.MovePosition(newPos);    
+            Agent.SetDestination(Player.transform.position);
         }
         
     }

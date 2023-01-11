@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SjickenPickup : Pet
 {
@@ -14,6 +15,7 @@ public class SjickenPickup : Pet
     public override GameObject Player { get; set; }
     public override Rigidbody Rb { get; set; }
     public override Animator Anim { get; set; }
+    public override NavMeshAgent Agent { get; set; }
 
     [SerializeField] private Sprite _icon;
     [SerializeField] private GameObject _prefab;

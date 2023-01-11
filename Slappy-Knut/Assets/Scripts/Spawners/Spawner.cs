@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -9,6 +8,7 @@ public class Spawner : MonoBehaviour
     public GameObject knutPrefab;
     public GameObject uiPrefab;
     public GameObject npcPrefab;
+    public GameObject minimapPrefab;
     public Transform _playerSpawnPoint;
     public int maxNPCs = 20;
     public static int CurrentNpcCount;
@@ -20,6 +20,7 @@ public class Spawner : MonoBehaviour
     private float spawnTime = 5;
     private void Awake()
     {
+        if (!GameObject.FindGameObjectWithTag("MinimapCamera")) Instantiate(minimapPrefab);
         _npcSpawnPoints = GameObject.FindGameObjectsWithTag("NPCSpawnPoint");
         _player = GameObject.FindGameObjectWithTag("Player");
         CurrentNpcCount = FindObjectsOfType<NPC>().Length;

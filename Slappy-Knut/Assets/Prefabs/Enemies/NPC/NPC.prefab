@@ -3176,7 +3176,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5818315529784513784}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.9055, y: 3.8035831, z: 9.8201885}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3208,7 +3208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5932715387393602304}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.9055, y: 3.8035831, z: 9.8201885}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3815,7 +3815,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6946590072547355528}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.9055, y: 3.8035831, z: 9.8201885}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4425,6 +4425,7 @@ Transform:
   - {fileID: 2342316949854267361}
   - {fileID: 2011119275196007427}
   - {fileID: 6056746806470615196}
+  - {fileID: 8307967094334162729}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4444,142 +4445,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: '
-
-    Transform ''Toes_L'' has been deleted
-
-    Transform ''Ankle_L''
-    has been deleted
-
-    Transform ''Knee_L'' has been deleted
-
-    Transform ''Hip_L''
-    has been deleted
-
-    Transform ''Toes_R'' has been deleted
-
-    Transform ''Ankle_R''
-    has been deleted
-
-    Transform ''Knee_R'' has been deleted
-
-    Transform ''Hip_R''
-    has been deleted
-
-    Transform ''Head_M'' has been deleted
-
-    Transform ''Neck_M''
-    has been deleted
-
-    Transform ''IndexFinger3_L'' has been deleted
-
-    Transform
-    ''IndexFinger2_L'' has been deleted
-
-    Transform ''IndexFinger1_L'' has been
-    deleted
-
-    Transform ''MiddleFinger3_L'' has been deleted
-
-    Transform ''MiddleFinger2_L''
-    has been deleted
-
-    Transform ''MiddleFinger1_L'' has been deleted
-
-    Transform
-    ''PinkyFinger3_L'' has been deleted
-
-    Transform ''PinkyFinger2_L'' has been
-    deleted
-
-    Transform ''PinkyFinger1_L'' has been deleted
-
-    Transform ''RingFinger3_L''
-    has been deleted
-
-    Transform ''RingFinger2_L'' has been deleted
-
-    Transform
-    ''RingFinger1_L'' has been deleted
-
-    Transform ''ThumbFinger3_L'' has been
-    deleted
-
-    Transform ''ThumbFinger2_L'' has been deleted
-
-    Transform ''ThumbFinger1_L''
-    has been deleted
-
-    Transform ''Wrist_L'' has been deleted
-
-    Transform ''Elbow_L''
-    has been deleted
-
-    Transform ''Shoulder_L'' has been deleted
-
-    Transform
-    ''Scapula_L'' has been deleted
-
-    Transform ''IndexFinger3_R'' has been deleted
-
-    Transform
-    ''IndexFinger2_R'' has been deleted
-
-    Transform ''IndexFinger1_R'' has been
-    deleted
-
-    Transform ''MiddleFinger3_R'' has been deleted
-
-    Transform ''MiddleFinger2_R''
-    has been deleted
-
-    Transform ''MiddleFinger1_R'' has been deleted
-
-    Transform
-    ''PinkyFinger3_R'' has been deleted
-
-    Transform ''PinkyFinger2_R'' has been
-    deleted
-
-    Transform ''PinkyFinger1_R'' has been deleted
-
-    Transform ''RingFinger3_R''
-    has been deleted
-
-    Transform ''RingFinger2_R'' has been deleted
-
-    Transform
-    ''RingFinger1_R'' has been deleted
-
-    Transform ''ThumbFinger3_R'' has been
-    deleted
-
-    Transform ''ThumbFinger2_R'' has been deleted
-
-    Transform ''ThumbFinger1_R''
-    has been deleted
-
-    Transform ''Wrist_R'' has been deleted
-
-    Transform ''Elbow_R''
-    has been deleted
-
-    Transform ''Shoulder_R'' has been deleted
-
-    Transform
-    ''Scapula_R'' has been deleted
-
-    Transform ''Chest_M'' has been deleted
-
-    Transform
-    ''Spine2_M'' has been deleted
-
-    Transform ''Spine1_M'' has been deleted
-
-    Transform
-    ''Root_M'' has been deleted
-
-    Transform ''Armature'' has been deleted'
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -4617,7 +4483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 3
-  startHealth: 30
+  startHealth: 1
   loot:
   - {fileID: 4834642345348076956, guid: 4a53aea83ea6b404bbe3190985df587d, type: 3}
   - {fileID: 1916654942182664184, guid: 1e6ecff968d2a5b4dbc5c5baf303c26a, type: 3}
@@ -4673,9 +4539,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1.6534069
+  m_Height: 1.4244854
   m_Direction: 1
-  m_Center: {x: 0, y: 0.054568887, z: 0}
+  m_Center: {x: 0, y: 1.1334597, z: 0}
 --- !u!54 &4972207988091991305
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5536,3 +5402,139 @@ Transform:
   m_Father: {fileID: 5802225207877586763}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3453664659844257379
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7873197440197815287}
+    m_Modifications:
+    - target: {fileID: 1721920492607850400, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_Name
+      value: MinimapCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757709722773023978, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 65f42b8e2924f4e26adf8ce8fb34fcdf,
+        type: 3}
+    - target: {fileID: 4292905541041834471, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 641db8a324741bb4894b59b3d1d1745b, type: 3}
+--- !u!224 &8307967094334162729 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6676082577855107402, guid: 641db8a324741bb4894b59b3d1d1745b,
+    type: 3}
+  m_PrefabInstance: {fileID: 3453664659844257379}
+  m_PrefabAsset: {fileID: 0}

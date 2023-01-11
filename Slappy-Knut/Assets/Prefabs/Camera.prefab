@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2079656487040081051}
   - component: {fileID: 9034048986715392100}
+  - component: {fileID: 969073320}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +49,24 @@ MonoBehaviour:
   horizontalAngle: 80
   verticalAngle: 45
   zoomLevel: -20
+--- !u!114 &969073320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2203072804224727295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149ce517578a15f4dbff285c010ef490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  maxRayCastDistance: 100
+  attackCursor: {fileID: 2800000, guid: ce683041f000c7c48b73e8fbda566384, type: 3}
+  interactableCursor: {fileID: 2800000, guid: 42ec8a0e710138343a271d732299cfb6, type: 3}
 --- !u!1 &2492589434950263708
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +94,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2492589434950263708}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.000000014901158, y: 0.000000029802315, z: -0.000000014901158,
+    w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -114,7 +134,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 524287
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -185,6 +205,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 262144
-  time: 0.1459999978542328
+  time: 0.009999999776482582
   minimalOpacity: 0.1
   playerTransform: {fileID: 0}
