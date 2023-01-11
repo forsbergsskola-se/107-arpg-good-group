@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour
     public GameObject npcPrefab;
     public GameObject minimapPrefab;
     public Transform _playerSpawnPoint;
+    public Transform petSpawnPoint;
     public int maxNPCs = 20;
     public static int CurrentNpcCount;
 
@@ -31,6 +32,7 @@ public class Spawner : MonoBehaviour
         else
         {
             _player.GetComponent<NavMeshAgent>().Warp(_playerSpawnPoint.position);
+            if (Pet.CurrEquippedPet) Pet.CurrEquippedPet.Agent.Warp(petSpawnPoint.position);
         }
         if (_ui == null)
         {
@@ -39,10 +41,6 @@ public class Spawner : MonoBehaviour
             if(_ui != null)
                 DontDestroyOnLoad(_ui);
         }
-
-        if (Pet.CurrEquippedPet != null && _player != null) // sjicken has to wait for player to spawn
-            Pet.CurrEquippedPet.transform.position = _player.transform.position;
-
     }
 
     private void Update()

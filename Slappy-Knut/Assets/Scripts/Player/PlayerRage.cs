@@ -72,6 +72,7 @@ public class PlayerRage : MonoBehaviour, IDamagable
     {
         maxRage *= rageMultiplier;
         DefenseRating *= defenseMultiplier;
+        rageBar.maxValue = maxRage;
     }
     
 }
