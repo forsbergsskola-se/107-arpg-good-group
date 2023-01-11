@@ -27,6 +27,7 @@ public class Combrat : MonoBehaviour
     private bool _hasRolled;
     private bool _hasMovedInAir;
     private bool _isCloserToRightWall;
+    private bool _playCrySoundsOnce;
     public Transform resetPlayerPos;
     public Transform sandWave;
     public Image cryCdTimer;
@@ -283,9 +284,15 @@ public class Combrat : MonoBehaviour
     
     private void DeathThings()
     {
-        _audioManager.AS_Scream.Stop();
-        //Play this once. maybe it resets when we go to the portal?
-        _audioManager.AS_Cry.Play();
+        //Play the sounds once and it needs to be called multiple times for the loweLastlevel to go down, then we should disable the script? or stop calling stateHandler
+        if (!_playCrySoundsOnce)
+        {
+            _audioManager.AS_Scream.Stop();
+            _audioManager.AS_Cry.Stop();
+            _audioManager.AS_Cry.PlayOneShot(_audioManager.AS_Cry.clip);
+            _playCrySoundsOnce = true;
+        }
+       
         _riggingAnimator.Play("CryFall");
         canvas.gameObject.SetActive(false);
         LowerLastLevel();
