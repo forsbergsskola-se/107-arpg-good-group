@@ -93,7 +93,6 @@ public class ChickBoss : MonoBehaviour
             case StateEnum.Idle:
             default:
                 //unexpected things happened
-                Application.Quit();
                 break;
         }
     }

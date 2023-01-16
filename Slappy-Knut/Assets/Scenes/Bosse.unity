@@ -20133,6 +20133,11 @@ PrefabInstance:
       propertyPath: runawayCheckPoint
       value: 
       objectReference: {fileID: 2143317393}
+    - target: {fileID: 5908202935410285067, guid: 04694793811f2a04bb7dd03a1e14f211,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 5987209129563898559, guid: 04694793811f2a04bb7dd03a1e14f211,
         type: 3}
       propertyPath: m_RootOrder
